@@ -1,0 +1,33 @@
+Original, 5 folds
+Run count accuracy: 0.9844
+Run count accuracy: 1.0021
+Run count accuracy: 1.0046
+Run count accuracy: 0.9904
+Run count accuracy: 1.0202
+
+
+After redoing data, 5 folds
+Run count accuracy: 1.0388
+Run count accuracy: 1.0019
+Run count accuracy: 1.0070
+Run count accuracy: 0.9997
+Run count accuracy: 0.9887
+
+Irregular data, 10 folds
+Testing run count accuracy: 0.7124
+Testing run count accuracy: 0.9583
+Testing run count accuracy: 0.7378
+Testing run count accuracy: 0.6884
+Testing run count accuracy: 1.0517
+Testing run count accuracy: 1.3292
+Testing run count accuracy: 1.1921
+Testing run count accuracy: 1.2520
+Testing run count accuracy: 0.9150
+Testing run count accuracy: 1.0485
+
+Irregular data, 5 folds
+Testing run count accuracy: 0.8404
+Testing run count accuracy: 0.6824
+Testing run count accuracy: 1.2412
+Testing run count accuracy: 1.2370
+Testing run count accuracy: 0.8781
