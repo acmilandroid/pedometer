@@ -18,7 +18,12 @@ import time
 import csv
 import sys
 
-total_axes = 6
+debug = 0
+total_features = 6
+
+print("Tensorflow version:", tf.__version__)
+print("Python version:", sys.version)
+
 
 # checks for correct number of command line args
 if len(sys.argv) != 2:
@@ -29,69 +34,94 @@ fpt = open(sys.argv[1], 'r')
 rawdata = [[float(x) for x in line.split()] for line in fpt]
 fpt.close
 
-# copy to classes and data
-classes = []
-data = []
+# copy to labels (steps per window) and features (sensor measurement axes)
+labels = []
+features = []
 
-# separate data into one row per axis for normalizing
+# separate features into one row per feature (axis) for normalizing
 for i in range(0, len(rawdata)):
-    classes.append(rawdata[i][0])
-    for j in range(0, total_axes):
+    labels.append(rawdata[i][0])
+    for j in range(0, total_features):
         row=[]
-        for k in range(j+1, len(rawdata[i]), total_axes):
+        for k in range(j+1, len(rawdata[i]), total_features):
             row.append(rawdata[i][k])
-        if len(row) != 75:
+        if len(row) != 75 and debug == 0:
             print("error on line:", i, "length is", len(row))
-        data.append(row)
+        features.append(row)
 
-classes = np.array(classes)
-data = np.array(data)
+labels = np.array(labels)
+features = np.array(features)
 
-print("data has shape", data.shape)
-sample_length = data.shape[1]
+print("features has shape", features.shape)
+sample_length = features.shape[1]
 
-# normalize each row of data
-start=time.time()
-normdata=np.empty_like(data)
-for i in range(0, len(data)):
-    norm=[]
-    s=min(data[i])
-    t=max(data[i])
+#print labels and features for debugging
+if debug == 1:
+    print("labels:")
+    print(labels)
+    print("features:")
+    print(features)
+
+# normalize each row of features
+start = time.time()
+normdata = np.empty_like(features)
+for i in range(0, len(features)):
+    s = min(features[i])
+    t = max(features[i])
     if s == t:
         t = s+1
-    normdata[i] = (data[i]-s) / (t-s)
+    normdata[i] = (features[i]-s) / (t-s)
 end = time.time()
-print("data normalized in", end-start, " seconds")
+print("features normalized in", end-start, " seconds")
 
-data = normdata
+features = normdata
 
-# check normalization
-# for i in range(0, len(normdata)):
-#     if min(normdata[i]) != 0:
-#         print("min ", i, " does not equal 0.")
-#     if max(normdata[i]) != 1:
-#         print("max ", i, " does not equal 1.")
+# check normalization (debug mode only)
+if debug == 1:
+    for i in range(0, len(normdata)):
+        s = min(normdata[i])
+        t = max(normdata[i])
+        if s != 0:
+            print("min of", s, " at index", i, " does not equal 0.")
+            print("normdata:")
+            print(normdata[i])
+        if t != 1:
+            print("max of", t, " at index", i, " does not equal 1.")
+            print("normdata:")
+            print(normdata[i])
 
-# reshape data to flatten it to one row per recording
-# data_flat in following format:
+# reshape features to flatten it to one row per recording
+# features_flat in following format:
 # x1 x2... xn y1 y2... yn z1 z2... zn Y1... P1... R1... Rn per row
-data_flat = data.reshape(len(classes), len(data[0])*total_axes)
-print("data_flat has shape", data_flat.shape)
-num_samples = data_flat.shape[0]
+features_flat = features.reshape(len(labels), len(features[0])*total_features)
+print("features_flat has shape", features_flat.shape)
+num_samples = features_flat.shape[0]
 
-# copies data from 2D matrix data_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix data_input[#windows][window_length][#axes]
-data_input = np.zeros((len(data_flat), sample_length, total_axes))
+if debug == 1:
+    print("features_flat:")
+    print(features_flat)
+
+# copies features from 2D matrix features_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix features_input[#windows][window_length][#features]
+# first dimension contains 1 measurement of each feature (X,Y,Z, yaw,pitch,roll)
+# second dimension contains the number of measurements (sensor samples) in the specific time window
+# third dimension contains the total number of time windows, or total samples
+features_input = np.zeros((len(features_flat), sample_length, total_features))
 for i in range(0, num_samples):
     for j in range(0, sample_length):
-        for k in range(0, total_axes):
-            data_input[i][j][k] = data_flat[i][k*sample_length + j]
-print("data_input has shape", data_input.shape)
+        for k in range(0, total_features):
+            features_input[i][j][k] = features_flat[i][k*sample_length + j]
+print("features_input has shape", features_input.shape)
+
+if debug == 1:
+    print("features_input:")
+    print(features_input)
 
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(sample_length, total_axes,), filters=100, kernel_size=30, strides=5, activation='relu'),
-    keras.layers.Conv1D(filters=100, kernel_size=5, activation='relu'),
+    keras.layers.Conv1D(input_shape=(sample_length, total_features,), filters=64, kernel_size=6, activation='relu'),
+    keras.layers.MaxPooling1D(pool_size=6),
     keras.layers.Flatten(),  # must flatten to feed dense layer
+    keras.layers.Dense(50, activation='relu'),
     keras.layers.Dense(1)
 ])
 
@@ -101,15 +131,15 @@ es = keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, pa
 model.summary()
 
 print("Training")
-metrics = model.fit(data_input, classes, epochs=200,
+metrics = model.fit(features_input, labels, epochs=200,
     validation_split=0.2, verbose=2, callbacks=[es])
 
 print("Testing")
-loss, accuracy = model.evaluate(data_input, classes)
+loss, accuracy = model.evaluate(features_input, labels)
 print("Validation loss:", loss)
 print("Validation Mean Absolute Error:", accuracy)
 
-predictions = model.predict(data_input)
+predictions = model.predict(features_input)
 # print("Actual:\tPrediction:")
 
 # find average difference
@@ -117,11 +147,11 @@ predicted_steps = 0
 actual_steps = 0
 window_size = 75
 window_stride = 5
-predictions = model.predict(data_input)
+predictions = model.predict(features_input)
 for i in range(0, num_samples):
-    # print(classes[i], "\t", predictions[i][0])
+    # print(labels[i], "\t", predictions[i][0])
     predicted_steps += predictions[i][0] / window_size * window_stride
-    actual_steps += classes[i] / window_size * window_stride
+    actual_steps += labels[i] / window_size * window_stride
 predicted_steps = round(predicted_steps)
 actual_steps = round(actual_steps)
 diff = abs(predicted_steps-actual_steps)
@@ -129,4 +159,4 @@ print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
 print("Difference in steps:", diff)
 print("Training run count accuracy: %.4f" %(predicted_steps/actual_steps))
 
-tf.keras.models.save_model(model, 'model.hd5', True, True)
+model.save("model.h5")
