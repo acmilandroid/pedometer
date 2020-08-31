@@ -1,8 +1,8 @@
 #!/bin/bash
 #usage: ./train_uniform.sh [input_file.txt]
 #takes input file, creates uniform distribution of output data
-#trains uniform data, outputs to model.hd5
-#tests model.hd5 against all data
+#trains uniform data, outputs to model.h5
+#tests model.h5 against all data
 
 echo "Bash version ${BASH_VERSION}"
 

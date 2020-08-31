@@ -1,7 +1,7 @@
 # Basil Lin
 # step counter project
 # program to test classifier model with input
-# Usage: python3 test_model.py [input_file.txt] [model_name.hd5]
+# Usage: python3 test_model.py [input_file.txt] [model_name.h5]
 
 import logging
 logging.getLogger('tensorflow').disabled = True
@@ -22,7 +22,7 @@ total_axes = 6
 
 # checks for correct number of command line args
 if len(sys.argv) != 3:
-    sys.exit("Usage: python3 test_model.py [input_file.txt] [model_name.hd5]")
+    sys.exit("Usage: python3 test_model.py [input_file.txt] [model_name.h5]")
 
 # open file
 fpt = open(sys.argv[1], 'r')
