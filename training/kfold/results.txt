@@ -31,3 +31,56 @@ Testing run count accuracy: 0.6824
 Testing run count accuracy: 1.2412
 Testing run count accuracy: 1.2370
 Testing run count accuracy: 0.8781
+
+
+
+WITH NEW ALGO
+Validation loss: 0.752379298210144
+Predicted steps: 3141.0 Actual steps: 3213.0
+Difference in steps: 72.0
+Run count accuracy: 0.9776
+
+Validation loss: 0.48602962493896484
+Predicted steps: 3085.0 Actual steps: 3081.0
+Difference in steps: 4.0
+Run count accuracy: 1.0013
+
+Validation loss: 0.5138404369354248
+Predicted steps: 3293.0 Actual steps: 3262.0
+Difference in steps: 31.0
+Run count accuracy: 1.0095
+
+Validation loss: 0.5221331715583801
+Predicted steps: 3080.0 Actual steps: 3028.0
+Difference in steps: 52.0
+Run count accuracy: 1.0172
+
+Validation loss: 0.45146241784095764
+Predicted steps: 3210.0 Actual steps: 3181.0
+Difference in steps: 29.0
+Run count accuracy: 1.0091
+
+Validation loss: 0.37718114256858826
+Predicted steps: 3093.0 Actual steps: 3096.0
+Difference in steps: 3.0
+Run count accuracy: 0.9990
+
+Validation loss: 0.5190078616142273
+Predicted steps: 3121.0 Actual steps: 3209.0
+Difference in steps: 88.0
+Run count accuracy: 0.9726
+
+Validation loss: 0.7517505288124084
+Predicted steps: 3218.0 Actual steps: 3140.0
+Difference in steps: 78.0
+Run count accuracy: 1.0248
+
+Validation loss: 0.6747155785560608
+Predicted steps: 3237.0 Actual steps: 3082.0
+Difference in steps: 155.0
+Run count accuracy: 1.0503
+
+Validation loss: 0.6042515635490417
+Predicted steps: 3223.0 Actual steps: 3248.0
+Difference in steps: 25.0
+Run count accuracy: 0.9923
