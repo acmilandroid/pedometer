@@ -18,10 +18,12 @@ import time
 import csv
 import sys
 
+debug = 0
+total_features = 6
+
 print("Tensorflow version:", tf.__version__)
 print("Python version:", sys.version)
 
-total_features = 6
 
 # checks for correct number of command line args
 if len(sys.argv) != 2:
@@ -43,7 +45,7 @@ for i in range(0, len(rawdata)):
         row=[]
         for k in range(j+1, len(rawdata[i]), total_features):
             row.append(rawdata[i][k])
-        if len(row) != 75:
+        if len(row) != 75 and debug == 0:
             print("error on line:", i, "length is", len(row))
         features.append(row)
 
@@ -53,13 +55,19 @@ features = np.array(features)
 print("features has shape", features.shape)
 sample_length = features.shape[1]
 
+#print labels and features for debugging
+if debug == 1:
+    print("labels:")
+    print(labels)
+    print("features:")
+    print(features)
+
 # normalize each row of features
-start=time.time()
-normdata=np.empty_like(features)
+start = time.time()
+normdata = np.empty_like(features)
 for i in range(0, len(features)):
-    norm=[]
-    s=min(features[i])
-    t=max(features[i])
+    s = min(features[i])
+    t = max(features[i])
     if s == t:
         t = s+1
     normdata[i] = (features[i]-s) / (t-s)
@@ -68,12 +76,19 @@ print("features normalized in", end-start, " seconds")
 
 features = normdata
 
-# check normalization
-# for i in range(0, len(normdata)):
-#     if min(normdata[i]) != 0:
-#         print("min ", i, " does not equal 0.")
-#     if max(normdata[i]) != 1:
-#         print("max ", i, " does not equal 1.")
+# check normalization (debug mode only)
+if debug == 1:
+    for i in range(0, len(normdata)):
+        s = min(normdata[i])
+        t = max(normdata[i])
+        if s != 0:
+            print("min of", s, " at index", i, " does not equal 0.")
+            print("normdata:")
+            print(normdata[i])
+        if t != 1:
+            print("max of", t, " at index", i, " does not equal 1.")
+            print("normdata:")
+            print(normdata[i])
 
 # reshape features to flatten it to one row per recording
 # features_flat in following format:
@@ -82,13 +97,24 @@ features_flat = features.reshape(len(labels), len(features[0])*total_features)
 print("features_flat has shape", features_flat.shape)
 num_samples = features_flat.shape[0]
 
+if debug == 1:
+    print("features_flat:")
+    print(features_flat)
+
 # copies features from 2D matrix features_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix features_input[#windows][window_length][#features]
+# first dimension contains 1 measurement of each feature (X,Y,Z, yaw,pitch,roll)
+# second dimension contains the number of measurements (sensor samples) in the specific time window
+# third dimension contains the total number of time windows, or total samples
 features_input = np.zeros((len(features_flat), sample_length, total_features))
 for i in range(0, num_samples):
     for j in range(0, sample_length):
         for k in range(0, total_features):
             features_input[i][j][k] = features_flat[i][k*sample_length + j]
 print("features_input has shape", features_input.shape)
+
+if debug == 1:
+    print("features_input:")
+    print(features_input)
 
 # set up classifier
 model = keras.Sequential([
