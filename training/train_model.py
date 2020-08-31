@@ -18,6 +18,9 @@ import time
 import csv
 import sys
 
+print("Tensorflow version:", tf.__version__)
+print("Python version:", sys.version)
+
 total_features = 6
 
 # checks for correct number of command line args
@@ -79,10 +82,6 @@ features_flat = features.reshape(len(labels), len(features[0])*total_features)
 print("features_flat has shape", features_flat.shape)
 num_samples = features_flat.shape[0]
 
-print("labels:\n", labels)
-print("features:\n", features)
-print("features_flat:\n", features_flat)
-
 # copies features from 2D matrix features_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix features_input[#windows][window_length][#features]
 features_input = np.zeros((len(features_flat), sample_length, total_features))
 for i in range(0, num_samples):
@@ -95,6 +94,7 @@ print("features_input has shape", features_input.shape)
 model = keras.Sequential([
     keras.layers.Conv1D(input_shape=(sample_length, total_features,), filters=100, kernel_size=30, strides=5, activation='relu'),
     keras.layers.Conv1D(filters=100, kernel_size=5, activation='relu'),
+    keras.layers.Conv1D(filters=100, kernel_size=2, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
     keras.layers.Dense(1)
 ])
@@ -133,4 +133,4 @@ print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
 print("Difference in steps:", diff)
 print("Training run count accuracy: %.4f" %(predicted_steps/actual_steps))
 
-tf.keras.models.save_model(model, 'model.hd5', True, True)
+model.save("model.h5")

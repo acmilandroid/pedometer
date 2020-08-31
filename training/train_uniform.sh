@@ -12,5 +12,5 @@ if [ "$#" -ne 1 ]; then
 fi
 
 python3 uniformize_data.py $1 uniform_data.txt
-python3 train.py uniform.txt
-python3 test_model.py $1 model.hd5
+python3 train_model.py uniform_data.txt
+python3 test_model.py $1 model.h5

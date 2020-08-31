@@ -5,9 +5,16 @@
 
 echo "Bash version ${BASH_VERSION}"
 
+#check input args
 if [ "$#" -ne 2 ]; then
     echo "Usage: ./train_kfold.sh [K] [input_file.txt]"
     exit 1
+fi
+
+#check if previous kfold files exist and remove them
+if ls kfold_split* 1> /dev/null 2>&1; then
+    echo "Removing previous files"
+    rm kfold_split*
 fi
 
 #create kfold data
@@ -19,7 +26,7 @@ python3 kfoldize_data.py $1 $2 > temp_kfold_data/kfold_log.txt
 for train_file in ./kfold_split_data*; do
     echo "Training $train_file..."
     python3 train_model.py $train_file >> temp_kfold_data/kfold_log.txt
-    mv model.hd5 temp_kfold_data/model_$num.hd5
+    mv model.h5 temp_kfold_data/model_$num.h5
     ((num++))
     echo "Done."
 done
@@ -28,7 +35,7 @@ done
 ((num=0))
 for test_file in ./kfold_split_test*; do
     echo "Testing $test_file..."
-    python3 test_model.py $test_file temp_kfold_data/model_$num.hd5 >> temp_kfold_data/kfold_log.txt
+    python3 test_model.py $test_file temp_kfold_data/model_$num.h5 >> temp_kfold_data/kfold_log.txt
     ((num++))
     echo "Done."
 done

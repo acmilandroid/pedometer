@@ -39,12 +39,12 @@ for i in range(0, K):
     print("Splitting data from rows", split_start, "to", split_end)
 
     # copy split to testing data and delete from original
-    test_data.append(np.zeros(datapoints))
-    test_data[1:] = data[split_start:split_end]
-    test_data.append(np.zeros(datapoints))
-    split_data.append(np.zeros(datapoints))
-    split_data[1:] = np.delete(data, slice(split_start, split_end), 0)
-    split_data.append(np.zeros(datapoints))
+    # test_data.append(np.zeros(datapoints))
+    test_data[0:] = data[split_start:split_end]
+    # test_data.append(np.zeros(datapoints))
+    # split_data.append(np.zeros(datapoints))
+    split_data[0:] = np.delete(data, slice(split_start, split_end), 0)
+    # split_data.append(np.zeros(datapoints))
 
     # write testing data to output file
     filename = "kfold_split_test_" + str(i) + ".txt"
