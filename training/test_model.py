@@ -18,7 +18,7 @@ import time
 import csv
 import sys
 
-total_axes = 6
+total_features = 6
 
 # checks for correct number of command line args
 if len(sys.argv) != 3:
@@ -26,81 +26,106 @@ if len(sys.argv) != 3:
 
 # open file
 fpt = open(sys.argv[1], 'r')
-rawdata = [[float(x) for x in line.split()] for line in fpt]
+rawfeatures = [[float(x) for x in line.split()] for line in fpt]
 fpt.close()
 
 # load keras model
 model = tf.keras.models.load_model(sys.argv[2])
 
-# copy to classes and data
-classes = []
-data = []
+# copy to labels and features
+labels = []
+features = []
 
-# separate data into one row per axis for normalizing
-for i in range(0, len(rawdata)):
-    classes.append(rawdata[i][0])
-    for j in range(0, total_axes):
+# separate features into one row per axis for normalizing
+for i in range(0, len(rawfeatures)):
+    labels.append(rawfeatures[i][0])
+    for j in range(0, total_features):
         row=[]
-        for k in range(j+1, len(rawdata[i]), total_axes):
-            row.append(rawdata[i][k])
+        for k in range(j+1, len(rawfeatures[i]), total_features):
+            row.append(rawfeatures[i][k])
         if len(row) != 75:
             print("error on line:", i, "length is", len(row))
-        data.append(row)
+        features.append(row)
 
-classes = np.array(classes)
-data = np.array(data)
+labels = np.array(labels)
+features = np.array(features)
 
-print("data has shape", data.shape)
-sample_length = data.shape[1]
+print("features has shape", features.shape)
+sample_length = features.shape[1]
 
-# normalize each row of data
+# normalize each row of features
 start=time.time()
-normdata=np.empty_like(data)
-for i in range(0, len(data)):
+normfeatures=np.empty_like(features)
+for i in range(0, len(features)):
     norm=[]
-    s=min(data[i])
-    t=max(data[i])
+    s=min(features[i])
+    t=max(features[i])
     if s == t:
         t = s+1
-    normdata[i] = (data[i]-s) / (t-s)
+    normfeatures[i] = (features[i]-s) / (t-s)
 end = time.time()
-print("data normalized in", end-start, " seconds")
+print("features normalized in", end-start, " seconds")
 
-data = normdata
+features = normfeatures
 
-# reshape data to flatten it to one row per recording
-# data_flat in following format:
+# reshape features to flatten it to one row per recording
+# features_flat in following format:
 # x1 x2... xn y1 y2... yn z1 z2... zn Y1... P1... R1... Rn per row
-data_flat = data.reshape(len(classes), len(data[0])*total_axes)
-print("data_flat has shape", data_flat.shape)
-num_samples = data_flat.shape[0]
+features_flat = features.reshape(len(labels), len(features[0])*total_features)
+print("features_flat has shape", features_flat.shape)
+num_samples = features_flat.shape[0]
 
-# copies data from 2D matrix data_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix data_input[#windows][window_length][#axes]
-data_input = np.zeros((len(data_flat), sample_length, total_axes))
+# copies features from 2D matrix features_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix features_input[#windows][window_length][#axes]
+features_input = np.zeros((len(features_flat), sample_length, total_features))
 for i in range(0, num_samples):
     for j in range(0, sample_length):
-        for k in range(0, total_axes):
-            data_input[i][j][k] = data_flat[i][k*sample_length + j]
-print("data_input has shape", data_input.shape)
+        for k in range(0, total_features):
+            features_input[i][j][k] = features_flat[i][k*sample_length + j]
+print("features_input has shape", features_input.shape)
 
-# test model on data
+# test model on features
 print("Testing")
-loss = model.evaluate(data_input, classes)
+loss = model.evaluate(features_input, labels)
 print("Validation loss:", loss[1])
-predictions = model.predict(data_input)
+predictions = model.predict(features_input)
 
-# evaluate prediction
+# find average difference
+step_indices = []
 predicted_steps = 0
+prev_predicted_steps = 0
 actual_steps = 0
 window_size = 75
 window_stride = 5
+predictions = model.predict(features_input)
+
+# loop through all windows
 for i in range(0, num_samples):
-    # print(classes[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / window_size * window_stride
-    actual_steps += classes[i] / window_size * window_stride
+
+    # print(labels[i], "\t", predictions[i][0])
+    predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
+    step_delta = int(predicted_steps - prev_predicted_steps)     # find difference in steps for each window shift
+    prev_predicted_steps = predicted_steps
+
+    # mark detected steps when the number of steps changes
+    if step_delta > 0:
+
+        # uniform indices to distribute attribute new steps detected to
+        index_delta = window_stride / (step_delta + 1)
+        for j in range (0, step_delta):
+            step_indices.append(round(window_size*i + j*index_delta))
+
+# calculate step stats
+actual_steps += labels[i] / window_size * window_stride
 predicted_steps = round(predicted_steps)
 actual_steps = round(actual_steps)
 diff = abs(predicted_steps-actual_steps)
+
+# print testing results
 print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
 print("Difference in steps:", diff)
 print("Run count accuracy: %.4f" %(predicted_steps/actual_steps))
+
+# write steps detected
+steps_file = open("predicted_step_indices.txt", "w")
+steps_file.write('\n'.join(map(str, step_indices)))
+steps_file.close()
