@@ -153,9 +153,9 @@ predictions = model.predict(features_input)
 for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
     predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
+    actual_steps += labels[i] / window_size * window_stride
 
-# calculate step stats
-actual_steps += labels[i] / window_size * window_stride
+# calculate difference
 predicted_steps = round(predicted_steps)
 actual_steps = round(actual_steps)
 diff = abs(predicted_steps-actual_steps)

@@ -103,6 +103,7 @@ for i in range(0, num_samples):
 
     # print(labels[i], "\t", predictions[i][0])
     predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
+    actual_steps += labels[i] / window_size * window_stride
     step_delta = int(predicted_steps - prev_predicted_steps)     # find difference in steps for each window shift
     prev_predicted_steps = predicted_steps
 
@@ -114,8 +115,7 @@ for i in range(0, num_samples):
         for j in range (0, step_delta):
             step_indices.append(round(window_size*i + j*index_delta))
 
-# calculate step stats
-actual_steps += labels[i] / window_size * window_stride
+# calculate difference
 predicted_steps = round(predicted_steps)
 actual_steps = round(actual_steps)
 diff = abs(predicted_steps-actual_steps)
