@@ -1,7 +1,7 @@
 # Basil Lin
 # step counter project
 # program to test classifier model with input
-# Usage: python3 test_model.py [input_file.txt] [model_name.h5]
+# Usage: python3 test_model.py [model_name.h5] [input_file.txt] [steps.txt]
 
 import logging
 logging.getLogger('tensorflow').disabled = True
@@ -21,16 +21,22 @@ import sys
 total_features = 6
 
 # checks for correct number of command line args
-if len(sys.argv) != 3:
-    sys.exit("Usage: python3 test_model.py [input_file.txt] [model_name.h5]")
+if len(sys.argv) != 4:
+    sys.exit("Usage: python3 test_model.py [model_name.h5] [input_file.txt] [steps.txt]")
 
-# open file
-fpt = open(sys.argv[1], 'r')
+# open input and ground truth files
+fpt = open(sys.argv[2], 'r')
 rawfeatures = [[float(x) for x in line.split()] for line in fpt]
+fpt.close()
+fpt = open(sys.argv[3], 'r')
+gt_steps = fpt.read().split()
+
+gt_steps = [float(x) for x in gt_steps if not isinstance(x, str)]
+print(gt_steps)
 fpt.close()
 
 # load keras model
-model = tf.keras.models.load_model(sys.argv[2])
+model = tf.keras.models.load_model(sys.argv[1])
 
 # copy to labels and features
 labels = []
@@ -104,16 +110,13 @@ for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
     predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
     actual_steps += labels[i] / window_size * window_stride
-    step_delta = int(predicted_steps - prev_predicted_steps)     # find difference in steps for each window shift
-    prev_predicted_steps = predicted_steps
+    step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
+    prev_predicted_steps = int(predicted_steps)
 
     # mark detected steps when the number of steps changes
     if step_delta > 0:
-
-        # uniform indices to distribute attribute new steps detected to
-        index_delta = window_stride / (step_delta + 1)
         for j in range (0, step_delta):
-            step_indices.append(round(window_size*i + j*index_delta))
+            step_indices.append(round(i + index_delta))
 
 # calculate difference
 predicted_steps = round(predicted_steps)
