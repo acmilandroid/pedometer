@@ -36,6 +36,7 @@ done
 for test_file in ./kfold_split_test*; do
     echo "Testing $test_file..."
     python3 test_model.py $test_file temp_kfold_data/model_$num.h5 >> temp_kfold_data/kfold_log.txt
+    mv predicted_steps.txt temp_kfold_data/predicted_steps_$num.txt
     ((num++))
     echo "Done."
 done

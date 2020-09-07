@@ -148,15 +148,22 @@ actual_steps = 0
 window_size = 75
 window_stride = 5
 predictions = model.predict(features_input)
+
+# loop through all windows
 for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / window_size * window_stride
+    predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
     actual_steps += labels[i] / window_size * window_stride
+
+# calculate difference
 predicted_steps = round(predicted_steps)
 actual_steps = round(actual_steps)
 diff = abs(predicted_steps-actual_steps)
+
+# print training results
 print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
 print("Difference in steps:", diff)
 print("Training run count accuracy: %.4f" %(predicted_steps/actual_steps))
 
+# save model
 model.save("model.h5")

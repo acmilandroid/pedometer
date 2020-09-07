@@ -12,7 +12,7 @@ import random
 
 # checks if input args are correct
 if len(sys.argv) != 3:
-    sys.exit("Usage: python3 uniformize_data.py [input_file.txt] [ouptput_file.txt]")
+    sys.exit("Usage: python3 uniformize_data.py [input_file.txt] [output_file.txt]")
 
 
 # open file

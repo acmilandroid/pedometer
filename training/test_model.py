@@ -19,6 +19,8 @@ import csv
 import sys
 
 total_features = 6
+cut = 75
+slide = 5
 
 # checks for correct number of command line args
 if len(sys.argv) != 4:
@@ -29,10 +31,9 @@ fpt = open(sys.argv[2], 'r')
 rawfeatures = [[float(x) for x in line.split()] for line in fpt]
 fpt.close()
 fpt = open(sys.argv[3], 'r')
-gt_steps = fpt.read().split()
-
-gt_steps = [float(x) for x in gt_steps if not isinstance(x, str)]
-print(gt_steps)
+gt_steps = [[x for x in line.split()] for line in fpt]
+gt_steps = [int(x[0]) for x in gt_steps]
+first_step = min(gt_steps)
 fpt.close()
 
 # load keras model
@@ -116,7 +117,7 @@ for i in range(0, num_samples):
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
-            step_indices.append(round(i + index_delta))
+            step_indices.append(first_step-cut + slide*i)
 
 # calculate difference
 predicted_steps = round(predicted_steps)
@@ -129,6 +130,6 @@ print("Difference in steps:", diff)
 print("Run count accuracy: %.4f" %(predicted_steps/actual_steps))
 
 # write steps detected
-steps_file = open("predicted_step_indices.txt", "w")
+steps_file = open("predicted_steps.txt", "w")
 steps_file.write('\n'.join(map(str, step_indices)))
 steps_file.close()
