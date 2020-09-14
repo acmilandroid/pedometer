@@ -42,7 +42,10 @@ while i < len(predicted_steps) and j < len(gt_steps):
         j += 1
 
 # get remaining fp and fn if they do not match in count
-diff = i - j
+diff = len(predicted_steps) - len(gt_steps)
+print("Predicted steps:", len(predicted_steps))
+print("Actual steps:", len(gt_steps))
+print("Difference:", diff)
 if diff < 0:
     fp -= diff
 else:
