@@ -3,19 +3,7 @@
 # program to test classifier model with input
 # Usage: python3 test_model.py [model_name.h5] [input_file.txt] [steps.txt]
 
-import logging
-logging.getLogger('tensorflow').disabled = True
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-
-# import stuff
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning) #suppresses future warnings
-import tensorflow as tf
-from tensorflow import keras
-import numpy as np
-import time
-import csv
+# import system for command line arguments
 import sys
 
 total_features = 6
@@ -25,6 +13,19 @@ slide = 1
 # checks for correct number of command line args
 if len(sys.argv) != 4:
     sys.exit("Usage: python3 test_model.py [model_name.h5] [input_file.txt] [steps.txt]")
+
+# import other stuff so I don't slow down the Usage warning
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning) #suppresses future warnings
+import logging
+logging.getLogger('tensorflow').disabled = True
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+import time
+import csv
 
 # open input and ground truth files
 fpt = open(sys.argv[2], 'r')
@@ -101,21 +102,25 @@ step_indices = []
 predicted_steps = 0
 prev_predicted_steps = 0
 actual_steps = 0
+window_size = 75
+window_stride = 5
 predictions = model.predict(features_input)
 
 # loop through all windows
 for i in range(0, num_samples):
+
     # print(labels[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / cut * slide  # integrate window to get step count
-    actual_steps += labels[i] / cut * slide
+    predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
+    actual_steps += labels[i] / window_size * window_stride
     step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
+    print(predicted_steps)
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
             step_indices.append(first_step-int(cut/2) + slide*i)
 
-print("Average steps per stride:", predicted_steps/num_samples)
+print(predicted_steps/num_samples)
 
 # calculate difference
 predicted_steps = round(predicted_steps)

@@ -3,19 +3,7 @@
 # program to train classifier to detect steps in a window
 # Usage: python3 train_model.py [input_file.txt]
 
-import logging
-logging.getLogger('tensorflow').disabled = True
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-
-# import stuff
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning) #suppresses future warnings
-import tensorflow as tf
-from tensorflow import keras
-import numpy as np
-import time
-import csv
+# import system for command line arguments
 import sys
 
 debug = 0
@@ -28,6 +16,19 @@ print("Python version:", sys.version)
 # checks for correct number of command line args
 if len(sys.argv) != 2:
     sys.exit("Usage: python3 train_model.py [input_file.txt]")
+
+# import other stuff so I don't slow down the Usage warning
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning) #suppresses future warnings
+import logging
+logging.getLogger('tensorflow').disabled = True
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+import time
+import csv
 
 # open file
 fpt = open(sys.argv[1], 'r')
