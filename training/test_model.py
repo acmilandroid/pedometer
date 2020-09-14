@@ -8,7 +8,9 @@ import sys
 
 total_features = 6
 cut = 75
-slide = 1
+
+# always test with a stride of 1 datum
+testing_stride = 1 
 
 # checks for correct number of command line args
 if len(sys.argv) != 4:
@@ -101,30 +103,25 @@ predictions = model.predict(features_input)
 step_indices = []
 predicted_steps = 0
 prev_predicted_steps = 0
-actual_steps = 0
-window_size = 75
-window_stride = 5
+training_stride = 5
 predictions = model.predict(features_input)
 
 # loop through all windows
 for i in range(0, num_samples):
-
     # print(labels[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
-    actual_steps += labels[i] / window_size * window_stride
-    step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
+    predicted_steps += predictions[i][0] / cut * testing_stride  # integrate window to get step count
+    step_delta = int(predicted_steps) - prev_predicted_steps     # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
-    print(predicted_steps)
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
-            step_indices.append(first_step-int(cut/2) + slide*i)
+            step_indices.append(first_step-int(cut/2) + testing_stride*i)
 
-print(predicted_steps/num_samples)
+print("Average steps detected per slide:", predicted_steps/num_samples)
 
 # calculate difference
-predicted_steps = round(predicted_steps)
-actual_steps = round(actual_steps)
+predicted_steps = int(round(predicted_steps))
+actual_steps = len(gt_steps)
 diff = abs(predicted_steps-actual_steps)
 
 # print testing results
