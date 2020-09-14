@@ -2,11 +2,9 @@
 # compares steps.txt ground truth and predicted_steps.txt to get step detection accuracy (SDA)
 # Usage: python3 sda.py [predicted_steps.txt] [ground_truth_steps.txt]
 
-# import stuff
-import warnings
-import numpy as np
+# import sys
 import sys
-import random
+
 
 # half a second, or 7 sensor readings
 RANGE = 7
@@ -15,6 +13,10 @@ RANGE = 7
 if len(sys.argv) != 3:
     sys.exit("Usage: python3 sda.py [predicted_steps.txt] [ground_truth_steps.txt]")
 
+# import other stuff so I don't slow down the Usage warning
+import warnings
+import numpy as np
+import random
 
 # open files and load steps
 fpt = open(sys.argv[1], 'r')
