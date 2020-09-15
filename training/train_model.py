@@ -8,6 +8,8 @@ import sys
 
 debug = 0
 total_features = 6
+window_size = 75
+window_stride = 1
 
 print("Tensorflow version:", tf.__version__)
 print("Python version:", sys.version)
@@ -146,8 +148,6 @@ predictions = model.predict(features_input)
 # find average difference
 predicted_steps = 0
 actual_steps = 0
-window_size = 75
-window_stride = 5
 predictions = model.predict(features_input)
 
 # loop through all windows

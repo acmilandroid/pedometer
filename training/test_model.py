@@ -11,6 +11,7 @@ cut = 75
 
 # always test with a stride of 1 datum
 testing_stride = 1 
+training_stride = 1
 
 # checks for correct number of command line args
 if len(sys.argv) != 4:
@@ -103,7 +104,6 @@ predictions = model.predict(features_input)
 step_indices = []
 predicted_steps = 0
 prev_predicted_steps = 0
-training_stride = 5
 predictions = model.predict(features_input)
 
 # loop through all windows
