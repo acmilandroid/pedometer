@@ -20,9 +20,9 @@ for d in ./*; do
     if [ -d "$d" ]; then
         echo "$d"
         ((num++))
-        ./$1 $2 $3 $d"/Iregular/Sensor01.csv" $d"/Iregular/steps.txt" >> alldata.txt
-        ./$1 $2 $3 $d"/Iregular/Sensor02.csv" $d"/Iregular/steps.txt" >> alldata.txt
-        ./$1 $2 $3 $d"/Iregular/Sensor03.csv" $d"/Iregular/steps.txt" >> alldata.txt
+        ./$1 $2 $3 $d"/Irregular/Sensor01.csv" $d"/Iregular/steps.txt" >> alldata.txt
+        ./$1 $2 $3 $d"/Irregular/Sensor02.csv" $d"/Iregular/steps.txt" >> alldata.txt
+        ./$1 $2 $3 $d"/Irregular/Sensor03.csv" $d"/Iregular/steps.txt" >> alldata.txt
         ./$1 $2 $3 $d"/Regular/Sensor01.csv" $d"/Regular/steps.txt" >> alldata.txt
         ./$1 $2 $3 $d"/Regular/Sensor02.csv" $d"/Regular/steps.txt" >> alldata.txt
         ./$1 $2 $3 $d"/Regular/Sensor03.csv" $d"/Regular/steps.txt" >> alldata.txt
