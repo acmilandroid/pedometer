@@ -32,6 +32,7 @@ print("Tensorflow version:", tf.__version__)
 print("Python version:", sys.version)
 
 # open file
+print("Opening training file...")
 fpt = open(sys.argv[1], 'r')
 rawdata = [[float(x) for x in line.split()] for line in fpt]
 fpt.close
@@ -41,6 +42,7 @@ labels = []
 features = []
 
 # separate features into one row per feature (axis) for normalizing
+print("Normalizing training file...")
 for i in range(0, len(rawdata)):
     labels.append(rawdata[i][0])
     for j in range(0, total_features):
