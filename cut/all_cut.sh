@@ -1,8 +1,8 @@
 #!/bin/bash
-#usage: ./all_cut.sh [directory] [cutsteps_executable] [CUT] [STRIDE]
-#run in top level directory containing subject directories
-#combines and cuts all CSV files
-#creates everything_cut.txt
+# usage: ./all_cut.sh [directory] [cutsteps_executable] [CUT] [STRIDE]
+# [directory] is top level dir containing all subject files
+# combines and cuts all CSV files
+# creates everything_cut.txt
 
 echo "Bash version ${BASH_VERSION}"
 
@@ -32,4 +32,4 @@ for d in $1*; do
     fi
 done
 
-echo "$((num)) cut for bite windows."
+echo "$((num)) csv files cut for step windows."
