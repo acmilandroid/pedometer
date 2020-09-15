@@ -6,7 +6,7 @@
 
 echo "Bash version ${BASH_VERSION}"
 
-if [ "$#" -ne 3 ]; then
+if [ "$#" -ne 4 ]; then
     echo "usage: ./all_cut.sh [directory] [cutsteps_executable] [CUT] [STRIDE]"
     exit 1
 fi
