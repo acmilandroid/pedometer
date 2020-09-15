@@ -5,7 +5,10 @@
  * The data is cut from 5 sec prior to first step to 10 sec after
  * last step.  Each window is 5 sec.
  * 
- * Usage: ./cutsteps [pedometer_data_filename.csv] [steps.txt] [CUT] [STRIDE]
+ * Usage: ./cutsteps [CUT] [STRIDE] [pedometer_data_filename.csv] [steps.txt]
+ * 
+ * CUT is the window size in datum (each second is 15 datum)
+ * STRIDE is the amount of datum to slide the window each time
  * Output is printed to stdout, needs to be piped to a file
  ********************************************************************************/
 
@@ -52,17 +55,17 @@ int main(int argc, char *argv[]) {
     floatWindowSteps = (float *)calloc(sizeof(int), MAX_WINDOWS);
 
 	if (argc != 5) {
-		printf("Usage: ./cutsteps [pedometer_data_filename.csv] [steps.txt] [CUT] [STRIDE]\n");
+		printf("Usage: ./cutsteps [CUT] [STRIDE] [pedometer_data_filename.csv] [steps.txt]\n");
 		exit(0);
 	}
 
-	if ((fpt=fopen(argv[1], "rb")) == NULL) {
+	if ((fpt=fopen(argv[3], "rb")) == NULL) {
 		printf("Unable to open %s for reading\n", argv[1]);
 		exit(0);
 	}
 
-    int CUT = atoi(argv[3]);
-    int STRIDE = atoi(argv[4]);
+    int CUT = atoi(argv[1]);
+    int STRIDE = atoi(argv[2]);
 
 	/* read data file, determine total amount of data */
 	totalData = 0;
@@ -150,7 +153,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	//load steps.txt
-	if ((fpt=fopen(argv[2], "rb")) == NULL) {
+	if ((fpt=fopen(argv[4], "rb")) == NULL) {
 		printf("Unable to open %s for reading\n", argv[2]);
 		exit(0);
 	}
