@@ -30,6 +30,9 @@ import numpy as np
 import time
 import csv
 
+print("Tensorflow version:", tf.__version__)
+print("Python version:", sys.version)
+
 # open input and ground truth files
 fpt = open(sys.argv[2], 'r')
 rawfeatures = [[float(x) for x in line.split()] for line in fpt]

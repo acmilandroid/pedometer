@@ -11,10 +11,6 @@ total_features = 6
 window_size = 75
 window_stride = 1
 
-print("Tensorflow version:", tf.__version__)
-print("Python version:", sys.version)
-
-
 # checks for correct number of command line args
 if len(sys.argv) != 2:
     sys.exit("Usage: python3 train_model.py [input_file.txt]")
@@ -31,6 +27,9 @@ from tensorflow import keras
 import numpy as np
 import time
 import csv
+
+print("Tensorflow version:", tf.__version__)
+print("Python version:", sys.version)
 
 # open file
 fpt = open(sys.argv[1], 'r')
