@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	if ((fpt=fopen(argv[3], "rb")) == NULL) {
-		printf("Unable to open %s for reading\n", argv[1]);
+		printf("Unable to open %s for reading\n", argv[3]);
 		exit(0);
 	}
 
@@ -154,7 +154,7 @@ int main(int argc, char *argv[]) {
 
 	//load steps.txt
 	if ((fpt=fopen(argv[4], "rb")) == NULL) {
-		printf("Unable to open %s for reading\n", argv[2]);
+		printf("Unable to open %s for reading\n", argv[4]);
 		exit(0);
 	}
 	
