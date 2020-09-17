@@ -42,14 +42,14 @@ labels = []
 features = []
 
 # separate features into one row per feature (axis) for normalizing
-print("Normalizing training file...")
+print("Separating features into one row per feature...")
 for i in range(0, len(rawdata)):
     labels.append(rawdata[i][0])
     for j in range(0, total_features):
         row=[]
         for k in range(j+1, len(rawdata[i]), total_features):
             row.append(rawdata[i][k])
-        if len(row) != 75 and debug == 0:
+        if len(row) != window_size and debug == 0:
             print("error on line:", i, "length is", len(row))
         features.append(row)
 
@@ -67,6 +67,7 @@ if debug == 1:
     print(features)
 
 # normalize each row of features
+print("Normalizing each row of features...")
 start = time.time()
 normdata = np.empty_like(features)
 for i in range(0, len(features)):
@@ -76,7 +77,6 @@ for i in range(0, len(features)):
         t = s+1
     normdata[i] = (features[i]-s) / (t-s)
 end = time.time()
-print("features normalized in", end-start, " seconds")
 
 features = normdata
 
@@ -97,6 +97,7 @@ if debug == 1:
 # reshape features to flatten it to one row per recording
 # features_flat in following format:
 # x1 x2... xn y1 y2... yn z1 z2... zn Y1... P1... R1... Rn per row
+print("Reshaping normalized features...")
 features_flat = features.reshape(len(labels), len(features[0])*total_features)
 print("features_flat has shape", features_flat.shape)
 num_samples = features_flat.shape[0]
@@ -135,16 +136,14 @@ es = keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, pa
 model.summary()
 
 print("Training")
-metrics = model.fit(features_input, labels, epochs=200,
-    validation_split=0.2, verbose=2, callbacks=[es])
+metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
 
-print("Testing")
-loss, accuracy = model.evaluate(features_input, labels)
-print("Validation loss:", loss)
-print("Validation Mean Absolute Error:", accuracy)
+# print("Testing")
+# loss, accuracy = model.evaluate(features_input, labels)
+# print("Validation loss:", loss)
+# print("Validation Mean Absolute Error:", accuracy)
 
 predictions = model.predict(features_input)
-# print("Actual:\tPrediction:")
 
 # find average difference
 predicted_steps = 0
@@ -153,7 +152,6 @@ predictions = model.predict(features_input)
 
 # loop through all windows
 for i in range(0, num_samples):
-    # print(labels[i], "\t", predictions[i][0])
     predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
     actual_steps += labels[i] / window_size * window_stride
 
