@@ -5,7 +5,7 @@
  * The data is cut from 5 sec prior to first step to 10 sec after
  * last step.  Each window is 5 sec.
  * 
- * Usage: ./cutsteps [CUT] [STRIDE] [pedometer_data_filename.csv] [steps.txt]
+ * Usage: ./cutsteps [window_size] [window_stride] [pedometer_data_filename.csv] [steps.txt]
  * 
  * CUT is the window size in datum (each second is 15 datum)
  * STRIDE is the amount of datum to slide the window each time
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
     floatWindowSteps = (float *)calloc(sizeof(int), MAX_WINDOWS);
 
 	if (argc != 5) {
-		printf("Usage: ./cutsteps [CUT] [STRIDE] [pedometer_data_filename.csv] [steps.txt]\n");
+		printf("Usage: ./cutsteps [window_size] [window_stride] [pedometer_data_filename.csv] [steps.txt]\n");
 		exit(0);
 	}
 
@@ -148,7 +148,7 @@ int main(int argc, char *argv[]) {
 			for (k = i - SMOOTHING; k <= i + SMOOTHING; k++) {
 				if (k >= 0  &&  k < totalData) total += Data[j][k];
 			}			
-			SmoothedData[j][i] = total/15.0;
+			SmoothedData[j][i] = total / (SMOOTHING*2 + 1);
 		}
 	}
 
