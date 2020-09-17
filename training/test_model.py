@@ -116,12 +116,6 @@ predicted_steps = 0
 prev_predicted_steps = 0
 predictions = model.predict(features_input)
 
-# write steps detected if user has print=1
-if (int(sys.argv[5]) == 1):
-    steps_file = open("predicted_steps.txt", "w")
-    steps_file.write('\n'.join(map(str, predicted_step_indices)))
-    steps_file.close()
-
 # loop through all windows
 for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
@@ -140,12 +134,14 @@ predicted_steps = int(round(predicted_steps))
 actual_steps = len(gt_steps)
 diff = abs(predicted_steps-actual_steps)
 
-# print testing results
-print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
-print("Difference in steps:", diff)
-print("Run count accuracy: %.4f" %(predicted_steps/actual_steps))
+# write steps detected if user has print=1
+if (int(sys.argv[5]) == 1):
+    steps_file = open("predicted_steps.txt", "w")
+    steps_file.write('\n'.join(map(str, predicted_step_indices)))
+    steps_file.close()
 
 # loop through and get FP, FN, TP
+gt_steps.sort()
 i = j = fp = fn = tp = 0
 while i < len(predicted_step_indices) and j < len(gt_steps):
     if predicted_step_indices[i] < gt_steps[j] - RANGE:
@@ -160,23 +156,23 @@ while i < len(predicted_step_indices) and j < len(gt_steps):
         j += 1
 
 # get remaining fp and fn if they do not match in count
-diff = len(predicted_step_indices) - len(gt_steps)
-print("Predicted steps:", len(predicted_step_indices))
-print("Actual steps:", len(gt_steps))
-print("Difference:", diff)
 if diff < 0:
     fp -= diff
 else:
     fn += diff
 
-print("TP:", tp)
-print("FP:", fp)
-print("FN:", fn)
-
+# calculate SDA metrics
 ppv = tp / (tp + fp)
 sensitivity = tp / (tp + fn)
 f1 = 2*ppv*sensitivity / (ppv + sensitivity)
 
+# print testing results
+print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
+print("Difference in steps:", diff)
+print("TP:", tp)
+print("FP:", fp)
+print("FN:", fn)
 print("PPV:", ppv)
 print("Sensitivity:", sensitivity)
-print("F1 Score:", f1)
+print("Run count accuracy: %.4f" %(predicted_steps/actual_steps))
+print("Step detection accuracy F1 Score:", f1)

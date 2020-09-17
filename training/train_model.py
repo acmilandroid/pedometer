@@ -14,8 +14,8 @@ total_features = 6
 if len(sys.argv) != 4:
     sys.exit("Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride]")
 
-window_size = sys.argv[2]
-window_stride = sys.argv[3]
+window_size = int(sys.argv[2])
+window_stride = int(sys.argv[3])
 
 # import other stuff so I don't slow down the Usage warning
 import warnings

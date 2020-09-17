@@ -35,15 +35,15 @@ for d in $1*; do
         ./$2 $3 $4 $d"/SemiRegular/Sensor03.csv" $d"/SemiRegular/steps.txt" >> temp_training_data/sensor03_semiregular.txt
 
         # train sensor files in each directory
-        python3 test_model.py $5 $3 temp_training_data/sensor01_regular.txt $d"/Regular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor02_regular.txt $d"/Regular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor03_regular.txt $d"/Regular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor01_irregular.txt $d"/Irregular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor02_irregular.txt $d"/Irregular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor03_irregular.txt $d"/Irregular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor01_semiregular.txt $d"/SemiRegular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor02_semiregular.txt $d"/SemiRegular/steps.txt" >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor03_semiregular.txt $d"/SemiRegular/steps.txt" >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor01_regular.txt $d"/Regular/steps.txt" 0 >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor02_regular.txt $d"/Regular/steps.txt" 0 >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor03_regular.txt $d"/Regular/steps.txt" 0 >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor01_irregular.txt $d"/Irregular/steps.txt" 0 >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor02_irregular.txt $d"/Irregular/steps.txt" 0 >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor03_irregular.txt $d"/Irregular/steps.txt" 0 >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor01_semiregular.txt $d"/SemiRegular/steps.txt" 0  >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor02_semiregular.txt $d"/SemiRegular/steps.txt" 0 >> results_all.txt
+        python3 test_model.py $5 $3 temp_training_data/sensor03_semiregular.txt $d"/SemiRegular/steps.txt" 0 >> results_all.txt
     fi
 done
 
