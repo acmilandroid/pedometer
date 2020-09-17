@@ -1,19 +1,21 @@
 # Basil Lin
 # step counter project
 # program to train classifier to detect steps in a window
-# Usage: python3 train_model.py [input_file.txt]
+# Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride]
+# input file must already be cut by cutsteps.c
 
 # import system for command line arguments
 import sys
 
 debug = 0
 total_features = 6
-window_size = 75
-window_stride = 1
 
 # checks for correct number of command line args
-if len(sys.argv) != 2:
-    sys.exit("Usage: python3 train_model.py [input_file.txt]")
+if len(sys.argv) != 4:
+    sys.exit("Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride]")
+
+window_size = sys.argv[2]
+window_stride = sys.argv[3]
 
 # import other stuff so I don't slow down the Usage warning
 import warnings

@@ -2,20 +2,22 @@
 # step counter project
 # program to test classifier model with input
 # Usage: python3 test_model.py [model_name.h5] [input_file.txt] [steps.txt]
+# input file must be first cut by cutsteps.c
 
 # import system for command line arguments
 import sys
 
 total_features = 6
-cut = 75
 
 # always test with a stride of 1 datum
 testing_stride = 1 
 training_stride = 1
 
 # checks for correct number of command line args
-if len(sys.argv) != 4:
-    sys.exit("Usage: python3 test_model.py [model_name.h5] [input_file.txt] [steps.txt]")
+if len(sys.argv) != 5:
+    sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt]")
+
+cut = sys.argv[2]
 
 # import other stuff so I don't slow down the Usage warning
 import warnings
@@ -34,10 +36,10 @@ print("Tensorflow version:", tf.__version__)
 print("Python version:", sys.version)
 
 # open input and ground truth files
-fpt = open(sys.argv[2], 'r')
+fpt = open(sys.argv[3], 'r')
 rawfeatures = [[float(x) for x in line.split()] for line in fpt]
 fpt.close()
-fpt = open(sys.argv[3], 'r')
+fpt = open(sys.argv[4], 'r')
 gt_steps = [[x for x in line.split()] for line in fpt]
 gt_steps = [int(x[0]) for x in gt_steps]
 first_step = min(gt_steps)
