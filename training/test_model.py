@@ -1,7 +1,7 @@
 # Basil Lin
 # step counter project
 # program to test classifier model with input
-# Usage: python3 test_model.py [model_name.h5] [input_file.txt] [steps.txt]
+# Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt]
 # input file must be first cut by cutsteps.c
 
 # import system for command line arguments
