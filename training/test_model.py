@@ -1,7 +1,8 @@
 # Basil Lin
 # step counter project
 # program to test classifier model with input
-# Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt]
+# Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]
+# print input allows you to print predicted_step_indices or not
 # input file must be first cut by cutsteps.c
 
 # import system for command line arguments
@@ -9,15 +10,19 @@ import sys
 
 total_features = 6
 
+# half a second, or 7 sensor readings
+RANGE = 7
+
+
 # always test with a stride of 1 datum
 testing_stride = 1 
 training_stride = 1
 
 # checks for correct number of command line args
-if len(sys.argv) != 5:
-    sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt]")
+if len(sys.argv) != 6:
+    sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]")
 
-cut = sys.argv[2]
+cut = int(sys.argv[2])
 
 # import other stuff so I don't slow down the Usage warning
 import warnings
@@ -106,10 +111,16 @@ print("Validation loss:", loss[1])
 predictions = model.predict(features_input)
 
 # find average difference
-step_indices = []
+predicted_step_indices = []
 predicted_steps = 0
 prev_predicted_steps = 0
 predictions = model.predict(features_input)
+
+# write steps detected if user has print=1
+if (int(sys.argv[5]) == 1):
+    steps_file = open("predicted_steps.txt", "w")
+    steps_file.write('\n'.join(map(str, predicted_step_indices)))
+    steps_file.close()
 
 # loop through all windows
 for i in range(0, num_samples):
@@ -120,7 +131,7 @@ for i in range(0, num_samples):
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
-            step_indices.append(first_step-int(cut/2) + testing_stride*i)
+            predicted_step_indices.append(first_step-int(cut/2) + testing_stride*i)
 
 print("Average steps detected per slide:", predicted_steps/num_samples)
 
@@ -134,7 +145,38 @@ print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
 print("Difference in steps:", diff)
 print("Run count accuracy: %.4f" %(predicted_steps/actual_steps))
 
-# write steps detected
-steps_file = open("predicted_steps.txt", "w")
-steps_file.write('\n'.join(map(str, step_indices)))
-steps_file.close()
+# loop through and get FP, FN, TP
+i = j = fp = fn = tp = 0
+while i < len(predicted_step_indices) and j < len(gt_steps):
+    if predicted_step_indices[i] < gt_steps[j] - RANGE:
+        i += 1
+        fp += 1
+    elif predicted_step_indices[i] > gt_steps[j] + RANGE:
+        j += 1
+        fn += 1
+    else:
+        tp += 1
+        i += 1
+        j += 1
+
+# get remaining fp and fn if they do not match in count
+diff = len(predicted_step_indices) - len(gt_steps)
+print("Predicted steps:", len(predicted_step_indices))
+print("Actual steps:", len(gt_steps))
+print("Difference:", diff)
+if diff < 0:
+    fp -= diff
+else:
+    fn += diff
+
+print("TP:", tp)
+print("FP:", fp)
+print("FN:", fn)
+
+ppv = tp / (tp + fp)
+sensitivity = tp / (tp + fn)
+f1 = 2*ppv*sensitivity / (ppv + sensitivity)
+
+print("PPV:", ppv)
+print("Sensitivity:", sensitivity)
+print("F1 Score:", f1)
