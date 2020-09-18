@@ -46,7 +46,6 @@ rawfeatures = [[float(x) for x in line.split()] for line in fpt]
 fpt.close()
 fpt = open(sys.argv[4], 'r')
 gt_steps = [[x for x in line.split()] for line in fpt]
-print("GT STEPS:", gt_steps)
 gt_steps = [int(x[0]) for x in gt_steps]
 first_step = min(gt_steps)
 fpt.close()
