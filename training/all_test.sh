@@ -6,6 +6,7 @@
 
 echo "Bash version ${BASH_VERSION}"
 
+# usage warning
 if [ "$#" -ne 5 ]; then
     echo "Usage: ./all_test.sh [directory] [cutsteps_executable] [window_size] [window_stride] [input_model.h5]"
     exit 1
@@ -17,33 +18,34 @@ echo "Making temp_training_data directory..."
 rm -r temp_training_data
 mkdir temp_training_data
 
+# loop through all subdirectories
 for d in $1*; do
     if [ -d "$d" ]; then
         echo "$d"
+
+        # remove old temporary training data
+        echo "Removing old training data..."
         rm -r temp_training_data/*
-        ((num++))
 
-        # cut sensor files in each directory
-        ./$2 $3 $4 $d"/Regular/Sensor01.csv" $d"/Regular/steps.txt" >> temp_training_data/sensor01_regular.txt
-        ./$2 $3 $4 $d"/Regular/Sensor02.csv" $d"/Regular/steps.txt" >> temp_training_data/sensor02_regular.txt
-        ./$2 $3 $4 $d"/Regular/Sensor02.csv" $d"/Regular/steps.txt" >> temp_training_data/sensor03_regular.txt
-        ./$2 $3 $4 $d"/Irregular/Sensor01.csv" $d"/Irregular/steps.txt" >> temp_training_data/sensor01_irregular.txt
-        ./$2 $3 $4 $d"/Irregular/Sensor02.csv" $d"/Irregular/steps.txt" >> temp_training_data/sensor02_irregular.txt
-        ./$2 $3 $4 $d"/Irregular/Sensor03.csv" $d"/Irregular/steps.txt" >> temp_training_data/sensor03_irregular.txt
-        ./$2 $3 $4 $d"/SemiRegular/Sensor01.csv" $d"/SemiRegular/steps.txt" >> temp_training_data/sensor01_semiregular.txt
-        ./$2 $3 $4 $d"/SemiRegular/Sensor02.csv" $d"/SemiRegular/steps.txt" >> temp_training_data/sensor02_semiregular.txt
-        ./$2 $3 $4 $d"/SemiRegular/Sensor03.csv" $d"/SemiRegular/steps.txt" >> temp_training_data/sensor03_semiregular.txt
+        # loop through all sensors
+        for sensornum in 1 2 3
+        do
+            echo "Cutting Sensor0$((sensornum)).csv"
+            # cut sensor files in each directory
+            ./$2 $3 $4 $d"/Regular/Sensor0$((sensornum)).csv" $d"/Regular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_regular.txt"
+            ./$2 $3 $4 $d"/Irregular/Sensor0$((sensornum)).csv" $d"/Irregular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_irregular.txt"
+            ./$2 $3 $4 $d"/SemiRegular/Sensor0$((sensornum)).csv" $d"/SemiRegular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_semiregular.txt"
+        done
 
-        # train sensor files in each directory
-        python3 test_model.py $5 $3 temp_training_data/sensor01_regular.txt $d"/Regular/steps.txt" 0 >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor02_regular.txt $d"/Regular/steps.txt" 0 >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor03_regular.txt $d"/Regular/steps.txt" 0 >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor01_irregular.txt $d"/Irregular/steps.txt" 0 >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor02_irregular.txt $d"/Irregular/steps.txt" 0 >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor03_irregular.txt $d"/Irregular/steps.txt" 0 >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor01_semiregular.txt $d"/SemiRegular/steps.txt" 0  >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor02_semiregular.txt $d"/SemiRegular/steps.txt" 0 >> results_all.txt
-        python3 test_model.py $5 $3 temp_training_data/sensor03_semiregular.txt $d"/SemiRegular/steps.txt" 0 >> results_all.txt
+        for sensornum in 1 2 3
+        do
+            echo "Testing Sensor0$((sensornum))"
+            # test sensor files in each directory
+            python3 test_model.py $5 $3 "temp_training_data/sensor0$((sensornum))_regular.txt" $d"/Regular/steps.txt" 0 >> results_all.txt
+            python3 test_model.py $5 $3 "temp_training_data/sensor0"$((sensornum))"_irregular.txt" $d"/Irregular/steps.txt" 0 >> results_all.txt
+            python3 test_model.py $5 $3 "temp_training_data/sensor0"$((sensornum))"_semiregular.txt" $d"/SemiRegular/steps.txt" 0  >> results_all.txt
+            ((num++))
+        done
     fi
 done
 
