@@ -19,9 +19,6 @@ echo "Making temp_training_data directory..."
 rm -rf temp_training_data
 mkdir temp_training_data
 
-# write CSV file of data
-echo "Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > results.csv
-
 # loop through all subdirectories
 for d in $1*; do
     if [ -d "$d" ]; then
@@ -56,8 +53,10 @@ done
 # grab important result data and make temp file
 pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\nStep detection accuracy F1 Score:.*" results_all.txt | sed 's/^.*: //' > important_results.txt
 
-line=0
 # write data to csv file
+line=0
+echo "Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > results.csv
+
 for (( i = 0; i < $num; i++ )) do
 
     ((print = i + 1 ))
