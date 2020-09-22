@@ -236,6 +236,9 @@ int main(int argc, char *argv[]) {
                         printf("Error in file: %s\tSteps in window: %d\tIndex: %d\n", argv[3], windowSteps[i], i);
                         exit(0);
                     }
+                    // if (windowSteps[i] == 0 || (k < 0 || k >= totalData)) {
+                    //     printf("Zero detected in file: %s\n", argv[3]);
+                    // }
                     printf("%d", windowSteps[i]);	// class is number of steps
                     for (k = windowIndex[i]; k < windowIndex[i] + CUT; k++) {
                         if (k < 0 || k >= totalData) {
