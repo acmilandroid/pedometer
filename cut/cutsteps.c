@@ -19,7 +19,7 @@
 #define	MAX_DATA            54000	//one hour at 15 Hz
 #define	MAX_STEPS           10000   //maximum number of steps
 #define SMOOTHING           7       //smoothing window
-#define	MAX_WINDOWS         20000
+#define	MAX_WINDOWS         30000
 #define DATA_FIELDS         6
 #define TOTAL_DATA_FIELDS   17
 #define DEBUG               0       //debug modes 1 and 2 for alternate prints
