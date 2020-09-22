@@ -22,6 +22,8 @@ with open(sys.argv[1], 'r') as infile:
     print("Percent chance:", float(sys.argv[3]))
     while line:
         if random.randint(0, 100) <= float(sys.argv[3]):
+            if float(line.split()[0]) > 18:
+                print("Error:", float(line.split()[0]), "steps is over 18 per window")
             outfile.write(line)
         line = infile.readline()
 infile.close()
