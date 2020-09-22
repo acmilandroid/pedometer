@@ -4,16 +4,18 @@
 # attempts to uniformly distribute labels (class)
 # Usage: python3 uniformize_data.py [input_file.txt] [ouptput_file.txt]
 
-# import stuff
-import warnings
-import numpy as np
+# import sys
 import sys
-import random
+
 
 # checks if input args are correct
 if len(sys.argv) != 3:
     sys.exit("Usage: python3 uniformize_data.py [input_file.txt] [output_file.txt]")
 
+# import other stuff
+import warnings
+import numpy as np
+import random
 
 # open file
 fpt = open(sys.argv[1], 'r')
