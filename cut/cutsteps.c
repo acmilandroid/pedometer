@@ -233,7 +233,7 @@ int main(int argc, char *argv[]) {
 			} else {
                 if (windowSteps[i] > -1) { //only trains on steps above -1, need to remove later
                     if (windowSteps[i] > 18) {
-                        printf("Error in file: %s\tSteps in window: %d\n", argv[3], windowSteps[i]);
+                        printf("Error in file: %s\tSteps in window: %d\tIndex: %d\n", argv[3], windowSteps[i], i);
                         exit(0);
                     }
                     printf("%d", windowSteps[i]);	// class is number of steps
