@@ -28,10 +28,10 @@ fpt.close()
 # calculate some values
 data = np.array(data)
 samples = len(data)
-values = len(np.unique(data[:,0]))
+diff_steps = len(np.unique(data[:,0]))
 
 print("Samples in original data:", samples)
-print("Number of different steps:", values)
+print("Number of different steps:", diff_steps)
 
 # plot histogram of steps
 print("Plotting histogram...")
@@ -41,52 +41,42 @@ left_of_first_bin = histdata.min() - float(d)/2
 right_of_last_bin = histdata.max() + float(d)/2
 figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
 plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
-plt.title("Histogram of Steps")
-plt.xlabel("Steps")
+plt.title("Step Histogram")
+plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
-plt.savefig("histogram.png")
+plt.savefig("histogram_before.png")
 
 # find percentage of labels and minimum
-print("calculating percentages...")
-count = [0] * values
-total = 0
-percent = [0] * values
+print("Calculating percentages...")
+maximum_steps = int(max(histdata) + 1)
+count = [0] * maximum_steps
+percent = [0] * maximum_steps
 smallest = 100
+histdata = histdata.tolist()
 
-for i in range(0, samples):
-    count[int(data[i][0])] += 1
-    total += 1
-
-for i in range(0, values):
-    # print("Count", i, "is", count[i])
-    percent[i] = count[i] / total * 100
-    # print("Percent", i, "is %.2f" %(percent[i]))
+for i in range(0, maximum_steps):
+    percent[i] = histdata.count(i) / samples * 100
     if percent[i] > 0.1 and percent[i] < smallest:
         smallest = percent[i]
-
-samples_per_count = int(samples * smallest / values)
-print("Maximum samples for each step count:", samples_per_count)
-
-# print percentages of each step
-for i in range(0, values):
-    print("Count", i, "is", count[i])
-    percent[i] = count[i] / total * 100
+    print("Count", i, "is", histdata.count(i))
     print("Percent", i, "is %.2f" %(percent[i]))
-    if percent[i] < smallest:
-        smallest = percent[i]
+
+samples_per_count = int(samples * smallest / diff_steps)
+print("Maximum samples for each step count:", samples_per_count)
 
 # randomly choose data to make uniform
 print("Choosing data uniformly...")
 shuffled_data = []
-shuffled_count = [0] * values
+shuffled_count = [0] * maximum_steps
+
 for i in range(0, samples):
-    steps = int(data[i][0])
+    steps = int(histdata[i])
     if shuffled_count[steps] <= samples_per_count:
         if random.random() < (smallest / percent[steps]):
             shuffled_data.append(data[i])
             shuffled_count[steps] += 1
 print("Samples in redistributed data:", len(shuffled_data))
-print("Number of different steps:", values)
+print("Number of different steps:", diff_steps)
 
 # write shuffled data to output file
 print("Writing data to file...")
@@ -100,24 +90,35 @@ fpt = open(sys.argv[2], 'r')
 data = [[float(x) for x in line.split()] for line in fpt]
 fpt.close()
 
+# calculate some values
 data = np.array(data)
 samples = len(data)
-values = len(np.unique(data[:,0]))
+diff_steps = len(np.unique(data[:,0]))
 
-count = [0] * values
-total = 0
-percent = [0] * values
+# plot histogram of steps
+print("Plotting histogram...")
+histdata = data[:,0]
+d = np.diff(np.unique(histdata)).min()
+left_of_first_bin = histdata.min() - float(d)/2
+right_of_last_bin = histdata.max() + float(d)/2
+figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
+plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
+plt.title("Step Histogram")
+plt.xlabel("Steps in a Window")
+plt.ylabel("Frequency")
+plt.savefig("histogram_after.png")
+
+# find percentage of labels and minimum
+print("Calculating percentages...")
+maximum_steps = int(max(histdata) + 1)
+count = [0] * maximum_steps
+percent = [0] * maximum_steps
 smallest = 100
+histdata = histdata.tolist()
 
-for i in range(0, samples):
-    count[int(data[i][0])] += 1
-    total += 1
-
-for i in range(0, values):
-    print("Count", i, "is", count[i])
-    percent[i] = count[i] / total * 100
-    print("Percent", i, "is %.2f" %(percent[i]))
-    if percent[i] < smallest:
+for i in range(0, maximum_steps):
+    percent[i] = histdata.count(i) / samples * 100
+    if percent[i] > 0.1 and percent[i] < smallest:
         smallest = percent[i]
 
 print("Smallest percentage is", smallest)
