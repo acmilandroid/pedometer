@@ -18,8 +18,6 @@
 
 #define	MAX_DATA            54000	//one hour at 15 Hz
 #define	MAX_STEPS           10000   //maximum number of steps
-// #define	CUT		            (15*5)	//5 second window at 15 Hz
-// #define STRIDE              5       //third of a second slide
 #define SMOOTHING           7       //smoothing window
 #define	MAX_WINDOWS         20000
 #define DATA_FIELDS         6
@@ -32,7 +30,7 @@
 int main(int argc, char *argv[]) {
 	FILE	*fpt;
 	char	trash[100];
-	int		start, end, stepStart, stepEnd, i, j, k;
+	int		start, end, i, j, k;
 	float	zero[3], total;
 	float	**Data, **SmoothedData;
 	int		totalData, totalSteps, totalWindows;
@@ -67,10 +65,10 @@ int main(int argc, char *argv[]) {
     int CUT = atoi(argv[1]);
     int STRIDE = atoi(argv[2]);
 
-	/* read data file, determine total amount of data */
+	// read data file, determine total amount of data
 	totalData = 0;
-	/* file format is x y z (accel units are volts)
-	** yaw pitch roll (gyro units are volts) scale (units are grams) */
+    
+	/* file format is x y z (accel units are volts) yaw pitch roll (gyro units are volts) scale (units are grams) */
 	zero[0] = zero[1] = zero[2] = 0.0; /* used to calculate avg of yaw pitch roll */
 	
 	//scan and throw away header information
@@ -214,10 +212,12 @@ int main(int argc, char *argv[]) {
 			}
 		}
 
-		// cap it at 100; these are infrequent
-		if (windowSteps[totalWindows] > 99) windowSteps[totalWindows] = 100;
-		// do not need to cap?  floatWindowSteps[totalWindows] > 6.0)
-		//if (0) floatWindowSteps[totalWindows] = 100.0;	/* cap it at 6; these are infrequent */
+		//seomthing wrong, over 15 steps in a window
+		if (windowSteps[totalWindows] > 15) {
+            windowSteps[totalWindows] = 15;
+            printf("Steps in window: %d\n", windowSteps[totalWindows]);
+            exit(0);
+        }
 		totalWindows++;
 	}
 

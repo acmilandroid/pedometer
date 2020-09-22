@@ -11,7 +11,7 @@ import sys
 if len(sys.argv) != 3:
     sys.exit("Usage: python3 balance_data.py [input_file.txt] [output_file.txt]")
 
-#import stuff
+# import stuff
 import warnings
 import numpy as np
 import random
@@ -48,6 +48,14 @@ for i in range(0, values):
 
 samples_per_count = int(samples * smallest / values)
 print("Maximum samples for each step count:", samples_per_count)
+
+# print percentages of each step
+for i in range(0, values):
+    print("Count Before", i, "is", count[i])
+    percent[i] = count[i] / total * 100
+    print("Percent Before", i, "is %.2f" %(percent[i]))
+    if percent[i] < smallest:
+        smallest = percent[i]
 
 # randomly choose data to make uniform
 shuffled_data = []
