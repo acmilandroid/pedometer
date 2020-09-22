@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
 
 	// read data file, determine total amount of data
 	totalData = 0;
-    
+
 	/* file format is x y z (accel units are volts) yaw pitch roll (gyro units are volts) scale (units are grams) */
 	zero[0] = zero[1] = zero[2] = 0.0; /* used to calculate avg of yaw pitch roll */
 	
@@ -212,10 +212,9 @@ int main(int argc, char *argv[]) {
 			}
 		}
 
-		//seomthing wrong, over 15 steps in a window
-		if (windowSteps[totalWindows] > 15) {
-            windowSteps[totalWindows] = 15;
-            printf("Steps in window: %d\n", windowSteps[totalWindows]);
+		//seomthing wrong, over 18 steps in a window
+		if (windowSteps[totalWindows] > 18) {
+            printf("Error in file: %s\tSteps in window: %d\n", argv[3], windowSteps[totalWindows]);
             exit(0);
         }
 		totalWindows++;
