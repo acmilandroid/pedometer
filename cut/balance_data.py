@@ -39,12 +39,13 @@ histdata = data[:,0]
 d = np.diff(np.unique(histdata)).min()
 left_of_first_bin = histdata.min() - float(d)/2
 right_of_last_bin = histdata.max() + float(d)/2
+plt.figure(1)
 figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
 plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
 plt.title("Step Histogram")
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
-plt.savefig("histogram_before.png")
+plt.savefig("histogram.png")
 
 # find percentage of labels and minimum
 print("Calculating percentages...")
@@ -101,9 +102,10 @@ histdata = data[:,0]
 d = np.diff(np.unique(histdata)).min()
 left_of_first_bin = histdata.min() - float(d)/2
 right_of_last_bin = histdata.max() + float(d)/2
+plt.figure(2)
 figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
 plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
-plt.title("Step Histogram")
+plt.title("Step Histogram Balanced Data")
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
 plt.savefig("histogram_after.png")
