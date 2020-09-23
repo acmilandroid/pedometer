@@ -45,7 +45,7 @@ plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
 plt.title("Step Histogram Original Data")
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
-plt.savefig("histogram_before.png")
+plt.savefig("histogram.png")
 
 # find percentage of labels and minimum
 print("Calculating percentages...")

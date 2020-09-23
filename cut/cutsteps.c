@@ -20,7 +20,7 @@
 #define	MAX_STEPS           10000   //maximum number of steps
 #define SMOOTHING           7       //smoothing window
 #define	MAX_WINDOWS         30000
-#define DATA_FIELDS         6
+#define DATA_FIELDS         3		//number of different sensors being used
 #define TOTAL_DATA_FIELDS   17
 #define DEBUG               0       //debug modes 1 and 2 for alternate prints
 #define PRINT               1       //print data
@@ -67,16 +67,13 @@ int main(int argc, char *argv[]) {
 
 	// read data file, determine total amount of data
 	totalData = 0;
-
-	/* file format is x y z (accel units are volts) yaw pitch roll (gyro units are volts) scale (units are grams) */
-	zero[0] = zero[1] = zero[2] = 0.0; /* used to calculate avg of yaw pitch roll */
 	
 	//scan and throw away header information
 	for (i = 0; i < 2*TOTAL_DATA_FIELDS + 6; i++) {
 		fscanf(fpt, "%s", trash);
 	}
 
-	//scan data
+	//scan acceleration data
 	while (
 			fscanf(fpt,"%s %s %s %s %s %s %s %f %f %f %f %f %f %s %s %s %s",
 				trash, //timestamp
@@ -86,29 +83,22 @@ int main(int argc, char *argv[]) {
 				trash, //QuatX
 				trash, //QuatY
 				trash, //QuatZ
-				&(Data[0][totalData]), //GyroX
-				&(Data[1][totalData]), //GyroY
-				&(Data[2][totalData]), //GyroZ
-				&(Data[3][totalData]), //AccelX
-				&(Data[4][totalData]), //AccelY
-				&(Data[5][totalData]), //AccelZ
+				trash, //GyroX
+				trash, //GyroY
+				trash, //GyroZ
+				&(Data[0][totalData]), //AccelX
+				&(Data[1][totalData]), //AccelY
+				&(Data[2][totalData]), //AccelZ
 				trash, //MagX
 				trash, //MagY
 				trash, //MagZ
 				trash) //DateTime
 			== TOTAL_DATA_FIELDS)
 	{
-		for (j = 0; j < 3; j++) {
-			zero[j] += Data[j][totalData];
-		}
 		totalData++;
 	}
 	
 	fclose(fpt);
-
-	for (j = 0; j < 3; j++) {
-		zero[j] /= (float)totalData;
-	}
 
 	/* convert data voltages to deg/sec (gyros)
 	** and gravities (accelerometers) 
@@ -127,7 +117,7 @@ int main(int argc, char *argv[]) {
     //     }
     // }
 
-	/* smooth the data */
+	// fill beginning and end without smoothing
 	for (i = 0; i < SMOOTHING; i++) {
 		for (j = 0; j < DATA_FIELDS; j++) {
 			SmoothedData[j][i] = Data[j][i];
@@ -139,6 +129,7 @@ int main(int argc, char *argv[]) {
 		}
 	}	
 
+	// smooth data
 	for (i = SMOOTHING; i < totalData - SMOOTHING; i++) {
 		/* averaging over a 1-sec window (15 samples) centered on the datum */
 		for (j = 0; j < DATA_FIELDS; j++) {
@@ -150,20 +141,20 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	//load steps.txt
+	// load steps.txt
 	if ((fpt=fopen(argv[4], "rb")) == NULL) {
 		printf("Unable to open %s for reading\n", argv[4]);
 		exit(0);
 	}
 	
-	//allocate space for ground truth data
+	// allocate space for ground truth data
 	char** foot = malloc(sizeof(char*) * MAX_STEPS);
 	for (i = 0; i < MAX_STEPS; i++) {
 		foot[i] = malloc(sizeof(char) * 10);
 	}
 	GTstepIndex = malloc(sizeof(int) * MAX_STEPS);
 
-	//read step ground truth file
+	// read step ground truth file
 	totalSteps = 0;
     firstStep = MAX_DATA;
     lastStep = -1;
@@ -174,7 +165,6 @@ int main(int argc, char *argv[]) {
         if (lastStep < GTstepIndex[totalSteps]) lastStep = GTstepIndex[totalSteps];
 		totalSteps++;
 	}
-	
 	fclose(fpt);
 
 	/* cut windows 5 sec prior to first step, to 5 sec after last step */
@@ -189,7 +179,7 @@ int main(int argc, char *argv[]) {
         printf("total steps: %d\n", totalSteps);
     }
 
-	//Cut the windows up
+	// Cut the windows up
 	totalWindows=0;
 	for (i = start; i < end; i += STRIDE) { //from before first step to after last	
 		if (i + CUT > end) break; //break if not a full window
@@ -227,25 +217,24 @@ int main(int argc, char *argv[]) {
 		for (i = 0; i < totalWindows; i++) {
 			if (DEBUG == 1) {
 				printf("%d...%d -> %d\n", windowIndex[i], windowIndex[i]+CUT, windowSteps[i]);
-			} else if (DEBUG == 2) { //debug print, shows window indices and counts of steps in that window
+			} else if (DEBUG == 2) {																//debug print, shows window indices and counts of steps in that window
 				printf("%d...%d -> %d\n", windowIndex[i], windowIndex[i]+CUT, 
 					windowSteps[i]);
 			} else {
-                if (windowSteps[i] > -1) { //only trains on steps above -1, need to remove later
-                    if (windowSteps[i] > 18) {
+                if (windowSteps[i] > -1) {															// only trains on steps above -1, need to remove later
+                    if (windowSteps[i] > 18) { 														// error if too many steps in a window
                         printf("Error in file: %s\tSteps in window: %d\tIndex: %d\n", argv[3], windowSteps[i], i);
                         exit(0);
                     }
                     // if (windowSteps[i] == 0 || (k < 0 || k >= totalData)) {
                     //     printf("Zero detected in file: %s\n", argv[3]);
                     // }
-                    printf("%d", windowSteps[i]);	// class is number of steps
+                    printf("%d", windowSteps[i]); 													// class is number of steps
                     for (k = windowIndex[i]; k < windowIndex[i] + CUT; k++) {
                         if (k < 0 || k >= totalData) {
-                            for (j = 0; j < DATA_FIELDS; j++) printf("\t0.000"); //pad with zeros if start or end out of data
-                        } else { //change print to x,y,z, yaw,pitch,roll
-                            for (j = 3; j < DATA_FIELDS; j++) printf("\t%.3f", SmoothedData[j][k]);
-                            for (j = 0; j < 3; j++) printf("\t%.3f", SmoothedData[j][k]);
+                            for (j = 0; j < DATA_FIELDS; j++) printf("\t0.000");		 			// pad with zeros if start or end out of data
+                        } else {																	// print data if no need for padding
+                            for (j = 0; j < DATA_FIELDS; j++) printf("\t%.3f", SmoothedData[j][k]); 
                         }
                     }
                     printf("\n");
