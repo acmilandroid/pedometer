@@ -42,10 +42,10 @@ right_of_last_bin = histdata.max() + float(d)/2
 plt.figure(1)
 figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
 plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
-plt.title("Step Histogram")
+plt.title("Step Histogram Original Data")
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
-plt.savefig("histogram.png")
+plt.savefig("histogram_before.png")
 
 # find percentage of labels and minimum
 print("Calculating percentages...")
