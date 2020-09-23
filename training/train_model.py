@@ -8,7 +8,7 @@
 import sys
 
 debug = 0
-total_features = 6
+total_features = 3
 
 # checks for correct number of command line args
 if len(sys.argv) != 4:
@@ -125,11 +125,15 @@ if debug == 1:
 
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(sample_length, total_features,), filters=64, kernel_size=6, activation='relu'),
-    keras.layers.MaxPooling1D(pool_size=6),
+    keras.layers.Conv1D(input_shape=(sample_length, total_axes,), filters=100, kernel_size=30, strides=5, activation='relu'),
+    keras.layers.Conv1D(filters=100, kernel_size=5, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
-    keras.layers.Dense(50, activation='relu'),
     keras.layers.Dense(1)
+    # keras.layers.Conv1D(input_shape=(sample_length, total_features,), filters=100, kernel_size=6, activation='relu'),
+    # keras.layers.MaxPooling1D(pool_size=6),
+    # keras.layers.Flatten(),  # must flatten to feed dense layer
+    # keras.layers.Dense(50, activation='relu'),
+    # keras.layers.Dense(1)
 ])
 
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_absolute_error'])

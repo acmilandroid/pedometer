@@ -8,7 +8,7 @@
 # import system for command line arguments
 import sys
 
-total_features = 6
+total_features = 3
 
 # half a second, or 7 sensor readings
 RANGE = 7
@@ -57,6 +57,7 @@ model = tf.keras.models.load_model(sys.argv[1])
 labels = []
 features = []
 
+# TODO: may need to rework normalization
 # separate features into one row per axis for normalizing
 for i in range(0, len(rawfeatures)):
     labels.append(rawfeatures[i][0])
@@ -79,7 +80,7 @@ start=time.time()
 normfeatures=np.empty_like(features)
 for i in range(0, len(features)):
     norm=[]
-    s=min(features[i])
+    s=min(features[i]) 
     t=max(features[i])
     if s == t:
         t = s+1
