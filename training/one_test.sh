@@ -2,7 +2,7 @@
 # Usage: ./one_test.sh [directory] [cutsteps_executable] [window_size] [window_stride] [input_model.h5]
 # tests all 3 sensors in one gait for RCA and SDA using a trained input model [input_model.h5]
 # [directory] is gait dir containing CSV files
-# creates predicted_steps_sensor1.txt predicted_steps_sensor2.txt predicted_steps_sensor3.txt
+# creates predicted_steps_sensor01.txt predicted_steps_sensor02.txt predicted_steps_sensor03.txt
 
 echo "Bash version ${BASH_VERSION}"
 
@@ -16,6 +16,7 @@ fi
 echo "Removing old data..."
 rm results_all.txt
 rm -rf temp_training_data
+rm predicted_steps_sensor*
 mkdir temp_training_data
 
 echo "$1"
@@ -36,4 +37,5 @@ for sensornum in 1 2 3
 do
     echo "Testing Sensor0$((sensornum))"
     python3 test_model.py $5 $3 "temp_training_data/sensor0$((sensornum)).txt" $1"/steps.txt" 1 >> results_all.txt
+    mv predicted_steps.txt predicted_steps_sensor0$((sensornum)).txt
 done
