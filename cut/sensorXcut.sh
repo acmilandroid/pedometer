@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage: ./one_cut.sh [directory] [cutsteps_executable] [window_size] [window_stride] [gait] [sensor #]
+# usage: ./sensorXcut.sh [directory] [cutsteps_executable] [window_size] [window_stride] [gait] [sensor #]
 # [directory] is top level dir containing all subject files
 # if [gait] is not Regular, Irregular, or SemiRegular, it will combine all gaits
 # combines and all csv files of a single sensor type
@@ -8,7 +8,7 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 6 ]; then
-    echo "Usage: ./one_cut.sh [directory] [cutsteps_executable] [window_size] [window_stride] [gait] [sensor #]"
+    echo "Usage: ./sensorXcut.sh [directory] [cutsteps_executable] [window_size] [window_stride] [gait] [sensor #]"
     exit 1
 fi
 

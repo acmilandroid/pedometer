@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 	FILE	*fpt;
 	char	trash[100];
 	int		start, end, i, j, k;
-	float	zero[3], total;
+	float	total;
 	float	**Data, **SmoothedData;
 	int		totalData, totalSteps, totalWindows;
 	int		*windowIndex, *windowSteps;
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 
 	//scan acceleration data
 	while (
-			fscanf(fpt,"%s %s %s %s %s %s %s %f %f %f %f %f %f %s %s %s %s",
+			fscanf(fpt,"%s %s %s %s %s %s %s %s %s %s %f %f %f %s %s %s %s",
 				trash, //timestamp
 				trash, //realtime
 				trash, //GSR
