@@ -86,9 +86,9 @@ int main(int argc, char *argv[]) {
 				trash, //GyroX
 				trash, //GyroY
 				trash, //GyroZ
-				&(SmoothedData[0][totalData]), //AccelX
-				&(SmoothedData[1][totalData]), //AccelY
-				&(SmoothedData[2][totalData]), //AccelZ
+				&(Data[0][totalData]), //AccelX
+				&(Data[1][totalData]), //AccelY
+				&(Data[2][totalData]), //AccelZ
 				trash, //MagX
 				trash, //MagY
 				trash, //MagZ
@@ -118,28 +118,28 @@ int main(int argc, char *argv[]) {
     // }
 
 	// fill beginning and end without smoothing
-	// for (i = 0; i < SMOOTHING; i++) {
-	// 	for (j = 0; j < DATA_FIELDS; j++) {
-	// 		SmoothedData[j][i] = Data[j][i];
-	// 	}
-	// }
-	// for (i = totalData - SMOOTHING; i < totalData; i++) {
-	// 	for (j = 0; j < DATA_FIELDS; j++) {
-	// 		SmoothedData[j][i] = Data[j][i];
-	// 	}
-	// }	
+	for (i = 0; i < SMOOTHING; i++) {
+		for (j = 0; j < DATA_FIELDS; j++) {
+			SmoothedData[j][i] = Data[j][i];
+		}
+	}
+	for (i = totalData - SMOOTHING; i < totalData; i++) {
+		for (j = 0; j < DATA_FIELDS; j++) {
+			SmoothedData[j][i] = Data[j][i];
+		}
+	}	
 
-	// // smooth data
-	// for (i = SMOOTHING; i < totalData - SMOOTHING; i++) {
-	// 	/* averaging over a 1-sec window (15 samples) centered on the datum */
-	// 	for (j = 0; j < DATA_FIELDS; j++) {
-	// 		total = 0.0;
-	// 		for (k = i - SMOOTHING; k <= i + SMOOTHING; k++) {
-	// 			if (k >= 0  &&  k < totalData) total += Data[j][k];
-	// 		}			
-	// 		SmoothedData[j][i] = total / (SMOOTHING*2 + 1);
-	// 	}
-	// }
+	// smooth data
+	for (i = SMOOTHING; i < totalData - SMOOTHING; i++) {
+		/* averaging over a 1-sec window (15 samples) centered on the datum */
+		for (j = 0; j < DATA_FIELDS; j++) {
+			total = 0.0;
+			for (k = i - SMOOTHING; k <= i + SMOOTHING; k++) {
+				if (k >= 0  &&  k < totalData) total += Data[j][k];
+			}			
+			SmoothedData[j][i] = total / (SMOOTHING*2 + 1);
+		}
+	}
 
 	// load steps.txt
 	if ((fpt=fopen(argv[4], "rb")) == NULL) {
