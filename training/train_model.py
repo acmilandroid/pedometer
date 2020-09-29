@@ -39,6 +39,8 @@ fpt = open(sys.argv[1], 'r')
 rawdata = [[float(x) for x in line.split()] for line in fpt]
 fpt.close
 
+print("rawdata has shape", np.array(rawdata).shape)
+
 # copy to labels (steps per window) and features (sensor measurement axes)
 labels = []
 features = []
