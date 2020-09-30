@@ -120,9 +120,11 @@ predicted_steps = 0
 prev_predicted_steps = 0
 predictions = model.predict(features_input)
 
+# write header columns to debug.csv
 if debug == 1:
     debug_file = open("debug.csv", "w")
-    debug_file.write("Steps in Window,Running step sum,Difference,Index output\n")
+    debug_file.write("Window #,Window start index,Window stop index,Steps in Window,")
+    debug_file.write("Running step sum,Difference,Index output\n")
 
 # loop through all windows
 for i in range(0, num_samples):
@@ -130,7 +132,9 @@ for i in range(0, num_samples):
     predicted_steps += predictions[i][0] / cut * testing_stride  # integrate window to get step count
     step_delta = int(predicted_steps) - prev_predicted_steps     # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
+    # write information to debug.csv
     if debug == 1:
+        debug_file.write(str(i) + "," + str(first_step + testing_stride*i) + "," + str(first_step + testing_stride*i*2) + ",")
         debug_file.write(str(predictions[i][0]) + "," + str(predicted_steps) + "," + str(step_delta) + ",")
     # mark detected steps when the number of steps changes
     if step_delta > 0:
