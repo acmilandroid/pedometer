@@ -5,6 +5,9 @@
 # print input allows you to print predicted_step_indices or not
 # input file must be first cut by cutsteps.c
 
+# puts in debug mode to print individual window counts, sum, and output steps
+debug = 1
+
 # import system for command line arguments
 import sys
 
@@ -117,16 +120,25 @@ predicted_steps = 0
 prev_predicted_steps = 0
 predictions = model.predict(features_input)
 
+if debug == 1:
+    debug_file = open("debug.csv", "w")
+    debug_file.write("predicted_steps,prev_predicted_steps,step_delta,output")
+
 # loop through all windows
 for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
     predicted_steps += predictions[i][0] / cut * testing_stride  # integrate window to get step count
     step_delta = int(predicted_steps) - prev_predicted_steps     # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
+    if debug == 1:
+        debug_file.write()
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
             predicted_step_indices.append(first_step-int(cut/2) + testing_stride*i)
+
+if debug == 1:
+    debug_file.close()
 
 print("Average steps detected per slide:", predicted_steps/num_samples)
 
