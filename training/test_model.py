@@ -134,7 +134,7 @@ for i in range(0, num_samples):
     prev_predicted_steps = int(predicted_steps)
     # write information to debug.csv
     if debug == 1:
-        debug_file.write(str(i) + "," + str(first_step + testing_stride*i) + "," + str(first_step + testing_stride*i*2) + ",")
+        debug_file.write(str(i) + "," + str(first_step-int(cut) + testing_stride*i) + "," + str(first_step + testing_stride*i) + ",")
         debug_file.write(str(predictions[i][0]) + "," + str(predicted_steps) + "," + str(step_delta) + ",")
     # mark detected steps when the number of steps changes
     if step_delta > 0:
