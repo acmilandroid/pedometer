@@ -167,7 +167,7 @@ int main(int argc, char *argv[]) {
 	}
 	fclose(fpt);
 
-	/* cut windows 5 sec prior to first step, to 5 sec after last step */
+	/* cut windows CUT datum prior to first step, to CUT+STRIDE datum after last step */
 	start = firstStep - CUT;
 	end = lastStep + CUT + STRIDE;
 
