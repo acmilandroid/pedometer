@@ -110,10 +110,10 @@ if debug == 1:
     print("features_flat:")
     print(features_flat)
 
-# copies features from 2D matrix features_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix features_input[#windows][window_length][#features]
-# first dimension contains 1 measurement of each feature (X,Y,Z, yaw,pitch,roll)
-# second dimension contains the number of measurements (sensor samples) in the specific time window
-# third dimension contains the total number of time windows, or total samples
+# copies features from 2D matrix features_flat[#windows][x0 y0 z0 x1 y1 z1 ...] to 3D matrix features_input[#windows][window_length][#features]
+# first dimension contains 1 measurement of each feature (X,Y,Z)
+# second dimension contains the number of measurements in each time window (window_size)
+# third dimension contains the total number of windows, or total samples
 features_input = np.zeros((len(features_flat), sample_length, total_features))
 for i in range(0, num_samples):
     for j in range(0, sample_length):
