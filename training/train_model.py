@@ -100,7 +100,7 @@ if debug == 1:
 
 # reshape features to flatten it to one row per recording
 # features_flat in following format:
-# x1 x2... xn y1 y2... yn z1 z2... zn Y1... P1... R1... Rn per row
+# x1 x2... xn y1 y2... yn z1 z2... zn per row
 print("Reshaping normalized features...")
 features_flat = features.reshape(len(labels), len(features[0])*total_features)
 print("features_flat has shape", features_flat.shape)
