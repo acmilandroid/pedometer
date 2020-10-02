@@ -138,7 +138,7 @@ for i in range(0, num_samples):
     if debug == 1:
         debug_file.write(str(i) + "," + str(first_step-int(cut) + testing_stride*i) + "," + str(first_step + testing_stride*i) + ",")
         debug_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
-        debug_file.write(str(predicted_steps) + "," + str(step_delta) + ","))
+        debug_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
