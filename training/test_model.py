@@ -119,23 +119,26 @@ predicted_step_indices = []
 predicted_steps = 0
 prev_predicted_steps = 0
 predictions = model.predict(features_input)
+gt_steps_sum = 0
 
 # write header columns to debug.csv
 if debug == 1:
     debug_file = open("debug.csv", "w")
-    debug_file.write("Window #,Window start index,Window stop index,Steps in Window,")
-    debug_file.write("Running step sum,Difference,Index output\n")
+    debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
+    debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
 
 # loop through all windows
 for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / cut * testing_stride  # integrate window to get step count
-    step_delta = int(predicted_steps) - prev_predicted_steps     # find difference in steps for each window shift
+    predicted_steps += predictions[i][0] / cut * testing_stride # integrate window to get step count
+    gt_steps_sum += labels[i] / cut * testing_stride            # calculate running gt step sum
+    step_delta = int(predicted_steps) - prev_predicted_steps    # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
     # write information to debug.csv
     if debug == 1:
         debug_file.write(str(i) + "," + str(first_step-int(cut) + testing_stride*i) + "," + str(first_step + testing_stride*i) + ",")
-        debug_file.write(str(predictions[i][0]) + "," + str(predicted_steps) + "," + str(step_delta) + ",")
+        debug_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
+        debug_file.write(str(predicted_steps) + "," + str(step_delta) + ","))
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
