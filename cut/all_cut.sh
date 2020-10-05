@@ -1,4 +1,6 @@
 #!/bin/bash
+# Basil Lin
+# step counter project
 # usage: ./all_cut.sh [directory] [cutsteps_executable] [CUT] [STRIDE]
 # [directory] is top level dir containing all subject files
 # combines and cuts all CSV files

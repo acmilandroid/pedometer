@@ -1,7 +1,7 @@
 # Basil Lin
 # step counter project
 # program to parse data txt file as kfold data
-# Usage: python3 kfoldize_data.py [K] [input_file.txt] [ouptput_file] (no extension on output file)
+# Usage: python3 kfoldize_data.py [K] [input_file.txt] [output_file] (no extension on output file)
 
 # import stuff
 import warnings
@@ -11,7 +11,7 @@ import random
 
 # checks if input args are correct
 if len(sys.argv) != 4:
-    sys.exit("Usage: python3 kfoldize_data.py [K] [input_file.txt] [ouptput_file] (no extension on output)")
+    sys.exit("Usage: python3 kfoldize_data.py [K] [input_file.txt] [output_file] (no extension on output)")
 
 # set K value (number of folds)
 K = int(sys.argv[1])

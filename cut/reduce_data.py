@@ -1,6 +1,7 @@
 # Basil Lin
 # step counter project
 # program to randomly select lines from data file, makes smaller file to train on
+# takes percent chance of choosing line (approximate percentage of old file)
 # Usage: python3 reduce_data.py [input_file.txt] [output_file.txt] [Percent Chance]
 
 # import sys

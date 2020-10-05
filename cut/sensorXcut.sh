@@ -1,4 +1,6 @@
 #!/bin/bash
+# Basil Lin
+# step counter project
 # usage: ./sensorXcut.sh [directory] [cutsteps_executable] [window_size] [window_stride] [gait] [sensor #]
 # [directory] is top level dir containing all subject files
 # if [gait] is not Regular, Irregular, or SemiRegular, it will combine all gaits
