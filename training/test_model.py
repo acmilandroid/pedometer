@@ -5,21 +5,21 @@
 # print input allows you to print predicted_step_indices or not
 # input file must be first cut by cutsteps.c
 
-# puts in debug mode to print individual window counts, sum, and output steps
-debug = 1
+# puts in DEBUG mode to print individual window counts, sum, and output steps
+DEBUG = 1
 
 # import system for command line arguments
 import sys
 
-total_features = 3
+TOTAL_FEATURES = 3
 
 # half a second, or 7 sensor readings
 RANGE = 7
 
 
 # always test with a stride of 1 datum
-testing_stride = 1 
-training_stride = 1
+TESTING_STRIDE = 1 
+TRAINING_STRIDE = 1
 
 # checks for correct number of command line args
 if len(sys.argv) != 6:
@@ -64,9 +64,9 @@ features = []
 # separate features into one row per axis for normalizing
 for i in range(0, len(rawfeatures)):
     labels.append(rawfeatures[i][0])
-    for j in range(0, total_features):
+    for j in range(0, TOTAL_FEATURES):
         row=[]
-        for k in range(j+1, len(rawfeatures[i]), total_features):
+        for k in range(j+1, len(rawfeatures[i]), TOTAL_FEATURES):
             row.append(rawfeatures[i][k])
         if len(row) != 75:
             print("error on line:", i, "length is", len(row))
@@ -96,15 +96,15 @@ features = normfeatures
 # reshape features to flatten it to one row per recording
 # features_flat in following format:
 # x1 x2... xn y1 y2... yn z1 z2... zn Y1... P1... R1... Rn per row
-features_flat = features.reshape(len(labels), len(features[0])*total_features)
+features_flat = features.reshape(len(labels), len(features[0])*TOTAL_FEATURES)
 print("features_flat has shape", features_flat.shape)
 num_samples = features_flat.shape[0]
 
 # copies features from 2D matrix features_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix features_input[#windows][window_length][#axes]
-features_input = np.zeros((len(features_flat), sample_length, total_features))
+features_input = np.zeros((len(features_flat), sample_length, TOTAL_FEATURES))
 for i in range(0, num_samples):
     for j in range(0, sample_length):
-        for k in range(0, total_features):
+        for k in range(0, TOTAL_FEATURES):
             features_input[i][j][k] = features_flat[i][k*sample_length + j]
 print("features_input has shape", features_input.shape)
 
@@ -121,35 +121,35 @@ prev_predicted_steps = 0
 predictions = model.predict(features_input)
 gt_steps_sum = 0
 
-# write header columns to debug.csv
-if debug == 1:
-    debug_file = open("debug.csv", "w")
-    debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
-    debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
+# write header columns to DEBUG.csv
+if DEBUG == 1:
+    DEBUG_file = open("DEBUG.csv", "w")
+    DEBUG_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
+    DEBUG_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
 
 # loop through all windows
 for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / cut * testing_stride # integrate window to get step count
-    gt_steps_sum += labels[i] / cut * testing_stride            # calculate running gt step sum
+    predicted_steps += predictions[i][0] / cut * TESTING_STRIDE # integrate window to get step count
+    gt_steps_sum += labels[i] / cut * TESTING_STRIDE            # calculate running gt step sum
     step_delta = int(predicted_steps) - prev_predicted_steps    # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
-    # write information to debug.csv
-    if debug == 1:
-        debug_file.write(str(i) + "," + str(first_step-int(cut) + testing_stride*i) + "," + str(first_step + testing_stride*i-1) + ",")
-        debug_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
-        debug_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
+    # write information to DEBUG.csv
+    if DEBUG == 1:
+        DEBUG_file.write(str(i) + "," + str(first_step-int(cut) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
+        DEBUG_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
+        DEBUG_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
-            predicted_step_indices.append(first_step-int(cut/2) + testing_stride*i)
-        if debug == 1:
-            debug_file.write(str(first_step-int(cut/2) + testing_stride*i) + "\n")
-    elif debug == 1:
-        debug_file.write("None\n")
+            predicted_step_indices.append(first_step-int(cut/2) + TESTING_STRIDE*i)
+        if DEBUG == 1:
+            DEBUG_file.write(str(first_step-int(cut/2) + TESTING_STRIDE*i) + "\n")
+    elif DEBUG == 1:
+        DEBUG_file.write("None\n")
 
-if debug == 1:
-    debug_file.close()
+if DEBUG == 1:
+    DEBUG_file.close()
 
 print("Average steps detected per slide:", predicted_steps/num_samples)
 

@@ -7,8 +7,8 @@
 # import system for command line arguments
 import sys
 
-debug = 0
-total_features = 3
+DEBUG = 0
+TOTAL_FEATURES = 3
 
 # checks for correct number of command line args
 if len(sys.argv) != 4:
@@ -49,11 +49,11 @@ features = []
 print("Separating features into one row per feature...")
 for i in range(0, len(rawdata)):
     labels.append(rawdata[i][0])
-    for j in range(0, total_features):
+    for j in range(0, TOTAL_FEATURES):
         row=[]
-        for k in range(j+1, len(rawdata[i]), total_features):
+        for k in range(j+1, len(rawdata[i]), TOTAL_FEATURES):
             row.append(rawdata[i][k])
-        if len(row) != window_size and debug == 0:
+        if len(row) != window_size and DEBUG == 0:
             print("error on line:", i, "length is", len(row))
         features.append(row)
 
@@ -63,8 +63,8 @@ features = np.array(features)
 print("features has shape", features.shape)
 sample_length = features.shape[1]
 
-#print labels and features for debugging
-if debug == 1:
+#print labels and features for DEBUGging
+if DEBUG == 1:
     print("labels:")
     print(labels)
     print("features:")
@@ -84,8 +84,8 @@ end = time.time()
 
 features = normdata
 
-# check normalization (debug mode only)
-if debug == 1:
+# check normalization (DEBUG mode only)
+if DEBUG == 1:
     for i in range(0, len(normdata)):
         s = min(normdata[i])
         t = max(normdata[i])
@@ -102,11 +102,11 @@ if debug == 1:
 # features_flat in following format:
 # x1 x2... xn y1 y2... yn z1 z2... zn per row
 print("Reshaping normalized features...")
-features_flat = features.reshape(len(labels), len(features[0])*total_features)
+features_flat = features.reshape(len(labels), len(features[0])*TOTAL_FEATURES)
 print("features_flat has shape", features_flat.shape)
 num_samples = features_flat.shape[0]
 
-if debug == 1:
+if DEBUG == 1:
     print("features_flat:")
     print(features_flat)
 
@@ -114,24 +114,24 @@ if debug == 1:
 # first dimension contains 1 measurement of each feature (X,Y,Z)
 # second dimension contains the number of measurements in each time window (window_size)
 # third dimension contains the total number of windows, or total samples
-features_input = np.zeros((len(features_flat), sample_length, total_features))
+features_input = np.zeros((len(features_flat), sample_length, TOTAL_FEATURES))
 for i in range(0, num_samples):
     for j in range(0, sample_length):
-        for k in range(0, total_features):
+        for k in range(0, TOTAL_FEATURES):
             features_input[i][j][k] = features_flat[i][k*sample_length + j]
 print("features_input has shape", features_input.shape)
 
-if debug == 1:
+if DEBUG == 1:
     print("features_input:")
     print(features_input)
 
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(sample_length, total_features,), filters=100, kernel_size=30, strides=5, activation='relu'),
+    keras.layers.Conv1D(input_shape=(sample_length, TOTAL_FEATURES,), filters=100, kernel_size=30, strides=5, activation='relu'),
     keras.layers.Conv1D(filters=100, kernel_size=5, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
     keras.layers.Dense(1, activation='relu')
-    # keras.layers.Conv1D(input_shape=(sample_length, total_features,), filters=100, kernel_size=6, activation='relu'),
+    # keras.layers.Conv1D(input_shape=(sample_length, TOTAL_FEATURES,), filters=100, kernel_size=6, activation='relu'),
     # keras.layers.MaxPooling1D(pool_size=6),
     # keras.layers.Flatten(),  # must flatten to feed dense layer
     # keras.layers.Dense(50, activation='relu'),
