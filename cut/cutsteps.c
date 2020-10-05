@@ -28,13 +28,13 @@
 
 
 int main(int argc, char *argv[]) {
-	FILE	*fpt;
-	char	trash[100];
-	int		start, end, i, j, k;
-	float	total;
-	float	**Data, **SmoothedData;
-	int		totalData, totalSteps, totalWindows;
-	int		*windowIndex, *windowSteps;
+    FILE	*fpt;
+    char	trash[100];
+    int		start, end, i, j, k;
+    float	total;
+    float	**Data, **SmoothedData;
+    int		totalData, totalSteps, totalWindows;
+    int		*windowIndex, *windowSteps;
     int     *GTstepIndex;
     float   *floatWindowSteps;
     int     firstStep, lastStep;
@@ -52,51 +52,51 @@ int main(int argc, char *argv[]) {
     windowSteps = (int *)calloc(sizeof(int), MAX_WINDOWS);
     floatWindowSteps = (float *)calloc(sizeof(int), MAX_WINDOWS);
 
-	if (argc != 5) {
-		printf("Usage: ./cutsteps [window_size] [window_stride] [pedometer_data_filename.csv] [steps.txt]\n");
-		exit(0);
-	}
+    if (argc != 5) {
+        printf("Usage: ./cutsteps [window_size] [window_stride] [pedometer_data_filename.csv] [steps.txt]\n");
+        exit(0);
+    }
 
-	if ((fpt=fopen(argv[3], "rb")) == NULL) {
-		printf("Unable to open %s for reading\n", argv[3]);
-		exit(0);
-	}
+    if ((fpt=fopen(argv[3], "rb")) == NULL) {
+        printf("Unable to open %s for reading\n", argv[3]);
+        exit(0);
+    }
 
     int CUT = atoi(argv[1]);
     int STRIDE = atoi(argv[2]);
 
-	// read data file, determine total amount of data
-	totalData = 0;
-	
-	//scan and throw away header information
-	for (i = 0; i < 2*TOTAL_DATA_FIELDS + 6; i++) {
-		fscanf(fpt, "%s", trash);
-	}
+    // read data file, determine total amount of data
+    totalData = 0;
+
+    //scan and throw away header information
+    for (i = 0; i < 2*TOTAL_DATA_FIELDS + 6; i++) {
+        fscanf(fpt, "%s", trash);
+    }
 
 	//scan acceleration data
-	while (
-			fscanf(fpt,"%s %s %s %s %s %s %s %s %s %s %f %f %f %s %s %s %s",
-				trash, //timestamp
-				trash, //realtime
-				trash, //GSR
-				trash, //QuatW
-				trash, //QuatX
-				trash, //QuatY
-				trash, //QuatZ
-				trash, //GyroX
-				trash, //GyroY
-				trash, //GyroZ
-				&(Data[0][totalData]), //AccelX
-				&(Data[1][totalData]), //AccelY
-				&(Data[2][totalData]), //AccelZ
-				trash, //MagX
-				trash, //MagY
-				trash, //MagZ
-				trash) //DateTime
-			== TOTAL_DATA_FIELDS)
-	{
-		totalData++;
-	}
+    while (
+        fscanf(fpt,"%s %s %s %s %s %s %s %s %s %s %f %f %f %s %s %s %s",
+            trash, //timestamp
+            trash, //realtime
+            trash, //GSR
+            trash, //QuatW
+            trash, //QuatX
+            trash, //QuatY
+            trash, //QuatZ
+            trash, //GyroX
+            trash, //GyroY
+            trash, //GyroZ
+            &(Data[0][totalData]), //AccelX
+            &(Data[1][totalData]), //AccelY
+            &(Data[2][totalData]), //AccelZ
+            trash, //MagX
+            trash, //MagY
+            trash, //MagZ
+            trash) //DateTime
+        == TOTAL_DATA_FIELDS)
+    {
+        totalData++;
+    }
 	
 	fclose(fpt);
 
