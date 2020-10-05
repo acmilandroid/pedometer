@@ -1,4 +1,6 @@
 #!/bin/bash
+# Basil Lin
+# step counter project
 # Usage: ./all_test.sh [directory] [cutsteps_executable] [window_size] [window_stride] [input_model.h5]
 # tests every CSV file for RCA and SDA using a trained input model [input_model.h5]
 # [directory] is top level dir containing all subject files
