@@ -80,25 +80,27 @@ if sys.argv[2] == '0':
 
     # concatenate features together
     # x1 x2... xn y1 y2... yn z1 z2... zn for each row
-    features_flat = np.concatenate([normdata_x, normdata_y, normdata_z], axis=1)
-    print("features_flat has shape:", features_flat.shape)
+    features_normalized = np.concatenate([normdata_x, normdata_y, normdata_z], axis=1)
+    print("features_normalized has shape:", features_normalized.shape)
 
     # concatenate labels and normalized features to make data
     data = np.insert(features_flat, 0, labels, axis=1)
+    print("data has shape:", data.shape)
 
 # normalize from -1.5 to 1.5 gravities
 elif sys.argv[2] == '1':
-    features_flat = rawdata[:,1:]
+    features = rawdata[:,1:]
     minval = -1.5
     maxval = 1.5
-    normdata = (features - minval) / (maxval - minval)
-    print("features_flat has shape:", features_flat.shape)
+    features_normalized = (features - minval) / (maxval - minval)
+    print("features_normalized has shape:", features_normalized.shape)
 
     # concatenate labels and normalized features to make data
     data = np.insert(features_flat, 0, labels, axis=1)
+    print("data has shape:", data.shape)
 
 # write data to output file
-print(data)
+print("Writing data to data_normalized.txt...")
 outfile = open("data_normalized.txt", 'w')
 np.savetxt(outfile, data, fmt='%.3f', delimiter='\t')
 outfile.close()
