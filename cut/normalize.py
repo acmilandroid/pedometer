@@ -101,6 +101,7 @@ elif sys.argv[2] == '1':
 
 # write data to output file
 print("Writing data to data_normalized.txt...")
-outfile = open("data_normalized.txt", 'w')
+filename = "data_normalized_" + sys.argv[3] + ".txt"
+outfile = open(filename, 'w')
 np.savetxt(outfile, data, fmt='%.3f', delimiter='\t')
 outfile.close()
