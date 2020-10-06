@@ -3,7 +3,7 @@
 # program to parse sensor cut file to find min and max
 # generates histogram of accelerometer distribution
 # requires sensor01.txt sensor02.txt sensor03.txt
-# Usage: python3 minmax.py
+# Usage: python3 histogram_sensor_data.py
 
 # import sys
 import sys
