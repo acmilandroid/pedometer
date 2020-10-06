@@ -5,7 +5,7 @@
 # input file must already be cut by cutsteps.c
 
 # globals for switching program functionality
-DEBUG = 0           # debug prints turned on
+DEBUG = 0           # debug prints
 NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 
@@ -40,77 +40,11 @@ print("Opening training file...")
 fpt = open(sys.argv[1], 'r')
 rawdata = [[float(x) for x in line.split()] for line in fpt]
 fpt.close
-
 print("rawdata has shape", np.array(rawdata).shape)
 
 # copy to labels (steps per window) and features (sensor measurement axes)
-labels = []
-features = []
-
-# separate features into one row per feature (axis) for normalizing
-print("Separating features into one row per feature...")
-for i in range(0, len(rawdata)):
-    labels.append(rawdata[i][0])
-    for j in range(0, TOTAL_FEATURES):
-        row=[]
-        for k in range(j+1, len(rawdata[i]), TOTAL_FEATURES):
-            row.append(rawdata[i][k])
-        if len(row) != window_size and DEBUG == 0:
-            print("error on line:", i, "length is", len(row))
-        features.append(row)
-
-labels = np.array(labels)
-features = np.array(features)
-
-print("features has shape", features.shape)
-sample_length = features.shape[1]
-
-#print labels and features for DEBUGging
-if DEBUG == 1:
-    print("labels:")
-    print(labels)
-    print("features:")
-    print(features)
-
-# normalize each row of features
-print("Normalizing each row of features...")
-start = time.time()
-normdata = np.empty_like(features)
-for i in range(0, len(features)):
-    s = min(features[i])
-    t = max(features[i])
-    if s == t:
-        t = s+1
-    normdata[i] = (features[i]-s) / (t-s)
-end = time.time()
-
-features = normdata
-
-# check normalization (DEBUG mode only)
-if DEBUG == 1:
-    for i in range(0, len(normdata)):
-        s = min(normdata[i])
-        t = max(normdata[i])
-        if s != 0:
-            print("min of", s, " at index", i, " does not equal 0.")
-            print("normdata:")
-            print(normdata[i])
-        if t != 1:
-            print("max of", t, " at index", i, " does not equal 1.")
-            print("normdata:")
-            print(normdata[i])
-
-# reshape features to flatten it to one row per recording
-# features_flat in following format:
-# x1 x2... xn y1 y2... yn z1 z2... zn per row
-print("Reshaping normalized features...")
-features_flat = features.reshape(len(labels), len(features[0])*TOTAL_FEATURES)
-print("features_flat has shape", features_flat.shape)
-num_samples = features_flat.shape[0]
-
-if DEBUG == 1:
-    print("features_flat:")
-    print(features_flat)
+labels = rawdata[:,0]
+features = rawdata[:,1:]
 
 # copies features from 2D matrix features_flat[#windows][x0 y0 z0 x1 y1 z1 ...] to 3D matrix features_input[#windows][window_length][#features]
 # first dimension contains 1 measurement of each feature (X,Y,Z)

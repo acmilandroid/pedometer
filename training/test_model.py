@@ -1,6 +1,6 @@
 # Basil Lin
 # step counter project
-# program to test model with cut input
+# program to test model with cut input file
 # Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]
 # print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
 # input file must be first cut by cutsteps.c
