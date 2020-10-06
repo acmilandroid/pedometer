@@ -87,6 +87,8 @@ if sys.argv[2] == '0':
     data = np.insert(features_normalized, 0, labels, axis=1)
     print("data has shape:", data.shape)
 
+    filename = "data_normalized_" + sys.argv[3] + ".txt"
+
 # normalize from -1.5 to 1.5 gravities
 elif sys.argv[2] == '1':
     features = rawdata[:,1:]
@@ -99,9 +101,10 @@ elif sys.argv[2] == '1':
     data = np.insert(features_normalized, 0, labels, axis=1)
     print("data has shape:", data.shape)
 
+    filename = "data_normalized_constant.txt"
+
 # write data to output file
 print("Writing data to", filename, "...")
-filename = "data_normalized_" + sys.argv[3] + ".txt"
 outfile = open(filename, 'w')
 np.savetxt(outfile, data, fmt='%.3f', delimiter='\t')
 outfile.close()
