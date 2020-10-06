@@ -1,14 +1,16 @@
 # Basil Lin
 # step counter project
-# program to train classifier to detect steps in a window
+# program to train regression model to predict steps in a window
 # Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride]
 # input file must already be cut by cutsteps.c
 
+# globals for switching program functionality
+DEBUG = 0           # debug prints turned on
+NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
+TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
+
 # import system for command line arguments
 import sys
-
-DEBUG = 0
-TOTAL_FEATURES = 3
 
 # checks for correct number of command line args
 if len(sys.argv) != 4:
