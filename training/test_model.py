@@ -2,7 +2,7 @@
 # step counter project
 # program to test model with cut input
 # Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]
-# print input allows you to print predicted_step_indices or not
+# print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
 # input file must be first cut by cutsteps.c
 
 # globals for switching program functionality
@@ -10,7 +10,6 @@ DEBUG = 0           # print individual window counts, sum, and output steps to c
 NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 RANGE = 7           # Range in datum for acceptable pairing with GT (half a second, or 7 sensor readings)
-TRAINING_STRIDE = 1 # stride used to train model with
 TESTING_STRIDE = 1  # don't change, always test with a stride of 1 datum
 
 # import system for command line arguments
