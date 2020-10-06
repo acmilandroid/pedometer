@@ -100,7 +100,7 @@ elif sys.argv[2] == '1':
     print("data has shape:", data.shape)
 
 # write data to output file
-print("Writing data to data_normalized.txt...")
+print("Writing data to", filename, "...")
 filename = "data_normalized_" + sys.argv[3] + ".txt"
 outfile = open(filename, 'w')
 np.savetxt(outfile, data, fmt='%.3f', delimiter='\t')
