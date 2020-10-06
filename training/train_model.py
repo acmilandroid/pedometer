@@ -62,11 +62,11 @@ print("features_input has shape", features_input.shape)
 
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(sample_length, TOTAL_FEATURES,), filters=100, kernel_size=30, strides=5, activation='relu'),
+    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES,), filters=100, kernel_size=30, strides=5, activation='relu'),
     keras.layers.Conv1D(filters=100, kernel_size=5, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
     keras.layers.Dense(1, activation='relu')
-    # keras.layers.Conv1D(input_shape=(sample_length, TOTAL_FEATURES,), filters=100, kernel_size=6, activation='relu'),
+    # keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES,), filters=100, kernel_size=6, activation='relu'),
     # keras.layers.MaxPooling1D(pool_size=6),
     # keras.layers.Flatten(),  # must flatten to feed dense layer
     # keras.layers.Dense(50, activation='relu'),
