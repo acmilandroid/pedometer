@@ -84,7 +84,7 @@ if sys.argv[2] == '0':
     print("features_normalized has shape:", features_normalized.shape)
 
     # concatenate labels and normalized features to make data
-    data = np.insert(features_flat, 0, labels, axis=1)
+    data = np.insert(features_normalized, 0, labels, axis=1)
     print("data has shape:", data.shape)
 
 # normalize from -1.5 to 1.5 gravities
