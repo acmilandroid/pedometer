@@ -3,7 +3,7 @@
 # program to test model with cut input file
 # Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]
 # print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
-# input file must be first cut by cutsteps.c
+# input file must be first cut and normalized
 
 # globals for switching program functionality
 DEBUG = 0           # print individual window counts, sum, and output steps to csv file
@@ -39,7 +39,7 @@ print("Python version:", sys.version)
 
 # open input and ground truth files
 fpt = open(sys.argv[3], 'r')
-rawfeatures = [[float(x) for x in line.split()] for line in fpt]
+rawdata = [[float(x) for x in line.split()] for line in fpt]
 fpt.close()
 fpt = open(sys.argv[4], 'r')
 gt_steps = [[x for x in line.split()] for line in fpt]
@@ -50,60 +50,27 @@ fpt.close()
 # load keras model
 model = tf.keras.models.load_model(sys.argv[1])
 
-# copy to labels and features
-labels = []
-features = []
+# copy to labels (steps per window) and features (sensor measurement axes)
+print("Seperating labels and features...")
+rawdata = np.array(rawdata)
+labels = rawdata[:,0]
+features_normalized = rawdata[:,1:]
+print("features_normalized has shape", features_normalized.shape)
 
-# TODO: may need to rework normalization
-# separate features into one row per axis for normalizing
-for i in range(0, len(rawfeatures)):
-    labels.append(rawfeatures[i][0])
-    for j in range(0, TOTAL_FEATURES):
-        row=[]
-        for k in range(j+1, len(rawfeatures[i]), TOTAL_FEATURES):
-            row.append(rawfeatures[i][k])
-        if len(row) != 75:
-            print("error on line:", i, "length is", len(row))
-        features.append(row)
-
-labels = np.array(labels)
-features = np.array(features)
-
-print("features has shape", features.shape)
-sample_length = features.shape[1]
-
-# normalize each row of features
-start=time.time()
-normfeatures=np.empty_like(features)
-for i in range(0, len(features)):
-    norm=[]
-    s=min(features[i]) 
-    t=max(features[i])
-    if s == t:
-        t = s+1
-    normfeatures[i] = (features[i]-s) / (t-s)
-end = time.time()
-print("features normalized in", end-start, " seconds")
-
-features = normfeatures
-
-# reshape features to flatten it to one row per recording
-# features_flat in following format:
-# x1 x2... xn y1 y2... yn z1 z2... zn Y1... P1... R1... Rn per row
-features_flat = features.reshape(len(labels), len(features[0])*TOTAL_FEATURES)
-print("features_flat has shape", features_flat.shape)
-num_samples = features_flat.shape[0]
-
-# copies features from 2D matrix features_flat[#windows][x0 y0 z0 Y0 P0 R0 x1 y1 z1 Y1 P1 R1 ...] to 3D matrix features_input[#windows][window_length][#axes]
-features_input = np.zeros((len(features_flat), sample_length, TOTAL_FEATURES))
+# copies features from 2D matrix features_normalized[#windows][x0 y0 z0 x1 y1 z1 ...] to 3D matrix features_input[#windows][window_length][#features]
+# first dimension contains 1 measurement of each feature (X,Y,Z)
+# second dimension contains the number of measurements in each time window (window_size)
+# third dimension contains the total number of windows, or total samples
+print("Reshaping normalized features for training...")
+features_input = np.zeros((len(features_normalized), window_size, TOTAL_FEATURES))
 for i in range(0, num_samples):
-    for j in range(0, sample_length):
+    for j in range(0, window_size):
         for k in range(0, TOTAL_FEATURES):
-            features_input[i][j][k] = features_flat[i][k*sample_length + j]
+            features_input[i][j][k] = features_normalized[i][k*window_size + j]
 print("features_input has shape", features_input.shape)
 
 # test model on features
-print("Testing")
+print("Testing...")
 loss = model.evaluate(features_input, labels)
 print("Validation loss:", loss[1])
 predictions = model.predict(features_input)
