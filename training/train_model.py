@@ -44,6 +44,7 @@ print("rawdata has shape", np.array(rawdata).shape)
 print("Seperating labels and features...")
 rawdata = np.array(rawdata)
 labels = rawdata[:,0]
+numsamples = len(labels)
 features_normalized = rawdata[:,1:]
 print("features_normalized has shape", features_normalized.shape)
 
