@@ -2,11 +2,9 @@
 # step counter project
 # program to train regression model to predict steps in a window
 # Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride]
-# input file must already be cut by cutsteps.c
+# input file must already be cut and normalized
 
 # globals for switching program functionality
-DEBUG = 0           # debug prints
-NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 
 # import system for command line arguments
@@ -43,23 +41,23 @@ fpt.close
 print("rawdata has shape", np.array(rawdata).shape)
 
 # copy to labels (steps per window) and features (sensor measurement axes)
+print("Seperating labels and features...")
+rawdata = np.array(rawdata)
 labels = rawdata[:,0]
-features = rawdata[:,1:]
+features_normalized = rawdata[:,1:]
+print("features_normalized has shape", features_normalized.shape)
 
-# copies features from 2D matrix features_flat[#windows][x0 y0 z0 x1 y1 z1 ...] to 3D matrix features_input[#windows][window_length][#features]
+# copies features from 2D matrix features_normalized[#windows][x0 y0 z0 x1 y1 z1 ...] to 3D matrix features_input[#windows][window_length][#features]
 # first dimension contains 1 measurement of each feature (X,Y,Z)
 # second dimension contains the number of measurements in each time window (window_size)
 # third dimension contains the total number of windows, or total samples
-features_input = np.zeros((len(features_flat), sample_length, TOTAL_FEATURES))
+print("Reshaping normalized features for training...")
+features_input = np.zeros((len(features_normalized), window_size, TOTAL_FEATURES))
 for i in range(0, num_samples):
-    for j in range(0, sample_length):
+    for j in range(0, window_size):
         for k in range(0, TOTAL_FEATURES):
-            features_input[i][j][k] = features_flat[i][k*sample_length + j]
+            features_input[i][j][k] = features_normalized[i][k*window_size + j]
 print("features_input has shape", features_input.shape)
-
-if DEBUG == 1:
-    print("features_input:")
-    print(features_input)
 
 # set up classifier
 model = keras.Sequential([
@@ -79,7 +77,7 @@ es = keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, pa
 
 model.summary()
 
-print("Training")
+print("Training...")
 metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
 
 # print("Testing")
