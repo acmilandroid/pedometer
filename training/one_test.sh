@@ -52,3 +52,6 @@ do
     python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_normalized.txt" $1"/steps.txt" 1 >> results_all.txt
     mv predicted_steps.txt predicted_steps_sensor0$((sensornum)).txt
 done
+
+rm results_all.txt &> /dev/null
+rm -r temp_training_data &> /dev/null
