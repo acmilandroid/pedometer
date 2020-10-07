@@ -150,6 +150,8 @@ else:
 # calculate SDA metrics
 ppv = tp / (tp + fp)
 sensitivity = tp / (tp + fn)
+print(tp)
+print(fp)
 f1 = 2*ppv*sensitivity / (ppv + sensitivity)
 
 # print testing results

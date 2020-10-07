@@ -40,13 +40,14 @@ for d in $1*; do
         do
             echo "Cutting Sensor0$((sensornum)).csv"
             # cut sensor files in each directory
-            ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0$((sensornum)).csv" $d"/Regular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_regular.txt"
-            ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0$((sensornum)).csv" $d"/Irregular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_irregular.txt"
-            ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$((sensornum)).csv" $d"/SemiRegular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_semiregular.txt"
+            ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0$((sensornum)).csv" $d"/Regular/steps.txt" > "temp_training_data/sensor0$((sensornum))_regular.txt"
+            ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0$((sensornum)).csv" $d"/Irregular/steps.txt" > "temp_training_data/sensor0$((sensornum))_irregular.txt"
+            ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$((sensornum)).csv" $d"/SemiRegular/steps.txt" > "temp_training_data/sensor0$((sensornum))_semiregular.txt"
         done
 
         # normalize per axis per sensor
         if (($5 == 0)); then
+            echo "Normalizing per axis per sensor"
             # normalize each sensor
             for sensornum in 1 2 3
             do
@@ -63,6 +64,7 @@ for d in $1*; do
 
         # normalize from -1.5 to 1.5 gravities
         if (($5 == 1)); then
+            echo "Normalizing from -1.5 to 1.5 gravities"
             # normalize each sensor
             for sensornum in 1 2 3
             do
