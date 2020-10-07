@@ -87,7 +87,7 @@ if sys.argv[2] == '0':
     data = np.insert(features_normalized, 0, labels, axis=1)
     print("data has shape:", data.shape)
 
-    filename = "data_normalized_" + sys.argv[3] + ".txt"
+    filename = "data_normalized_sensor0" + sys.argv[3] + ".txt"
 
 # normalize from -1.5 to 1.5 gravities
 elif sys.argv[2] == '1':
