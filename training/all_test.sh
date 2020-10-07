@@ -31,7 +31,7 @@ for d in $1*; do
         echo "Removing old training data..."
         rm -r temp_training_data/*
 
-        # cut all 3 sensors
+        # cut each sensor
         for sensornum in 1 2 3
         do
             echo "Cutting Sensor0$((sensornum)).csv"
@@ -41,7 +41,7 @@ for d in $1*; do
             ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$((sensornum)).csv" $d"/SemiRegular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_semiregular.txt"
         done
 
-        # normalize all 3 sensors
+        # normalize each sensor
         for sensornum in 1 2 3
         do
             echo "Normalizing Sensor0$((sensornum))"
@@ -54,7 +54,7 @@ for d in $1*; do
             mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt
         done
 
-        # test all 3 sensors
+        # test each sensor
         for sensornum in 1 2 3
         do
             echo "Testing Sensor0$((sensornum))"
