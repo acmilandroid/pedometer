@@ -1,7 +1,7 @@
 # Basil Lin
 # step counter project
 # program to train regression model to predict steps in a window
-# Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride]
+# Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride] [model_name.h5]
 # input file must already be cut and normalized
 
 # globals for switching program functionality
@@ -11,8 +11,8 @@ TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 import sys
 
 # checks for correct number of command line args
-if len(sys.argv) != 4:
-    sys.exit("Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride]")
+if len(sys.argv) != 5:
+    sys.exit("Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride] [model_name.h5]")
 
 window_size = int(sys.argv[2])
 window_stride = int(sys.argv[3])
@@ -109,4 +109,4 @@ print("Difference in steps:", diff)
 print("Training run count accuracy: %.4f" %(predicted_steps/actual_steps))
 
 # save model
-model.save("model.h5")
+model.save(sys.argv[4])
