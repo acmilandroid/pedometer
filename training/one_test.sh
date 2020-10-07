@@ -18,9 +18,9 @@ fi
 
 # remove old training data
 echo "Removing old data..."
-rm results_all.txt
-rm -rf temp_training_data
-rm predicted_steps_sensor*
+rm results_all.txt &> /dev/null
+rm -r temp_training_data &> /dev/null
+rm predicted_steps_sensor* &> /dev/null
 mkdir temp_training_data
 
 echo "$1"

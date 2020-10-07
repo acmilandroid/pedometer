@@ -18,6 +18,12 @@ fi
 num=0
 
 # remove old training data
+echo "Removing old data..."
+rm important_results.txt &> /dev/null
+rm results_all.txt &> /dev/null
+rm -r temp_training_data &> /dev/null
+rm predicted_steps_sensor* &> /dev/null
+mkdir temp_training_data
 echo "Making temp_training_data directory..."
 mkdir temp_training_data
 
@@ -28,7 +34,7 @@ for d in $1*; do
 
         # remove old temporary training data
         echo "Removing old training data..."
-        rm -r temp_training_data/*
+        rm -r temp_training_data/* &> /dev/null
 
         # cut each sensor
         for sensornum in 1 2 3
