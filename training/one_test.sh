@@ -21,13 +21,13 @@ echo "Removing old data..."
 rm results_all.txt &> /dev/null
 rm -r temp_training_data &> /dev/null
 rm predicted_steps_sensor* &> /dev/null
-mkdir temp_training_data
+mkdir temp_training_data &> /dev/null
 
 echo "$1"
 
 # remove old temporary training data
 echo "Removing old training data..."
-rm -r temp_training_data/*
+rm -r temp_training_data/* &> /dev/null
 
 # cut each sensor
 for sensornum in 1 2 3

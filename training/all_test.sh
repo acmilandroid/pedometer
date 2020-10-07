@@ -24,9 +24,7 @@ rm important_results.txt &> /dev/null
 rm results_all.txt &> /dev/null
 rm -r temp_training_data &> /dev/null
 rm predicted_steps_sensor* &> /dev/null
-mkdir temp_training_data
-echo "Making temp_training_data directory..."
-mkdir temp_training_data
+mkdir temp_training_data &> /dev/null
 
 # loop through all subdirectories
 for d in $1*; do
