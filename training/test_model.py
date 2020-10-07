@@ -1,9 +1,9 @@
 # Basil Lin
 # step counter project
-# program to test model with cut input file
+# program to test model with window_size input file
 # Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]
 # print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
-# input file must be first cut and normalized
+# input file must be first window_size and normalized
 
 # globals for switching program functionality
 DEBUG = 0           # print individual window counts, sum, and output steps to csv file
@@ -19,7 +19,7 @@ import sys
 if len(sys.argv) != 6:
     sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]")
 
-cut = int(sys.argv[2])
+window_size = int(sys.argv[2])
 
 # import other stuff so I don't slow down the Usage warning
 import warnings
@@ -54,6 +54,7 @@ model = tf.keras.models.load_model(sys.argv[1])
 print("Seperating labels and features...")
 rawdata = np.array(rawdata)
 labels = rawdata[:,0]
+num_samples = len(labels)
 features_normalized = rawdata[:,1:]
 print("features_normalized has shape", features_normalized.shape)
 
@@ -91,21 +92,21 @@ if DEBUG == 1:
 # loop through all windows
 for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / cut * TESTING_STRIDE # integrate window to get step count
-    gt_steps_sum += labels[i] / cut * TESTING_STRIDE            # calculate running gt step sum
+    predicted_steps += predictions[i][0] / window_size * TESTING_STRIDE # integrate window to get step count
+    gt_steps_sum += labels[i] / window_size * TESTING_STRIDE            # calculate running gt step sum
     step_delta = int(predicted_steps) - prev_predicted_steps    # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
     # write information to DEBUG.csv
     if DEBUG == 1:
-        DEBUG_file.write(str(i) + "," + str(first_step-int(cut) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
+        DEBUG_file.write(str(i) + "," + str(first_step-int(window_size) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
         DEBUG_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
         DEBUG_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
-            predicted_step_indices.append(first_step-int(cut/2) + TESTING_STRIDE*i)
+            predicted_step_indices.append(first_step-int(window_size/2) + TESTING_STRIDE*i)
         if DEBUG == 1:
-            DEBUG_file.write(str(first_step-int(cut/2) + TESTING_STRIDE*i) + "\n")
+            DEBUG_file.write(str(first_step-int(window_size/2) + TESTING_STRIDE*i) + "\n")
     elif DEBUG == 1:
         DEBUG_file.write("None\n")
 
