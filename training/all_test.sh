@@ -1,16 +1,17 @@
 #!/bin/bash
 # Basil Lin
 # step counter project
-# Usage: ./all_test.sh [directory] [cutsteps_executable] [window_size] [window_stride] [input_model.h5]
 # tests every CSV file for RCA and SDA using a trained input model [input_model.h5]
+# Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5]
 # [directory] is top level dir containing all subject files
+# cutsteps executable must be compiled in ../cut/cutsteps
 # creates results_all.txt
 
 echo "Bash version ${BASH_VERSION}"
 
 # usage warning
-if [ "$#" -ne 5 ]; then
-    echo "Usage: ./all_test.sh [directory] [cutsteps_executable] [window_size] [window_stride] [input_model.h5]"
+if [ "$#" -ne 4 ]; then
+    echo "Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5]"
     exit 1
 fi
 
@@ -30,23 +31,37 @@ for d in $1*; do
         echo "Removing old training data..."
         rm -r temp_training_data/*
 
-        # loop through all sensors
+        # cut all 3 sensors
         for sensornum in 1 2 3
         do
             echo "Cutting Sensor0$((sensornum)).csv"
             # cut sensor files in each directory
-            ./$2 $3 $4 $d"/Regular/Sensor0$((sensornum)).csv" $d"/Regular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_regular.txt"
-            ./$2 $3 $4 $d"/Irregular/Sensor0$((sensornum)).csv" $d"/Irregular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_irregular.txt"
-            ./$2 $3 $4 $d"/SemiRegular/Sensor0$((sensornum)).csv" $d"/SemiRegular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_semiregular.txt"
+            ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0$((sensornum)).csv" $d"/Regular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_regular.txt"
+            ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0$((sensornum)).csv" $d"/Irregular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_irregular.txt"
+            ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$((sensornum)).csv" $d"/SemiRegular/steps.txt" >> "temp_training_data/sensor0$((sensornum))_semiregular.txt"
         done
 
+        # normalize all 3 sensors
+        for sensornum in 1 2 3
+        do
+            echo "Normalizing Sensor0$((sensornum))"
+            # cut sensor files in each directory
+            python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_regular.txt" 0 $((sensornum))
+            mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_regular_normalized.txt
+            python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_irregular.txt" 0 $((sensornum))
+            mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_irregular_normalized.txt
+            python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_semiregular.txt" 0 $((sensornum))
+            mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt
+        done
+
+        # test all 3 sensors
         for sensornum in 1 2 3
         do
             echo "Testing Sensor0$((sensornum))"
             # test sensor files in each directory
-            python3 test_model.py $5 $3 "temp_training_data/sensor0$((sensornum))_regular.txt" $d"/Regular/steps.txt" 0 >> results_all.txt
-            python3 test_model.py $5 $3 "temp_training_data/sensor0"$((sensornum))"_irregular.txt" $d"/Irregular/steps.txt" 0 >> results_all.txt
-            python3 test_model.py $5 $3 "temp_training_data/sensor0"$((sensornum))"_semiregular.txt" $d"/SemiRegular/steps.txt" 0  >> results_all.txt
+            python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_regular_normalized.txt" $d"/Regular/steps.txt" 0 >> results_all.txt
+            python3 test_model.py $4 $2 "temp_training_data/sensor0"$((sensornum))"_irregular_normalized.txt" $d"/Irregular/steps.txt" 0 >> results_all.txt
+            python3 test_model.py $4 $2 "temp_training_data/sensor0"$((sensornum))"_semiregular_normalized.txt" $d"/SemiRegular/steps.txt" 0  >> results_all.txt
         done
         ((num++))
     fi

@@ -1,8 +1,8 @@
 #!/bin/bash
 # Basil Lin
 # step counter project
-# Usage: ./one_test.sh [directory] [cutsteps_executable] [window_size] [window_stride] [input_model.h5]
 # tests all 3 sensors in one gait for RCA and SDA using a trained input model [input_model.h5]
+# Usage: ./one_test.sh [directory] [cutsteps_executable] [window_size] [window_stride] [input_model.h5]
 # [directory] is gait dir containing CSV files
 # creates predicted_steps_sensor01.txt predicted_steps_sensor02.txt predicted_steps_sensor03.txt
 
