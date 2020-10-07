@@ -19,7 +19,6 @@ num=0
 
 # remove old training data
 echo "Making temp_training_data directory..."
-rm -rf temp_training_data
 mkdir temp_training_data
 
 # loop through all subdirectories
@@ -187,5 +186,7 @@ for (( i = 0; i < $num; i++ )) do
 done
 
 rm important_results.txt
+rm results_all.txt
+rm -r temp_training_data
 
 echo "$((num)) subjects tested."
