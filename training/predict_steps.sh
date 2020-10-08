@@ -34,7 +34,7 @@ rm -r temp_training_data/* &> /dev/null
 for sensornum in 1 2 3
 do
     echo "Cutting Sensor0$((sensornum)).csv"
-    ./../cut/cutsteps $2 $3 $1"/Sensor0$((sensornum)).csv" $1"/steps.txt" >> "temp_training_data/sensor0$((sensornum)).txt"
+    ./../cut/cutsteps $2 $3 $1"/Sensor0$((sensornum)).csv" $1"/steps.txt" > "temp_training_data/sensor0$((sensornum)).txt"
 done
 
 # normalize per axis per sensor
@@ -56,7 +56,7 @@ if (($5 == 1)); then
     for sensornum in 1 2 3
     do
         echo "Normalizing Sensor0$((sensornum))"
-        python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_regular.txt" 1 > /dev/null
+        python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" 1 > /dev/null
         mv data_normalized_constant.txt temp_training_data/sensor0$((sensornum))_normalized.txt
     done
 fi
