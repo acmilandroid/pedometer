@@ -7,7 +7,6 @@
 # [sensor#] required for [normalization_type] = 0
 
 # globals for switching program functionality
-DEBUG = 0                   # debug prints
 TOTAL_FEATURES = 3          # total number of features (3 for X,Y,Z acceleration)
 MINMAX_VALUES = [           # contains min and max values for wrist, hip, ankle for x, y, z respectively
     [   # wrist (1)
