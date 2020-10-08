@@ -152,7 +152,10 @@ ppv = tp / (tp + fp)
 sensitivity = tp / (tp + fn)
 print(tp)
 print(fp)
-f1 = 2*ppv*sensitivity / (ppv + sensitivity)
+if (ppv + sensitivity == 0):
+    f1 = 0
+else:
+    f1 = 2*ppv*sensitivity / (ppv + sensitivity)
 
 # print testing results
 print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
