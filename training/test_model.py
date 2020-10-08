@@ -150,8 +150,6 @@ else:
 # calculate SDA metrics
 ppv = tp / (tp + fp)
 sensitivity = tp / (tp + fn)
-print(tp)
-print(fp)
 if (ppv + sensitivity == 0):
     f1 = 0
 else:
