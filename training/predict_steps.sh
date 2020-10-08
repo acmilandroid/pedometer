@@ -40,7 +40,6 @@ done
 for sensornum in 1 2 3
 do
     echo "Normalizing Sensor0$((sensornum))"
-    ./../cut/cutsteps $2 $3 $1"/Sensor0$((sensornum)).csv" $1"/steps.txt" >> "temp_training_data/sensor0$((sensornum)).txt"
     python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" 0 $((sensornum)) > /dev/null
     mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_normalized.txt
 done
