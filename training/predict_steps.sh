@@ -3,7 +3,7 @@
 # step counter project
 # tests all 3 sensors in one gait for RCA and SDA using a trained input model [input_model.h5]
 # used to produce predicted step files for viewing in STEPCOUNTERVIEW
-# Usage: ./one_test.sh [directory] [window_size] [window_stride] [input_model.h5]
+# Usage: ./predict_steps.sh [directory] [window_size] [window_stride] [input_model.h5]
 # [directory] is gait dir containing CSV files
 # cutsteps executable must be compiled in ../cut/cutsteps
 # creates predicted_steps_sensor01.txt predicted_steps_sensor02.txt predicted_steps_sensor03.txt
@@ -12,7 +12,7 @@ echo "Bash version ${BASH_VERSION}"
 
 # usage warning
 if [ "$#" -ne 4 ]; then
-    echo "Usage: ./one_test.sh [directory] [window_size] [window_stride] [input_model.h5]"
+    echo "Usage: ./predict_steps.sh [directory] [window_size] [window_stride] [input_model.h5]"
     exit 1
 fi
 
@@ -53,5 +53,6 @@ do
     mv predicted_steps.txt predicted_steps_sensor0$((sensornum)).txt
 done
 
+cat results_all.txt
 rm results_all.txt &> /dev/null
 rm -r temp_training_data &> /dev/null
