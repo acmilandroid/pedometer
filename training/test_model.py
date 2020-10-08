@@ -94,7 +94,7 @@ for i in range(0, num_samples):
     # print(labels[i], "\t", predictions[i][0])
     predicted_steps += predictions[i][0] / window_size * TESTING_STRIDE # integrate window to get step count
     gt_steps_sum += labels[i] / window_size * TESTING_STRIDE            # calculate running gt step sum
-    step_delta = int(predicted_steps) - prev_predicted_steps    # find difference in steps for each window shift
+    step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
     # write information to DEBUG.csv
     if DEBUG == 1:
