@@ -6,7 +6,7 @@
 # input file must be first cut and normalized
 
 # globals for switching program functionality
-DEBUG = 0           # print individual window counts, sum, and output steps to csv file
+DEBUG = 1           # print individual window counts, sum, and output steps to csv file
 NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 RANGE = 7           # Range in datum for acceptable pairing with GT (half a second, or 7 sensor readings)
@@ -27,7 +27,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning) #suppresses futur
 import logging
 logging.getLogger('tensorflow').disabled = True
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
