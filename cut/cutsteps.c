@@ -181,8 +181,8 @@ int main(int argc, char *argv[]) {
 
 	// Cut the windows up
 	totalWindows=0;
-	for (i = start; i < end; i += STRIDE) { //from before first step to after last	
-		if (i + CUT > end) break; //break if not a full window
+	for (i = start; i + CUT < end; i += STRIDE) { //from before first step to after last	
+
 		windowIndex[totalWindows] = i;
 		windowSteps[totalWindows] = 0;
 		floatWindowSteps[totalWindows] = 0.0;
@@ -202,7 +202,7 @@ int main(int argc, char *argv[]) {
 			}
 		}
 
-		//seomthing wrong, over 18 steps in a window
+		//something's wrong, over 18 steps in a window
 		if (windowSteps[totalWindows] > 18) {
             printf("Error in file: %s\tSteps in window: %d\n", argv[3], windowSteps[totalWindows]);
             exit(0);
@@ -231,7 +231,7 @@ int main(int argc, char *argv[]) {
                         if (k < 0 || k >= totalData) {
                             for (j = 0; j < DATA_FIELDS; j++) printf("\t0.000");		 			// pad with zeros if start or end out of data
                         } else {																	// print data if no need for padding
-                            for (j = 0; j < DATA_FIELDS; j++) printf("\t%.3f", Data[j][k]); 
+                            for (j = 0; j < DATA_FIELDS; j++) printf("\t%.3f", Data[j][k-1]); 
                         }
                     }
                     printf("\n");
