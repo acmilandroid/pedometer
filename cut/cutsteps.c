@@ -181,7 +181,7 @@ int main(int argc, char *argv[]) {
 
 	// Cut the windows up
 	totalWindows=0;
-	for (i = start; i + CUT < end; i += STRIDE) { //from before first step to after last	
+	for (i = start; i + CUT <= end; i += STRIDE) { //from before first step to after last	
 
 		windowIndex[totalWindows] = i;
 		windowSteps[totalWindows] = 0;
