@@ -130,16 +130,16 @@ int main(int argc, char *argv[]) {
 	}	
 
 	// smooth data
-	// for (i = SMOOTHING; i < totalData - SMOOTHING; i++) {
-	// 	/* averaging over a 1-sec window (15 samples) centered on the datum */
-	// 	for (j = 0; j < DATA_FIELDS; j++) {
-	// 		total = 0.0;
-	// 		for (k = i - SMOOTHING; k <= i + SMOOTHING; k++) {
-	// 			if (k >= 0  &&  k < totalData) total += Data[j][k];
-	// 		}			
-	// 		SmoothedData[j][i] = total / (SMOOTHING*2 + 1);
-	// 	}
-	// }
+	for (i = SMOOTHING; i < totalData - SMOOTHING; i++) {
+		/* averaging over a 1-sec window (15 samples) centered on the datum */
+		for (j = 0; j < DATA_FIELDS; j++) {
+			total = 0.0;
+			for (k = i - SMOOTHING; k <= i + SMOOTHING; k++) {
+				if (k >= 0  &&  k < totalData) total += Data[j][k];
+			}			
+			SmoothedData[j][i] = total / (SMOOTHING*2 + 1);
+		}
+	}
 
 	// load steps.txt
 	if ((fpt=fopen(argv[4], "rb")) == NULL) {
