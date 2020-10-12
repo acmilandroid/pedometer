@@ -17,7 +17,7 @@ fi
 num=0
 
 echo "removing everything_cut.txt..."
-rm everything_cut.txt
+rm everything_cut.txt &> /dev/null
 
 for d in $1*; do
     if [ -d "$d" ]; then
