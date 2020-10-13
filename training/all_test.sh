@@ -53,12 +53,9 @@ for d in $1*; do
             do
                 echo "Normalizing Sensor0$((sensornum))"
                 # cut sensor files in each directory
-                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_regular.txt" 0 $((sensornum)) > /dev/null
-                mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_regular_normalized.txt
-                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_irregular.txt" 0 $((sensornum)) > /dev/null
-                mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_irregular_normalized.txt
-                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_semiregular.txt" 0 $((sensornum)) > /dev/null
-                mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt
+                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_regular.txt" "temp_training_data/sensor0$((sensornum))_regular_normalized.txt" 0 $((sensornum)) > /dev/null
+                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_irregular.txt" "temp_training_data/sensor0$((sensornum))_irregular_normalized.txt" 0 $((sensornum)) > /dev/null
+                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_semiregular.txt" "temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt" 0 $((sensornum)) > /dev/null
             done
         fi
 
@@ -70,12 +67,9 @@ for d in $1*; do
             do
                 echo "Normalizing Sensor0$((sensornum))"
                 # cut sensor files in each directory
-                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_regular.txt" 1 > /dev/null
-                mv data_normalized_constant.txt temp_training_data/sensor0$((sensornum))_regular_normalized.txt
-                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_irregular.txt" 1 > /dev/null
-                mv data_normalized_constant.txt temp_training_data/sensor0$((sensornum))_irregular_normalized.txt
-                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_semiregular.txt" 1 > /dev/null
-                mv data_normalized_constant.txt temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt
+                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_regular.txt" "temp_training_data/sensor0$((sensornum))_regular_normalized.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_irregular.txt" "temp_training_data/sensor0$((sensornum))_irregular_normalized.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum))_semiregular.txt" "temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt" 1 > /dev/null
             done
         fi
 

@@ -44,8 +44,7 @@ if (($5 == 0)); then
     for sensornum in 1 2 3
     do
         echo "Normalizing Sensor0$((sensornum))"
-        python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" 0 $((sensornum)) > /dev/null
-        mv data_normalized_sensor0$((sensornum)).txt temp_training_data/sensor0$((sensornum))_normalized.txt
+        python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" "temp_training_data/sensor0$((sensornum))_normalized.txt" 0 $((sensornum)) > /dev/null
     done
 fi
 
@@ -56,8 +55,7 @@ if (($5 == 1)); then
     for sensornum in 1 2 3
     do
         echo "Normalizing Sensor0$((sensornum))"
-        python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" 1 > /dev/null
-        mv data_normalized_constant.txt temp_training_data/sensor0$((sensornum))_normalized.txt
+        python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" "temp_training_data/sensor0$((sensornum))_normalized.txt" 1 > /dev/null
     done
 fi
 
