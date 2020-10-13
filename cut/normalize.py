@@ -1,7 +1,7 @@
 # Basil Lin
 # step counter project
 # program to normalize the cut data
-# Usage: python3 normalize.py [input_file.txt] [normalization_type] [sensor#]
+# Usage: python3 normalize.py [input_file.txt] [output_file.txt] [normalization_type] [sensor#]
 # [normalization_type] 0 for per sensor per axis (requires independently cut sensor files), only does per axis
 # [normalization_type] 1 for -1.5 to 1.5 gravities
 # [sensor#] required for [normalization_type] = 0
@@ -30,12 +30,12 @@ MINMAX_VALUES = [           # contains min and max values for wrist, hip, ankle 
 import sys
 
 # checks for correct number of command line args
-if len(sys.argv) != 3 and len(sys.argv) != 4:
-    sys.exit("Usage: python3 normalize.py [input_file.txt] [normalization_type] [sensor#]")
-if sys.argv[2] == '0':
-    if len(sys.argv) != 4:
-        sys.exit("Usage: python3 normalize.py [input_file.txt] [normalization_type] [sensor#]")
-    if int(sys.argv[3]) < 1 or int(sys.argv[3]) > 3:
+if len(sys.argv) != 4 and len(sys.argv) != 5:
+    sys.exit("Usage: python3 normalize.py [input_file.txt] [output_file.txt] [normalization_type] [sensor#]")
+if sys.argv[3] == '0':
+    if len(sys.argv) != 5:
+        sys.exit("Usage: python3 normalize.py [input_file.txt] [output_file.txt] [normalization_type] [sensor#]")
+    if int(sys.argv[4]) < 1 or int(sys.argv[4]) > 3:
         sys.exit("[sensor#] must be 1 2 or 3")
 
 # import other stuff
@@ -54,7 +54,7 @@ rawdata = np.array(rawdata)
 labels = rawdata[:,0]
 
 # per sensor per axis normalization
-if sys.argv[2] == '0':
+if sys.argv[3] == '0':
 
     # separate feature data into one row per feature (x,y,z axis) for normalizing
     print("Separating features into one row per feature...")
@@ -65,16 +65,16 @@ if sys.argv[2] == '0':
     # normalize each row of features
     print("Normalizing each row of features...")
     # for x
-    minval = MINMAX_VALUES[int(sys.argv[3])-1][0][0]
-    maxval = MINMAX_VALUES[int(sys.argv[3])-1][0][1]
+    minval = MINMAX_VALUES[int(sys.argv[4])-1][0][0]
+    maxval = MINMAX_VALUES[int(sys.argv[4])-1][0][1]
     normdata_x = (features_x - minval) / (maxval - minval)
     # for y
-    minval = MINMAX_VALUES[int(sys.argv[3])-1][1][0]
-    maxval = MINMAX_VALUES[int(sys.argv[3])-1][1][1]
+    minval = MINMAX_VALUES[int(sys.argv[4])-1][1][0]
+    maxval = MINMAX_VALUES[int(sys.argv[4])-1][1][1]
     normdata_y = (features_y - minval) / (maxval - minval)
     # for z
-    minval = MINMAX_VALUES[int(sys.argv[3])-1][2][0]
-    maxval = MINMAX_VALUES[int(sys.argv[3])-1][2][1]
+    minval = MINMAX_VALUES[int(sys.argv[4])-1][2][0]
+    maxval = MINMAX_VALUES[int(sys.argv[4])-1][2][1]
     normdata_z = (features_z - minval) / (maxval - minval)
 
     # concatenate features together
@@ -86,10 +86,8 @@ if sys.argv[2] == '0':
     data = np.insert(features_normalized, 0, labels, axis=1)
     print("data has shape:", data.shape)
 
-    filename = "data_normalized_sensor0" + sys.argv[3] + ".txt"
-
 # normalize from -1.5 to 1.5 gravities
-elif sys.argv[2] == '1':
+elif sys.argv[3] == '1':
     features = rawdata[:,1:]
     minval = -1.5
     maxval = 1.5
@@ -100,10 +98,8 @@ elif sys.argv[2] == '1':
     data = np.insert(features_normalized, 0, labels, axis=1)
     print("data has shape:", data.shape)
 
-    filename = "data_normalized_constant.txt"
-
 # write data to output file
-print("Writing data to", filename, "...")
-outfile = open(filename, 'w')
+print("Writing data to", sys.argv[2], "...")
+outfile = open(sys.argv[2], 'w')
 np.savetxt(outfile, data, fmt='%.3f', delimiter='\t')
 outfile.close()
