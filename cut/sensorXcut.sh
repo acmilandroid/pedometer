@@ -30,11 +30,11 @@ for d in $1*; do
         echo "$d"
         ((num++))
         if [[ "$4" != "Regular" && "$4" != "Irregular" && "$4" != "SemiRegular" ]]; then
-            ./cutsteps $2 $3 $d"/Regular/Sensor0"$5".csv" $d"/Regular/steps.txt" >> sensor0$5_cut.txt
-            ./cutsteps $2 $3 $d"/Irregular/Sensor0"$5".csv" $d"/Irregular/steps.txt" >> sensor0$5_cut.txt
-            ./cutsteps $2 $3 $d"/SemiRegular/Sensor0"$5".csv" $d"/SemiRegular/steps.txt" >> sensor0$5_cut.txt
+            ./cutsteps $2 $3 $d"/Regular/Sensor0"$5".csv" $d"/Regular/steps.txt" >> ALL_ALL_$5_cut.txt
+            ./cutsteps $2 $3 $d"/Irregular/Sensor0"$5".csv" $d"/Irregular/steps.txt" >> ALL_ALL_$5_cut.txt
+            ./cutsteps $2 $3 $d"/SemiRegular/Sensor0"$5".csv" $d"/SemiRegular/steps.txt" >> ALL_ALL_$5_cut.txt
         else
-            ./cutsteps $2 $3 $d"/"$4"/Sensor0"$5".csv" $d"/"$4"/steps.txt" >> sensor0$5_$4_cut.txt
+            ./cutsteps $2 $3 $d"/"$4"/Sensor0"$5".csv" $d"/"$4"/steps.txt" >> ALL_$4_$5_cut.txt
         fi
     fi
 done
