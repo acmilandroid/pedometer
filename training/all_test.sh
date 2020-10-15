@@ -1,7 +1,7 @@
 #!/bin/bash
 # Basil Lin
-# step counter project
-# tests every CSV file for RCA and SDA using a trained input model [input_model.h5]
+# Step counter project
+# Tests every CSV file for RCA and SDA using a trained input model [input_model.h5]
 # Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type]
 # [directory] is top level dir containing all subject files
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
