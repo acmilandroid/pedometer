@@ -16,7 +16,7 @@ fi
 
 # cut data
 echo "cutting data..."
-./sensorXcut.sh $1 $2 $3 Regular 1 
+./sensorXcut.sh $1 $2 $3 Regular 1 &> /dev/null
 ./sensorXcut.sh $1 $2 $3 Regular 2 &> /dev/null
 ./sensorXcut.sh $1 $2 $3 Regular 3 &> /dev/null
 ./sensorXcut.sh $1 $2 $3 SemiRegular 1 &> /dev/null
