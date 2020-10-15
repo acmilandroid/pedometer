@@ -2,14 +2,14 @@
 # step counter project
 # program to parse data txt file to randomly choose more balanced data
 # attempts to uniformly distribute labels (class)
-# Usage: python3 balance_data.py [input_file.txt] [output_file.txt]
+# Usage: python3 balance_data.py [input_file.txt] [output_file.txt] [make hist 0|1]
 
 # import sys
 import sys
 
 # checks if input args are correct
 if len(sys.argv) != 3:
-    sys.exit("Usage: python3 balance_data.py [input_file.txt] [output_file.txt]")
+    sys.exit("Usage: python3 balance_data.py [input_file.txt] [output_file.txt] [make hist 0|1]")
 
 # import stuff
 import warnings
@@ -34,18 +34,19 @@ print("Samples in original data:", samples)
 print("Number of different steps:", diff_steps)
 
 # plot histogram of steps
-print("Plotting histogram...")
-histdata = data[:,0]
-d = np.diff(np.unique(histdata)).min()
-left_of_first_bin = histdata.min() - float(d)/2
-right_of_last_bin = histdata.max() + float(d)/2
-plt.figure(1)
-figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
-plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
-plt.title("Step Histogram Original Data")
-plt.xlabel("Steps in a Window")
-plt.ylabel("Frequency")
-plt.savefig("histogram.png")
+if int(sys.argv[3]) == 1:
+    print("Plotting histogram...")
+    histdata = data[:,0]
+    d = np.diff(np.unique(histdata)).min()
+    left_of_first_bin = histdata.min() - float(d)/2
+    right_of_last_bin = histdata.max() + float(d)/2
+    plt.figure(1)
+    figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
+    plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
+    plt.title("Step Histogram Original Data")
+    plt.xlabel("Steps in a Window")
+    plt.ylabel("Frequency")
+    plt.savefig("histogram.png")
 
 # find percentage of labels and minimum
 print("Calculating percentages...")
@@ -98,18 +99,19 @@ samples = len(data)
 diff_steps = len(np.unique(data[:,0]))
 
 # plot histogram of steps
-print("Plotting histogram...")
-histdata = data[:,0]
-d = np.diff(np.unique(histdata)).min()
-left_of_first_bin = histdata.min() - float(d)/2
-right_of_last_bin = histdata.max() + float(d)/2
-plt.figure(2)
-figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
-plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
-plt.title("Step Histogram Balanced Data")
-plt.xlabel("Steps in a Window")
-plt.ylabel("Frequency")
-plt.savefig("histogram_after.png")
+if int(sys.argv[3] == 1):
+    print("Plotting histogram...")
+    histdata = data[:,0]
+    d = np.diff(np.unique(histdata)).min()
+    left_of_first_bin = histdata.min() - float(d)/2
+    right_of_last_bin = histdata.max() + float(d)/2
+    plt.figure(2)
+    figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
+    plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
+    plt.title("Step Histogram Balanced Data")
+    plt.xlabel("Steps in a Window")
+    plt.ylabel("Frequency")
+    plt.savefig("histogram_after.png")
 
 # find percentage of labels and minimum
 print("Calculating percentages...")
