@@ -1,8 +1,8 @@
 #!/bin/bash
 # Basil Lin
-# step counter project
-# combines and cuts all CSV files
-# usage: ./all_cut.sh [directory] [CUT] [STRIDE]
+# Step counter project
+# Combines and cuts all CSV files
+# Usage: ./all_cut.sh [directory] [CUT] [STRIDE]
 # [directory] is top level dir containing all subject files
 # requires cutstep.c to be compiled as cutsteps in same directory
 # creates everything_cut.txt
@@ -10,7 +10,7 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 3 ]; then
-    echo "usage: ./all_cut.sh [directory] [CUT] [STRIDE]"
+    echo "Usage: ./all_cut.sh [directory] [CUT] [STRIDE]"
     exit 1
 fi
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 # Basil Lin
-# step counter project
-# combines and all csv files of a single sensor type
-# usage: ./sensorXcut.sh [directory] [window_size] [window_stride] [gait] [sensor #]
+# Step counter project
+# Combines and all csv files of a single sensor type
+# Usage: ./sensorXcut.sh [directory] [window_size] [window_stride] [gait] [sensor #]
 # [directory] is top level dir containing all subject files
 # if [gait] is not Regular, Irregular, or SemiRegular, it will combine all gaits
 # requires cutsteps.c to be compiled as executable cutsteps
