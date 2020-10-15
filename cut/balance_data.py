@@ -62,7 +62,7 @@ for i in range(0, maximum_steps):
     print("Count", i, "is", histdata.count(i))
     print("Percent", i, "is %.2f" %(percent[i]))
 
-samples_per_count = int(samples * (float(smallest) / 100))
+samples_per_count = int(samples * smallest / 100)
 print("Maximum samples for each step count:", samples_per_count)
 
 # randomly choose data to make uniform
