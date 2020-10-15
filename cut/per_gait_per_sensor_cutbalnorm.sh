@@ -2,7 +2,7 @@
 # Basil Lin
 # Step counter project
 # Cuts, balances, and normalizes all sensor data per gait per sensor #
-# Usage: per_gait_per_sensor_cutnormbal.sh [directory] [CUT] [STRIDE]
+# Usage: per_gait_per_sensor_cutnormbal.sh [directory] [window_size] [window_stride]
 # [directory] is top level dir containing all subject files
 # requires cutstep.c to be compiled as cutsteps in same directory
 # creates ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_bal.txt ALL_[gait]_[sensor#]_norm.txt
@@ -10,21 +10,21 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 3 ]; then
-    echo "Usage: per_gait_per_sensor_cutnormbal.sh [directory] [CUT] [STRIDE]"
+    echo "Usage: per_gait_per_sensor_cutnormbal.sh [directory] [window_size] [window_stride]"
     exit 1
 fi
 
 # cut data
 echo "cutting data..."
-./sensorXcut.sh $d $2 $3 Regular 1 &> /dev/null
-./sensorXcut.sh $d $2 $3 Regular 2 &> /dev/null
-./sensorXcut.sh $d $2 $3 Regular 3 &> /dev/null
-./sensorXcut.sh $d $2 $3 SemiRegular 1 &> /dev/null
-./sensorXcut.sh $d $2 $3 SemiRegular 2 &> /dev/null
-./sensorXcut.sh $d $2 $3 SemiRegular 3 &> /dev/null
-./sensorXcut.sh $d $2 $3 Irregular 1 &> /dev/null
-./sensorXcut.sh $d $2 $3 Irregular 2 &> /dev/null
-./sensorXcut.sh $d $2 $3 Irregular 3 &> /dev/null
+./sensorXcut.sh $1 $2 $3 Regular 1 
+./sensorXcut.sh $1 $2 $3 Regular 2 &> /dev/null
+./sensorXcut.sh $1 $2 $3 Regular 3 &> /dev/null
+./sensorXcut.sh $1 $2 $3 SemiRegular 1 &> /dev/null
+./sensorXcut.sh $1 $2 $3 SemiRegular 2 &> /dev/null
+./sensorXcut.sh $1 $2 $3 SemiRegular 3 &> /dev/null
+./sensorXcut.sh $1 $2 $3 Irregular 1 &> /dev/null
+./sensorXcut.sh $1 $2 $3 Irregular 2 &> /dev/null
+./sensorXcut.sh $1 $2 $3 Irregular 3 &> /dev/null
 
 # balance data
 echo "balancing data..."
