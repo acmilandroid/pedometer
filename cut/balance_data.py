@@ -125,3 +125,5 @@ for i in range(0, maximum_steps):
         smallest = percent[i]
     print("Count", i, "is", histdata.count(i))
     print("Percent", i, "is %.2f" %(percent[i]))
+
+print("Smallest percentage is", smallest)
