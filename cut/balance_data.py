@@ -84,6 +84,7 @@ print("Writing data to file...")
 fpt = open(sys.argv[2], 'w')
 np.savetxt(fpt, shuffled_data, fmt='%.3f', delimiter='\t')
 fpt.close()
+print("-----------------------------------------------------------------------")
 
 # evaluate uniformity of shuffled data
 print("Evaluating distribution...")
@@ -120,7 +121,7 @@ histdata = histdata.tolist()
 
 for i in range(0, maximum_steps):
     percent[i] = histdata.count(i) / samples * 100
-    if percent[i] > 0.1 and percent[i] < smallest:
+    if percent[i] < smallest:
         smallest = percent[i]
-
-print("Smallest percentage is", smallest)
+    print("Count", i, "is", histdata.count(i))
+    print("Percent", i, "is %.2f" %(percent[i]))
