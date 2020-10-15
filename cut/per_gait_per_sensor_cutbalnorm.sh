@@ -41,15 +41,15 @@ for d in $1*; do
         python3 balance_data.py ALL_Irregular_3_cut.txt ALL_Irregular_3_bal.txt
 
         # normalize data
-        python3 normalize.py ALL_Regular_1_bal.txt ALL_Regular_1_norm.txt 
-        python3 normalize.py ALL_Regular_2_bal.txt ALL_Regular_2_norm.txt 
-        python3 normalize.py ALL_Regular_3_bal.txt ALL_Regular_3_norm.txt 
-        python3 normalize.py ALL_SemiRegular_1_bal.txt ALL_SemiRegular_1_norm.txt 
-        python3 normalize.py ALL_SemiRegular_2_bal.txt ALL_SemiRegular_2_norm.txt 
-        python3 normalize.py ALL_SemiRegular_3_bal.txt ALL_SemiRegular_3_norm.txt 
-        python3 normalize.py ALL_Irregular_1_bal.txt ALL_Irregular_1_norm.txt 
-        python3 normalize.py ALL_Irregular_2_bal.txt ALL_Irregular_2_norm.txt 
-        python3 normalize.py ALL_Irregular_3_bal.txt ALL_Irregular_3_norm.txt
+        python3 normalize.py ALL_Regular_1_bal.txt ALL_Regular_1_norm.txt 0 1
+        python3 normalize.py ALL_Regular_2_bal.txt ALL_Regular_2_norm.txt 0 2
+        python3 normalize.py ALL_Regular_3_bal.txt ALL_Regular_3_norm.txt 0 3
+        python3 normalize.py ALL_SemiRegular_1_bal.txt ALL_SemiRegular_1_norm.txt 0 1
+        python3 normalize.py ALL_SemiRegular_2_bal.txt ALL_SemiRegular_2_norm.txt 0 2
+        python3 normalize.py ALL_SemiRegular_3_bal.txt ALL_SemiRegular_3_norm.txt 0 3
+        python3 normalize.py ALL_Irregular_1_bal.txt ALL_Irregular_1_norm.txt 0 1
+        python3 normalize.py ALL_Irregular_2_bal.txt ALL_Irregular_2_norm.txt 0 2
+        python3 normalize.py ALL_Irregular_3_bal.txt ALL_Irregular_3_norm.txt 0 3
 
     fi
 done
