@@ -15,8 +15,6 @@ if [ "$#" -ne 5 ]; then
     exit 1
 fi
 
-rm sensor0* &> /dev/null
-
 if [[ "$4" != "Regular" && "$4" != "Irregular" && "$4" != "SemiRegular" ]]; then
     echo "No gait, cutting sensor $5 only"
 else
