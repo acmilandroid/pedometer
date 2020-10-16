@@ -28,15 +28,15 @@ echo "cutting data..."
 
 # balance data
 echo "balancing data..."
-python3 balance_data.py ALL_Regular_1_cut.txt ALL_Regular_1_bal.txt &> /dev/null
-python3 balance_data.py ALL_Regular_2_cut.txt ALL_Regular_2_bal.txt &> /dev/null
-python3 balance_data.py ALL_Regular_3_cut.txt ALL_Regular_3_bal.txt &> /dev/null
-python3 balance_data.py ALL_SemiRegular_1_cut.txt ALL_SemiRegular_1_bal.txt &> /dev/null
-python3 balance_data.py ALL_SemiRegular_2_cut.txt ALL_SemiRegular_2_bal.txt &> /dev/null
-python3 balance_data.py ALL_SemiRegular_3_cut.txt ALL_SemiRegular_3_bal.txt &> /dev/null
-python3 balance_data.py ALL_Irregular_1_cut.txt ALL_Irregular_1_bal.txt &> /dev/null
-python3 balance_data.py ALL_Irregular_2_cut.txt ALL_Irregular_2_bal.txt &> /dev/null
-python3 balance_data.py ALL_Irregular_3_cut.txt ALL_Irregular_3_bal.tx &> /dev/null
+python3 balance_data.py ALL_Regular_1_cut.txt ALL_Regular_1_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_Regular_2_cut.txt ALL_Regular_2_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_Regular_3_cut.txt ALL_Regular_3_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_SemiRegular_1_cut.txt ALL_SemiRegular_1_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_SemiRegular_2_cut.txt ALL_SemiRegular_2_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_SemiRegular_3_cut.txt ALL_SemiRegular_3_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_Irregular_1_cut.txt ALL_Irregular_1_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_Irregular_2_cut.txt ALL_Irregular_2_bal.txt 0 &> /dev/null
+python3 balance_data.py ALL_Irregular_3_cut.txt ALL_Irregular_3_bal.tx 0 &> /dev/null
 
 # normalize data
 echo "normalizing data..."

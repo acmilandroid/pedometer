@@ -8,7 +8,7 @@
 import sys
 
 # checks if input args are correct
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     sys.exit("Usage: python3 balance_data.py [input_file.txt] [output_file.txt] [make hist 0|1]")
 
 # import stuff
@@ -29,6 +29,7 @@ fpt.close()
 data = np.array(data)
 samples = len(data)
 diff_steps = len(np.unique(data[:,0]))
+histdata = data[:,0]
 
 print("Samples in original data:", samples)
 print("Number of different steps:", diff_steps)
@@ -36,7 +37,6 @@ print("Number of different steps:", diff_steps)
 # plot histogram of steps
 if int(sys.argv[3]) == 1:
     print("Plotting histogram...")
-    histdata = data[:,0]
     d = np.diff(np.unique(histdata)).min()
     left_of_first_bin = histdata.min() - float(d)/2
     right_of_last_bin = histdata.max() + float(d)/2
@@ -97,11 +97,11 @@ fpt.close()
 data = np.array(data)
 samples = len(data)
 diff_steps = len(np.unique(data[:,0]))
+histdata = data[:,0]
 
 # plot histogram of steps
 if int(sys.argv[3] == 1):
     print("Plotting histogram...")
-    histdata = data[:,0]
     d = np.diff(np.unique(histdata)).min()
     left_of_first_bin = histdata.min() - float(d)/2
     right_of_last_bin = histdata.max() + float(d)/2
