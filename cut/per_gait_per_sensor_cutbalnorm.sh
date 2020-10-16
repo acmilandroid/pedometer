@@ -36,7 +36,7 @@ python3 balance_data.py ALL_SemiRegular_2_cut.txt ALL_SemiRegular_2_bal.txt 0 &>
 python3 balance_data.py ALL_SemiRegular_3_cut.txt ALL_SemiRegular_3_bal.txt 0 &> /dev/null
 python3 balance_data.py ALL_Irregular_1_cut.txt ALL_Irregular_1_bal.txt 0 &> /dev/null
 python3 balance_data.py ALL_Irregular_2_cut.txt ALL_Irregular_2_bal.txt 0 &> /dev/null
-python3 balance_data.py ALL_Irregular_3_cut.txt ALL_Irregular_3_bal.tx 0 &> /dev/null
+python3 balance_data.py ALL_Irregular_3_cut.txt ALL_Irregular_3_bal.txt 0 &> /dev/null
 
 # normalize data
 echo "normalizing data..."
