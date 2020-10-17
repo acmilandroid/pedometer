@@ -1,0 +1,15 @@
+#PBS -N all_test
+#PBS -l select=1:ncpus=8:mem=100gb:ngpus=1:gpu_model=p100,walltime=6:00:00
+
+# usage warning
+if [ "$#" -ne 4 ]; then
+    echo "Usage: ./all_test.pbs [window_size] [window_stride] [input_model.h5] [output_file.csv]"
+    exit 1
+fi
+
+module load cuda/10.2.89-gcc/8.3.1 cudnn/8.0.0.180-10.2-linux-x64-gcc/8.3.1 anaconda3/2019.10-gcc/8.3.1
+conda activate tf_env
+
+
+cd pedometer/training/
+./all_test.sh ../PedometerData $1 $2 $3 0 $4
