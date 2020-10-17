@@ -2,17 +2,17 @@
 # Basil Lin
 # Step counter project
 # Tests every CSV file for RCA and SDA using a trained input model [input_model.h5]
-# Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type]
+# Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_file.csv]
 # [directory] is top level dir containing all subject files
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
 # cutsteps executable must be compiled in ../cut/cutsteps
-# creates results_all.txt
+# creates [output_file.csv]
 
 echo "Bash version ${BASH_VERSION}"
 
 # usage warning
-if [ "$#" -ne 5 ]; then
-    echo "Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type]"
+if [ "$#" -ne 6 ]; then
+    echo "Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_file.csv]"
     exit 1
 fi
 
@@ -91,7 +91,7 @@ pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\
 
 # write data to csv file
 line=0
-echo "Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > results.csv
+echo "Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $6
 
 for (( i = 0; i < $num; i++ )) do
 
@@ -105,102 +105,102 @@ for (( i = 0; i < $num; i++ )) do
 
         # regular sensor data
         ((print = i + 1 ))
-        echo -n "$print," >> results.csv
-        echo -n "regular," >> results.csv
+        echo -n "$print," >> $6
+        echo -n "regular," >> $6
         ((print = j + 1 ))
-        echo -n "$print," >> results.csv
+        echo -n "$print," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
 
         # irregular sensor data
         ((print = i + 1 ))
-        echo -n "$print," >> results.csv
-        echo -n "irregular," >> results.csv
+        echo -n "$print," >> $6
+        echo -n "irregular," >> $6
         ((print = j + 1 ))
-        echo -n "$print," >> results.csv
+        echo -n "$print," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
 
         # semiregular sensor data
         ((print = i + 1 ))
-        echo -n "$print," >> results.csv
-        echo -n "semiregular," >> results.csv
+        echo -n "$print," >> $6
+        echo -n "semiregular," >> $6
         ((print = j + 1 ))
-        echo -n "$print," >> results.csv
+        echo -n "$print," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
-        truncate -s -1 results.csv
-        echo -n "," >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
+        truncate -s -1 $6
+        echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> results.csv
+        sed "${line}q;d" important_results.txt >> $6
 
     done
 done
