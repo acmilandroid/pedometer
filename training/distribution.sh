@@ -18,7 +18,7 @@ fi
 if [[ "$6" != "Regular" && "$6" != "Irregular" && "$6" != "SemiRegular" ]]; then
     echo "Gait type error, exiting"
     exit 1
-else
+fi
 
 num=0
 
@@ -39,7 +39,6 @@ for d in $1*; do
         
         # cut gait and sensor
         ./../cut/cutsteps $2 $3 $d"/$6/Sensor0$7.csv" $d"/$6/steps.txt" > "temp_training_data/$6_$7_cut.txt"
-        mv $6_$7_cut.txt temp_training_data/
 
         # normalize per axis per sensor
         if (($5 == 0)); then
@@ -60,6 +59,7 @@ for d in $1*; do
     fi
 done
 
+mv debug.csv $8
 rm -r temp_training_data
 
 echo "$((num)) subjects tested."
