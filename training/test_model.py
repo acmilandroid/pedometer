@@ -85,7 +85,7 @@ gt_steps_sum = 0
 
 # write header columns to debug.csv
 if debug == 1:
-    debug_file = open("debug.csv", "w")
+    debug_file = open("debug.csv", "a+")
     debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
     debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
 
