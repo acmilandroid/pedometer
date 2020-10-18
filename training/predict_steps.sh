@@ -63,7 +63,7 @@ fi
 for sensornum in 1 2 3
 do
     echo "Testing Sensor0$((sensornum))"
-    python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_normalized.txt" $1"/steps.txt" 1 >> results_all.txt
+    python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_normalized.txt" $1"/steps.txt" 1 0 >> results_all.txt
     mv predicted_steps.txt predicted_steps_sensor0$((sensornum)).txt
 done
 
