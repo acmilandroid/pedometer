@@ -1,12 +1,11 @@
 # Basil Lin
 # step counter project
 # program to test model with window_size input file
-# Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]
+# Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug 0|1]
 # print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
 # input file must be first cut and normalized
 
 # globals for switching program functionality
-DEBUG = 1           # print individual window counts, sum, and output steps to csv file
 NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 RANGE = 7           # Range in datum for acceptable pairing with GT (half a second, or 7 sensor readings)
@@ -16,10 +15,11 @@ TESTING_STRIDE = 1  # don't change, always test with a stride of 1 datum
 import sys
 
 # checks for correct number of command line args
-if len(sys.argv) != 6:
-    sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1]")
+if len(sys.argv) != 7:
+    sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug 0|1]")
 
 window_size = int(sys.argv[2])
+debug = int(sys.argv[6])    # print individual window counts, sum, and output steps to csv file
 
 # import other stuff so I don't slow down the Usage warning
 import warnings
@@ -83,11 +83,11 @@ prev_predicted_steps = 0
 predictions = model.predict(features_input)
 gt_steps_sum = 0
 
-# write header columns to DEBUG.csv
-if DEBUG == 1:
-    DEBUG_file = open("DEBUG.csv", "w")
-    DEBUG_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
-    DEBUG_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
+# write header columns to debug.csv
+if debug == 1:
+    debug_file = open("debug.csv", "w")
+    debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
+    debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
 
 # loop through all windows
 for i in range(0, num_samples):
@@ -96,22 +96,22 @@ for i in range(0, num_samples):
     gt_steps_sum += labels[i] / window_size * TESTING_STRIDE            # calculate running gt step sum
     step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
-    # write information to DEBUG.csv
-    if DEBUG == 1:
-        DEBUG_file.write(str(i) + "," + str(first_step-int(window_size) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
-        DEBUG_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
-        DEBUG_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
+    # write information to debug.csv
+    if debug == 1:
+        debug_file.write(str(i) + "," + str(first_step-int(window_size) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
+        debug_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
+        debug_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
     # mark detected steps when the number of steps changes
     if step_delta > 0:
         for j in range (0, step_delta):
             predicted_step_indices.append(first_step-int(window_size/2) + TESTING_STRIDE*i)
-        if DEBUG == 1:
-            DEBUG_file.write(str(first_step-int(window_size/2) + TESTING_STRIDE*i) + "\n")
-    elif DEBUG == 1:
-        DEBUG_file.write("None\n")
+        if debug == 1:
+            debug_file.write(str(first_step-int(window_size/2) + TESTING_STRIDE*i) + "\n")
+    elif debug == 1:
+        debug_file.write("None\n")
 
-if DEBUG == 1:
-    DEBUG_file.close()
+if debug == 1:
+    debug_file.close()
 
 print("Average steps detected per slide:", predicted_steps/num_samples)
 
