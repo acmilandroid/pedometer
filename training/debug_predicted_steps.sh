@@ -2,7 +2,7 @@
 # Basil Lin
 # Step counter project
 # Tests a given {sensor, gait} pair and prints individual window counts, sum, and output steps to csv file
-# Usage: ./distribution.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [gait] [sensor #] [output_file.csv]
+# Usage: ./debug_predicted_steps.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [gait] [sensor #] [output_file.csv]
 # [directory] is top level dir containing all subject files
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
 # cutsteps executable must be compiled in ../cut/cutsteps
@@ -11,7 +11,7 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 8 ]; then
-    echo "Usage: ./distribution.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [gait] [sensor #] [output_file.csv]"
+    echo "Usage: ./debug_predicted_steps.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [gait] [sensor #] [output_file.csv]"
     exit 1
 fi
 

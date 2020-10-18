@@ -19,7 +19,7 @@ if len(sys.argv) != 7:
     sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug 0|1]")
 
 window_size = int(sys.argv[2])
-debug = int(sys.argv[6])    # print individual window counts, sum, and output steps to xlsx file
+debug = int(sys.argv[6])    # print individual window counts, sum, and output steps to csv file
 
 # import other stuff so I don't slow down the Usage warning
 import warnings
@@ -32,7 +32,7 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import time
-import xlsx
+import csv
 
 print("Tensorflow version:", tf.__version__)
 print("Python version:", sys.version)
@@ -83,14 +83,14 @@ prev_predicted_steps = 0
 predictions = model.predict(features_input)
 gt_steps_sum = 0
 
-# write header columns to debug.xlsx
+# write header columns to debug.csv
 if debug == 1:
-    if os.path.isfile("debug.xlsx"): 
-        debug_file = open("debug.xlsx", "w")
+    if os.path.isfile("debug.csv"): 
+        debug_file = open("debug.csv", "w")
         debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
         debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
     else: 
-        debug_file = open("debug.xlsx", "a+")
+        debug_file = open("debug.csv", "a+")
 
 # loop through all windows
 for i in range(0, num_samples):
@@ -99,7 +99,7 @@ for i in range(0, num_samples):
     gt_steps_sum += labels[i] / window_size * TESTING_STRIDE            # calculate running gt step sum
     step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
     prev_predicted_steps = int(predicted_steps)
-    # write information to debug.xlsx
+    # write information to debug.csv
     if debug == 1:
         debug_file.write(str(i) + "," + str(first_step-int(window_size) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
         debug_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
