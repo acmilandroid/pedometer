@@ -37,12 +37,9 @@ print("Number of different steps:", diff_steps)
 # plot histogram of steps
 if int(sys.argv[3]) == 1:
     print("Plotting histogram...")
-    d = np.diff(np.unique(histdata)).min()
-    left_of_first_bin = histdata.min() - float(d)/2
-    right_of_last_bin = histdata.max() + float(d)/2
     plt.figure(1)
-    figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
-    plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
+    figure = plt.hist(histdata, bins=range(0, 19, 1), edgecolor='black', linewidth=1.2, histtype='stepfilled')
+    plt.xticks(np.arange(0, 19, step=1))
     plt.title("Step Histogram Original Data")
     plt.xlabel("Steps in a Window")
     plt.ylabel("Frequency")
@@ -102,12 +99,9 @@ histdata = data[:,0]
 # plot histogram of steps
 if int(sys.argv[3] == 1):
     print("Plotting histogram...")
-    d = np.diff(np.unique(histdata)).min()
-    left_of_first_bin = histdata.min() - float(d)/2
-    right_of_last_bin = histdata.max() + float(d)/2
     plt.figure(2)
-    figure = plt.hist(histdata, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
-    plt.xticks(np.arange(min(histdata), max(histdata)+1, 1.0))
+    figure = plt.hist(histdata, bins=range(0, 19, 1), edgecolor='black', linewidth=1.2, histtype='stepfilled')
+    plt.xticks(np.arange(0, 19, step=1))
     plt.title("Step Histogram Balanced Data")
     plt.xlabel("Steps in a Window")
     plt.ylabel("Frequency")
