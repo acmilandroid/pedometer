@@ -5,7 +5,7 @@
 # Usage: per_gait_per_sensor_cutnormbal.sh [directory] [window_size] [window_stride]
 # [directory] is top level dir containing all subject files
 # requires cutstep.c to be compiled as cutsteps in same directory
-# creates ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_bal.txt ALL_[gait]_[sensor#]_norm.txt
+# creates ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_bal.txt ALL_[gait]_[sensor#]_cutbalnorm.txt
 
 echo "Bash version ${BASH_VERSION}"
 
@@ -40,15 +40,14 @@ python3 balance_data.py ALL_Irregular_3_cut.txt ALL_Irregular_3_bal.txt 0 &> /de
 
 # normalize data
 echo "normalizing data..."
-python3 normalize.py ALL_Regular_1_bal.txt ALL_Regular_1_norm.txt 0 1 &> /dev/null
-python3 normalize.py ALL_Regular_2_bal.txt ALL_Regular_2_norm.txt 0 2 &> /dev/null
-python3 normalize.py ALL_Regular_3_bal.txt ALL_Regular_3_norm.txt 0 3 &> /dev/null
-python3 normalize.py ALL_SemiRegular_1_bal.txt ALL_SemiRegular_1_norm.txt 0 1 &> /dev/null
-python3 normalize.py ALL_SemiRegular_2_bal.txt ALL_SemiRegular_2_norm.txt 0 2 &> /dev/null
-python3 normalize.py ALL_SemiRegular_3_bal.txt ALL_SemiRegular_3_norm.txt 0 3 &> /dev/null
-python3 normalize.py ALL_Irregular_1_bal.txt ALL_Irregular_1_norm.txt 0 1 &> /dev/null
-python3 normalize.py ALL_Irregular_2_bal.txt ALL_Irregular_2_norm.txt 0 2 &> /dev/null
-python3 normalize.py ALL_Irregular_3_bal.txt ALL_Irregular_3_norm.txt 0 3 &> /dev/null
+python3 normalize.py ALL_Regular_1_bal.txt ALL_Regular_1_cutbalnorm.txt 0 1 &> /dev/null
+python3 normalize.py ALL_Regular_2_bal.txt ALL_Regular_2_cutbalnorm.txt 0 2 &> /dev/null
+python3 normalize.py ALL_Regular_3_bal.txt ALL_Regular_3_cutbalnorm.txt 0 3 &> /dev/null
+python3 normalize.py ALL_SemiRegular_1_bal.txt ALL_SemiRegular_1_cutbalnorm.txt 0 1 &> /dev/null
+python3 normalize.py ALL_SemiRegular_2_bal.txt ALL_SemiRegular_2_cutbalnorm.txt 0 2 &> /dev/null
+python3 normalize.py ALL_SemiRegular_3_bal.txt ALL_SemiRegular_3_cutbalnorm.txt 0 3 &> /dev/null
+python3 normalize.py ALL_Irregular_1_bal.txt ALL_Irregular_1_cutbalnorm.txt 0 1 &> /dev/null
+python3 normalize.py ALL_Irregular_2_bal.txt ALL_Irregular_2_cutbalnorm.txt 0 2 &> /dev/null
+python3 normalize.py ALL_Irregular_3_bal.txt ALL_Irregular_3_cutbalnorm.txt 0 3 &> /dev/null
 
-
-echo "Done cutting, balancing, and normalizing data. Use ALL_[gait]_[sensor#]_norm.txt for testing."
+echo "Done cutting, balancing, and normalizing data. Use ALL_[gait]_[sensor#]_cutbalnorm.txt for testing."
