@@ -23,6 +23,7 @@ num=0
 echo "Removing old data..."
 rm debug.csv &> /dev/null
 rm -r temp_training_data &> /dev/null
+rm -r histograms &> /dev/null
 mkdir temp_training_data &> /dev/null
 
 # loop through all subdirectories
