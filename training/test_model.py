@@ -18,7 +18,7 @@ import sys
 # checks for correct number of command line args
 if len(sys.argv) != 6:
     debug = 0
-    if len(sys.argv) != 7:  # debug on
+    if len(sys.argv) == 7:  # debug on
         debug = 1
     else:                   # incorrect number of command line arguments
         sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug.csv]")
