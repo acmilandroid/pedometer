@@ -65,7 +65,7 @@ model = keras.Sequential([
     keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=100, kernel_size=30, strides=5, activation='relu'),
     keras.layers.Conv1D(filters=100, kernel_size=5, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
-    keras.layers.Dense(1, activation='relu')
+    keras.layers.Dense(1)
     # keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES,), filters=100, kernel_size=6, activation='relu'),
     # keras.layers.MaxPooling1D(pool_size=6),
     # keras.layers.Flatten(),  # must flatten to feed dense layer
@@ -95,6 +95,9 @@ predictions = model.predict(features_input)
 
 # loop through all windows
 for i in range(0, num_samples):
+    # don't let predictions be negative
+    if predictions[i][0] < 0:
+        predictions[i][0] = 0
     predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
     actual_steps += labels[i] / window_size * window_stride
 
