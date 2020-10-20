@@ -88,9 +88,7 @@ gt_steps_sum = 0
 
 # write header columns to debug.csv
 if debug == 1:
-    filename = sys.argv[3]
-    filename.replace("temp_training_data/", "")
-    filename.replace(".txt", "_debug.csv")
+    filename = sys.argv[6]
     if os.path.isfile(filename): 
         debug_file = open(filename, "w")
         debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
