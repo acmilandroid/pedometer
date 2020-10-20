@@ -1,10 +1,10 @@
 # Basil Lin
 # step counter project
 # program to test model with window_size input file
-# Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug 0|1]
+# Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug.csv]
 # print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
 # input file must be first cut and normalized
-# debug will generate file [input_file_debug.csv]
+# if [debug.csv] is populated, a debug file showing predictions for each window will be created as [debug.csv]
 
 # globals for switching program functionality
 NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
@@ -16,11 +16,13 @@ TESTING_STRIDE = 1  # don't change, always test with a stride of 1 datum
 import sys
 
 # checks for correct number of command line args
-if len(sys.argv) != 7:
-    sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug 0|1]")
+if len(sys.argv) != 6
+    if len(sys.argv) != 7:  # debug on
+        debug = 1
+    else:                   # incorrect number of command line arguments
+        sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug.csv]")
 
 window_size = int(sys.argv[2])
-debug = int(sys.argv[6])    # print individual window counts, sum, and output steps to csv file
 
 # import other stuff so I don't slow down the Usage warning
 import warnings
