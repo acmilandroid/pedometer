@@ -80,6 +80,6 @@ done
 
 # remove old stuff
 echo "Removing temp data..."
-rm -r temp_training_data &> /dev/null
+#rm -r temp_training_data &> /dev/null
 
 echo "$((num)) subjects tested."
