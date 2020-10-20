@@ -70,10 +70,11 @@ done
 
 # create histograms of each
 echo "Generating histograms..."
+mkdir histograms
 for ((sensor=1; sensor<=3; sensor++)) do    
-    python3 generate_histogram.py "ALL_Regular_"$sensor"_debug.csv" "ALL_Regular_"$sensor"_predicted.png" > /dev/null
-    python3 generate_histogram.py "ALL_SemiRegular_"$sensor"_debug.csv" "ALL_SemiRegular_"$sensor"_predicted.png" > /dev/null
-    python3 generate_histogram.py "ALL_Irregular_"$sensor"_debug.csv" "ALL_Irregular_"$sensor"_predicted.png" > /dev/null
+    python3 generate_histogram.py "temp_training_data/ALL_Regular_"$sensor"_debug.csv" "histograms/ALL_Regular_"$sensor"_predicted.png" > /dev/null
+    python3 generate_histogram.py "temp_training_data/ALL_SemiRegular_"$sensor"_debug.csv" "histograms/ALL_SemiRegular_"$sensor"_predicted.png" > /dev/null
+    python3 generate_histogram.py "temp_training_data/ALL_Irregular_"$sensor"_debug.csv" "histograms/ALL_Irregular_"$sensor"_predicted.png" > /dev/null
 done
 
 # remove old stuff
