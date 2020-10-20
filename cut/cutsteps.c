@@ -19,12 +19,13 @@
 #define	MAX_DATA            54000	//one hour at 15 Hz
 #define	MAX_STEPS           10000   //maximum number of steps
 #define SMOOTHING           7       //smoothing window
-#define	MAX_WINDOWS         30000
+#define	MAX_WINDOWS         30000   //maximum number of windows
 #define DATA_FIELDS         3		//number of different sensors being used
-#define TOTAL_DATA_FIELDS   17
+#define TOTAL_DATA_FIELDS   17      //total number of columns in csv file to read from
 #define DEBUG               0       //debug modes 1 and 2 for alternate prints
 #define PRINT               1       //print data
 #define SAMPLES_PER_STEP    7       //number of samples used per step
+#define MAX_STEPS_WINDOW    13      //maximum number of steps per window
 
 
 int main(int argc, char *argv[]) {
@@ -218,7 +219,10 @@ int main(int argc, char *argv[]) {
 			if (DEBUG == 1) {
 				printf("%d...%d -> %d\n", windowIndex[i], windowIndex[i]+CUT, windowSteps[i]);
 			} else {
-                if (windowSteps[i] > -1) {															// only trains on steps above -1, need to remove later
+                if (windowSteps[i] > -1) {														    // only trains on steps above -1, need to remove later
+                    if (windowSteps[i] > MAX_STEPS_WINDOW) {
+                        windowSteps[i] = MAX_STEPS_WINDOW;
+                    }
                     if (windowSteps[i] > 18) { 														// error if too many steps in a window
                         printf("Error in file: %s\tSteps in window: %d\tIndex: %d\n", argv[3], windowSteps[i], i);
                         exit(0);
