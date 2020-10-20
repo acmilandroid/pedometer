@@ -61,9 +61,9 @@ for d in $1*; do
         # test each sensor
         echo "Testing..."
         for ((sensor=1; sensor<=3; sensor++)) do
-            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 1 > /dev/null
-            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 1 > /dev/null
-            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 1 > /dev/null
+            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "ALL_Regular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "ALL_Irregular_"$sensor"_debug.csv" > /dev/null
         done
     fi
 done
@@ -71,9 +71,9 @@ done
 # create histograms of each
 echo "Generating histograms..."
 for ((sensor=1; sensor<=3; sensor++)) do    
-    python3 generate_histogram.py $num"_Regular_"$sensor"_norm_debug.csv" $num"_Regular_"$sensor"_norm_debug.csv" 
-    python3 generate_histogram.py $num"_SemiRegular_"$sensor"_norm_debug.csv" $num"_SemiRegular_"$sensor"_norm_debug.csv" 
-    python3 generate_histogram.py $num"_Irregular_"$sensor"_norm_debug.csv" $num"_Irregular_"$sensor"_norm_debug.csv" 
+    python3 generate_histogram.py "ALL_Regular_"$sensor"_debug.csv" "ALL_Irregular_"$sensor"_predicted.png"
+    python3 generate_histogram.py "ALL_SemiRegular_"$sensor"_debug.csv" "ALL_Irregular_"$sensor"_predicted.png"
+    python3 generate_histogram.py "ALL_Irregular_"$sensor"_debug.csv" "ALL_Irregular_"$sensor"_predicted.png"
 done
 
 # remove old stuff
