@@ -4,6 +4,7 @@
 # Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug 0|1]
 # print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
 # input file must be first cut and normalized
+# debug will generate file [input_file_debug.csv]
 
 # globals for switching program functionality
 NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
@@ -85,12 +86,15 @@ gt_steps_sum = 0
 
 # write header columns to debug.csv
 if debug == 1:
-    if os.path.isfile("debug.csv"): 
-        debug_file = open("debug.csv", "w")
+    filename = sys.argv[3]
+    filename.replace("temp_training_data/", "")
+    filename.replace(".txt", "_debug.csv")
+    if os.path.isfile(filename): 
+        debug_file = open(filename, "w")
         debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
         debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
     else: 
-        debug_file = open("debug.csv", "a+")
+        debug_file = open(filename, "a+")
 
 # loop through all windows
 for i in range(0, num_samples):

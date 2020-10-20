@@ -38,7 +38,6 @@ right_of_last_bin = histdata.max() + float(d)/2
 plt.figure(1)
 figure = plt.hist(histdata, bins=range(0, 19, 1), edgecolor='black', linewidth=1.2, histtype='stepfilled')
 plt.xticks(np.arange(0, 19, step=1))
-plt.title("Step Histogram Original Data")
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
 plt.savefig(sys.argv[2])
