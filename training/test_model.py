@@ -5,6 +5,7 @@
 # print input allows you to print predicted_step_indices for STEPCOUNTERVIEW
 # input file must be first cut and normalized
 # if [debug.csv] is populated, a debug file showing predictions for each window will be created as [debug.csv]
+# if [debug.csv] exists, it will be appended. If not, it will be created
 
 # globals for switching program functionality
 NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
