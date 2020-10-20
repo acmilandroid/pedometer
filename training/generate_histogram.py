@@ -25,18 +25,20 @@ with open(sys.argv[1], newline='\n') as fpt:
     reader = csv.reader(fpt, delimiter=',')
     data = list(reader)
 
-histdata = list(line[4] for line in data)           # get column 5 (predicted steps in window)
-histdata.pop(0)                                     # remove string header
-histdata = np.array([float(x) for x in histdata])   # convert to float
-histdata = np.array(histdata)                       # convert to array
+predicted_steps = list(line[4] for line in data)                    # get column 5 (predicted steps in window)
+gt_steps = list(line[3] for line in data)                           # get column 4 (gt steps in window)
+predicted_steps.pop(0)                                              # remove string header
+gt_steps.pop(0)
+predicted_steps = np.array([float(x) for x in predicted_steps])     # convert to float
+gt_steps = np.array([float(x) for x in gt_steps])
+predicted_steps = np.array(predicted_steps)                         # convert to array
+gt_steps = np.array(gt_steps) 
 
 # plot histogram of steps
 print("Plotting histogram...")
-d = np.diff(np.unique(histdata)).min()
-left_of_first_bin = histdata.min() - float(d)/2
-right_of_last_bin = histdata.max() + float(d)/2
-plt.figure(1)
-figure = plt.hist(histdata, bins=range(0, 19, 1), edgecolor='black', linewidth=1.2, histtype='stepfilled')
+plt.style.use('seaborn-deep')
+plt.hist([gt_steps, predicted_steps], bins=range(0, 19, 1), edgecolor='black', linewidth=1.2, label=['GT Steps', 'Predicted Steps'])
+plt.legend(loc='upper right')
 plt.xticks(np.arange(0, 19, step=1))
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")

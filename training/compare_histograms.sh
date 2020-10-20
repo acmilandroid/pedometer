@@ -2,7 +2,7 @@
 # Basil Lin
 # Step counter project
 # Tests all 9 {sensor, gait} pairs and prints individual window counts, sum, and output steps to csv file
-# Usage: ./debug_predicted_steps.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_histogram.png]
+# Usage: ./compare_histograms.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_histogram.png]
 # [directory] is top level dir containing all subject files
 # [model_directory] is top level dir containing trained models
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
@@ -13,7 +13,7 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 5 ]; then
-    echo "Usage: ./debug_predicted_steps.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type]"
+    echo "Usage: ./comapare_histograms.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type]"
     exit 1
 fi
 
@@ -80,6 +80,6 @@ done
 
 # remove old stuff
 echo "Removing temp data..."
-#rm -r temp_training_data &> /dev/null
+rm -r temp_training_data &> /dev/null
 
 echo "$((num)) subjects tested."
