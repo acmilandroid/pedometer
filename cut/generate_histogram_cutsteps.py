@@ -34,9 +34,8 @@ d = np.diff(np.unique(histdata)).min()
 left_of_first_bin = histdata.min() - float(d)/2
 right_of_last_bin = histdata.max() + float(d)/2
 plt.figure(1)
-figure = plt.hist(histdata, bins=range(0, 19, 1), edgecolor='black', linewidth=1.2, histtype='stepfilled')
+figure = plt.hist(histdata, bins=range(0, 19, 1), color='white', edgecolor='black', linewidth=1.2, histtype='bar')
 plt.xticks(np.arange(0, 19, step=1))
-plt.title("Step Histogram Original Data")
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
 plt.savefig(sys.argv[2])
