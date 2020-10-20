@@ -220,7 +220,7 @@ int main(int argc, char *argv[]) {
 				printf("%d...%d -> %d\n", windowIndex[i], windowIndex[i]+CUT, windowSteps[i]);
 			} else {
                 if (windowSteps[i] > -1) {														    // only trains on steps above -1, need to remove later
-                    if (windowSteps[i] > MAX_STEPS_WINDOW) {
+                    if (windowSteps[i] > MAX_STEPS_WINDOW) {                                        // caps maximum steps in a window at MAX_STEPS_WINDOW
                         windowSteps[i] = MAX_STEPS_WINDOW;
                     }
                     if (windowSteps[i] > 18) { 														// error if too many steps in a window
