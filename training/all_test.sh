@@ -78,9 +78,9 @@ for d in $1*; do
         do
             echo "Testing Sensor0$((sensornum))"
             # test sensor files in each directory
-            python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_regular_normalized.txt" $d"/Regular/steps.txt" 0 0 >> results_all.txt
-            python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_irregular_normalized.txt" $d"/Irregular/steps.txt" 0 0 >> results_all.txt
-            python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt" $d"/SemiRegular/steps.txt" 0 0 >> results_all.txt
+            python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_regular_normalized.txt" $d"/Regular/steps.txt" 0 >> results_all.txt
+            python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_irregular_normalized.txt" $d"/Irregular/steps.txt" 0 >> results_all.txt
+            python3 test_model.py $4 $2 "temp_training_data/sensor0$((sensornum))_semiregular_normalized.txt" $d"/SemiRegular/steps.txt" 0 >> results_all.txt
         done
         ((num++))
     fi

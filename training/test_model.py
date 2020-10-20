@@ -16,7 +16,8 @@ TESTING_STRIDE = 1  # don't change, always test with a stride of 1 datum
 import sys
 
 # checks for correct number of command line args
-if len(sys.argv) != 6
+if len(sys.argv) != 6:
+    debug = 0
     if len(sys.argv) != 7:  # debug on
         debug = 1
     else:                   # incorrect number of command line arguments
