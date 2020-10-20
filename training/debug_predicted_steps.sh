@@ -4,19 +4,16 @@
 # Tests all 9 {sensor, gait} pairs and prints individual window counts, sum, and output steps to csv file
 # Usage: ./debug_predicted_steps.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_histogram.png]
 # [directory] is top level dir containing all subject files
+# [model_directory] is top level dir containing trained models
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
 # cutsteps executable must be compiled in ../cut/cutsteps
+# models in directory must be named ALL_{gait}_{sensor #}_model.h5
 # creates [output_file.csv]
 
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 5 ]; then
-    echo "Usage: ./debug_predicted_steps.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type]"
-    exit 1
-fi
-
-if [[ "$6" != "Regular" && "$6" != "Irregular" && "$6" != "SemiRegular" ]]; then
-    echo "Gait type error, exiting"
+    echo "Usage: ./debug_predicted_steps.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type]"
     exit 1
 fi
 
@@ -67,9 +64,9 @@ for d in $1*; do
         # test each sensor
         echo "Testing..."
         for ((sensor=1; sensor<=3; sensor++)) do
-            python3 test_model.py $4 $2 "temp_training_data/Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 1 > /dev/null
-            python3 test_model.py $4 $2 "temp_training_data/SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 1 > /dev/null
-            python3 test_model.py $4 $2 "temp_training_data/Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 1 > /dev/null
+            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_training_data/Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 1 > /dev/null
+            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_training_data/SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 1 > /dev/null
+            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_training_data/Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 1 > /dev/null
         done
         ((num++))
     fi
