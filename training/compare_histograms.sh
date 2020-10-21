@@ -2,18 +2,32 @@
 # Basil Lin
 # Step counter project
 # Tests all 9 {sensor, gait} pairs and prints individual window counts, sum, and output steps to csv file
-# Usage: ./compare_histograms.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_histogram.png]
+# Usage: ./compare_histograms.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [balanced 0|1]
 # [directory] is top level dir containing all subject files
 # [model_directory] is top level dir containing trained models
-# [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
+# [normalization_type 0|1] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
+# [balanced 0|1] 0 for non balanced data, 1 for balanced data
 # cutsteps executable must be compiled in ../cut/cutsteps
 # models in directory must be named ALL_{gait}_{sensor #}_model.h5
 # creates [output_file.csv]
 
 echo "Bash version ${BASH_VERSION}"
 
-if [ "$#" -ne 5 ]; then
-    echo "Usage: ./comapare_histograms.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type]"
+# verify correct number of command line arguments
+if [ "$#" -ne 6 ]; then
+    echo "Usage: ./compare_histograms.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type] [balanced 0|1]"
+    exit 1
+fi
+
+# check normalization argument
+if (($5 != 0 && $5 != 1)); then
+    echo "[normalization_type 0|1] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities"
+    exit 1
+fi
+
+# check balance argument
+if (($6 != 0 && $6 != 1)); then
+    echo "[balanced 0|1] 0 for non balanced data, 1 for balanced data"
     exit 1
 fi
 
@@ -59,13 +73,25 @@ for d in $1*; do
             done
         fi
 
-        # test each sensor
-        echo "Testing..."
-        for ((sensor=1; sensor<=3; sensor++)) do
-            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_training_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
-            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_training_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
-            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_training_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
-        done
+        # test balanced models
+        if (($6 == 1)); then
+            echo "Testing..."
+            for ((sensor=1; sensor<=3; sensor++)) do
+                python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_training_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
+                python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_training_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
+                python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_training_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
+            done
+        fi
+
+        # test unbalanced models
+        if (($6 == 0)); then
+            echo "Testing..."
+            for ((sensor=1; sensor<=3; sensor++)) do
+                python3 test_model.py $4"/ALL_Regular_"$sensor"_nobal_model.h5" $2 "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_training_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
+                python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_nobal_model.h5" $2 "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_training_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
+                python3 test_model.py $4"/ALL_Irregular_"$sensor"_nobal_model.h5" $2 "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_training_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
+            done
+        fi
     fi
 done
 
