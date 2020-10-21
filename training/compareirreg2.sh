@@ -17,6 +17,7 @@ if [ "$#" -ne 5 ]; then
     exit 1
 fi
 
+mkdir temp_training_data
 num=0
 
 # loop through all subdirectories
@@ -46,6 +47,6 @@ done
 
 # create histograms of each
 echo "Generating histograms..."
-python3 generate_histogram.py "temp_training_data/ALL_Irregular_2_debug.csv" "histograms/ALL_Irregular_2_comparison.png" > /dev/null
+python3 generate_histogram.py "temp_training_data/ALL_Irregular_2_debug.csv" "ALL_Irregular_2_comparison.png" > /dev/null
 
 echo "$((num)) subjects tested."
