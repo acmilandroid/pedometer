@@ -1,14 +1,14 @@
 # Basil Lin
 # step counter project
-# generates histogram based on given debug data
-# Usage: python3 generate_histogram.py [input_debug_file.txt] [histogram_output.png]
+# generates histogram based on given cut sensor data (can be normalized and balanced)
+# Usage: python3 generate_histogram_cut.py [input_debug_file.txt] [histogram_output.png]
 
 # import sys
 import sys
 
 # checks if input args are correct
 if len(sys.argv) != 3:
-    sys.exit("Usage: python3 generate_histogram.py [input_debug_file.txt] [histogram_output.png]")
+    sys.exit("Usage: python3 generate_histogram_cut.py [input_debug_file.txt] [histogram_output.png]")
 
 # import stuff
 import warnings
