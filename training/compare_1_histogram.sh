@@ -33,7 +33,7 @@ rm -r temp_training_data &> /dev/null
 rm -r histograms &> /dev/null
 mkdir temp_training_data &> /dev/null
 
-STR=$5
+STR=$4
 
 # find gait type using input model name
 SUB='Regular'
