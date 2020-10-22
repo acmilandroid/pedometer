@@ -1,32 +1,26 @@
 #!/bin/bash
 # Basil Lin
 # Step counter project
-# Tests all 9 {sensor, gait} pairs and creates original and predicted histogram distribution for each pair
-# Usage: ./compare_histograms.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type] [balanced 0|1]
+# Tests a single given {sensor, gait} pair and create original and predicted histogram distribution
+# Usage: ./compare_1_histogram.sh [directory] [window_size] [window_stride] [model.h5] [normalization_type]
 # [directory] is top level dir containing all subject files
-# [model_directory] is top level dir containing trained models
+# [model.h5] is the trained model to use for predictions
 # [normalization_type 0|1] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
 # cutsteps executable must be compiled in ../cut/cutsteps
 # models in directory must be named ALL_{Gait}_{sensor #}_model.h5
-# creates histogram/ dir containing histograms of each pair
+# creates histogram/ dir containing histogram
 
 echo "Bash version ${BASH_VERSION}"
 
 # verify correct number of command line arguments
 if [ "$#" -ne 5 ]; then
-    echo "Usage: ./compare_histograms.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type]"
+    echo "Usage: ./compare_1_histogram.sh [directory] [window_size] [window_stride] [model.h5] [normalization_type]"
     exit 1
 fi
 
 # check normalization argument
 if (($5 != 0 && $5 != 1)); then
     echo "[normalization_type 0|1] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities"
-    exit 1
-fi
-
-# check balance argument
-if (($6 != 0 && $6 != 1)); then
-    echo "[balanced 0|1] 0 for non balanced data, 1 for balanced data"
     exit 1
 fi
 
