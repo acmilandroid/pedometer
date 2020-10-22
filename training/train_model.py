@@ -60,6 +60,11 @@ for i in range(0, num_samples):
             features_input[i][j][k] = features_normalized[i][k*window_size + j]
 print("features_input has shape", features_input.shape)
 
+# set weight classes based on original distribution
+values, counts = np.unique(labels, return_counts=True)
+class_weight = dict(zip(values, counts))
+print(class_weight)
+
 # set up classifier
 model = keras.Sequential([
     keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=30, strides=5, activation='relu'),
@@ -79,7 +84,7 @@ es = keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, pa
 model.summary()
 
 print("Training...")
-metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
+metrics = model.fit(features_input, labels, epochs=1, verbose=2, callbacks=[es])
 
 # print("Testing")
 # loss, accuracy = model.evaluate(features_input, labels)
