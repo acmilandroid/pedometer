@@ -84,7 +84,7 @@ es = keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, pa
 model.summary()
 
 print("Training...")
-metrics = model.fit(features_input, labels, epochs=1, verbose=2, callbacks=[es])
+metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
 
 # print("Testing")
 # loss, accuracy = model.evaluate(features_input, labels)
