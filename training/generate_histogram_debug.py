@@ -37,7 +37,7 @@ gt_steps = np.array(gt_steps)
 # plot histogram of steps
 print("Plotting histogram...")
 plt.style.use('seaborn-deep')
-plt.hist([gt_steps, predicted_steps], bins=range(0, 19, 1), edgecolor='black', linewidth=1.2, label=['GT Steps', 'Predicted Steps'])
+plt.hist([gt_steps, predicted_steps], bins=range(0, 14, 1), edgecolor='black', linewidth=1.2, label=['GT Steps', 'Predicted Steps'])
 plt.legend(loc='upper right')
 plt.xticks(np.arange(0, 19, step=1))
 plt.xlabel("Steps in a Window")
