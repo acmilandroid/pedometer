@@ -35,7 +35,7 @@ left_of_first_bin = histdata.min() - float(d)/2
 right_of_last_bin = histdata.max() + float(d)/2
 plt.figure(1)
 figure = plt.hist(histdata, bins=range(0, 14, 1), color='white', edgecolor='black', linewidth=1.2, histtype='bar')
-plt.xticks(np.arange(0, 19, step=1))
+plt.xticks(np.arange(0, 14, step=1))
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
 plt.savefig(sys.argv[2])
