@@ -7,6 +7,9 @@
 # [window_size_start] [window_size_end] are in datum, not seconds!
 # creates ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cutnorm.txt
 
+# increment window size by 1 second during test
+INCREMENT=15
+
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 4 ]; then
@@ -26,7 +29,7 @@ mkdir temp_training_data
 (cd ../cut/ && make)
 
 # loop through iterations of windows
-for ((windowsize=$2; windowsize<=$3; windowsize++)); do
+for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
 
     # create data
     ./../9_cutnorm.sh $1 $windowsize $4
