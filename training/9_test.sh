@@ -1,9 +1,10 @@
 #!/bin/bash
 # Basil Lin
 # Step counter project
-# Tests every CSV file for RCA and SDA using a trained input model [input_model.h5]
-# Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_file.csv]
+# Tests every {gait, sensor} pair CSV file for RCA and SDA using a trained input model [input_model.h5]
+# Usage: ./9_test.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type] [output_file.csv]
 # [directory] is top level dir containing all subject files
+# [model_directory] is top level dir containing trained models
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
 # cutsteps executable must be compiled in ../cut/cutsteps
 # creates [output_file.csv]
@@ -12,7 +13,7 @@ echo "Bash version ${BASH_VERSION}"
 
 # usage warning
 if [ "$#" -ne 6 ]; then
-    echo "Usage: ./all_test.sh [directory] [window_size] [window_stride] [input_model.h5] [normalization_type] [output_file.csv]"
+    echo "Usage: ./9_test.sh [directory] [window_size] [window_stride] [model_directory] [normalization_type] [output_file.csv]"
     exit 1
 fi
 
@@ -36,26 +37,24 @@ for d in $1*; do
         rm -r temp_testing_data/* &> /dev/null
 
         # cut each sensor
-        for sensornum in 1 2 3
-        do
-            echo "Cutting Sensor0$((sensornum)).csv"
+        for ((sensor=1; sensor<=3; sensor++)) do
+            echo "Cutting Sensor0$sensor"
             # cut sensor files in each directory
-            ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0$((sensornum)).csv" $d"/Regular/steps.txt" > "temp_testing_data/sensor0$((sensornum))_regular.txt"
-            ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0$((sensornum)).csv" $d"/Irregular/steps.txt" > "temp_testing_data/sensor0$((sensornum))_irregular.txt"
-            ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$((sensornum)).csv" $d"/SemiRegular/steps.txt" > "temp_testing_data/sensor0$((sensornum))_semiregular.txt"
+            ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0"$sensor".csv" $d"/Regular/steps.txt" > "temp_testing_data/sensor0"$sensor"_regular.txt"
+            ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0"$sensor".csv" $d"/Irregular/steps.txt" > "temp_testing_data/sensor0"$sensor"_irregular.txt"
+            ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0"$sensor".csv" $d"/SemiRegular/steps.txt" > "temp_testing_data/sensor0"$sensor"_semiregular.txt"
         done
 
         # normalize per axis per sensor
         if (($5 == 0)); then
             echo "Normalizing per axis per sensor"
             # normalize each sensor
-            for sensornum in 1 2 3
-            do
-                echo "Normalizing Sensor0$((sensornum))"
+            for ((sensor=1; sensor<=3; sensor++)) do
+                echo "Normalizing Sensor0$sensor"
                 # cut sensor files in each directory
-                python3 ../cut/normalize.py "temp_testing_data/sensor0$((sensornum))_regular.txt" "temp_testing_data/sensor0$((sensornum))_regular_normalized.txt" 0 $((sensornum)) > /dev/null
-                python3 ../cut/normalize.py "temp_testing_data/sensor0$((sensornum))_irregular.txt" "temp_testing_data/sensor0$((sensornum))_irregular_normalized.txt" 0 $((sensornum)) > /dev/null
-                python3 ../cut/normalize.py "temp_testing_data/sensor0$((sensornum))_semiregular.txt" "temp_testing_data/sensor0$((sensornum))_semiregular_normalized.txt" 0 $((sensornum)) > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/sensor0"$sensor"_regular.txt" "temp_testing_data/sensor0"$sensor"_regular_normalized.txt" 0 "$sensor" > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/sensor0"$sensor"_irregular.txt" "temp_testing_data/sensor0"$sensor"_irregular_normalized.txt" 0 "$sensor" > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/sensor0"$sensor"_semiregular.txt" "temp_testing_data/sensor0"$sensor"_semiregular_normalized.txt" 0 "$sensor" > /dev/null
             done
         fi
 
@@ -63,24 +62,22 @@ for d in $1*; do
         if (($5 == 1)); then
             echo "Normalizing from -1.5 to 1.5 gravities"
             # normalize each sensor
-            for sensornum in 1 2 3
-            do
-                echo "Normalizing Sensor0$((sensornum))"
+            for ((sensor=1; sensor<=3; sensor++)) do
+                echo "Normalizing Sensor0$sensor"
                 # cut sensor files in each directory
-                python3 ../cut/normalize.py "temp_testing_data/sensor0$((sensornum))_regular.txt" "temp_testing_data/sensor0$((sensornum))_regular_normalized.txt" 1 > /dev/null
-                python3 ../cut/normalize.py "temp_testing_data/sensor0$((sensornum))_irregular.txt" "temp_testing_data/sensor0$((sensornum))_irregular_normalized.txt" 1 > /dev/null
-                python3 ../cut/normalize.py "temp_testing_data/sensor0$((sensornum))_semiregular.txt" "temp_testing_data/sensor0$((sensornum))_semiregular_normalized.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/sensor0"$sensor"_regular.txt" "temp_testing_data/sensor0"$sensor"_regular_normalized.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/sensor0"$sensor"_irregular.txt" "temp_testing_data/sensor0"$sensor"_irregular_normalized.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/sensor0"$sensor"_semiregular.txt" "temp_testing_data/sensor0"$sensor"_semiregular_normalized.txt" 1 > /dev/null
             done
         fi
 
-        # test each sensor
-        for sensornum in 1 2 3
-        do
-            echo "Testing Sensor0$((sensornum))"
-            # test sensor files in each directory
-            python3 test_model.py $4 $2 "temp_testing_data/sensor0$((sensornum))_regular_normalized.txt" $d"/Regular/steps.txt" 0 >> results_all.txt
-            python3 test_model.py $4 $2 "temp_testing_data/sensor0$((sensornum))_irregular_normalized.txt" $d"/Irregular/steps.txt" 0 >> results_all.txt
-            python3 test_model.py $4 $2 "temp_testing_data/sensor0$((sensornum))_semiregular_normalized.txt" $d"/SemiRegular/steps.txt" 0 >> results_all.txt
+        # test models
+        echo "Testing..."
+        for ((sensor=1; sensor<=3; sensor++)) do
+            echo "Testing Sensor0$sensor"
+            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_testing_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_testing_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_testing_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
         done
         ((num++))
     fi

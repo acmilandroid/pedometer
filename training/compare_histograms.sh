@@ -41,6 +41,7 @@ for d in $1*; do
         
         # cut gait and sensor
         for ((sensor=1; sensor<=3; sensor++)) do
+            echo "Cutting Sensor0$sensor"
             ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0$sensor.csv" $d"/Regular/steps.txt" > "temp_training_data/"$num"_Regular_"$sensor"_cut.txt"
             ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$sensor.csv" $d"/SemiRegular/steps.txt" > "temp_training_data/"$num"_SemiRegular_"$sensor"_cut.txt"
             ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0$sensor.csv" $d"/Irregular/steps.txt" > "temp_training_data/"$num"_Irregular_"$sensor"_cut.txt"
@@ -50,6 +51,7 @@ for d in $1*; do
         if (($5 == 0)); then
             echo "Normalizing per axis per sensor..."
             for ((sensor=1; sensor<=3; sensor++)) do
+                echo "Normalizing Sensor0$sensor"
                 python3 ../cut/normalize.py "temp_training_data/"$num"_Regular_"$sensor"_cut.txt" "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" 0 $sensor > /dev/null
                 python3 ../cut/normalize.py "temp_training_data/"$num"_SemiRegular_"$sensor"_cut.txt" "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" 0 $sensor > /dev/null
                 python3 ../cut/normalize.py "temp_training_data/"$num"_Irregular_"$sensor"_cut.txt" "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" 0 $sensor > /dev/null
@@ -60,6 +62,7 @@ for d in $1*; do
         if (($5 == 1)); then
             echo "Normalizing from -1.5 to 1.5 gravities..."
             for ((sensor=1; sensor<=3; sensor++)) do
+                echo "Normalizing Sensor0$sensor"
                 python3 ../cut/normalize.py "temp_training_data/"$num"_Regular_"$sensor"_cut.txt" "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" 1 > /dev/null
                 python3 ../cut/normalize.py "temp_training_data/"$num"_SemiRegular_"$sensor"_cut.txt" "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" 1 > /dev/null
                 python3 ../cut/normalize.py "temp_training_data/"$num"_Irregular_"$sensor"_cut.txt" "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" 1 > /dev/null
@@ -69,6 +72,7 @@ for d in $1*; do
         # test models
         echo "Testing..."
         for ((sensor=1; sensor<=3; sensor++)) do
+            echo "Testing Sensor0$sensor"
             python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_training_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
             python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_training_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
             python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_training_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
