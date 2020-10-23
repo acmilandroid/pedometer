@@ -88,7 +88,7 @@ es = keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, pa
 model.summary()
 
 print("Training...")
-if (WEIGHTED == TRUE):
+if (WEIGHTED == True):
     metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
 else:
     metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
