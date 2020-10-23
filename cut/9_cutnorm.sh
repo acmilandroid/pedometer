@@ -2,7 +2,7 @@
 # Basil Lin
 # Step counter project
 # Cuts and normalizes all sensor data per gait per sensor #
-# Usage: per_gait_per_sensor_cutnormcut.sh [directory] [window_size] [window_stride]
+# Usage: 9_cutnorm.sh [directory] [window_size] [window_stride]
 # [directory] is top level dir containing all subject files
 # requires cutsteps.c to be compiled as cutsteps in same directory
 # creates ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cutnorm.txt
@@ -10,7 +10,7 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 3 ]; then
-    echo "Usage: per_gait_per_sensor_cutnormcut.sh [directory] [window_size] [window_stride]"
+    echo "Usage: 9_cutnorm.sh [directory] [window_size] [window_stride]"
     exit 1
 fi
 
