@@ -25,25 +25,29 @@ rm -r temp_training_data/ &> /dev/null
 mkdir temp_training_data
 
 # compile cutsteps.c
-(cd ../cut/ && make clean)
-(cd ../cut/ && make)
+cd ../cut/
+make clean
+make
 
 # loop through iterations of windows
 for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
 
+    echo ".........TESTING WINDOW SIZE OF $windowsize........."
+
     # create data
-    ./../cut/9_cutnorm.sh $1 $windowsize $4
-    mv ../cut/*_cut.txt temp_training_data/
-    mv ../cut/*_cutnorm.txt temp_training_data/
+    ./9_cutnorm.sh $1 $windowsize $4
+    mv *_cut.txt ../window_test/temp_training_data/
+    mv *_cutnorm.txt ../window_test/temp_training_data/
 
     # train models
+    cd ../training/
     for ((sensor=0; sensor<=3; sensor++)); do
-        python3 ../training/train_model.py temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Regular_"$sensor"_model.h5
-        python3 ../training/train_model.py temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
-        python3 ../training/train_model.py temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Irregular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Regular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Irregular_"$sensor"_model.h5
     done
 
     # test all data
-    ./../training/9_test.sh $1 $windowsize $4 temp_training_data/ 0 ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
+    ./9_test.sh $1 $windowsize $4 ../window_test/temp_training_data/ 0 ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
 
 done
