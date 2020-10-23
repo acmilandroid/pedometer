@@ -21,8 +21,8 @@ num=0
 
 # remove old training data
 echo "Removing old data..."
-rm important_results.txt &> /dev/null
-rm results_all.txt &> /dev/null
+rm ALL_ALL_ALL_important.txt &> /dev/null
+rm ALL_ALL_ALL_results.txt &> /dev/null
 rm -r temp_testing_data &> /dev/null
 rm predicted_steps_sensor* &> /dev/null
 mkdir temp_testing_data &> /dev/null
@@ -75,16 +75,16 @@ for d in $1*; do
         echo "Testing..."
         for ((sensor=1; sensor<=3; sensor++)) do
             echo "Testing Sensor0$sensor"
-            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_testing_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
-            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_testing_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
-            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_testing_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
+            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
+            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
         done
         ((num++))
     fi
 done
 
 # grab important result data and make temp file
-pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\nStep detection accuracy F1 Score:.*" results_all.txt | sed 's/^.*: //' > important_results.txt
+pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\nStep detection accuracy F1 Score:.*" ALL_ALL_ALL_results.txt | sed 's/^.*: //' > ALL_ALL_ALL_important.txt
 
 # write data to csv file
 line=0
@@ -107,31 +107,31 @@ for (( i = 0; i < $num; i++ )) do
         ((print = j + 1 ))
         echo -n "$print," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
 
         # irregular sensor data
         ((print = i + 1 ))
@@ -140,31 +140,31 @@ for (( i = 0; i < $num; i++ )) do
         ((print = j + 1 ))
         echo -n "$print," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
 
         # semiregular sensor data
         ((print = i + 1 ))
@@ -173,37 +173,37 @@ for (( i = 0; i < $num; i++ )) do
         ((print = j + 1 ))
         echo -n "$print," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
         truncate -s -1 $6
         echo -n "," >> $6
         ((line++))
-        sed "${line}q;d" important_results.txt >> $6
+        sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
 
     done
 done
 
-rm important_results.txt
-rm results_all.txt
+rm ALL_ALL_ALL_important.txt
+rm ALL_ALL_ALL_results.txt
 rm -r temp_testing_data
 
 echo "$((num)) subjects tested."
