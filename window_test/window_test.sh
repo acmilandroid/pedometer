@@ -20,6 +20,7 @@ fi
 # remove old data
 echo "removing old data..."
 rm -r temp_training_data/ &> /dev/null
+rm ALL* &> /dev/null
 
 # create directory for data
 mkdir temp_training_data
@@ -33,8 +34,11 @@ make
 for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
 
     echo ".........TESTING WINDOW SIZE OF $windowsize........."
+    cd ../window_test/
+    rm -r temp_training_data/* &> /dev/null
 
     # create data
+    cd ../cut/
     ./9_cutnorm.sh $1 $windowsize $4
     mv *_cut.txt ../window_test/temp_training_data/
     mv *_cutnorm.txt ../window_test/temp_training_data/
@@ -42,12 +46,16 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
     # train models
     cd ../training/
     for ((sensor=1; sensor<=3; sensor++)); do
-        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Regular_"$sensor"_model.h5
-        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
-        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Irregular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Regular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Irregular_"$sensor"_model.h5
     done
 
     # test all data
     ./9_test.sh $1 $windowsize $4 ../window_test/temp_training_data/ 0 ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
 
 done
+
+# cleanup
+echo "cleaning up temp files..."
+rm -r temp_training_data/* &> /dev/null
