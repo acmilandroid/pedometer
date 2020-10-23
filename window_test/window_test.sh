@@ -32,7 +32,7 @@ mkdir temp_training_data
 for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
 
     # create data
-    ./../9_cutnorm.sh $1 $windowsize $4
+    ./../cut/9_cutnorm.sh $1 $windowsize $4
     mv ../cut/*_cut.txt temp_training_data/
     mv ../cut/*_cutnorm.txt temp_training_data/
 
