@@ -1,0 +1,46 @@
+#!/bin/bash
+# Basil Lin
+# Step counter project
+# Script to test window sizes for best RCA/SDA
+# Usage: ./window_test.sh [directory] [window_size_start] [window_size_end] [window_stride]
+# [directory] is top level dir containing all subject files
+# [window_size_start] [window_size_end] are in datum, not seconds!
+# creates ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cutnorm.txt
+
+echo "Bash version ${BASH_VERSION}"
+
+if [ "$#" -ne 4 ]; then
+    echo "Usage: ./window_test.sh [directory] [window_size_start] [window_size_end] [window_stride]"
+    exit 1
+fi
+
+# remove old data
+echo "removing old data..."
+rm -r temp_training_data/ &> /dev/null
+
+# create directory for data
+mkdir temp_training_data
+
+# compile cutsteps.c
+(cd ../cut/ && make clean)
+(cd ../cut/ && make)
+
+# loop through iterations of windows
+for ((windowsize=$2; windowsize<=$3; windowsize++)); do
+
+    # create data
+    ./../9_cutnorm.sh $1 $windowsize $4
+    mv ../cut/*_cut.txt temp_training_data/
+    mv ../cut/*_cutnorm.txt temp_training_data/
+
+    # train models
+    for ((sensor=0; sensor<=3; sensor++)); do
+        python3 ../training/train_model.py temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Regular_"$sensor"_model.h5
+        python3 ../training/train_model.py temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
+        python3 ../training/train_model.py temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 temp_training_data/ALL_Irregular_"$sensor"_model.h5
+    done
+
+    # test all data
+    ./../training/9_test.sh $1 $windowsize $4 temp_training_data/ 0 ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
+
+done
