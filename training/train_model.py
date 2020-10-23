@@ -6,6 +6,7 @@
 
 # globals for switching program functionality
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
+WEIGHTED = False    # whether or not to weight the labels (keep False if data is balanced prior to training)
 
 # import system for command line arguments
 import sys
@@ -60,12 +61,12 @@ for i in range(0, num_samples):
             features_input[i][j][k] = features_normalized[i][k*window_size + j]
 print("features_input has shape", features_input.shape)
 
-# set weight classes based on original distribution
-values, counts = np.unique(labels, return_counts=True)
-class_weight = dict(zip(values, counts))
-print(class_weight)
+# set weight classes based on original distribution if weights are turned on
+if (WEIGHTED == True):
+    values, counts = np.unique(labels, return_counts=True)
+    class_weight = dict(zip(values, counts))
 
-#sparse_categorical_crossentropy loss function for changing to categories
+# sparse_categorical_crossentropy loss function for changing to categories
 # add another actuation function after the dense layer
 
 # set up classifier
@@ -87,7 +88,10 @@ es = keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, pa
 model.summary()
 
 print("Training...")
-metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
+if (WEIGHTED == TRUE):
+    metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
+else:
+    metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
 
 # print("Testing")
 # loss, accuracy = model.evaluate(features_input, labels)
