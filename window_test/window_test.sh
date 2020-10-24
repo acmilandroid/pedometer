@@ -49,9 +49,9 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
     cd ../training/
     for ((sensor=1; sensor<=3; sensor++)); do
         echo "training Sensor0$sensor..."
-        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Regular_"$sensor"_model.h5 &> /dev/null
-        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_model.h5 &> /dev/null
-        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Irregular_"$sensor"_model.h5 &> /dev/null
+        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Regular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Irregular_"$sensor"_model.h5
     done
 
     # test all data
