@@ -24,6 +24,7 @@ rm ALL* &> /dev/null
 
 # create directory for data
 mkdir temp_training_data
+mkdir temp_training_data/models
 
 # compile cutsteps.c
 cd ../cut/
@@ -49,14 +50,14 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
     cd ../training/
     for ((sensor=1; sensor<=3; sensor++)); do
         echo "training Sensor0$sensor..."
-        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Regular_"$sensor"_model.h5
-        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
-        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Irregular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/models/ALL_Regular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/models/ALL_SemiRegular_"$sensor"_model.h5
+        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/models/ALL_Irregular_"$sensor"_model.h5
     done
 
     # test all data
     echo "testing all models..."
-    ./9_test.sh $1 $windowsize $4 ../window_test/temp_training_data/ 0 ../window_test/ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
+    ./9_test.sh $1 $windowsize $4 ../window_test/temp_training_data/models/ 0 ../window_test/ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
 
 done
 
