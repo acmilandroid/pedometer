@@ -71,9 +71,9 @@ for d in $1*; do
         echo "Testing..."
         for ((sensor=1; sensor<=3; sensor++)) do
             echo "Testing Sensor0$sensor"
-            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 > ALL_ALL_ALL_results.txt
-            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 > ALL_ALL_ALL_results.txt
-            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 > ALL_ALL_ALL_results.txt
+            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
+            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
+            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
         done
         
     fi
@@ -198,8 +198,8 @@ for (( i = 0; i < $num; i++ )) do
     done
 done
 
-# rm ALL_ALL_ALL_important.txt &> /dev/null
-# rm ALL_ALL_ALL_results.txt &> /dev/null
-# rm -r temp_testing_data &> /dev/null
+rm ALL_ALL_ALL_important.txt &> /dev/null
+rm ALL_ALL_ALL_results.txt &> /dev/null
+rm -r temp_testing_data &> /dev/null
 
 echo "$((num)) subjects tested."
