@@ -61,6 +61,6 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
 done
 
 # cleanup
-echo "cleaning up temp files..."
-cd ../window_test/
-rm -r temp_training_data &> /dev/null
+# echo "cleaning up temp files..."
+# cd ../window_test/
+# rm -r temp_training_data &> /dev/null
