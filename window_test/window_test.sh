@@ -24,7 +24,6 @@ rm ALL* &> /dev/null
 
 # create directory for data
 mkdir temp_training_data
-mkdir temp_training_data/models
 
 # compile cutsteps.c
 cd ../cut/
@@ -37,6 +36,7 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
     echo ".........................TESTING WINDOW SIZE OF $windowsize........................."
     cd ../window_test/
     rm -r temp_training_data/* &> /dev/null
+    mkdir temp_training_data/models
 
     # create data
     echo "cutting and normalizing data..."
