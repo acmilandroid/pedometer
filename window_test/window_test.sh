@@ -56,10 +56,11 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
 
     # test all data
     echo "testing all models..."
-    ./9_test.sh $1 $windowsize $4 ../window_test/temp_training_data/ 0 ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
+    ./9_test.sh $1 $windowsize $4 ../window_test/temp_training_data/ 0 ../window_test/ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
 
 done
 
 # cleanup
 echo "cleaning up temp files..."
+cd ../window_test/
 rm -r temp_training_data/* &> /dev/null
