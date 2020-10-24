@@ -19,7 +19,7 @@ fi
 
 # remove old data
 echo "removing old data..."
-rm -r temp_training_data/ &> /dev/null
+rm -r temp_training_data &> /dev/null
 rm ALL* &> /dev/null
 
 # create directory for data
@@ -63,4 +63,4 @@ done
 # cleanup
 echo "cleaning up temp files..."
 cd ../window_test/
-rm -r temp_training_data/* &> /dev/null
+rm -r temp_training_data &> /dev/null
