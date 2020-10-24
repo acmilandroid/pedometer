@@ -27,31 +27,35 @@ mkdir temp_training_data
 
 # compile cutsteps.c
 cd ../cut/
-make clean
-make
+make clean &> /dev/null
+make &> /dev/null
 
 # loop through iterations of windows
 for ((windowsize=$2; windowsize<=$3; windowsize+=$INCREMENT)); do
 
-    echo ".........TESTING WINDOW SIZE OF $windowsize........."
+    echo ".........................TESTING WINDOW SIZE OF $windowsize........................."
     cd ../window_test/
     rm -r temp_training_data/* &> /dev/null
 
     # create data
+    echo "cutting and normalizing data..."
     cd ../cut/
-    ./9_cutnorm.sh $1 $windowsize $4
+    ./9_cutnorm.sh $1 $windowsize $4 &> /dev/null
     mv *_cut.txt ../window_test/temp_training_data/
     mv *_cutnorm.txt ../window_test/temp_training_data/
 
     # train models
+    echo "training models..."
     cd ../training/
     for ((sensor=1; sensor<=3; sensor++)); do
-        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Regular_"$sensor"_model.h5
-        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_model.h5
-        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Irregular_"$sensor"_model.h5
+        echo "training Sensor0$sensor..."
+        python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Regular_"$sensor"_model.h5 &> /dev/null
+        python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_model.h5 &> /dev/null
+        python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $4 ../window_test/temp_training_data/ALL_Irregular_"$sensor"_model.h5 &> /dev/null
     done
 
     # test all data
+    echo "testing all models..."
     ./9_test.sh $1 $windowsize $4 ../window_test/temp_training_data/ 0 ALL_ALL_ALL_9GaitSensor_results_windowsize"$windowsize".csv
 
 done
