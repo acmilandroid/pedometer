@@ -198,8 +198,8 @@ for (( i = 0; i < $num; i++ )) do
     done
 done
 
-rm ALL_ALL_ALL_important.txt &> /dev/null
-rm ALL_ALL_ALL_results.txt &> /dev/null
-rm -r temp_testing_data &> /dev/null
+# rm ALL_ALL_ALL_important.txt &> /dev/null
+# rm ALL_ALL_ALL_results.txt &> /dev/null
+# rm -r temp_testing_data &> /dev/null
 
 echo "$((num)) subjects tested."
