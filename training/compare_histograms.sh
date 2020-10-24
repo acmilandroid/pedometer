@@ -29,9 +29,9 @@ num=0
 # remove old training data
 echo "Removing old data..."
 rm debug.csv &> /dev/null
-rm -r temp_training_data &> /dev/null
+rm -r temp_testing_data &> /dev/null
 rm -r histograms &> /dev/null
-mkdir temp_training_data &> /dev/null
+mkdir temp_testing_data &> /dev/null
 
 # loop through all subdirectories
 for d in $1*; do
@@ -42,9 +42,9 @@ for d in $1*; do
         # cut gait and sensor
         for ((sensor=1; sensor<=3; sensor++)) do
             echo "Cutting Sensor0$sensor"
-            ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0$sensor.csv" $d"/Regular/steps.txt" > "temp_training_data/"$num"_Regular_"$sensor"_cut.txt"
-            ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$sensor.csv" $d"/SemiRegular/steps.txt" > "temp_training_data/"$num"_SemiRegular_"$sensor"_cut.txt"
-            ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0$sensor.csv" $d"/Irregular/steps.txt" > "temp_training_data/"$num"_Irregular_"$sensor"_cut.txt"
+            ./../cut/cutsteps $2 $3 $d"/Regular/Sensor0$sensor.csv" $d"/Regular/steps.txt" > "temp_testing_data/"$num"_Regular_"$sensor"_cut.txt"
+            ./../cut/cutsteps $2 $3 $d"/SemiRegular/Sensor0$sensor.csv" $d"/SemiRegular/steps.txt" > "temp_testing_data/"$num"_SemiRegular_"$sensor"_cut.txt"
+            ./../cut/cutsteps $2 $3 $d"/Irregular/Sensor0$sensor.csv" $d"/Irregular/steps.txt" > "temp_testing_data/"$num"_Irregular_"$sensor"_cut.txt"
         done
 
         # normalize per axis per sensor
@@ -52,9 +52,9 @@ for d in $1*; do
             echo "Normalizing per axis per sensor..."
             for ((sensor=1; sensor<=3; sensor++)) do
                 echo "Normalizing Sensor0$sensor"
-                python3 ../cut/normalize.py "temp_training_data/"$num"_Regular_"$sensor"_cut.txt" "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" 0 $sensor > /dev/null
-                python3 ../cut/normalize.py "temp_training_data/"$num"_SemiRegular_"$sensor"_cut.txt" "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" 0 $sensor > /dev/null
-                python3 ../cut/normalize.py "temp_training_data/"$num"_Irregular_"$sensor"_cut.txt" "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" 0 $sensor > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/"$num"_Regular_"$sensor"_cut.txt" "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" 0 $sensor > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/"$num"_SemiRegular_"$sensor"_cut.txt" "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" 0 $sensor > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/"$num"_Irregular_"$sensor"_cut.txt" "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" 0 $sensor > /dev/null
             done
         fi
 
@@ -63,9 +63,9 @@ for d in $1*; do
             echo "Normalizing from -1.5 to 1.5 gravities..."
             for ((sensor=1; sensor<=3; sensor++)) do
                 echo "Normalizing Sensor0$sensor"
-                python3 ../cut/normalize.py "temp_training_data/"$num"_Regular_"$sensor"_cut.txt" "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" 1 > /dev/null
-                python3 ../cut/normalize.py "temp_training_data/"$num"_SemiRegular_"$sensor"_cut.txt" "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" 1 > /dev/null
-                python3 ../cut/normalize.py "temp_training_data/"$num"_Irregular_"$sensor"_cut.txt" "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/"$num"_Regular_"$sensor"_cut.txt" "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/"$num"_SemiRegular_"$sensor"_cut.txt" "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "temp_testing_data/"$num"_Irregular_"$sensor"_cut.txt" "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" 1 > /dev/null
             done
         fi
 
@@ -73,9 +73,9 @@ for d in $1*; do
         echo "Testing..."
         for ((sensor=1; sensor<=3; sensor++)) do
             echo "Testing Sensor0$sensor"
-            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_training_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
-            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_training_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
-            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_training_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_training_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 "temp_testing_data/ALL_Regular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 "temp_testing_data/ALL_SemiRegular_"$sensor"_debug.csv" > /dev/null
+            python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 "temp_testing_data/ALL_Irregular_"$sensor"_debug.csv" > /dev/null
         done
 
     fi
@@ -85,13 +85,13 @@ done
 echo "Generating histograms..."
 mkdir histograms
 for ((sensor=1; sensor<=3; sensor++)) do
-    python3 generate_histogram_debug.py "temp_training_data/ALL_Regular_"$sensor"_debug.csv" "histograms/ALL_Regular_"$sensor"_comparison.png" > /dev/null
-    python3 generate_histogram_debug.py "temp_training_data/ALL_SemiRegular_"$sensor"_debug.csv" "histograms/ALL_SemiRegular_"$sensor"_comparison.png" > /dev/null
-    python3 generate_histogram_debug.py "temp_training_data/ALL_Irregular_"$sensor"_debug.csv" "histograms/ALL_Irregular_"$sensor"_comparison.png" > /dev/null
+    python3 generate_histogram_debug.py "temp_testing_data/ALL_Regular_"$sensor"_debug.csv" "histograms/ALL_Regular_"$sensor"_comparison.png" > /dev/null
+    python3 generate_histogram_debug.py "temp_testing_data/ALL_SemiRegular_"$sensor"_debug.csv" "histograms/ALL_SemiRegular_"$sensor"_comparison.png" > /dev/null
+    python3 generate_histogram_debug.py "temp_testing_data/ALL_Irregular_"$sensor"_debug.csv" "histograms/ALL_Irregular_"$sensor"_comparison.png" > /dev/null
 done
 
 # remove old stuff
 echo "Removing temp data..."
-rm -r temp_training_data &> /dev/null
+rm -r temp_testing_data &> /dev/null
 
 echo "$((num)) subjects tested."
