@@ -71,7 +71,7 @@ if (WEIGHTED == True):
 
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=15, strides=5, activation='relu'),
+    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=30, strides=5, activation='relu'),
     keras.layers.Conv1D(filters=10, kernel_size=5, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
     keras.layers.Dense(1)
@@ -91,7 +91,7 @@ print("Training...")
 if (WEIGHTED == True):
     metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
 else:
-    metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
+    metrics = model.fit(features_input, labels, epochs=1, verbose=2, callbacks=[es])
 
 # print("Testing")
 # loss, accuracy = model.evaluate(features_input, labels)
