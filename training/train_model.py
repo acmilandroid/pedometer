@@ -91,7 +91,7 @@ print("Training...")
 if (WEIGHTED == True):
     metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
 else:
-    metrics = model.fit(features_input, labels, epochs=1, verbose=2, callbacks=[es])
+    metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es])
 
 # print("Testing")
 # loss, accuracy = model.evaluate(features_input, labels)
