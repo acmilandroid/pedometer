@@ -29,7 +29,7 @@ make clean &> /dev/null
 make &> /dev/null
 
 # create result CSV file
-echo "Window size,Gait,Sensor #,Predicted steps,Actual steps,Difference,RCA" > ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
+echo "Window size,Gait,Sensor #,Predicted steps,Actual steps,Difference,RCA" > ../window_test/ALL_ALL_ALL_results.csv
 
 # loop through iterations of windows
 for ((windowsize=$2; windowsize<=$3; windowsize+=$4)); do
@@ -55,36 +55,39 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$4)); do
 
         python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $5 ../window_test/models/ALL_Regular_"$sensor"_"$windowsize"_model.h5 > ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_results.txt
         pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTraining run count accuracy:.*" ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_important.txt
-        echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-        echo -n "Regular," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-        echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
+        echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_results.csv
+        echo -n "Regular," >> ../window_test/ALL_ALL_ALL_results.csv
+        echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_results.csv
         for ((line=1; line<=4; line++)); do
-            sed "${line}q;d" ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_important.txt >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-            truncate -s -1 ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-            echo -n "," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
+            sed "${line}q;d" ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_important.txt >> ../window_test/ALL_ALL_ALL_results.csv
+            truncate -s -1 ../window_test/ALL_ALL_ALL_results.csv
+            echo -n "," >> ../window_test/ALL_ALL_ALL_results.csv
         done
+        echo "" >> ../window_test/ALL_ALL_ALL_results.csv
 
         python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $5 ../window_test/models/ALL_SemiRegular_"$sensor"_"$windowsize"_model.h5 > ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_results.txt
         pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTraining run count accuracy:.*" ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_important.txt
-        echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-        echo -n "SemiRegular," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-        echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
+        echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_results.csv
+        echo -n "SemiRegular," >> ../window_test/ALL_ALL_ALL_results.csv
+        echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_results.csv
         for ((line=1; line<=4; line++)); do
-            sed "${line}q;d" ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_important.txt >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-            truncate -s -1 ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-            echo -n "," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
+            sed "${line}q;d" ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_important.txt >> ../window_test/ALL_ALL_ALL_results.csv
+            truncate -s -1 ../window_test/ALL_ALL_ALL_results.csv
+            echo -n "," >> ../window_test/ALL_ALL_ALL_results.csv
         done
+        echo "" >> ../window_test/ALL_ALL_ALL_results.csv
 
         python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $5 ../window_test/models/ALL_Irregular_"$sensor"_"$windowsize"_model.h5 > ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_results.txt
         pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTraining run count accuracy:.*" ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_important.txt
-        echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-        echo -n "Irregular," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-        echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
+        echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_results.csv
+        echo -n "Irregular," >> ../window_test/ALL_ALL_ALL_results.csv
+        echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_results.csv
         for ((line=1; line<=4; line++)); do
-            sed "${line}q;d" ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_important.txt >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-            truncate -s -1 ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
-            echo -n "," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
+            sed "${line}q;d" ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_important.txt >> ../window_test/ALL_ALL_ALL_results.csv
+            truncate -s -1 ../window_test/ALL_ALL_ALL_results.csv
+            echo -n "," >> ../window_test/ALL_ALL_ALL_results.csv
         done
+        echo "" >> ../window_test/ALL_ALL_ALL_results.csv
 
     done
 
