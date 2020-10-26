@@ -9,7 +9,7 @@
 
 echo "Bash version ${BASH_VERSION}"
 
-if [ "$#" -ne 4 ]; then
+if [ "$#" -ne 5 ]; then
     echo "Usage: ./window_test.sh [directory] [window_size_start] [window_size_end] [window_increment] [window_stride]"
     exit 1
 fi
@@ -52,7 +52,7 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$4)); do
     for ((sensor=1; sensor<=3; sensor++)); do
 
         echo "training Sensor0$sensor..."
-        
+
         python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $5 ../window_test/models/ALL_Regular_"$sensor"_"$windowsize"_model.h5 > ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_results.txt
         pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTraining run count accuracy:.*" ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_important.txt
         echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_"$windowsize"_results.csv
