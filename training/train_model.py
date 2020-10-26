@@ -60,6 +60,7 @@ for i in range(0, num_samples):
         for k in range(0, TOTAL_FEATURES):
             features_input[i][j][k] = features_normalized[i][k*window_size + j]
 print("features_input has shape", features_input.shape)
+batches = features_input.shape[0]
 
 # set weight classes based on original distribution if weights are turned on
 if (WEIGHTED == True):
