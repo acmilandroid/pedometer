@@ -119,7 +119,8 @@ actual_steps = round(actual_steps)
 diff = abs(predicted_steps-actual_steps)
 
 # print training results
-print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
+print("Predicted steps:", predicted_steps)
+print("Actual steps:", actual_steps)
 print("Difference in steps:", diff)
 print("Training run count accuracy: %.4f" %(predicted_steps/actual_steps))
 
