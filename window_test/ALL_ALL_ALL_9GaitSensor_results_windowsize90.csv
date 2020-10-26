@@ -1,3 +1,0 @@
-Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA
-1,regular,1,150,78,78,0.6578947368421053,0.6578947368421053,1.0507,0.6578947368421053
-1,irregular,1,1,semiregular,1,1,regular,2,1,irregular,2,1,semiregular,2,1,regular,3,1,irregular,3,1,semiregular,3,2,regular,1,2,irregular,1,2,semiregular,1,2,regular,2,2,irregular,2,2,semiregular,2,2,regular,3,2,irregular,3,2,semiregular,3,
