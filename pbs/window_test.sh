@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./window_test.sh 60 90 15 1
+./window_test.sh ../PedometerData/ 60 90 15 1
