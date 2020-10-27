@@ -9,7 +9,7 @@
 
 echo "Bash version ${BASH_VERSION}"
 
-if [ "$#" -ne 5 ]; then
+if [ "$#" -ne 3 ]; then
     echo "Usage: ./single_window_test.sh [directory] [window_size] [window_stride]"
     exit 1
 fi
