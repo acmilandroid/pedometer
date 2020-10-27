@@ -98,6 +98,6 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$4)); do
 done
 
 # cleanup
-echo "cleaning up temp files..."
+echo "cleaning up temporary files..."
 cd ../window_test/
 rm -r temp_training_data &> /dev/null

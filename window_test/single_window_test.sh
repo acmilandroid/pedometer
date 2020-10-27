@@ -93,6 +93,6 @@ for ((sensor=1; sensor<=3; sensor++)); do
 done
 
 # cleanup
-echo "cleaning up temp files..."
+echo "cleaning up temporary files..."
 cd ../window_test/
 rm -r temp_training_data_$2 &> /dev/null
