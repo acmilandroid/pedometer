@@ -37,8 +37,8 @@ cd ../window_test/
 echo "cutting and normalizing data..."
 cd ../cut/
 ./9_cutnorm.sh $1 $2 $3 &> /dev/null
-mv *_cut.txt ../window_test/temp_training_data_$2/
-mv *_cutnorm.txt ../window_test/temp_training_data_$2/
+mv cutnorm_"$2"/* ../window_test/temp_training_data_$2/
+rm -r cutnorm_"$2" &> /dev/null
 
 # train models and get result
 echo "training models..."
