@@ -25,7 +25,7 @@
 #define DEBUG               0       //debug modes 1 and 2 for alternate prints
 #define PRINT               1       //print data
 #define SAMPLES_PER_STEP    7       //number of samples used per step
-#define MAX_STEPS_WINDOW    13      //maximum number of steps per window
+#define MAX_STEPS_5SEC      13      //maximum number of steps in 5 seconds
 
 
 int main(int argc, char *argv[]) {
@@ -219,13 +219,9 @@ int main(int argc, char *argv[]) {
 			if (DEBUG == 1) {
 				printf("%d...%d -> %d\n", windowIndex[i], windowIndex[i]+CUT, windowSteps[i]);
 			} else {
-                if (windowSteps[i] > -1) {														    // only trains on steps above -1, need to remove later
-                    if (windowSteps[i] > MAX_STEPS_WINDOW) {                                        // caps maximum steps in a window at MAX_STEPS_WINDOW
-                        windowSteps[i] = MAX_STEPS_WINDOW;
-                    }
-                    if (windowSteps[i] > 18) { 														// error if too many steps in a window
-                        printf("Error in file: %s\tSteps in window: %d\tIndex: %d\n", argv[3], windowSteps[i], i);
-                        exit(0);
+                if (windowSteps[i] > -1) {														         // only trains on steps above -1, need to remove later
+                    if (windowSteps[i] > MAX_STEPS_5SEC*CUT/75) {                                        // caps maximum steps in a window at MAX_STEPS_5SEC
+                        windowSteps[i] = MAX_STEPS_5SEC*CUT/75;
                     }
                     // if (windowSteps[i] == 0 || (k < 0 || k >= totalData)) {
                     //     printf("Zero detected in file: %s\n", argv[3]);
