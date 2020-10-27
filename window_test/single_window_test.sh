@@ -16,16 +16,16 @@ fi
 
 # remove old data
 echo "removing old data..."
-rm -r temp_training_data_$2 &> /dev/null
+rm -r temp_training_data_$2
 
 # create directory for data
-mkdir temp_training_data_$2 &> /dev/null
-mkdir models &> /dev/null
+mkdir temp_training_data_$2
+mkdir models
 
 # compile cutsteps.c
 cd ../cut/
-make clean &> /dev/null
-make &> /dev/null
+make clean
+make
 
 # create result CSV file
 echo "Window size,Gait,Sensor #,Predicted steps,Actual steps,Difference,RCA" > ../window_test/ALL_ALL_ALL_training_results_$2.csv
@@ -36,9 +36,9 @@ cd ../window_test/
 # create data
 echo "cutting and normalizing data..."
 cd ../cut/
-./9_cutnorm.sh $1 $2 $3 &> /dev/null
+./9_cutnorm.sh $1 $2 $3
 mv cutnorm_"$2"/* ../window_test/temp_training_data_$2/
-rm -r cutnorm_"$2" &> /dev/null
+rm -r cutnorm_"$2"
 
 # train models and get result
 echo "training models..."
@@ -94,4 +94,4 @@ done
 # cleanup
 echo "cleaning up temporary files..."
 cd ../window_test/
-rm -r temp_training_data_$2 &> /dev/null
+rm -r temp_training_data_$2
