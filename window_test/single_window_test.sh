@@ -94,4 +94,3 @@ done
 # cleanup
 echo "cleaning up temporary files..."
 cd ../window_test/
-rm -r temp_training_data_$2
