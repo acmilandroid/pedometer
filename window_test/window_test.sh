@@ -17,11 +17,10 @@ fi
 # remove old data
 echo "removing old data..."
 rm -r temp_training_data &> /dev/null
-rm -r models &> /dev/null
 
 # create directory for data
-mkdir temp_training_data
-mkdir models
+mkdir temp_training_data &> /dev/null
+mkdir models &> /dev/null
 
 # compile cutsteps.c
 cd ../cut/

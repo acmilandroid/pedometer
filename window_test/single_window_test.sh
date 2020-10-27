@@ -32,7 +32,6 @@ echo "Window size,Gait,Sensor #,Predicted steps,Actual steps,Difference,RCA" > .
 
 echo ".........................TESTING WINDOW SIZE OF $2........................."
 cd ../window_test/
-rm -r temp_training_data_$2/* &> /dev/null
 
 # create data
 echo "cutting and normalizing data..."
