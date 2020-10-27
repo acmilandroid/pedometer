@@ -11,5 +11,5 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./window_test.sh ../PedometerData/ $size 1
+./single_window_test.sh ../PedometerData/ $size 1
 
