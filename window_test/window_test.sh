@@ -5,7 +5,7 @@
 # Usage: ./window_test.sh [directory] [window_size_start] [window_size_end] [window_increment] [window_stride]
 # [directory] is top level dir containing all subject files
 # [window_size_start] [window_size_end] are in datum, not seconds!
-# creates ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cut.txt ALL_[gait]_[sensor#]_cutnorm.txt
+# creates ALL_ALL_ALL_training_results.csv
 
 echo "Bash version ${BASH_VERSION}"
 
