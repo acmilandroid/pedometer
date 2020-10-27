@@ -1,7 +1,7 @@
 #/bin/bash
 #PBS -N basill_single_window_test
-#PBS -l select=1:ncpus=16:mem=125gb:ngpus=1:gpu_model=p100
-#PBS -l walltime=72:00:00
+#PBS -l select=1:ncpus=16:mem=100gb:ngpus=1:gpu_model=p100
+#PBS -l walltime=24:00:00
 #PBS -e /home/basill/pedometer/pbs/job_output
 #PBS -o /home/basill/pedometer/pbs/job_output
 
