@@ -5,8 +5,6 @@
 #PBS -e /home/basill/pedometer/pbs/job_output
 #PBS -o /home/basill/pedometer/pbs/job_output
 
-# Usage: qsub window_test.pbs
-
 module load cuda/10.2.89-gcc/8.3.1 cudnn/8.0.0.180-10.2-linux-x64-gcc/8.3.1 anaconda3/2019.10-gcc/8.3.1
 
 source activate tf_env
