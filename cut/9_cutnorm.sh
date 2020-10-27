@@ -16,8 +16,8 @@ fi
 
 # clean old data
 echo "removing old data..."
-rm -r cutnorm_"$2" &> /dev/null
-mkdir cutnorm_"$2" &> /dev/null
+rm -r cutnorm_"$2"
+mkdir cutnorm_"$2"
 
 # cut data
 echo "cutting data..."
@@ -36,14 +36,14 @@ done
 
 # normalize data
 echo "normalizing data..."
-python3 normalize.py cutnorm_"$2"/ALL_Regular_1_cut.txt cutnorm_"$2"/ALL_Regular_1_cutnorm.txt 0 1 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_Regular_2_cut.txt cutnorm_"$2"/ALL_Regular_2_cutnorm.txt 0 2 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_Regular_3_cut.txt cutnorm_"$2"/ALL_Regular_3_cutnorm.txt 0 3 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_SemiRegular_1_cut.txt cutnorm_"$2"/ALL_SemiRegular_1_cutnorm.txt 0 1 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_SemiRegular_2_cut.txt cutnorm_"$2"/ALL_SemiRegular_2_cutnorm.txt 0 2 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_SemiRegular_3_cut.txt cutnorm_"$2"/ALL_SemiRegular_3_cutnorm.txt 0 3 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_Irregular_1_cut.txt cutnorm_"$2"/ALL_Irregular_1_cutnorm.txt 0 1 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_Irregular_2_cut.txt cutnorm_"$2"/ALL_Irregular_2_cutnorm.txt 0 2 &> /dev/null
-python3 normalize.py cutnorm_"$2"/ALL_Irregular_3_cut.txt cutnorm_"$2"/ALL_Irregular_3_cutnorm.txt 0 3 &> /dev/null
+python3 normalize.py cutnorm_"$2"/ALL_Regular_1_cut.txt cutnorm_"$2"/ALL_Regular_1_cutnorm.txt 0 1
+python3 normalize.py cutnorm_"$2"/ALL_Regular_2_cut.txt cutnorm_"$2"/ALL_Regular_2_cutnorm.txt 0 2
+python3 normalize.py cutnorm_"$2"/ALL_Regular_3_cut.txt cutnorm_"$2"/ALL_Regular_3_cutnorm.txt 0 3
+python3 normalize.py cutnorm_"$2"/ALL_SemiRegular_1_cut.txt cutnorm_"$2"/ALL_SemiRegular_1_cutnorm.txt 0 1
+python3 normalize.py cutnorm_"$2"/ALL_SemiRegular_2_cut.txt cutnorm_"$2"/ALL_SemiRegular_2_cutnorm.txt 0 2
+python3 normalize.py cutnorm_"$2"/ALL_SemiRegular_3_cut.txt cutnorm_"$2"/ALL_SemiRegular_3_cutnorm.txt 0 3
+python3 normalize.py cutnorm_"$2"/ALL_Irregular_1_cut.txt cutnorm_"$2"/ALL_Irregular_1_cutnorm.txt 0 1
+python3 normalize.py cutnorm_"$2"/ALL_Irregular_2_cut.txt cutnorm_"$2"/ALL_Irregular_2_cutnorm.txt 0 2
+python3 normalize.py cutnorm_"$2"/ALL_Irregular_3_cut.txt cutnorm_"$2"/ALL_Irregular_3_cutnorm.txt 0 3
 
 echo "Done cutting and normalizing data. Use ALL_[gait]_[sensor#]_cutnorm.txt for testing."
