@@ -51,7 +51,7 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$4)); do
 
     for ((sensor=1; sensor<=3; sensor++)); do
 
-        echo "training Sensor0$sensor..."
+        echo "training {Regular, Sensor0$sensor}..."
 
         python3 train_model.py ../window_test/temp_training_data/ALL_Regular_"$sensor"_cutnorm.txt $windowsize $5 ../window_test/models/ALL_Regular_"$sensor"_"$windowsize"_model.h5 > ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_results.txt
         pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTraining run count accuracy:.*" ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data/ALL_Regular_"$sensor"_"$windowsize"_important.txt
@@ -65,6 +65,8 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$4)); do
         done
         echo "" >> ../window_test/ALL_ALL_ALL_training_results.csv
 
+        echo "training {SemiRegular, Sensor0$sensor}..."
+
         python3 train_model.py ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_cutnorm.txt $windowsize $5 ../window_test/models/ALL_SemiRegular_"$sensor"_"$windowsize"_model.h5 > ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_results.txt
         pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTraining run count accuracy:.*" ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data/ALL_SemiRegular_"$sensor"_"$windowsize"_important.txt
         echo -n "$windowsize," >> ../window_test/ALL_ALL_ALL_training_results.csv
@@ -76,6 +78,8 @@ for ((windowsize=$2; windowsize<=$3; windowsize+=$4)); do
             echo -n "," >> ../window_test/ALL_ALL_ALL_training_results.csv
         done
         echo "" >> ../window_test/ALL_ALL_ALL_training_results.csv
+
+        echo "training {Irregular, Sensor0$sensor}..."
 
         python3 train_model.py ../window_test/temp_training_data/ALL_Irregular_"$sensor"_cutnorm.txt $windowsize $5 ../window_test/models/ALL_Irregular_"$sensor"_"$windowsize"_model.h5 > ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_results.txt
         pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTraining run count accuracy:.*" ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data/ALL_Irregular_"$sensor"_"$windowsize"_important.txt
