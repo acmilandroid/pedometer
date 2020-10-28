@@ -1,0 +1,10 @@
+Window size,Gait,Sensor #,Predicted steps,Actual steps,Difference,RCA
+60,Regular,1,4364.0,4315.0,49.0,1.0114,
+60,SemiRegular,1,2823.0,2679.0,144.0,1.0538,
+60,Irregular,1,939.0,868.0,71.0,1.0818,
+60,Regular,2,4206.0,4315.0,109.0,0.9747,
+60,SemiRegular,2,2630.0,2679.0,49.0,0.9817,
+60,Irregular,2,698.0,640.0,58.0,1.0906,
+60,Regular,3,3262.0,3214.0,48.0,1.0149,
+60,SemiRegular,3,2106.0,2065.0,41.0,1.0199,
+60,Irregular,3,629.0,640.0,11.0,0.9828,
