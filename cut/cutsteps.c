@@ -202,12 +202,7 @@ int main(int argc, char *argv[]) {
 				//floatWindowSteps[totalWindows] += ((float)(stepEnd - stepStart + 1) / (float)SAMPLES_PER_STEP);
 			}
 		}
-
-		//something's wrong, over 18 steps in a window
-		if (windowSteps[totalWindows] > 18) {
-            printf("Error in file: %s\tSteps in window: %d\n", argv[3], windowSteps[totalWindows]);
-            exit(0);
-        }
+        
 		totalWindows++;
 	}
 
