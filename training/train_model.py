@@ -72,8 +72,8 @@ if (WEIGHTED == True):
 
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=30, strides=5, activation='relu'),
-    keras.layers.Conv1D(filters=10, kernel_size=5, activation='relu'),
+    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=5, strides=5, activation='relu'),
+    keras.layers.Conv1D(filters=10, kernel_size=3, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
     keras.layers.Dense(1)
     # keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES,), filters=100, kernel_size=6, activation='relu'),
