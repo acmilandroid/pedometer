@@ -11,5 +11,5 @@ source activate tf_env
 cd
 cd pedometer/training/
 
-python3 train_mode.py ../data/cutnorm_15/ALL_Regular_1_cutnorm.txt 1 1 ALL_Regular_1_cutnorm_15_model.h5
+python3 train_model.py ../data/cutnorm_15/ALL_Regular_1_cutnorm.txt 1 1 ALL_Regular_1_cutnorm_15_model.h5
 
