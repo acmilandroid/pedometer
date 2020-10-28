@@ -70,11 +70,9 @@ if (WEIGHTED == True):
 # sparse_categorical_crossentropy loss function for changing to categories
 # add another actuation function after the dense layer
 
-print(features_input)
-
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=5, strides=1, activation='relu'),
+    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=10, strides=1, activation='relu'),
     keras.layers.Conv1D(filters=10, kernel_size=5, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
     keras.layers.Dense(1)
