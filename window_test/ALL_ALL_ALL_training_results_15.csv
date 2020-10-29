@@ -1,0 +1,10 @@
+Window size,Gait,Sensor #,Training predicted steps,Training actual steps,Training difference,Training RCA,Testing predicted steps,Testing actual steps,Testing difference,Testing RCA
+15,Regular,1,1680.0,1685.0,5.0,0.9970,423.0,454.0,31.0,0.9317,
+15,SemiRegular,1,1062.0,1055.0,7.0,1.0066,274.0,288.0,14.0,0.9514,
+15,Irregular,1,346.0,330.0,16.0,1.0485,81.0,85.0,4.0,0.9529,
+15,Regular,2,1695.0,1685.0,10.0,1.0059,452.0,454.0,2.0,0.9956,
+15,SemiRegular,2,1087.0,1055.0,32.0,1.0303,307.0,288.0,19.0,1.0660,
+15,Irregular,2,353.0,330.0,23.0,1.0697,76.0,85.0,9.0,0.8941,
+15,Regular,3,1642.0,1685.0,43.0,0.9745,441.0,454.0,13.0,0.9714,
+15,SemiRegular,3,1060.0,1055.0,5.0,1.0047,286.0,288.0,2.0,0.9931,
+15,Irregular,3,242.0,330.0,88.0,0.7333,68.0,85.0,17.0,0.8000,
