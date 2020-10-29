@@ -64,7 +64,7 @@ for ((sensor=1; sensor<=3; sensor++)); do
     echo "training {SemiRegular, Sensor0$sensor}..."
 
     python3 train_model.py ../window_test/temp_training_data_$2/ALL_SemiRegular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models/ALL_SemiRegular_"$sensor"_"$2"_model.h5 > ../window_test/temp_training_data_$2/ALL_SemiRegular_"$sensor"_"$2"_results.txt
-    pcregrep -M "Training predicted steps:.*\nTraining actual steps:.*\nTraining difference in steps:.*\nTraining RCA:.*\nTesting predicted steps:.*\nTesting actual steps:.*\nTesting difference in steps:.*\nTesting RCA:.*" ../window_test/temp_training_data_$2/ALL_Regular_"$sensor"_"$2"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data_$2/ALL_Regular_"$sensor"_"$2"_important.txt
+    pcregrep -M "Training predicted steps:.*\nTraining actual steps:.*\nTraining difference in steps:.*\nTraining RCA:.*\nTesting predicted steps:.*\nTesting actual steps:.*\nTesting difference in steps:.*\nTesting RCA:.*" ../window_test/temp_training_data_$2/ALL_SemiRegular_"$sensor"_"$2"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data_$2/ALL_SemiRegular_"$sensor"_"$2"_important.txt
     echo -n "$2," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
     echo -n "SemiRegular," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
     echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
@@ -78,7 +78,7 @@ for ((sensor=1; sensor<=3; sensor++)); do
     echo "training {Irregular, Sensor0$sensor}..."
 
     python3 train_model.py ../window_test/temp_training_data_$2/ALL_Irregular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models/ALL_Irregular_"$sensor"_"$2"_model.h5 > ../window_test/temp_training_data_$2/ALL_Irregular_"$sensor"_"$2"_results.txt
-    pcregrep -M "Training predicted steps:.*\nTraining actual steps:.*\nTraining difference in steps:.*\nTraining RCA:.*\nTesting predicted steps:.*\nTesting actual steps:.*\nTesting difference in steps:.*\nTesting RCA:.*" ../window_test/temp_training_data_$2/ALL_Regular_"$sensor"_"$2"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data_$2/ALL_Regular_"$sensor"_"$2"_important.txt
+    pcregrep -M "Training predicted steps:.*\nTraining actual steps:.*\nTraining difference in steps:.*\nTraining RCA:.*\nTesting predicted steps:.*\nTesting actual steps:.*\nTesting difference in steps:.*\nTesting RCA:.*" ../window_test/temp_training_data_$2/ALL_Irregular_"$sensor"_"$2"_results.txt | sed 's/^.*: //' > ../window_test/temp_training_data_$2/ALL_Irregular_"$sensor"_"$2"_important.txt
     echo -n "$2," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
     echo -n "Irregular," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
     echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
