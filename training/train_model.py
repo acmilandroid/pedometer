@@ -64,6 +64,10 @@ print("features_input has shape", features_input.shape)
 batches = features_input.shape[0]
 
 # split into training and testing data
+train_data = []
+test_data = []
+train_labels = []
+test_labels = []
 split_start = 0
 split_end = int(DATA_SPLIT * len(rawdata))
 print("Splitting data from rows", split_start, "to", split_end)
@@ -74,6 +78,10 @@ test_labels[0:] = np.delete(labels, slice(split_start, split_end), 0)
 
 train_samples = len(train_labels)
 test_samples = len(test_labels)
+train_data = np.array(train_data)
+train_labels = np.array(train_labels)
+test_data = np.array(test_data)
+test_labels = np.array(test_labels)
 
 print(len(train_data))
 print(len(train_labels))
