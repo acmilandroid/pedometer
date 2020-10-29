@@ -7,6 +7,7 @@
 # globals for switching program functionality
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 WEIGHTED = False    # whether or not to weight the labels (keep False if data is balanced prior to training)
+DATA_SPLIT = 0.8    # ratio of data to use as training
 
 # import system for command line arguments
 import sys
@@ -62,13 +63,27 @@ for i in range(0, num_samples):
 print("features_input has shape", features_input.shape)
 batches = features_input.shape[0]
 
+# split into training and testing data
+split_start = 0
+split_end = int(DATA_SPLIT * len(rawdata))
+print("Splitting data from rows", split_start, "to", split_end)
+train_data[0:] = features_input[split_start:split_end]
+test_data[0:] = np.delete(features_input, slice(split_start, split_end), 0)
+train_labels[0:] = labels[split_start:split_end]
+test_labels[0:] = np.delete(labels, slice(split_start, split_end), 0)
+
+train_samples = len(train_labels)
+test_samples = len(test_labels)
+
+print(len(train_data))
+print(len(train_labels))
+print(len(test_data))
+print(len(test_labels))
+
 # set weight classes based on original distribution if weights are turned on
 if (WEIGHTED == True):
-    values, counts = np.unique(labels, return_counts=True)
+    values, counts = np.unique(train_labels, return_counts=True)
     class_weight = dict(zip(values, counts))
-
-# sparse_categorical_crossentropy loss function for changing to categories
-# add another actuation function after the dense layer
 
 # set up classifier
 model = keras.Sequential([
@@ -76,11 +91,6 @@ model = keras.Sequential([
     keras.layers.Conv1D(filters=10, kernel_size=5, activation='relu'),
     keras.layers.Flatten(),  # must flatten to feed dense layer
     keras.layers.Dense(1)
-    # keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES,), filters=100, kernel_size=6, activation='relu'),
-    # keras.layers.MaxPooling1D(pool_size=6),
-    # keras.layers.Flatten(),  # must flatten to feed dense layer
-    # keras.layers.Dense(50, activation='relu'),
-    # keras.layers.Dense(1)
 ])
 
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_absolute_error'])
@@ -90,40 +100,60 @@ model.summary()
 
 print("Training...")
 if (WEIGHTED == True):
-    metrics = model.fit(features_input, labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
+    metrics = model.fit(train_data, train_labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
 else:
-    metrics = model.fit(features_input, labels, epochs=1, verbose=2, callbacks=[es])
+    metrics = model.fit(train_data, train_labels, epochs=1, verbose=2, callbacks=[es])
 
 # print("Testing")
-# loss, accuracy = model.evaluate(features_input, labels)
+# loss, accuracy = model.evaluate(train_data, train_labels)
 # print("Validation loss:", loss)
 # print("Validation Mean Absolute Error:", accuracy)
 
-predictions = model.predict(features_input)
-
 # find average difference
-predicted_steps = 0
-actual_steps = 0
-predictions = model.predict(features_input)
+train_predicted_steps = 0
+train_actual_steps = 0
+test_predicted_steps = 0
+test_actual_steps = 0
+train_predictions = model.predict(train_data)
+test_predictions = model.predict(test_data)
 
-# loop through all windows
-for i in range(0, num_samples):
-    # don't let predictions be negative
-    if predictions[i][0] < 0:
-        predictions[i][0] = 0
-    predicted_steps += predictions[i][0] / window_size * window_stride  # integrate window to get step count
-    actual_steps += labels[i] / window_size * window_stride
+# loop through all training windows
+for i in range(0, train_samples):
+    # don't let train_predictions be negative
+    if train_predictions[i][0] < 0:
+        train_predictions[i][0] = 0
+    train_predicted_steps += train_predictions[i][0] / window_size * window_stride  # integrate window to get step count
+    train_actual_steps += train_labels[i] / window_size * window_stride
 
-# calculate difference
-predicted_steps = round(predicted_steps)
-actual_steps = round(actual_steps)
-diff = abs(predicted_steps-actual_steps)
+# loop through all testing windows
+for i in range(0, test_samples):
+    # don't let test_predictions be negative
+    if test_predictions[i][0] < 0:
+        test_predictions[i][0] = 0
+    test_predicted_steps += test_predictions[i][0] / window_size * window_stride  # integrate window to get step count
+    test_actual_steps += test_labels[i] / window_size * window_stride
+
+# calculate training difference
+train_predicted_steps = round(train_predicted_steps)
+train_actual_steps = round(train_actual_steps)
+train_diff = abs(train_predicted_steps-train_actual_steps)
+
+# calculate testing difference
+test_predicted_steps = round(test_predicted_steps)
+test_actual_steps = round(test_actual_steps)
+test_diff = abs(test_predicted_steps-test_actual_steps)
 
 # print training results
-print("Predicted steps:", predicted_steps)
-print("Actual steps:", actual_steps)
-print("Difference in steps:", diff)
-print("Training run count accuracy: %.4f" %(predicted_steps/actual_steps))
+print("Training predicted steps:", train_predicted_steps)
+print("Training actual steps:", train_actual_steps)
+print("Training difference in steps:", train_diff)
+print("Training RCA: %.4f" %(train_predicted_steps/train_actual_steps))
+
+# print testing results
+print("Testing predicted steps:", test_predicted_steps)
+print("Testing actual steps:", test_actual_steps)
+print("Testing difference in steps:", test_diff)
+print("Testing RCA: %.4f" %(test_predicted_steps/test_actual_steps))
 
 # save model
 model.save(sys.argv[4])
