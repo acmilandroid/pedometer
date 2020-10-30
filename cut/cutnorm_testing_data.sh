@@ -42,9 +42,9 @@ for d in $1*; do
             echo "Normalizing per axis per sensor..."
             for ((sensor=1; sensor<=3; sensor++)) do
                 echo "Normalizing Sensor0$sensor..."
-                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cutnorm.txt" 0 $sensor > /dev/null
-                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cutnorm.txt" 0 $sensor > /dev/null
-                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cutnorm.txt" 0 $sensor > /dev/null
+                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cutnorm.txt" 0 $sensor
+                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cutnorm.txt" 0 $sensor
+                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cutnorm.txt" 0 $sensor
             done
         fi
 
@@ -53,9 +53,9 @@ for d in $1*; do
             echo "Normalizing from -1.5 to 1.5 gravities..."
             for ((sensor=1; sensor<=3; sensor++)) do
                 echo "Normalizing Sensor0$sensor..."
-                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cutnorm.txt" 1 > /dev/null
-                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cutnorm.txt" 1 > /dev/null
-                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cutnorm.txt" 1 > /dev/null
+                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cutnorm.txt" 1
+                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cutnorm.txt" 1
+                python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cutnorm.txt" 1
             done
         fi
 
