@@ -13,6 +13,17 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
+# remove old files
+echo "Removing old files..."
+for ((sensor=1; sensor<=3; sensor++)); do
+	rm testing_Regular_"$sensor"_cutnorm.txt
+	rm testing_SemiRegular_"$sensor"_cutnorm.txt
+	rm testing_Irregular_"$sensor"_cutnorm.txt
+	rm training_Regular_"$sensor"_cutnorm.txt
+	rm training_SemiRegular_"$sensor"_cutnorm.txt
+	rm training_Irregular_"$sensor"_cutnorm.txt
+done
+
 # get number of subjects in directory
 cd $1
 subjects=$(ls | wc -l)
@@ -37,6 +48,7 @@ fold_end=$(($subjects/$2*$3))
 fold_start=$(($fold_end-$subjects/$2+1))
 
 # create testing data
+echo "Creating testing data..."
 for ((subject=$fold_start; subject<=$fold_end; subject++)); do
 	for ((sensor=1; sensor<=3; sensor++)); do
 		cat "$subject"_Regular_"$sensor"_cutnorm.txt >> testing_Regular_"$sensor"_cutnorm.txt
@@ -46,6 +58,7 @@ for ((subject=$fold_start; subject<=$fold_end; subject++)); do
 done
 
 # create training data
+echo "Creating training data..."
 for ((subject=1; subject<=$subjects; subject++)); do
 	# if not in the withheld testing subjects
 	if (($subject<$fold_start || $subject>$fold_end)); then
