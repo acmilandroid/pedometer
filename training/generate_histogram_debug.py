@@ -8,7 +8,7 @@ import sys
 
 # checks if input args are correct
 if len(sys.argv) != 3:
-    sys.exit("Usage: python3 generate_histogram_debug.py [input_debug_file.txt] [histogram_output.png]")
+	sys.exit("Usage: python3 generate_histogram_debug.py [input_debug_file.txt] [histogram_output.png]")
 
 # import stuff
 import warnings
@@ -22,8 +22,8 @@ import csv
 # open file
 print("Loading file...")
 with open(sys.argv[1], newline='\n') as fpt:
-    reader = csv.reader(fpt, delimiter=',')
-    data = list(reader)
+	reader = csv.reader(fpt, delimiter=',')
+	data = list(reader)
 
 predicted_steps = list(line[4] for line in data)                    # get column 5 (predicted steps in window)
 gt_steps = list(line[3] for line in data)                           # get column 4 (gt steps in window)

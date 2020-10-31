@@ -19,10 +19,10 @@ import sys
 # checks for correct number of command line args
 debug = 0
 if len(sys.argv) != 6:
-    if len(sys.argv) == 7:  # debug on
-        debug = 1
-    else:                   # incorrect number of command line arguments
-        sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug.csv]")
+	if len(sys.argv) == 7:  # debug on
+		debug = 1
+	else:                   # incorrect number of command line arguments
+		sys.exit("Usage: python3 test_model.py [model_name.h5] [window_size] [input_file.txt] [steps.txt] [print 0|1] [debug.csv]")
 
 window_size = int(sys.argv[2])
 
@@ -70,9 +70,9 @@ print("features_normalized has shape", features_normalized.shape)
 print("Reshaping normalized features for training...")
 features_input = np.zeros((len(features_normalized), window_size, TOTAL_FEATURES))
 for i in range(0, num_samples):
-    for j in range(0, window_size):
-        for k in range(0, TOTAL_FEATURES):
-            features_input[i][j][k] = features_normalized[i][k*window_size + j]
+	for j in range(0, window_size):
+		for k in range(0, TOTAL_FEATURES):
+			features_input[i][j][k] = features_normalized[i][k*window_size + j]
 print("features_input has shape", features_input.shape)
 
 # test model on features
@@ -90,37 +90,37 @@ gt_steps_sum = 0
 
 # write header columns to debug.csv
 if debug == 1:
-    filename = sys.argv[6]
-    if os.path.isfile(filename): 
-        debug_file = open(filename, "w")
-        debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
-        debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
-    else: 
-        debug_file = open(filename, "a+")
+	filename = sys.argv[6]
+	if os.path.isfile(filename): 
+		debug_file = open(filename, "w")
+		debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
+		debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
+	else: 
+		debug_file = open(filename, "a+")
 
 # loop through all windows
 for i in range(0, num_samples):
-    # print(labels[i], "\t", predictions[i][0])
-    predicted_steps += predictions[i][0] / window_size * TESTING_STRIDE # integrate window to get step count
-    gt_steps_sum += labels[i] / window_size * TESTING_STRIDE            # calculate running gt step sum
-    step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
-    prev_predicted_steps = int(predicted_steps)
-    # write information to debug.csv
-    if debug == 1:
-        debug_file.write(str(i) + "," + str(first_step-int(window_size) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
-        debug_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
-        debug_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
-    # mark detected steps when the number of steps changes
-    if step_delta > 0:
-        for j in range (0, step_delta):
-            predicted_step_indices.append(first_step-int(window_size/2) + TESTING_STRIDE*i)
-        if debug == 1:
-            debug_file.write(str(first_step-int(window_size/2) + TESTING_STRIDE*i) + "\n")
-    elif debug == 1:
-        debug_file.write("None\n")
+	# print(labels[i], "\t", predictions[i][0])
+	predicted_steps += predictions[i][0] / window_size * TESTING_STRIDE # integrate window to get step count
+	gt_steps_sum += labels[i] / window_size * TESTING_STRIDE            # calculate running gt step sum
+	step_delta = int(predicted_steps) - prev_predicted_steps            # find difference in steps for each window shift
+	prev_predicted_steps = int(predicted_steps)
+	# write information to debug.csv
+	if debug == 1:
+		debug_file.write(str(i) + "," + str(first_step-int(window_size) + TESTING_STRIDE*i) + "," + str(first_step + TESTING_STRIDE*i-1) + ",")
+		debug_file.write(str(labels[i]) + "," + str(predictions[i][0]) + "," + str(gt_steps_sum) + ",")
+		debug_file.write(str(predicted_steps) + "," + str(step_delta) + ",")
+	# mark detected steps when the number of steps changes
+	if step_delta > 0:
+		for j in range (0, step_delta):
+			predicted_step_indices.append(first_step-int(window_size/2) + TESTING_STRIDE*i)
+		if debug == 1:
+			debug_file.write(str(first_step-int(window_size/2) + TESTING_STRIDE*i) + "\n")
+	elif debug == 1:
+		debug_file.write("None\n")
 
 if debug == 1:
-    debug_file.close()
+	debug_file.close()
 
 print("Average steps detected per slide:", predicted_steps/num_samples)
 
@@ -131,38 +131,38 @@ diff = abs(predicted_steps-actual_steps)
 
 # write steps detected if user has print=1
 if (int(sys.argv[5]) == 1):
-    steps_file = open("predicted_steps.txt", "w")
-    steps_file.write('\n'.join(map(str, predicted_step_indices)))
-    steps_file.close()
+	steps_file = open("predicted_steps.txt", "w")
+	steps_file.write('\n'.join(map(str, predicted_step_indices)))
+	steps_file.close()
 
 # loop through and get FP, FN, TP
 gt_steps.sort()
 i = j = fp = fn = tp = 0
 while i < len(predicted_step_indices) and j < len(gt_steps):
-    if predicted_step_indices[i] < gt_steps[j] - RANGE:
-        i += 1
-        fp += 1
-    elif predicted_step_indices[i] > gt_steps[j] + RANGE:
-        j += 1
-        fn += 1
-    else:
-        tp += 1
-        i += 1
-        j += 1
+	if predicted_step_indices[i] < gt_steps[j] - RANGE:
+		i += 1
+		fp += 1
+	elif predicted_step_indices[i] > gt_steps[j] + RANGE:
+		j += 1
+		fn += 1
+	else:
+		tp += 1
+		i += 1
+		j += 1
 
 # get remaining fp and fn if they do not match in count
 if diff < 0:
-    fp -= diff
+	fp -= diff
 else:
-    fn += diff
+	fn += diff
 
 # calculate SDA metrics
 ppv = tp / (tp + fp)
 sensitivity = tp / (tp + fn)
 if (ppv + sensitivity == 0):
-    f1 = 0
+	f1 = 0
 else:
-    f1 = 2*ppv*sensitivity / (ppv + sensitivity)
+	f1 = 2*ppv*sensitivity / (ppv + sensitivity)
 
 # print testing results
 print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)

@@ -14,7 +14,7 @@ import sys
 
 # checks for correct number of command line args
 if len(sys.argv) != 5:
-    sys.exit("Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride] [model_name.h5]")
+	sys.exit("Usage: python3 train_model.py [input_file.txt] [window_size] [window_stride] [model_name.h5]")
 
 window_size = int(sys.argv[2])
 window_stride = int(sys.argv[3])
@@ -57,9 +57,9 @@ print("features_normalized has shape", features_normalized.shape)
 print("Reshaping normalized features for training...")
 features_input = np.zeros((len(features_normalized), window_size, TOTAL_FEATURES))
 for i in range(0, num_samples):
-    for j in range(0, window_size):
-        for k in range(0, TOTAL_FEATURES):
-            features_input[i][j][k] = features_normalized[i][k*window_size + j]
+	for j in range(0, window_size):
+		for k in range(0, TOTAL_FEATURES):
+			features_input[i][j][k] = features_normalized[i][k*window_size + j]
 print("features_input has shape", features_input.shape)
 batches = features_input.shape[0]
 
@@ -90,15 +90,15 @@ print(len(test_labels))
 
 # set weight classes based on original distribution if weights are turned on
 if (WEIGHTED == True):
-    values, counts = np.unique(train_labels, return_counts=True)
-    class_weight = dict(zip(values, counts))
+	values, counts = np.unique(train_labels, return_counts=True)
+	class_weight = dict(zip(values, counts))
 
 # set up classifier
 model = keras.Sequential([
-    keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=10, strides=1, activation='relu'),
-    keras.layers.Conv1D(filters=10, kernel_size=5, activation='relu'),
-    keras.layers.Flatten(),  # must flatten to feed dense layer
-    keras.layers.Dense(1)
+	keras.layers.Conv1D(input_shape=(window_size, TOTAL_FEATURES), filters=10, kernel_size=10, strides=1, activation='relu'),
+	keras.layers.Conv1D(filters=10, kernel_size=5, activation='relu'),
+	keras.layers.Flatten(),  # must flatten to feed dense layer
+	keras.layers.Dense(1)
 ])
 
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_absolute_error'])
@@ -108,9 +108,9 @@ model.summary()
 
 print("Training...")
 if (WEIGHTED == True):
-    metrics = model.fit(train_data, train_labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
+	metrics = model.fit(train_data, train_labels, epochs=200, verbose=2, callbacks=[es], class_weight=class_weight)
 else:
-    metrics = model.fit(train_data, train_labels, epochs=200, verbose=2, callbacks=[es])
+	metrics = model.fit(train_data, train_labels, epochs=200, verbose=2, callbacks=[es])
 
 # print("Testing")
 # loss, accuracy = model.evaluate(train_data, train_labels)
@@ -127,19 +127,19 @@ test_predictions = model.predict(test_data)
 
 # loop through all training windows
 for i in range(0, train_samples):
-    # don't let train_predictions be negative
-    if train_predictions[i][0] < 0:
-        train_predictions[i][0] = 0
-    train_predicted_steps += train_predictions[i][0] / window_size * window_stride  # integrate window to get step count
-    train_actual_steps += train_labels[i] / window_size * window_stride
+	# don't let train_predictions be negative
+	if train_predictions[i][0] < 0:
+		train_predictions[i][0] = 0
+	train_predicted_steps += train_predictions[i][0] / window_size * window_stride  # integrate window to get step count
+	train_actual_steps += train_labels[i] / window_size * window_stride
 
 # loop through all testing windows
 for i in range(0, test_samples):
-    # don't let test_predictions be negative
-    if test_predictions[i][0] < 0:
-        test_predictions[i][0] = 0
-    test_predicted_steps += test_predictions[i][0] / window_size * window_stride  # integrate window to get step count
-    test_actual_steps += test_labels[i] / window_size * window_stride
+	# don't let test_predictions be negative
+	if test_predictions[i][0] < 0:
+		test_predictions[i][0] = 0
+	test_predicted_steps += test_predictions[i][0] / window_size * window_stride  # integrate window to get step count
+	test_actual_steps += test_labels[i] / window_size * window_stride
 
 # calculate training difference
 train_predicted_steps = round(train_predicted_steps)

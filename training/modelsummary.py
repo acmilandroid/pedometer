@@ -7,7 +7,7 @@
 import sys
 
 if len(sys.argv) != 2:
-    sys.exit("Usage: python3 test_model.py [model_name.h5]")
+	sys.exit("Usage: python3 test_model.py [model_name.h5]")
 
 # import other stuff so I don't slow down the Usage warning
 import warnings
