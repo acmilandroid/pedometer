@@ -15,6 +15,7 @@ fi
 
 # remove old files
 echo "Removing old files..."
+cd $1
 for ((sensor=1; sensor<=3; sensor++)); do
 	rm testing_Regular_"$sensor"_cutnorm.txt
 	rm testing_SemiRegular_"$sensor"_cutnorm.txt
@@ -25,7 +26,6 @@ for ((sensor=1; sensor<=3; sensor++)); do
 done
 
 # get number of subjects in directory
-cd $1
 subjects=$(ls | wc -l)
 (($subject = $subjects / 18))
 echo "$subjects subjects in directory $1"
