@@ -1,7 +1,7 @@
 #!/bin/bash
 # Basil Lin
 # Uses cutnorm data and create testing and training files
-# Usage: ./create_test_train.sh [directory] [num_folds] [fold_num]
+# Usage: ./create_trainandtest.sh [directory] [num_folds] [fold_num]
 # [directory] is top level dir containing all cut and normalized subject data files for testing
 # [num_folds] is the total number of folds for the test
 # [fold_num] is the fold number to cut for testing. Smaller folds are earlier data
@@ -9,7 +9,7 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 3 ]; then
-    echo "Usage: ./create_test_train.sh [directory] [num_folds] [fold_num]"
+    echo "Usage: ./create_trainandtest.sh [directory] [num_folds] [fold_num]"
     exit 1
 fi
 
