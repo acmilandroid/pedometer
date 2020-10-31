@@ -2,7 +2,7 @@
 # Basil Lin
 # Step counter project
 # Cuts and normalizes each csv file in [directory] for testing
-# Usage: ./cutnorm_testing_data.sh [directory] [window_size] [normalization_type]
+# Usage: ./cutnorm.sh [directory] [window_size] [normalization_type]
 # [directory] is top level dir containing all subject files
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
 # cutsteps executable must be compiled in ../cut/cutsteps
@@ -12,7 +12,7 @@ echo "Bash version ${BASH_VERSION}"
 
 # usage warning
 if [ "$#" -ne 3 ]; then
-    echo "Usage: ./cutnorm_testing_data.sh [directory] [window_size] [normalization_type]"
+    echo "Usage: ./cutnorm.sh [directory] [window_size] [normalization_type]"
     exit 1
 fi
 
