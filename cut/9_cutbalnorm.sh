@@ -10,8 +10,8 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 3 ]; then
-    echo "Usage: 9_cutbalnorm.sh [directory] [window_size] [window_stride]"
-    exit 1
+	echo "Usage: 9_cutbalnorm.sh [directory] [window_size] [window_stride]"
+	exit 1
 fi
 
 # clean old data
@@ -23,15 +23,15 @@ rm *_cutbalnorm.txt &> /dev/null
 echo "cutting data..."
 num=0
 for d in $1*; do
-    if [ -d "$d" ]; then
-        echo "$d"
-        ((num++))
-        for ((sensor=1; sensor<=3; sensor++)); do
-            ./cutsteps $2 $3 $d"/Regular/Sensor0"$sensor".csv" $d"/Regular/steps.txt" >> "ALL_Regular_"$sensor"_cut.txt"
-            ./cutsteps $2 $3 $d"/SemiRegular/Sensor0"$sensor".csv" $d"/SemiRegular/steps.txt" >> "ALL_SemiRegular_"$sensor"_cut.txt"
-            ./cutsteps $2 $3 $d"/Irregular/Sensor0"$sensor".csv" $d"/Irregular/steps.txt" >> "ALL_Irregular_"$sensor"_cut.txt"
-        done
-    fi
+	if [ -d "$d" ]; then
+		echo "$d"
+		((num++))
+		for ((sensor=1; sensor<=3; sensor++)); do
+			./cutsteps $2 $3 $d"/Regular/Sensor0"$sensor".csv" $d"/Regular/steps.txt" >> "ALL_Regular_"$sensor"_cut.txt"
+			./cutsteps $2 $3 $d"/SemiRegular/Sensor0"$sensor".csv" $d"/SemiRegular/steps.txt" >> "ALL_SemiRegular_"$sensor"_cut.txt"
+			./cutsteps $2 $3 $d"/Irregular/Sensor0"$sensor".csv" $d"/Irregular/steps.txt" >> "ALL_Irregular_"$sensor"_cut.txt"
+		done
+	fi
 done
 
 # balance data

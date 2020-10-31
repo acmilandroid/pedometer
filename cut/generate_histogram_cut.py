@@ -8,7 +8,7 @@ import sys
 
 # checks if input args are correct
 if len(sys.argv) != 3:
-    sys.exit("Usage: python3 generate_histogram_cut.py [input_cut.txt] [histogram_output.png]")
+	sys.exit("Usage: python3 generate_histogram_cut.py [input_cut.txt] [histogram_output.png]")
 
 # import stuff
 import warnings
@@ -22,8 +22,8 @@ import csv
 # open file
 print("Loading file...")
 with open(sys.argv[1], newline='\n') as fpt:
-    reader = csv.reader(fpt, delimiter='\t')
-    data = list(reader)
+	reader = csv.reader(fpt, delimiter='\t')
+	data = list(reader)
 
 histdata = list(float(line[0]) for line in data)    # get column 0 gt steps in window
 histdata = np.array(histdata)                       # convert to array
