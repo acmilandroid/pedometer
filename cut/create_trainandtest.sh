@@ -27,6 +27,7 @@ done
 # get number of subjects in directory
 cd $1
 subjects=$(ls | wc -l)
+(($subject = $subjects / 18))
 echo "$subjects subjects in directory $1"
 
 # error handling
