@@ -54,7 +54,7 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 done
 
 # write data to csv file
-echo "Window size,Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $6
+echo "Window size,Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $4
 for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW_INCREMENT )); do
 
 	line=0
@@ -70,106 +70,106 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((line = 63 * $i + 21 * $j))
 
 			# regular sensor data
-			echo -n "$window_size," >> $6
+			echo -n "$window_size," >> $4
 			((print = i + 1 ))
-			echo -n "$print," >> $6
-			echo -n "regular," >> $6
+			echo -n "$print," >> $4
+			echo -n "regular," >> $4
 			((print = j + 1 ))
-			echo -n "$print," >> $6
+			echo -n "$print," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
 
 			# semiregular sensor data
-			echo -n "$window_size," >> $6
+			echo -n "$window_size," >> $4
 			((print = i + 1 ))
-			echo -n "$print," >> $6
-			echo -n "semiregular," >> $6
+			echo -n "$print," >> $4
+			echo -n "semiregular," >> $4
 			((print = j + 1 ))
-			echo -n "$print," >> $6
+			echo -n "$print," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
 
 			# irregular sensor data
-			echo -n "$window_size," >> $6
+			echo -n "$window_size," >> $4
 			((print = i + 1 ))
-			echo -n "$print," >> $6
-			echo -n "irregular," >> $6
+			echo -n "$print," >> $4
+			echo -n "irregular," >> $4
 			((print = j + 1 ))
-			echo -n "$print," >> $6
+			echo -n "$print," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
-			truncate -s -1 $6
-			echo -n "," >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
 
 		done
 	done
