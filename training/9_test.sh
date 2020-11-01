@@ -54,7 +54,7 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 done
 
 # write data to csv file
-echo "Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $6
+echo "Window size,Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $6
 for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW_INCREMENT )); do
 
 	line=0
@@ -70,6 +70,7 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((line = 63 * $i + 21 * $j))
 
 			# regular sensor data
+			echo -n "$window_size," >> $6
 			((print = i + 1 ))
 			echo -n "$print," >> $6
 			echo -n "regular," >> $6
@@ -102,10 +103,11 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((line++))
 			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
 
-			# irregular sensor data
+			# semiregular sensor data
+			echo -n "$window_size," >> $6
 			((print = i + 1 ))
 			echo -n "$print," >> $6
-			echo -n "irregular," >> $6
+			echo -n "semiregular," >> $6
 			((print = j + 1 ))
 			echo -n "$print," >> $6
 			((line++))
@@ -135,10 +137,11 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((line++))
 			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $6
 
-			# semiregular sensor data
+			# irregular sensor data
+			echo -n "$window_size," >> $6
 			((print = i + 1 ))
 			echo -n "$print," >> $6
-			echo -n "semiregular," >> $6
+			echo -n "irregular," >> $6
 			((print = j + 1 ))
 			echo -n "$print," >> $6
 			((line++))
