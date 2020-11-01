@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./window_test.sh ../PedometerData/ 60 90 15 1
+./9_train.sh ../data/cutnorm $size 1
