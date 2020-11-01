@@ -27,6 +27,13 @@ echo "Window size,Gait,Sensor #,Training predicted steps,Training actual steps,T
 
 echo ".........................TESTING WINDOW SIZE OF $2........................."
 
+# create data
+echo "cutting and normalizing data..."
+cd ../cut/
+./9_cutnorm.sh $1 $2 $3
+mv cutnorm_"$2"/* ../window_test/temp_training_data_$2/
+rm -r cutnorm_"$2"
+
 # train models and get result
 echo "training models..."
 cd ../training/

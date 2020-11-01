@@ -2,15 +2,15 @@
 # Basil Lin
 # Step counter project
 # Script to test models for RCA and SDA
-# Usage: ./rca_sda_test.sh [directory] [model_directory] [window_size] [window_stride]
-# [directory] is top level dir containing all cut and normalized subject data files for testing
+# Usage: ./rca_sda_test.sh [data_directory] [model_directory] [window_size] [window_stride]
+# [data_directory] is top level dir containing all cut and normalized subject data files for testing
 # [model_directory] is top level dir containing trained models to test
 # requires cut and normalized individual subject files
 
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 4 ]; then
-	echo "Usage: ./rca_sda_test.sh [directory] [model_directory] [window_size] [window_stride]"
+	echo "Usage: ./rca_sda_test.sh [data_directory] [window_size] [window_stride]"
 	exit 1
 fi
 
@@ -23,146 +23,49 @@ cd ../training/
 
 num=0
 
-# test models
-# loop through all subdirectories
-for d in $1*; do
-	if [ -d "$d" ]; then
-		echo "$d"
-		((num++))
+# train models
+for ((sensor=1; sensor<=3; sensor++)); do
 
-		# test models
-		echo "Testing..."
-		for ((sensor=1; sensor<=3; sensor++)) do
-			echo "Testing Sensor0$sensor"
-			python3 test_model.py $4"/ALL_Regular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Regular_"$sensor"_norm.txt" $d"/Regular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
-			python3 test_model.py $4"/ALL_SemiRegular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_SemiRegular_"$sensor"_norm.txt" $d"/SemiRegular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
-			python3 test_model.py $4"/ALL_Irregular_"$sensor"_model.h5" $2 "temp_testing_data/"$num"_Irregular_"$sensor"_norm.txt" $d"/Irregular/steps.txt" 0 >> ALL_ALL_ALL_results.txt
-		done
+	echo "training {Regular, Sensor0$sensor}..."
 
-	fi
-done
-
-# grab important result data and make temp file
-pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\nStep detection accuracy F1 Score:.*" ALL_ALL_ALL_results.txt | sed 's/^.*: //' > ALL_ALL_ALL_important.txt
-
-# write data to csv file
-line=0
-echo "Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $6
-
-for (( i = 0; i < $num; i++ )) do
-
-	((print = i + 1 ))
-	echo "Subject $print"
-
-	for (( j = 0; j < 3; j++ )) do
-
-		# get line index
-		((line = 63 * $i + 21 * $j))
-
-		# regular sensor data
-		((print = i + 1 ))
-		echo -n "$print," >> $6
-		echo -n "regular," >> $6
-		((print = j + 1 ))
-		echo -n "$print," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-
-		# irregular sensor data
-		((print = i + 1 ))
-		echo -n "$print," >> $6
-		echo -n "irregular," >> $6
-		((print = j + 1 ))
-		echo -n "$print," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-
-		# semiregular sensor data
-		((print = i + 1 ))
-		echo -n "$print," >> $6
-		echo -n "semiregular," >> $6
-		((print = j + 1 ))
-		echo -n "$print," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-		truncate -s -1 $6
-		echo -n "," >> $6
-		((line++))
-		sed "${line}q;d" ALL_ALL_ALL_important.txt >> $6
-
+	python3 train_model.py ../data/cutnorm/cutnorm_$2/training_Regular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models/training_Regular_"$sensor"_"$2"_model.h5 > ../data/cutnorm/cutnorm_$2/training_Regular_"$sensor"_"$2"_results.txt
+	pcregrep -M "Training predicted steps:.*\nTraining actual steps:.*\nTraining difference in steps:.*\nTraining RCA:.*\nTesting predicted steps:.*\nTesting actual steps:.*\nTesting difference in steps:.*\nTesting RCA:.*" ../data/cutnorm/cutnorm_$2/training_Regular_"$sensor"_"$2"_results.txt | sed 's/^.*: //' > ../data/cutnorm/cutnorm_$2/training_Regular_"$sensor"_"$2"_important.txt
+	echo -n "$2," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	echo -n "Regular," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	for ((line=1; line<=8; line++)); do
+		sed "${line}q;d" ../data/cutnorm/cutnorm_$2/training_Regular_"$sensor"_"$2"_important.txt >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+		truncate -s -1 ../window_test/ALL_ALL_ALL_training_results_$2.csv
+		echo -n "," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
 	done
+	echo "" >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+
+	echo "training {SemiRegular, Sensor0$sensor}..."
+
+	python3 train_model.py ../data/cutnorm/cutnorm_$2/training_SemiRegular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models/training_SemiRegular_"$sensor"_"$2"_model.h5 > ../data/cutnorm/cutnorm_$2/training_SemiRegular_"$sensor"_"$2"_results.txt
+	pcregrep -M "Training predicted steps:.*\nTraining actual steps:.*\nTraining difference in steps:.*\nTraining RCA:.*\nTesting predicted steps:.*\nTesting actual steps:.*\nTesting difference in steps:.*\nTesting RCA:.*" ../data/cutnorm/cutnorm_$2/training_SemiRegular_"$sensor"_"$2"_results.txt | sed 's/^.*: //' > ../data/cutnorm/cutnorm_$2/training_SemiRegular_"$sensor"_"$2"_important.txt
+	echo -n "$2," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	echo -n "SemiRegular," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	for ((line=1; line<=8; line++)); do
+		sed "${line}q;d" ../data/cutnorm/cutnorm_$2/training_SemiRegular_"$sensor"_"$2"_important.txt >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+		truncate -s -1 ../window_test/ALL_ALL_ALL_training_results_$2.csv
+		echo -n "," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	done
+	echo "" >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+
+	echo "training {Irregular, Sensor0$sensor}..."
+
+	python3 train_model.py ../data/cutnorm/cutnorm_$2/training_Irregular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models/training_Irregular_"$sensor"_"$2"_model.h5 > ../data/cutnorm/cutnorm_$2/training_Irregular_"$sensor"_"$2"_results.txt
+	pcregrep -M "Training predicted steps:.*\nTraining actual steps:.*\nTraining difference in steps:.*\nTraining RCA:.*\nTesting predicted steps:.*\nTesting actual steps:.*\nTesting difference in steps:.*\nTesting RCA:.*" ../data/cutnorm/cutnorm_$2/training_Irregular_"$sensor"_"$2"_results.txt | sed 's/^.*: //' > ../data/cutnorm/cutnorm_$2/training_Irregular_"$sensor"_"$2"_important.txt
+	echo -n "$2," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	echo -n "Irregular," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	echo -n "$sensor," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	for ((line=1; line<=8; line++)); do
+		sed "${line}q;d" ../data/cutnorm/cutnorm_$2/training_Irregular_"$sensor"_"$2"_important.txt >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+		truncate -s -1 ../window_test/ALL_ALL_ALL_training_results_$2.csv
+		echo -n "," >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+	done
+	echo "" >> ../window_test/ALL_ALL_ALL_training_results_$2.csv
+
 done
-
-rm ALL_ALL_ALL_important.txt &> /dev/null
-rm ALL_ALL_ALL_results.txt &> /dev/null
-rm -r temp_testing_data &> /dev/null
-
-echo "$((num)) subjects tested."
