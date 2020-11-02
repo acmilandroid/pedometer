@@ -17,9 +17,6 @@ fi
 # create directory for data
 mkdir models
 
-# create result CSV file
-echo "Window size,Gait,Sensor #,Training predicted steps,Training actual steps,Training difference,Training RCA,Testing predicted steps,Testing actual steps,Testing difference,Testing RCA" > ../window_test/ALL_ALL_ALL_training_results_$2.csv
-
 echo ".........................TESTING WINDOW SIZE OF $2........................."
 
 # train models and get result
