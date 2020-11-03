@@ -50,33 +50,45 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 	done
 
 	# grab important result data and make temp file
-	pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\nStep detection accuracy F1 Score:.*" temp_data/test_results_$window_size.txt | sed 's/^.*: //' > temp_data/important_results_$window_size.txt
+	pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRCA:.*\nSDA:.*" temp_data/test_results_$window_size.txt | sed 's/^.*: //' > temp_data/important_results_$window_size.txt
 
 done
 
 # write data to csv file
-echo "Window size,Subject,Gait,Sensor,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $4
+echo "Window size,Subject,Gait,Sensor,Predicted,Actual,Difference,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $4
 for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW_INCREMENT )); do
 
 	line=0
 
-	for (( i = 0; i < $num; i++ )) do
+	for (( subject = 0; subject < $num; subject++ )) do
 
-		((print = i + 1 ))
+		((print = subject + 1 ))
 		echo "Subject $print"
 		
-		for (( j = 0; j < 3; j++ )) do
+		for (( sensornum = 0; sensornum < 3; sensornum++ )) do
 
 			# get line index
-			((line = 63 * $i + 21 * $j))
+			((line = 90 * $subject + 30 * $sensornum))
 
 			# regular sensor data
 			echo -n "$window_size," >> $4
-			((print = i + 1 ))
+			((print = subject + 1 ))
 			echo -n "$print," >> $4
 			echo -n "regular," >> $4
-			((print = j + 1 ))
+			((print = sensornum + 1 ))
 			echo -n "$print," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
 			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
@@ -106,11 +118,23 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 
 			# semiregular sensor data
 			echo -n "$window_size," >> $4
-			((print = i + 1 ))
+			((print = subject + 1 ))
 			echo -n "$print," >> $4
 			echo -n "semiregular," >> $4
-			((print = j + 1 ))
+			((print = sensornum + 1 ))
 			echo -n "$print," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
 			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
@@ -140,11 +164,23 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 
 			# irregular sensor data
 			echo -n "$window_size," >> $4
-			((print = i + 1 ))
+			((print = subject + 1 ))
 			echo -n "$print," >> $4
 			echo -n "irregular," >> $4
-			((print = j + 1 ))
+			((print = sensornum + 1 ))
 			echo -n "$print," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
+			((line++))
+			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			truncate -s -1 $4
+			echo -n "," >> $4
 			((line++))
 			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
