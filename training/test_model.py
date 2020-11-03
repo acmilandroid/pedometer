@@ -138,23 +138,18 @@ if (int(sys.argv[5]) == 1):
 # loop through and get FP, FN, TP
 gt_steps.sort()
 i = j = fp = fn = tp = 0
-while i < len(predicted_step_indices) and j < len(gt_steps):
+while i < predicted_steps and j < actual_steps:
 	if predicted_step_indices[i] < gt_steps[j] - RANGE:
 		i += 1
-		fp += 1
 	elif predicted_step_indices[i] > gt_steps[j] + RANGE:
 		j += 1
-		fn += 1
 	else:
 		tp += 1
 		i += 1
 		j += 1
 
-# get remaining fp and fn if they do not match in count
-if diff < 0:
-	fn -= diff
-else:
-	fp += diff
+fn = actual_steps - tp
+fp = predicted_steps - tp
 
 # calculate SDA metrics
 ppv = tp / (tp + fp)
