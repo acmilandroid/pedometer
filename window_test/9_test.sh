@@ -11,7 +11,7 @@
 # creates [output_file.csv]
 
 WINDOW_START=15			# start size of window in datum
-WINDOW_END=150			# end size of window in datum
+WINDOW_END=15			# end size of window in datum
 WINDOW_INCREMENT=15		# increment of window in datum
 
 echo "Bash version ${BASH_VERSION}"
@@ -39,11 +39,11 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((num++))
 			# test models (25-30 will be withheld test group results)
 			for (( sensor=1; sensor<=3; sensor++ )); do
-				echo "Testing testing data {Regular, Sensor0$sensor}"
+				echo "Testing $2/ALL_Regular_"$sensor"_"$window_size"_model.h5"
 				python3 ../training/test_model.py $2/ALL_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data/test_results_$window_size.txt
-				echo "Testing testing data {SemiRegular, Sensor0$sensor}"
+				echo "Testing $2/ALL_SemiRegular_"$sensor"_"$window_size"_model.h5"
 				python3 ../training/test_model.py $2/ALL_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_cutnorm.txt $d/SemiRegular/steps.txt 0 >> temp_data/test_results_$window_size.txt
-				echo "Testing testing data {Irregular, Sensor0$sensor}"
+				echo "Testing $2/ALL_Irregular_"$sensor"_"$window_size"_model.h5"
 				python3 ../training/test_model.py $2/ALL_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_cutnorm.txt $d/Irregular/steps.txt 0 >> temp_data/test_results_$window_size.txt
 			done
 		fi
