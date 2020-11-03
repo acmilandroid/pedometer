@@ -125,8 +125,6 @@ if debug == 1:
 print("Average steps detected per slide:", predicted_steps/num_samples)
 
 # calculate difference
-print(int(round(predicted_steps)))
-print(len(predicted_step_indices))
 predicted_steps = len(predicted_step_indices)
 actual_steps = len(gt_steps)
 diff = predicted_steps-actual_steps
