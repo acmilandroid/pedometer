@@ -19,7 +19,6 @@ if [ "$#" -ne 5 ]; then
 fi
 
 # remove old training data
-echo "Removing old data..."
 rm results_all.txt &> /dev/null
 rm -r temp_training_data &> /dev/null
 rm predicted_steps_sensor* &> /dev/null
@@ -27,47 +26,41 @@ mkdir temp_training_data &> /dev/null
 
 echo "$1"
 
-# remove old temporary training data
-echo "Removing old training data..."
-rm -r temp_training_data/* &> /dev/null
-
 # cut each sensor
+echo "Cutting data..."
 for sensornum in 1 2 3
 do
-	echo "Cutting Sensor0$((sensornum)).csv"
 	./../cut/cutsteps $2 $3 $1"/Sensor0$((sensornum)).csv" $1"/steps.txt" > "temp_training_data/sensor0$((sensornum)).txt"
 done
 
 # normalize per axis per sensor
 if (($5 == 0)); then
-	echo "Normalizing per axis per sensor"
+	echo "Normalizing per axis per sensor..."
 	# normalize each sensor
 	for sensornum in 1 2 3
 	do
-		echo "Normalizing Sensor0$((sensornum))"
-		python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" "temp_training_data/sensor0$((sensornum))_normalized.txt" 0 $((sensornum)) > /dev/null
+		python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" "temp_training_data/sensor0$((sensornum))_normalized.txt" 0 $((sensornum)) &> /dev/null
 	done
 fi
 
 # normalize from -1.5 to 1.5 gravities
 if (($5 == 1)); then
-	echo "Normalizing from -1.5 to 1.5 gravities"
+	echo "Normalizing from -1.5 to 1.5 gravities..."
 	# normalize each sensor
 	for sensornum in 1 2 3
 	do
-		echo "Normalizing Sensor0$((sensornum))"
-		python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" "temp_training_data/sensor0$((sensornum))_normalized.txt" 1 > /dev/null
+		python3 ../cut/normalize.py "temp_training_data/sensor0$((sensornum)).txt" "temp_training_data/sensor0$((sensornum))_normalized.txt" 1 &> /dev/null
 	done
 fi
 
 # test each sensor and produce predicted steps
 for sensornum in 1 2 3
 do
-	echo "Testing Sensor0$((sensornum))"
+	echo "Testing $4"$sensornum"_$2_model.h5"
 	python3 test_model.py $4"$sensornum"_$2_model.h5 $2 "temp_training_data/sensor0$((sensornum))_normalized.txt" $1"/steps.txt" 1 >> results_all.txt
 	mv predicted_steps.txt predicted_steps_sensor0$((sensornum)).txt
 done
 
 cat results_all.txt
-rm results_all.txt &> /dev/null
-rm -r temp_training_data &> /dev/null
+rm results_all.txt
+rm -r temp_training_data
