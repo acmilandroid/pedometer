@@ -2,6 +2,7 @@
 # Basil Lin
 # Step counter project
 # Tests every {gait, sensor} pair CSV file for RCA and SDA using corresponding trained model
+# Tests multiple window sizes
 # Usage: ./9_test.sh [data_directory] [model_directory] [groundtruth_directory] [output_file.csv]
 # [data_directory] is top level dir containing cut and normalized data files
 # [model_directory] is top level dir containing trained models

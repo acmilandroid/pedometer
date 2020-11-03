@@ -2,6 +2,7 @@
 # Basil Lin
 # Step counter project
 # Tests every {gait, sensor} pair CSV file for RCA and SDA using a single trained input model [input_model.h5]
+# Tests multiple window sizes
 # Usage: ./1_test.sh [data_directory] [modedl.h5] [groundtruth_directory] [output_file.csv]
 # [data_directory] is top level dir containing cut and normalized data files
 # [model_directory] is top level dir containing trained models
@@ -39,11 +40,11 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			# test models (25-30 will be withheld test group results)
 			for (( sensor=1; sensor<=3; sensor++ )); do
 				echo "Testing testing data {Regular, Sensor0$sensor}"
-				python3 ../training/test_model.py $2 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
+				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
 				echo "Testing testing data {SemiRegular, Sensor0$sensor}"
-				python3 ../training/test_model.py $2 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_cutnorm.txt $d/SemiRegular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
+				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_cutnorm.txt $d/SemiRegular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
 				echo "Testing testing data {Irregular, Sensor0$sensor}"
-				python3 ../training/test_model.py $2 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_cutnorm.txt $d/Irregular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
+				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_cutnorm.txt $d/Irregular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
 			done
 		fi
 	done
