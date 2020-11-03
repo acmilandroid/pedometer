@@ -125,9 +125,11 @@ if debug == 1:
 print("Average steps detected per slide:", predicted_steps/num_samples)
 
 # calculate difference
-predicted_steps = int(round(predicted_steps))
+print(int(round(predicted_steps)))
+print(len(predicted_step_indices))
+predicted_steps = len(predicted_step_indices)
 actual_steps = len(gt_steps)
-diff = abs(predicted_steps-actual_steps)
+diff = predicted_steps-actual_steps
 
 # write steps detected if user has print=1
 if (int(sys.argv[5]) == 1):
@@ -152,9 +154,9 @@ while i < len(predicted_step_indices) and j < len(gt_steps):
 
 # get remaining fp and fn if they do not match in count
 if diff < 0:
-	fp -= diff
+	fn -= diff
 else:
-	fn += diff
+	fp += diff
 
 # calculate SDA metrics
 ppv = tp / (tp + fp)
@@ -165,13 +167,14 @@ else:
 	f1 = 2*ppv*sensitivity / (ppv + sensitivity)
 
 # print testing results
-print("Predicted steps:", predicted_steps, "Actual steps:", actual_steps)
-print("Difference in steps:", diff)
+print("Predicted steps:", predicted_steps)
+print("Actual steps:", actual_steps)
+print("Difference in steps:", abs(diff))
 print("TP:", tp)
 print("FP:", fp)
 print("FN:", fn)
 print("PPV:", ppv)
 print("Sensitivity:", sensitivity)
-print("Run count accuracy: %.4f" %(predicted_steps/actual_steps))
-print("Step detection accuracy F1 Score:", f1)
+print("RCA:", predicted_steps/actual_steps)
+print("SDA:", f1)
 print("----------------------------------- END TEST -----------------------------------")
