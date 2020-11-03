@@ -40,11 +40,11 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			# test models (25-30 will be withheld test group results)
 			for (( sensor=1; sensor<=3; sensor++ )); do
 				echo "Testing $2/training_Regular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
+				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1test/test_results_$window_size.txt
 				echo "Testing $2/training_SemiRegular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
+				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1test/test_results_$window_size.txt
 				echo "Testing $2/training_Irregular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
+				python3 ../training/test_model.py $2_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1test/test_results_$window_size.txt
 			done
 		fi
 	done
