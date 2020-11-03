@@ -1,8 +1,8 @@
 #!/bin/bash
 # Basil Lin
 # Step counter project
-# Tests every {gait, sensor} pair CSV file for RCA and SDA using corresponding trained model
-# Usage: ./9_test.sh [data_directory] [model_directory] [groundtruth_directory] [output_file.csv]
+# Tests every {gait, sensor} pair CSV file for RCA and SDA using a single trained input model [input_model.h5]
+# Usage: ./1_test.sh [data_directory] [modedl.h5] [groundtruth_directory] [output_file.csv]
 # [data_directory] is top level dir containing cut and normalized data files
 # [model_directory] is top level dir containing trained models
 # [groundtruth_directory] is top level dir containing all subject files (raw data)
@@ -17,13 +17,13 @@ echo "Bash version ${BASH_VERSION}"
 
 # usage warning
 if [ "$#" -ne 4 ]; then
-	echo "Usage: ./9_test.sh [data_directory] [model_directory] [groundtruth_directory] [output_file.csv]"
+	echo "Usage: ./1_test.sh [data_directory] [model.h5] [groundtruth_directory] [output_file.csv]"
 	exit 1
 fi
 
 # remove old training data
-rm -r temp_data
-mkdir temp_data
+rm -r temp_data_1model
+mkdir temp_data_1model
 
 # loop through all window sizes to test
 for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW_INCREMENT )); do
@@ -39,17 +39,17 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			# test models (25-30 will be withheld test group results)
 			for (( sensor=1; sensor<=3; sensor++ )); do
 				echo "Testing testing data {Regular, Sensor0$sensor}"
-				python3 ../training/test_model.py $2/ALL_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+				python3 ../training/test_model.py $2 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_cutnorm.txt $d/Regular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
 				echo "Testing testing data {SemiRegular, Sensor0$sensor}"
-				python3 ../training/test_model.py $2/ALL_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_cutnorm.txt $d/SemiRegular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+				python3 ../training/test_model.py $2 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_cutnorm.txt $d/SemiRegular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
 				echo "Testing testing data {Irregular, Sensor0$sensor}"
-				python3 ../training/test_model.py $2/ALL_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_cutnorm.txt $d/Irregular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+				python3 ../training/test_model.py $2 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_cutnorm.txt $d/Irregular/steps.txt 0 >> temp_data_1model/test_results_$window_size.txt
 			done
 		fi
 	done
 
 	# grab important result data and make temp file
-	pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\nStep detection accuracy F1 Score:.*" temp_data/test_results_$window_size.txt | sed 's/^.*: //' > temp_data/important_results_$window_size.txt
+	pcregrep -M "TP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRun count accuracy:.*\nStep detection accuracy F1 Score:.*" temp_data_1model/test_results_$window_size.txt | sed 's/^.*: //' > temp_data_1model/important_results_$window_size.txt
 
 done
 
@@ -77,31 +77,31 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((print = j + 1 ))
 			echo -n "$print," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 
 			# semiregular sensor data
 			echo -n "$window_size," >> $4
@@ -111,31 +111,31 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((print = j + 1 ))
 			echo -n "$print," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 
 			# irregular sensor data
 			echo -n "$window_size," >> $4
@@ -145,36 +145,36 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((print = j + 1 ))
 			echo -n "$print," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 			truncate -s -1 $4
 			echo -n "," >> $4
 			((line++))
-			sed "${line}q;d" temp_data/important_results_$window_size.txt >> $4
+			sed "${line}q;d" temp_data_1model/important_results_$window_size.txt >> $4
 
 		done
 	done
 done
 
-rm -r temp_data
+rm -r temp_data_1model
 
 echo "$((num)) subjects tested."
