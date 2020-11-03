@@ -23,8 +23,8 @@ if [ "$#" -ne 4 ]; then
 fi
 
 # remove old training data
-rm -r temp_data
-mkdir temp_data
+rm -r temp_data_1test
+mkdir temp_data_1test
 
 # loop through all window sizes to test
 for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW_INCREMENT )); do
@@ -212,6 +212,6 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 	done
 done
 
-rm -r temp_data
+rm -r temp_data_1test
 
 echo "$((num)) subjects tested."
