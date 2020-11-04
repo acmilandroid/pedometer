@@ -25,8 +25,8 @@ for ((sensor=1; sensor<=3; sensor++)); do
 done
 
 # get number of subjects in directory
-subjects=$(ls | wc -l)
-subjects=$(($subjects / 18))
+subjects=$(ls *_1_cut.txt | wc -l)
+subjects=$(($subjects / 3))
 echo "$subjects subjects in directory $1"
 
 # error handling
