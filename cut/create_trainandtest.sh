@@ -14,15 +14,14 @@ if [ "$#" -ne 3 ]; then
 fi
 
 # remove old files
-echo "Removing old files..."
 cd $1
 for ((sensor=1; sensor<=3; sensor++)); do
-	rm testing_Regular_"$sensor"_cutnorm.txt
-	rm testing_SemiRegular_"$sensor"_cutnorm.txt
-	rm testing_Irregular_"$sensor"_cutnorm.txt
-	rm training_Regular_"$sensor"_cutnorm.txt
-	rm training_SemiRegular_"$sensor"_cutnorm.txt
-	rm training_Irregular_"$sensor"_cutnorm.txt
+	rm testing_Regular_"$sensor"_cutnorm_$3.txt &> /dev/null
+	rm testing_SemiRegular_"$sensor"_cutnorm_$3.txt &> /dev/null
+	rm testing_Irregular_"$sensor"_cutnorm_$3.txt &> /dev/null
+	rm training_Regular_"$sensor"_cutnorm_$3.txt &> /dev/null
+	rm training_SemiRegular_"$sensor"_cutnorm_$3.txt &> /dev/null
+	rm training_Irregular_"$sensor"_cutnorm_$3.txt &> /dev/null
 done
 
 # get number of subjects in directory
@@ -52,9 +51,9 @@ fold_start=$(($fold_end-$subjects/$2+1))
 echo "Creating testing data..."
 for ((subject=$fold_start; subject<=$fold_end; subject++)); do
 	for ((sensor=1; sensor<=3; sensor++)); do
-		cat "$subject"_Regular_"$sensor"_cutnorm.txt >> testing_Regular_"$sensor"_cutnorm.txt
-		cat "$subject"_SemiRegular_"$sensor"_cutnorm.txt >> testing_SemiRegular_"$sensor"_cutnorm.txt
-		cat "$subject"_Irregular_"$sensor"_cutnorm.txt >> testing_Irregular_"$sensor"_cutnorm.txt
+		cat "$subject"_Regular_"$sensor"_cutnorm.txt >> testing_Regular_"$sensor"_cutnorm_$3.txt
+		cat "$subject"_SemiRegular_"$sensor"_cutnorm.txt >> testing_SemiRegular_"$sensor"_cutnorm_$3.txt
+		cat "$subject"_Irregular_"$sensor"_cutnorm.txt >> testing_Irregular_"$sensor"_cutnorm_$3.txt
 	done
 done
 
@@ -64,9 +63,9 @@ for ((subject=1; subject<=$subjects; subject++)); do
 	# if not in the withheld testing subjects
 	if (($subject<$fold_start || $subject>$fold_end)); then
 		for ((sensor=1; sensor<=3; sensor++)); do
-			cat "$subject"_Regular_"$sensor"_cutnorm.txt >> training_Regular_"$sensor"_cutnorm.txt
-			cat "$subject"_SemiRegular_"$sensor"_cutnorm.txt >> training_SemiRegular_"$sensor"_cutnorm.txt
-			cat "$subject"_Irregular_"$sensor"_cutnorm.txt >> training_Irregular_"$sensor"_cutnorm.txt
+			cat "$subject"_Regular_"$sensor"_cutnorm.txt >> training_Regular_"$sensor"_cutnorm_$3.txt
+			cat "$subject"_SemiRegular_"$sensor"_cutnorm.txt >> training_SemiRegular_"$sensor"_cutnorm_$3.txt
+			cat "$subject"_Irregular_"$sensor"_cutnorm.txt >> training_Irregular_"$sensor"_cutnorm_$3.txt
 		done
 	fi
 done
