@@ -27,7 +27,7 @@ done
 # get number of subjects in directory
 subjects=$(ls *_1_cut.txt | wc -l)
 subjects=$(($subjects / 3))
-echo "$subjects subjects in directory $1"
+echo "There are $subjects subjects in directory $1"
 
 # error handling
 if (($subjects%$2 != 0)); then
@@ -38,7 +38,7 @@ if (($3 > $2)); then
 	echo "Fold number $3 is greater than $2 total folds. Choose a new [fold_num]."
 	exit 1
 fi
-if (($3 <= 0)); then
+if (($3 < 1)); then
 	echo "Fold number $3 is less than 1. Choose a new [fold_num]."
 	exit 1
 fi
@@ -47,7 +47,7 @@ fi
 fold_end=$(($subjects/$2*$3))
 fold_start=$(($fold_end-$subjects/$2+1))
 
-# create testing3 data
+# create testing data
 echo "Creating testing data..."
 for ((subject=$fold_start; subject<=$fold_end; subject++)); do
 	for ((sensor=1; sensor<=3; sensor++)); do
@@ -70,5 +70,5 @@ for ((subject=1; subject<=$subjects; subject++)); do
 	fi
 done
 
-echo "Done creating training and testingfold$3 data files."
+echo "Done creating training and testing data files."
 
