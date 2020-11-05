@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./kfold_train.sh /scratch1/basill/data/cutnorm/ $size 1 $foldnum
+./kfold_train.sh /scratch1/basill/data/ $size 1 $foldnum
