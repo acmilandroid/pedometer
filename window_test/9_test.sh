@@ -3,22 +3,22 @@
 # Step counter project
 # Tests every {gait, sensor} pair CSV file for RCA and SDA using corresponding trained model
 # Tests multiple window sizes
-# Usage: ./9_test.sh [data_directory] [model_directory] [groundtruth_directory] [output_file.csv]
-# [data_directory] is top level dir containing cut and normalized data files
+# Usage: ./9_test.sh [data] [model_directory] [PedometerData] [output_file.csv]
+# [data] is top level dir containing cut and normalized data files
 # [model_directory] is top level dir containing trained models
-# [groundtruth_directory] is top level dir containing all subject files (raw data)
+# [PedometerData] is top level dir containing all subject files (raw data)
 # cutsteps executable must be compiled in ../cut/cutsteps
 # creates [output_file.csv]
 
 WINDOW_START=15			# start size of window in datum
-WINDOW_END=150			# end size of window in datum
+WINDOW_END=30			# end size of window in datum
 WINDOW_INCREMENT=15		# increment of window in datum
 
 echo "Bash version ${BASH_VERSION}"
 
 # usage warning
 if [ "$#" -ne 4 ]; then
-	echo "Usage: ./9_test.sh [data_directory] [model_directory] [groundtruth_directory] [output_file.csv]"
+	echo "Usage: ./9_test.sh [data] [model_directory] [PedometerData] [output_file.csv]"
 	exit 1
 fi
 
@@ -39,12 +39,12 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 			((num++))
 			# test models (25-30 will be withheld test group results)
 			for (( sensor=1; sensor<=3; sensor++ )); do
-				echo "Testing $2/training_Regular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/training_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 >> temp_data/test_results_$window_size.txt
-				echo "Testing $2/training_SemiRegular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/training_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 >> temp_data/test_results_$window_size.txt
-				echo "Testing $2/training_Irregular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/training_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+				echo "Testing $2/models_$window_size/trainingfold5_Regular_"$sensor"_"$window_size"_model.h5"
+				python3 ../training/test_model.py $2/models_$window_size/trainingfold5_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+				echo "Testing $2/models_$window_size/trainingfold5_SemiRegular_"$sensor"_"$window_size"_model.h5"
+				python3 ../training/test_model.py $2/models_$window_size/trainingfold5_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+				echo "Testing $2/models_$window_size/trainingfold5_Irregular_"$sensor"_"$window_size"_model.h5"
+				python3 ../training/test_model.py $2/models_$window_size/trainingfold5_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 >> temp_data/test_results_$window_size.txt
 			done
 		fi
 	done

@@ -15,7 +15,7 @@ if [ "$#" -ne 4 ]; then
 fi
 
 # create directory for data
-mkdir models_$2 $> /dev/null
+mkdir models_"$2" $> /dev/null
 
 echo ".........................TRAINING FOLD $5........................."
 
