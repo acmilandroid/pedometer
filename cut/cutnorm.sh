@@ -5,8 +5,10 @@
 # Usage: ./cutnorm.sh [PedometerData] [window_size] [normalization_type]
 # [PedometerData] is top level dir containing all subject files
 # [normalization_type] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
-# cutsteps executable must be compiled in ../cut/cutsteps
-# creates testing_data_cutnorm_[window_size] directory containing cut and normalized files
+# cutsteps executable must be compiled in cutsteps
+# creates cutnorm_[window_size] directory containing cut and normalized files
+# cut files are [subject#]_[gait]_[sensor#]_cut.txt
+# cut then normalized files are [subject#]_[gait]_[sensor#]_norm.txt
 
 echo "Bash version ${BASH_VERSION}"
 
@@ -20,8 +22,8 @@ num=0
 
 # remove old training data
 echo "Removing old data..."
-rm -r testing_data_cutnorm_$2
-mkdir testing_data_cutnorm_$2
+rm -r cutnorm_$2
+mkdir cutnorm_$2
 
 # loop through all subdirectories
 for d in $1*; do
@@ -30,21 +32,20 @@ for d in $1*; do
 		((num++))
 
 		# cut gait and sensor
+		echo "Cutting data..."
 		for ((sensor=1; sensor<=3; sensor++)) do
-			echo "Cutting Sensor0$sensor..."
-			./../cut/cutsteps $2 1 $d"/Regular/Sensor0$sensor.csv" $d"/Regular/steps.txt" > "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt"
-			./../cut/cutsteps $2 1 $d"/SemiRegular/Sensor0$sensor.csv" $d"/SemiRegular/steps.txt" > "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt"
-			./../cut/cutsteps $2 1 $d"/Irregular/Sensor0$sensor.csv" $d"/Irregular/steps.txt" > "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt"
+			./cutsteps $2 1 $d"/Regular/Sensor0$sensor.csv" $d"/Regular/steps.txt" > "cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt"
+			./cutsteps $2 1 $d"/SemiRegular/Sensor0$sensor.csv" $d"/SemiRegular/steps.txt" > "cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt"
+			./cutsteps $2 1 $d"/Irregular/Sensor0$sensor.csv" $d"/Irregular/steps.txt" > "cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt"
 		done
 
 		# normalize per axis per sensor
 		if (($3 == 0)); then
 			echo "Normalizing per axis per sensor..."
 			for ((sensor=1; sensor<=3; sensor++)) do
-				echo "Normalizing Sensor0$sensor..."
-				python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cutnorm.txt" 0 $sensor
-				python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cutnorm.txt" 0 $sensor
-				python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cutnorm.txt" 0 $sensor
+				python3 normalize.py "cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "cutnorm_$2/"$num"_Regular_"$sensor"_norm.txt" 0 $sensor
+				python3 normalize.py "cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "cutnorm_$2/"$num"_SemiRegular_"$sensor"_norm.txt" 0 $sensor
+				python3 normalize.py "cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "cutnorm_$2/"$num"_Irregular_"$sensor"_norm.txt" 0 $sensor
 			done
 		fi
 
@@ -52,10 +53,9 @@ for d in $1*; do
 		if (($3 == 1)); then
 			echo "Normalizing from -1.5 to 1.5 gravities..."
 			for ((sensor=1; sensor<=3; sensor++)) do
-				echo "Normalizing Sensor0$sensor..."
-				python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Regular_"$sensor"_cutnorm.txt" 1
-				python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_SemiRegular_"$sensor"_cutnorm.txt" 1
-				python3 ../cut/normalize.py "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "testing_data_cutnorm_$2/"$num"_Irregular_"$sensor"_cutnorm.txt" 1
+				python3 normalize.py "cutnorm_$2/"$num"_Regular_"$sensor"_cut.txt" "cutnorm_$2/"$num"_Regular_"$sensor"_norm.txt" 1
+				python3 normalize.py "cutnorm_$2/"$num"_SemiRegular_"$sensor"_cut.txt" "cutnorm_$2/"$num"_SemiRegular_"$sensor"_norm.txt" 1
+				python3 normalize.py "cutnorm_$2/"$num"_Irregular_"$sensor"_cut.txt" "cutnorm_$2/"$num"_Irregular_"$sensor"_norm.txt" 1
 			done
 		fi
 
