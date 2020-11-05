@@ -13,18 +13,26 @@ if [ "$#" -ne 1 ]; then
 fi
 
 totalsteps=0
+regularsteps=0
+semiregularsteps=0
+irregularsteps=0
 
 # loop through each subject to test
 for d in $1*; do
 	if [ -d "$d" ]; then
 		echo "$d"
 		steps=$(cat $d/Regular/steps.txt | wc -l)
-		((totalsteps += steps))
+		((regularsteps += steps))
 		steps=$(cat $d/SemiRegular/steps.txt | wc -l)
-		((totalsteps += steps))
+		((semiregularsteps += steps))
 		steps=$(cat $d/Irregular/steps.txt | wc -l)
-		((totalsteps += steps))
+		((irregularsteps += steps))
 	fi
 done
 
+((totalsteps = regularsteps + semiregularsteps + irregularsteps))
+
+echo "Regular steps in $1: $regularsteps"
+echo "SemiRegular steps in $1: $semiregularsteps"
+echo "Irregular steps in $1: $irregularsteps"
 echo "Total steps in $1: $totalsteps"
