@@ -23,12 +23,12 @@ echo ".........................TRAINING FOLD $5........................."
 for ((sensor=1; sensor<=3; sensor++)); do
 
 	echo "training {Regular, Sensor0$sensor}..."
-	python3 ../training/train_model.py $1/cutnorm_$2/trainingfold$4_Regular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models_$2/trainingfold$4_Regular_"$sensor"_"$2"_model.h5
+	python3 ../training/train_model.py $1/cutnorm_$2/trainingfold$4_Regular_"$sensor"_norm.txt $2 $3 ../window_test/models_$2/trainingfold$4_Regular_"$sensor"_"$2"_model.h5
 
 	echo "training {SemiRegular, Sensor0$sensor}..."
-	python3 ../training/train_model.py $1/cutnorm_$2/trainingfold$4_SemiRegular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models_$2/trainingfold$4_SemiRegular_"$sensor"_"$2"_model.h5
+	python3 ../training/train_model.py $1/cutnorm_$2/trainingfold$4_SemiRegular_"$sensor"_norm.txt $2 $3 ../window_test/models_$2/trainingfold$4_SemiRegular_"$sensor"_"$2"_model.h5
 
 	echo "training {Irregular, Sensor0$sensor}..."
-	python3 ../training/train_model.py $1/cutnorm_$2/trainingfold$4_Irregular_"$sensor"_cutnorm.txt $2 $3 ../window_test/models_$2/trainingfold$4_Irregular_"$sensor"_"$2"_model.h5
+	python3 ../training/train_model.py $1/cutnorm_$2/trainingfold$4_Irregular_"$sensor"_norm.txt $2 $3 ../window_test/models_$2/trainingfold$4_Irregular_"$sensor"_"$2"_model.h5
 
 done
