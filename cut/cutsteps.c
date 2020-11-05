@@ -252,7 +252,7 @@ int main(int argc, char *argv[]) {
 						if (k < 0 || k >= total_data_count) {
 							for (j = 0; j < DATA_FIELDS; j++) printf("\t0.000");		 			// pad with zeros if start or end out of data
 						} else {																	// print data if no need for padding
-							for (j = 0; j < DATA_FIELDS; j++) printf("\t%.3f", data[j][k-1]);
+							for (j = 0; j < DATA_FIELDS; j++) printf("\t%.3f", smoothed_data[j][k-1]);
 						}
 					}
 					printf("\n");
