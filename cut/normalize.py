@@ -17,7 +17,7 @@ MINMAX_VALUES = [           # contains min and max values for wrist, hip, ankle 
 	[   # hip (2)
 		[-1.01, 1.033],     # x
 		[-1.166, 1.283],    # y
-		[-1.077, 0.984]     # z
+		[-1.077, 1.001]     # z
 	],
 	[   # ankle (3)
 		[-1.016, 0.954],    # x

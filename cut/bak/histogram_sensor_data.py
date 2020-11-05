@@ -25,7 +25,7 @@ for i in range(1, 4):
     
     # open and load file
     data = []
-    filename = "sensor0" + str(i) + "_cut.txt"
+    filename = "sensor0" + str(i) + ".txt"
     print("Loading", filename, "...")
     fpt = open(filename, 'r')
     data = [[float(x) for x in line.split()] for line in fpt]
