@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./9_test.sh /scratch1/basill/data/cutnorm/ /scratch1/basill/models/ /scratch1/basill/PedometerData/ test.csv
+./9_test.sh /scratch1/basill/data/ /scratch1/basill/models/ /scratch1/basill/PedometerData/ 9_test_results.csv
