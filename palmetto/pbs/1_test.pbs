@@ -1,5 +1,5 @@
 #/bin/bash
-#PBS -N basill_window_test
+#PBS -N basill_1_test
 #PBS -l select=1:ncpus=16:mem=125gb:ngpus=1:gpu_model=p100
 #PBS -l walltime=72:00:00
 #PBS -e /home/basill/pedometer/palmetto/job_output
@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./1_test.sh /scratch1/basill/data/cutnorm/ /scratch1/basill/models/training_Regular_1 /scratch1/basill/PedometerData/ training_Regular_1_model_results.csv
+./1_test.sh /scratch1/basill/data/ /scratch1/basill/models/training_Regular_1 /scratch1/basill/PedometerData/ training_Regular_1_model_results.csv
