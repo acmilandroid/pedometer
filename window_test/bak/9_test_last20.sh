@@ -1,7 +1,7 @@
 #!/bin/bash
 # Basil Lin
 # Step counter project
-# Tests every {gait, sensor} pair CSV file for RCA and SDA using corresponding trained model
+# Test last 20% of subjects for results on models trained on first 80% of subjects
 # Tests multiple window sizes
 # Usage: ./9_test.sh [data] [model_directory] [PedometerData] [output_file.csv]
 # [data] is top level dir containing cut and normalized data files
@@ -10,9 +10,13 @@
 # cutsteps executable must be compiled in ../cut/cutsteps
 # creates [output_file.csv]
 
+# THIS FILE IS DEPRECRATED AND HAS BUGS AT CSV FILE PROCESSING STAGE
+
 WINDOW_START=15			# start size of window in datum
-WINDOW_END=150			# end size of window in datum
+WINDOW_END=30			# end size of window in datum
 WINDOW_INCREMENT=15		# increment of window in datum
+FOLD_START=2			# testing fold starting subject #
+FOLD_END=2				# testing fold ending subject #
 
 echo "Bash version ${BASH_VERSION}"
 
@@ -30,23 +34,24 @@ mkdir temp_data
 for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW_INCREMENT )); do
 
 	echo "Testing window size of $window_size..."
-	num=0
 
-	# loop through each subject to test
-	for d in $3*; do
-		if [ -d "$d" ]; then
-			echo "$d"
-			((num++))
-			# test models (25-30 will be withheld test group results)
-			for (( sensor=1; sensor<=3; sensor++ )); do
-				echo "Testing $2/models_$window_size/trainingfold5_Regular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/models_$window_size/trainingfold5_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 >> temp_data/test_results_$window_size.txt
-				echo "Testing $2/models_$window_size/trainingfold5_SemiRegular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/models_$window_size/trainingfold5_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 >> temp_data/test_results_$window_size.txt
-				echo "Testing $2/models_$window_size/trainingfold5_Irregular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/models_$window_size/trainingfold5_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$num"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 >> temp_data/test_results_$window_size.txt
-			done
+	# loop through each subject in last 20% to test
+	for ((subject=$FOLD_START; subject<=$FOLD_END; subject++)); do
+		# create P0xx directory name
+		if (($subject < 10)); then
+			d="$3/P00$subject"
+		else
+			d="$3/P0$subject"
 		fi
+		# test models (25-30 will be withheld test group results)
+		for (( sensor=1; sensor<=3; sensor++ )); do
+			echo "Testing $2/models_$window_size/trainingfold5_Regular_"$sensor"_"$window_size"_model.h5"
+			python3 ../training/test_model.py $2/models_$window_size/trainingfold5_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$subject"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+			echo "Testing $2/models_$window_size/trainingfold5_SemiRegular_"$sensor"_"$window_size"_model.h5"
+			python3 ../training/test_model.py $2/models_$window_size/trainingfold5_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$subject"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+			echo "Testing $2/models_$window_size/trainingfold5_Irregular_"$sensor"_"$window_size"_model.h5"
+			python3 ../training/test_model.py $2/models_$window_size/trainingfold5_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/cutnorm_"$window_size"/"$subject"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 >> temp_data/test_results_$window_size.txt
+		done
 	done
 
 	# grab important result data and make temp file
@@ -60,7 +65,7 @@ for (( window_size=$WINDOW_START; window_size<=$WINDOW_END; window_size+=$WINDOW
 
 	line=0
 
-	for (( subject = 0; subject < $num; subject++ )) do
+	for (( subject = $FOLD_START; subject < $subject; subject++ )) do
 
 		((print = subject + 1 ))
 		echo "Subject $print"
