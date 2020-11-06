@@ -5,7 +5,7 @@
  * The data is window_size from 5 sec prior to first step to 10 sec after
  * last step.  Each window is 5 sec.
  *
- * Usage: ./window_sizesteps [window_size] [window_window_stride] [pedometer_data_filename.csv] [steps.txt]
+ * Usage: ./cutsteps [window_size] [window_window_stride] [pedometer_data_filename.csv] [steps.txt]
  *
  * window_size is the window size in datum (each second is 15 datum)
  * window_stride is the amount of datum to slide the window each time
@@ -31,10 +31,10 @@
 
 int main(int argc, char *argv[]) {
 	FILE	*fpt, *fpt1;
-	char	sensor_3_file[999];
+	char	sensor_file[999];
 	char	trash[100];
 	int		start, end, i, j, k, gt_offset;
-	double	total, sensor_3_start_time, time;
+	double	total, sensor_start_time, temp_time, time;
 	double	**data, **smoothed_data;
 	int		total_data_count, total_step_count, total_window_count;
 	int		*window_indices, *steps_in_window;
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
 	float_steps_in_window = (double *)calloc(sizeof(int), MAX_WINDOWS);
 
 	if (argc != 5) {
-		printf("Usage: ./window_sizesteps [window_size] [window_window_stride] [pedometer_data_filename.csv] [steps.txt]\n");
+		printf("Usage: ./cutsteps [window_size] [window_window_stride] [pedometer_data_filename.csv] [steps.txt]\n");
 		exit(0);
 	}
 
@@ -65,20 +65,26 @@ int main(int argc, char *argv[]) {
 		exit(0);
 	}
 
-	// open 3's file and get first time, which is needed for correct gt index
-	strcpy(sensor_3_file, argv[3]);
-	sensor_3_file[strlen(sensor_3_file)-5] = '3';
-	if ((fpt1=fopen(sensor_3_file, "rb")) == NULL) {
-		printf("Unable to open %s for reading\n", sensor_3_file);
-		exit(0);
+	sensor_start_time = -1;
+	strcpy(sensor_file, argv[3]);
+	// find first time index
+	for (i = 1; i <= 3; i++) {
+		sensor_file[strlen(sensor_file)-5] = (char)(i+48);
+		if ((fpt1=fopen(sensor_file, "rb")) == NULL) {
+			printf("Unable to open %s for reading\n", sensor_file);
+			exit(0);
+		}
+		//scan and throw away header information
+		for (j = 0; j < 2*TOTAL_DATA_FIELDS + 7; j++) {
+			fscanf(fpt1, "%s", trash);
+		}
+		// read sensor's start time
+		fscanf(fpt1, "%lf", &temp_time);
+		if (temp_time > sensor_start_time) {
+			sensor_start_time = temp_time;
+		}
+		fclose(fpt1);
 	}
-	//scan and throw away header information
-	for (i = 0; i < 2*TOTAL_DATA_FIELDS + 7; i++) {
-		fscanf(fpt1, "%s", trash);
-	}
-	// read sensor 3's start time
-	fscanf(fpt1, "%lf", &sensor_3_start_time);
-	fclose(fpt1);
 	gt_offset = 0;
 
 	int window_size = atoi(argv[1]);
@@ -118,7 +124,7 @@ int main(int argc, char *argv[]) {
 		// if the read time is within range, the offset is the current sensor reading
 		// note: sometimes this will occur twice bc the time is not perfect
 		// this is okay, this method matches Ryan's Stepcounter VIEW implementation
-		if (time > sensor_3_start_time-OFFSET_RANGE && time < sensor_3_start_time+OFFSET_RANGE) {
+		if (time > sensor_start_time-OFFSET_RANGE && time < sensor_start_time+OFFSET_RANGE) {
 			gt_offset = total_data_count-1;
 		}
 	}
