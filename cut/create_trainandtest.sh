@@ -1,10 +1,10 @@
 #!/bin/bash
 # Basil Lin
-# Uses norm data and create testingfold$3 and training files
+# Uses norm data and create testing and training files
 # Usage: ./create_trainandtest.sh [data/cutnorm_windowsize] [num_folds] [fold_num]
 # [data/cutnorm_windowsize] is top level dir containing all cut and normalized subject data files
 # [num_folds] is the total number of folds for the test
-# [fold_num] is the fold number to cut for testingfold$3. Smaller folds are earlier data
+# [fold_num] is the fold number to cut for testing. Smaller folds are earlier data
 
 echo "Bash version ${BASH_VERSION}"
 
