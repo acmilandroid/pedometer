@@ -1,0 +1,70 @@
+Bash version 4.4.19(1)-release
+Testing window size of 15...
+/scratch1/basill/PedometerData/P001
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_3_15_model.h5
+/scratch1/basill/PedometerData/P002
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_3_15_model.h5
+/scratch1/basill/PedometerData/P003
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_3_15_model.h5
+/scratch1/basill/PedometerData/P004
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_3_15_model.h5
+/scratch1/basill/PedometerData/P005
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_3_15_model.h5
+/scratch1/basill/PedometerData/P006
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_3_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_3_15_model.h5
+/scratch1/basill/PedometerData/P007
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_1_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_SemiRegular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Irregular_2_15_model.h5
+Testing /scratch1/basill/models//models_15/trainingfold5_Regular_3_15_model.h5
