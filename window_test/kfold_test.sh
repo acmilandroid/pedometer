@@ -39,7 +39,7 @@ for (( fold=1; fold<=$4; fold++ )); do
 		if [ -d "$d" ]; then
 			echo "$d"
 			((num++))
-			# test models (25-30 will be withheld test group results)
+			# test models (some subjects will be withheld test group results, depending on fold)
 			for (( sensor=1; sensor<=3; sensor++ )); do
 				echo "Testing $2/trainingfold"$fold"_Regular_"$sensor"_"$window_size"_model.h5"
 				python3 ../training/test_model.py $2/trainingfold"$fold"_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 >> temp_kfold_test_data/test_results_$fold.txt
