@@ -17,7 +17,7 @@ WINDOW_INCREMENT=15		# increment of window in datum
 echo "Bash version ${BASH_VERSION}"
 
 # usage warning
-if [ "$#" -ne 4 ]; then
+if [ "$#" -ne 5 ]; then
 	echo "Usage: ./kfold_test.sh [data/cutnorm_windowsize] [models/models_windowsize] [PedometerData] [num_folds] [output_file.csv]"
 	exit 1
 fi
