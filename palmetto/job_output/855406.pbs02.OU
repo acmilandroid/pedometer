@@ -1,0 +1,2 @@
+Bash version 4.4.19(1)-release
+Usage: ./kfold_test.sh [data/cutnorm_windowsize] [models/models_windowsize] [PedometerData] [num_folds] [output_file.csv]
