@@ -17,7 +17,7 @@ fi
 # create directory for data
 mkdir models_"$2" $> /dev/null
 
-echo ".........................TRAINING FOLD $5........................."
+echo ".........................TRAINING FOLD $4........................."
 
 # train models
 for ((sensor=1; sensor<=3; sensor++)); do
