@@ -119,8 +119,8 @@ train_predictions = model.predict(train_data)
 # loop through all training windows
 for i in range(0, train_samples):
 	# don't let train_predictions be negative
-	if train_predictions[i][0] < 0:
-		train_predictions[i][0] = 0
+	# if train_predictions[i][0] < 0:
+	# 	train_predictions[i][0] = 0
 	train_predicted_steps += train_predictions[i][0] / window_size * window_stride  # integrate window to get step count
 	train_actual_steps += train_labels[i] / window_size * window_stride
 
