@@ -4,8 +4,8 @@
 # Tests every {gait, sensor} pair CSV file for RCA and SDA using corresponding trained model
 # Tests multiple folds of data
 # Usage: ./kfold_test.sh [data/cutnorm_windowsize] [models/models_windowsize] [PedometerData] [output_file.csv]
-# [data/cutnorm_windowsize] is top level dir containing cut and normalized data files
-# [models/models_windowsize] is top level dir containing trained models
+# [data/cutnorm_windowsize] is top level dir containing cut and normalized data files for a specific window size
+# [models/models_windowsize] is top level dir containing trained models for a specific window size
 # [PedometerData] is top level dir containing all subject files (raw data)
 # cutsteps executable must be compiled in ../cut/cutsteps
 # creates [output_file.csv]
