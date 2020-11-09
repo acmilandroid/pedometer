@@ -53,7 +53,7 @@ for (( fold=1; fold<=$4; fold++ )); do
 done
 
 # write data to csv file
-echo "Window size,Subject,Gait,Sensor,Predicted,Actual,Difference,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $5
+echo "Test fold number,Subject,Gait,Sensor,Predicted,Actual,Difference,TP,FP,FN,PPV,Sensitivity,RCA,SDA" > $5
 for (( fold=1; fold<=$4; fold++ )); do
 
 	line=0
