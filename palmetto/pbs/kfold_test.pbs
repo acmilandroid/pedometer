@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./kfold_test.sh $datadir $modeldir /scratch1/basill/PedometerData/ 5 kfold"$windowsize"_test_results.csv
+./kfold_test.sh $datadir $modeldir /scratch1/basill/PedometerData/ 5 $windowsize kfold"$windowsize"_test_results.csv
