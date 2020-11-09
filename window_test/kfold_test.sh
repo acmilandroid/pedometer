@@ -18,11 +18,11 @@ if [ "$#" -ne 5 ]; then
 	exit 1
 fi
 
-# remove old training data
-rm -r temp_kfold_test_data
-mkdir temp_kfold_test_data
-
 window_size=$(echo $1 | tail -c 3)
+
+# remove old training data
+rm -r temp_kfold_test_data_"$window_size"
+mkdir temp_kfold_test_data_"$window_size"
 
 # loop through all folds to test
 for (( fold=1; fold<=$4; fold++ )); do
@@ -38,17 +38,17 @@ for (( fold=1; fold<=$4; fold++ )); do
 			# test models (some subjects will be withheld test group results, depending on fold)
 			for (( sensor=1; sensor<=3; sensor++ )); do
 				echo "Testing $2/trainingfold"$fold"_Regular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/trainingfold"$fold"_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 >> temp_kfold_test_data/test_results_$fold.txt
+				python3 ../training/test_model.py $2/trainingfold"$fold"_Regular_"$sensor"_"$window_size"_model.h5 $window_size $1/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 >> temp_kfold_test_data_"$window_size"/test_results_$fold.txt
 				echo "Testing $2/trainingfold"$fold"_SemiRegular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/trainingfold"$fold"_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/"$num"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 >> temp_kfold_test_data/test_results_$fold.txt
+				python3 ../training/test_model.py $2/trainingfold"$fold"_SemiRegular_"$sensor"_"$window_size"_model.h5 $window_size $1/"$num"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 >> temp_kfold_test_data_"$window_size"/test_results_$fold.txt
 				echo "Testing $2/trainingfold"$fold"_Irregular_"$sensor"_"$window_size"_model.h5"
-				python3 ../training/test_model.py $2/trainingfold"$fold"_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/"$num"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 >> temp_kfold_test_data/test_results_$fold.txt
+				python3 ../training/test_model.py $2/trainingfold"$fold"_Irregular_"$sensor"_"$window_size"_model.h5 $window_size $1/"$num"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 >> temp_kfold_test_data_"$window_size"/test_results_$fold.txt
 			done
 		fi
 	done
 
 	# grab important result data and make temp file
-	pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRCA:.*\nSDA:.*" temp_kfold_test_data/test_results_$fold.txt | sed 's/^.*: //' > temp_kfold_test_data/important_results_$fold.txt
+	pcregrep -M "Predicted steps:.*\nActual steps:.*\nDifference in steps:.*\nTP:.*\nFP:.*\nFN:.*\nPPV:.*\nSensitivity:.*\nRCA:.*\nSDA:.*" temp_kfold_test_data_"$window_size"/test_results_$fold.txt | sed 's/^.*: //' > temp_kfold_test_data_"$window_size"/important_results_$fold.txt
 
 done
 
@@ -76,43 +76,43 @@ for (( fold=1; fold<=$4; fold++ )); do
 			((print = sensornum + 1 ))
 			echo -n "$print," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 
 			# semiregular sensor data
 			echo -n "$fold," >> $5
@@ -122,43 +122,43 @@ for (( fold=1; fold<=$4; fold++ )); do
 			((print = sensornum + 1 ))
 			echo -n "$print," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 
 			# irregular sensor data
 			echo -n "$fold," >> $5
@@ -168,48 +168,48 @@ for (( fold=1; fold<=$4; fold++ )); do
 			((print = sensornum + 1 ))
 			echo -n "$print," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 			truncate -s -1 $5
 			echo -n "," >> $5
 			((line++))
-			sed "${line}q;d" temp_kfold_test_data/important_results_$fold.txt >> $5
+			sed "${line}q;d" temp_kfold_test_data_"$window_size"/important_results_$fold.txt >> $5
 
 		done
 	done
 done
 
-rm -r temp_kfold_test_data
+rm -r temp_kfold_test_data_"$window_size"
 
 echo "$((num)) subjects tested."

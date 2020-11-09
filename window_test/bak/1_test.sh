@@ -3,7 +3,7 @@
 # Step counter project
 # Tests every {gait, sensor} pair CSV file for RCA and SDA using a single trained input model [input_model.h5]
 # Tests multiple window sizes
-# Usage: ./1_test.sh [data_directory] [modedl.h5] [groundtruth_directory] [output_file.csv]
+# Usage: ./1_test.sh [data_directory] [model.h5] [groundtruth_directory] [output_file.csv]
 # [data_directory] is top level dir containing cut and normalized data files
 # [model_directory] is top level dir containing trained models
 # [groundtruth_directory] is top level dir containing all subject files (raw data)
@@ -18,7 +18,7 @@ echo "Bash version ${BASH_VERSION}"
 
 # usage warning
 if [ "$#" -ne 4 ]; then
-	echo "Usage: ./1_test.sh [data_directory] [modedl.h5] [groundtruth_directory] [output_file.csv]"
+	echo "Usage: ./1_test.sh [data_directory] [model.h5] [groundtruth_directory] [output_file.csv]"
 	exit 1
 fi
 
