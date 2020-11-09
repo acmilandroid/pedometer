@@ -10,10 +10,6 @@
 # cutsteps executable must be compiled in ../cut/cutsteps
 # creates [output_file.csv]
 
-WINDOW_START=15			# start size of window in datum
-WINDOW_END=150			# end size of window in datum
-WINDOW_INCREMENT=15		# increment of window in datum
-
 echo "Bash version ${BASH_VERSION}"
 
 # usage warning
