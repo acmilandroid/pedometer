@@ -1,6 +1,6 @@
 #/bin/bash
 #PBS -N basill_1_test
-#PBS -l select=1:ncpus=16:mem=125gb:ngpus=1:gpu_model=p100
+#PBS -l select=1:ncpus=16:mem=125gb:ngpus=1:gpu_model=k20
 #PBS -l walltime=72:00:00
 #PBS -e /home/basill/pedometer/palmetto/job_output
 #PBS -o /home/basill/pedometer/palmetto/job_output

@@ -1,5 +1,0 @@
-rm: cannot remove 'temp_kfold_test_data': No such file or directory
-Traceback (most recent call last):
-  File "../training/test_model.py", line 155, in <module>
-    ppv = tp / (tp + fp)
-ZeroDivisionError: division by zero
