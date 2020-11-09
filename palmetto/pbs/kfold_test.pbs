@@ -1,6 +1,6 @@
 #/bin/bash
 #PBS -N basill_kfold_test
-#PBS -l select=1:ncpus=16:mem=125gb:ngpus=1:gpu_model=p100
+#PBS -l select=1:ncpus=16:mem=125gb:ngpus=1:gpu_model=k20
 #PBS -l walltime=72:00:00
 #PBS -e /home/basill/pedometer/palmetto/job_output
 #PBS -o /home/basill/pedometer/palmetto/job_output
@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/window_test/
 
-./kfold_test.sh /scratch1/basill/data/cutnorm_75 /scratch1/basill/models_kfold_75/ /scratch1/basill/PedometerData/ 5 kfold75_test_results.csv
+./kfold_test.sh $datadir $modeldir /scratch1/basill/PedometerData/ 5 kfold"$windowsize"_test_results.csv

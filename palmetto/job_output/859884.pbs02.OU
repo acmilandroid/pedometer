@@ -1,0 +1,3890 @@
+Bash version 4.4.19(1)-release
+.........................TRAINING FOLD 4.........................
+training {Regular, Sensor01}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (206540, 181)
+Seperating labels and features...
+features_normalized has shape (206540, 180)
+Reshaping normalized features for training...
+features_input has shape (206540, 60, 3)
+Splitting training data from rows 0 to 206540
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+6455/6455 - 15s - loss: 0.9660 - mean_absolute_error: 0.6413
+Epoch 2/200
+6455/6455 - 15s - loss: 0.7061 - mean_absolute_error: 0.5792
+Epoch 3/200
+6455/6455 - 15s - loss: 0.6836 - mean_absolute_error: 0.5621
+Epoch 4/200
+6455/6455 - 15s - loss: 0.6703 - mean_absolute_error: 0.5519
+Epoch 5/200
+6455/6455 - 15s - loss: 0.6639 - mean_absolute_error: 0.5491
+Epoch 6/200
+6455/6455 - 15s - loss: 0.6573 - mean_absolute_error: 0.5449
+Epoch 7/200
+6455/6455 - 15s - loss: 0.6493 - mean_absolute_error: 0.5410
+Epoch 8/200
+6455/6455 - 15s - loss: 0.6449 - mean_absolute_error: 0.5382
+Epoch 9/200
+6455/6455 - 15s - loss: 0.6406 - mean_absolute_error: 0.5362
+Epoch 10/200
+6455/6455 - 15s - loss: 0.6323 - mean_absolute_error: 0.5327
+Epoch 11/200
+6455/6455 - 15s - loss: 0.6226 - mean_absolute_error: 0.5274
+Epoch 12/200
+6455/6455 - 15s - loss: 0.6049 - mean_absolute_error: 0.5197
+Epoch 13/200
+6455/6455 - 15s - loss: 0.5924 - mean_absolute_error: 0.5160
+Epoch 14/200
+6455/6455 - 15s - loss: 0.5875 - mean_absolute_error: 0.5157
+Epoch 15/200
+6455/6455 - 15s - loss: 0.5787 - mean_absolute_error: 0.5138
+Epoch 16/200
+6455/6455 - 15s - loss: 0.5737 - mean_absolute_error: 0.5144
+Epoch 17/200
+6455/6455 - 15s - loss: 0.5691 - mean_absolute_error: 0.5136
+Epoch 18/200
+6455/6455 - 15s - loss: 0.5655 - mean_absolute_error: 0.5124
+Epoch 19/200
+6455/6455 - 15s - loss: 0.5600 - mean_absolute_error: 0.5114
+Epoch 20/200
+6455/6455 - 15s - loss: 0.5579 - mean_absolute_error: 0.5120
+Epoch 21/200
+6455/6455 - 15s - loss: 0.5525 - mean_absolute_error: 0.5085
+Epoch 22/200
+6455/6455 - 15s - loss: 0.5499 - mean_absolute_error: 0.5093
+Epoch 23/200
+6455/6455 - 15s - loss: 0.5455 - mean_absolute_error: 0.5086
+Epoch 24/200
+6455/6455 - 15s - loss: 0.5441 - mean_absolute_error: 0.5075
+Epoch 25/200
+6455/6455 - 15s - loss: 0.5436 - mean_absolute_error: 0.5083
+Epoch 26/200
+6455/6455 - 15s - loss: 0.5383 - mean_absolute_error: 0.5056
+Epoch 27/200
+6455/6455 - 15s - loss: 0.5374 - mean_absolute_error: 0.5052
+Epoch 28/200
+6455/6455 - 14s - loss: 0.5375 - mean_absolute_error: 0.5054
+Epoch 29/200
+6455/6455 - 15s - loss: 0.5332 - mean_absolute_error: 0.5039
+Epoch 30/200
+6455/6455 - 15s - loss: 0.5321 - mean_absolute_error: 0.5053
+Epoch 31/200
+6455/6455 - 15s - loss: 0.5298 - mean_absolute_error: 0.5031
+Epoch 32/200
+6455/6455 - 15s - loss: 0.5306 - mean_absolute_error: 0.5035
+Epoch 33/200
+6455/6455 - 15s - loss: 0.5291 - mean_absolute_error: 0.5025
+Epoch 34/200
+6455/6455 - 15s - loss: 0.5279 - mean_absolute_error: 0.5026
+Epoch 35/200
+6455/6455 - 15s - loss: 0.5277 - mean_absolute_error: 0.5023
+Epoch 36/200
+6455/6455 - 15s - loss: 0.5258 - mean_absolute_error: 0.5015
+Epoch 37/200
+6455/6455 - 14s - loss: 0.5256 - mean_absolute_error: 0.5008
+Epoch 38/200
+6455/6455 - 14s - loss: 0.5226 - mean_absolute_error: 0.4991
+Epoch 39/200
+6455/6455 - 15s - loss: 0.5204 - mean_absolute_error: 0.4982
+Epoch 40/200
+6455/6455 - 15s - loss: 0.5201 - mean_absolute_error: 0.4990
+Epoch 41/200
+6455/6455 - 15s - loss: 0.5171 - mean_absolute_error: 0.4976
+Epoch 42/200
+6455/6455 - 15s - loss: 0.5122 - mean_absolute_error: 0.4966
+Epoch 43/200
+6455/6455 - 15s - loss: 0.5111 - mean_absolute_error: 0.4967
+Epoch 44/200
+6455/6455 - 15s - loss: 0.5117 - mean_absolute_error: 0.4972
+Epoch 45/200
+6455/6455 - 15s - loss: 0.5069 - mean_absolute_error: 0.4954
+Epoch 46/200
+6455/6455 - 15s - loss: 0.5063 - mean_absolute_error: 0.4955
+Epoch 47/200
+6455/6455 - 15s - loss: 0.5041 - mean_absolute_error: 0.4949
+Epoch 48/200
+6455/6455 - 15s - loss: 0.5045 - mean_absolute_error: 0.4973
+Epoch 49/200
+6455/6455 - 15s - loss: 0.4987 - mean_absolute_error: 0.4949
+Epoch 50/200
+6455/6455 - 15s - loss: 0.4941 - mean_absolute_error: 0.4919
+Epoch 51/200
+6455/6455 - 15s - loss: 0.4927 - mean_absolute_error: 0.4914
+Epoch 52/200
+6455/6455 - 15s - loss: 0.4909 - mean_absolute_error: 0.4902
+Epoch 53/200
+6455/6455 - 14s - loss: 0.4870 - mean_absolute_error: 0.4894
+Epoch 54/200
+6455/6455 - 15s - loss: 0.4890 - mean_absolute_error: 0.4892
+Epoch 55/200
+6455/6455 - 15s - loss: 0.4878 - mean_absolute_error: 0.4871
+Epoch 56/200
+6455/6455 - 15s - loss: 0.4827 - mean_absolute_error: 0.4855
+Epoch 57/200
+6455/6455 - 15s - loss: 0.4804 - mean_absolute_error: 0.4830
+Epoch 58/200
+6455/6455 - 15s - loss: 0.4831 - mean_absolute_error: 0.4835
+Epoch 59/200
+6455/6455 - 15s - loss: 0.4800 - mean_absolute_error: 0.4824
+Epoch 60/200
+6455/6455 - 15s - loss: 0.4766 - mean_absolute_error: 0.4795
+Epoch 61/200
+6455/6455 - 15s - loss: 0.4735 - mean_absolute_error: 0.4791
+Epoch 62/200
+6455/6455 - 15s - loss: 0.4712 - mean_absolute_error: 0.4760
+Epoch 63/200
+6455/6455 - 15s - loss: 0.4692 - mean_absolute_error: 0.4757
+Epoch 64/200
+6455/6455 - 15s - loss: 0.4687 - mean_absolute_error: 0.4752
+Epoch 65/200
+6455/6455 - 15s - loss: 0.4737 - mean_absolute_error: 0.4760
+Epoch 66/200
+6455/6455 - 15s - loss: 0.4696 - mean_absolute_error: 0.4732
+Epoch 67/200
+6455/6455 - 15s - loss: 0.4680 - mean_absolute_error: 0.4726
+Epoch 68/200
+6455/6455 - 15s - loss: 0.4642 - mean_absolute_error: 0.4717
+Epoch 69/200
+6455/6455 - 15s - loss: 0.4619 - mean_absolute_error: 0.4695
+Epoch 70/200
+6455/6455 - 15s - loss: 0.4619 - mean_absolute_error: 0.4693
+Epoch 71/200
+6455/6455 - 15s - loss: 0.4609 - mean_absolute_error: 0.4694
+Epoch 72/200
+6455/6455 - 15s - loss: 0.4552 - mean_absolute_error: 0.4660
+Epoch 73/200
+6455/6455 - 15s - loss: 0.4608 - mean_absolute_error: 0.4682
+Epoch 74/200
+6455/6455 - 15s - loss: 0.4584 - mean_absolute_error: 0.4664
+Epoch 75/200
+6455/6455 - 15s - loss: 0.4561 - mean_absolute_error: 0.4651
+Epoch 76/200
+6455/6455 - 15s - loss: 0.4590 - mean_absolute_error: 0.4665
+Epoch 77/200
+6455/6455 - 14s - loss: 0.4608 - mean_absolute_error: 0.4678
+Epoch 78/200
+6455/6455 - 14s - loss: 0.4579 - mean_absolute_error: 0.4653
+Epoch 79/200
+6455/6455 - 15s - loss: 0.4552 - mean_absolute_error: 0.4640
+Epoch 80/200
+6455/6455 - 15s - loss: 0.4542 - mean_absolute_error: 0.4635
+Epoch 81/200
+6455/6455 - 15s - loss: 0.4531 - mean_absolute_error: 0.4629
+Epoch 82/200
+6455/6455 - 15s - loss: 0.4487 - mean_absolute_error: 0.4619
+Epoch 83/200
+6455/6455 - 15s - loss: 0.4524 - mean_absolute_error: 0.4621
+Epoch 84/200
+6455/6455 - 14s - loss: 0.4501 - mean_absolute_error: 0.4627
+Epoch 85/200
+6455/6455 - 15s - loss: 0.4467 - mean_absolute_error: 0.4607
+Epoch 86/200
+6455/6455 - 14s - loss: 0.4458 - mean_absolute_error: 0.4610
+Epoch 87/200
+6455/6455 - 14s - loss: 0.4455 - mean_absolute_error: 0.4610
+Epoch 88/200
+6455/6455 - 14s - loss: 0.4457 - mean_absolute_error: 0.4616
+Epoch 89/200
+6455/6455 - 15s - loss: 0.4449 - mean_absolute_error: 0.4610
+Epoch 90/200
+6455/6455 - 15s - loss: 0.4435 - mean_absolute_error: 0.4595
+Epoch 91/200
+6455/6455 - 15s - loss: 0.4436 - mean_absolute_error: 0.4603
+Epoch 92/200
+6455/6455 - 14s - loss: 0.4389 - mean_absolute_error: 0.4579
+Epoch 93/200
+6455/6455 - 14s - loss: 0.4382 - mean_absolute_error: 0.4581
+Epoch 94/200
+6455/6455 - 14s - loss: 0.4428 - mean_absolute_error: 0.4599
+Epoch 95/200
+6455/6455 - 15s - loss: 0.4391 - mean_absolute_error: 0.4583
+Epoch 96/200
+6455/6455 - 15s - loss: 0.4377 - mean_absolute_error: 0.4570
+Epoch 97/200
+6455/6455 - 15s - loss: 0.4393 - mean_absolute_error: 0.4580
+Epoch 98/200
+6455/6455 - 14s - loss: 0.4369 - mean_absolute_error: 0.4568
+Epoch 99/200
+6455/6455 - 14s - loss: 0.4381 - mean_absolute_error: 0.4575
+Epoch 100/200
+6455/6455 - 14s - loss: 0.4359 - mean_absolute_error: 0.4567
+Epoch 101/200
+6455/6455 - 15s - loss: 0.4314 - mean_absolute_error: 0.4541
+Epoch 102/200
+6455/6455 - 14s - loss: 0.4348 - mean_absolute_error: 0.4556
+Epoch 103/200
+6455/6455 - 14s - loss: 0.4365 - mean_absolute_error: 0.4573
+Epoch 104/200
+6455/6455 - 14s - loss: 0.4337 - mean_absolute_error: 0.4558
+Epoch 105/200
+6455/6455 - 15s - loss: 0.4326 - mean_absolute_error: 0.4556
+Epoch 106/200
+6455/6455 - 14s - loss: 0.4348 - mean_absolute_error: 0.4563
+Epoch 107/200
+6455/6455 - 14s - loss: 0.4326 - mean_absolute_error: 0.4552
+Epoch 108/200
+6455/6455 - 14s - loss: 0.4302 - mean_absolute_error: 0.4535
+Epoch 109/200
+6455/6455 - 14s - loss: 0.4322 - mean_absolute_error: 0.4552
+Epoch 110/200
+6455/6455 - 14s - loss: 0.4298 - mean_absolute_error: 0.4531
+Epoch 111/200
+6455/6455 - 14s - loss: 0.4323 - mean_absolute_error: 0.4541
+Epoch 112/200
+6455/6455 - 15s - loss: 0.4289 - mean_absolute_error: 0.4520
+Epoch 113/200
+6455/6455 - 15s - loss: 0.4292 - mean_absolute_error: 0.4539
+Epoch 114/200
+6455/6455 - 15s - loss: 0.4289 - mean_absolute_error: 0.4524
+Epoch 115/200
+6455/6455 - 14s - loss: 0.4306 - mean_absolute_error: 0.4525
+Epoch 116/200
+6455/6455 - 15s - loss: 0.4258 - mean_absolute_error: 0.4506
+Epoch 117/200
+6455/6455 - 15s - loss: 0.4267 - mean_absolute_error: 0.4500
+Epoch 118/200
+6455/6455 - 14s - loss: 0.4255 - mean_absolute_error: 0.4506
+Epoch 119/200
+6455/6455 - 14s - loss: 0.4294 - mean_absolute_error: 0.4522
+Epoch 120/200
+6455/6455 - 14s - loss: 0.4260 - mean_absolute_error: 0.4502
+Epoch 121/200
+6455/6455 - 14s - loss: 0.4280 - mean_absolute_error: 0.4515
+Epoch 122/200
+6455/6455 - 14s - loss: 0.4266 - mean_absolute_error: 0.4508
+Epoch 123/200
+6455/6455 - 15s - loss: 0.4241 - mean_absolute_error: 0.4487
+Epoch 124/200
+6455/6455 - 14s - loss: 0.4249 - mean_absolute_error: 0.4491
+Epoch 125/200
+6455/6455 - 14s - loss: 0.4237 - mean_absolute_error: 0.4492
+Epoch 126/200
+6455/6455 - 15s - loss: 0.4222 - mean_absolute_error: 0.4484
+Epoch 127/200
+6455/6455 - 15s - loss: 0.4254 - mean_absolute_error: 0.4494
+Epoch 128/200
+6455/6455 - 14s - loss: 0.4226 - mean_absolute_error: 0.4469
+Epoch 129/200
+6455/6455 - 14s - loss: 0.4212 - mean_absolute_error: 0.4480
+Epoch 130/200
+6455/6455 - 14s - loss: 0.4233 - mean_absolute_error: 0.4478
+Epoch 131/200
+6455/6455 - 14s - loss: 0.4247 - mean_absolute_error: 0.4483
+Epoch 132/200
+6455/6455 - 14s - loss: 0.4200 - mean_absolute_error: 0.4464
+Epoch 133/200
+6455/6455 - 14s - loss: 0.4205 - mean_absolute_error: 0.4466
+Epoch 134/200
+6455/6455 - 15s - loss: 0.4188 - mean_absolute_error: 0.4449
+Epoch 135/200
+6455/6455 - 14s - loss: 0.4202 - mean_absolute_error: 0.4462
+Epoch 136/200
+6455/6455 - 14s - loss: 0.4233 - mean_absolute_error: 0.4469
+Epoch 137/200
+6455/6455 - 15s - loss: 0.4170 - mean_absolute_error: 0.4446
+Epoch 138/200
+6455/6455 - 15s - loss: 0.4197 - mean_absolute_error: 0.4445
+Epoch 139/200
+6455/6455 - 14s - loss: 0.4162 - mean_absolute_error: 0.4427
+Epoch 140/200
+6455/6455 - 15s - loss: 0.4179 - mean_absolute_error: 0.4437
+Epoch 141/200
+6455/6455 - 14s - loss: 0.4187 - mean_absolute_error: 0.4429
+Epoch 142/200
+6455/6455 - 14s - loss: 0.4181 - mean_absolute_error: 0.4438
+Epoch 143/200
+6455/6455 - 15s - loss: 0.4165 - mean_absolute_error: 0.4434
+Epoch 144/200
+6455/6455 - 14s - loss: 0.4153 - mean_absolute_error: 0.4412
+Epoch 145/200
+6455/6455 - 15s - loss: 0.4153 - mean_absolute_error: 0.4424
+Epoch 146/200
+6455/6455 - 15s - loss: 0.4137 - mean_absolute_error: 0.4419
+Epoch 147/200
+6455/6455 - 14s - loss: 0.4166 - mean_absolute_error: 0.4425
+Epoch 148/200
+6455/6455 - 14s - loss: 0.4106 - mean_absolute_error: 0.4402
+Epoch 149/200
+6455/6455 - 15s - loss: 0.4126 - mean_absolute_error: 0.4408
+Epoch 150/200
+6455/6455 - 14s - loss: 0.4115 - mean_absolute_error: 0.4401
+Epoch 151/200
+6455/6455 - 15s - loss: 0.4123 - mean_absolute_error: 0.4392
+Epoch 152/200
+6455/6455 - 14s - loss: 0.4115 - mean_absolute_error: 0.4398
+Epoch 153/200
+6455/6455 - 14s - loss: 0.4123 - mean_absolute_error: 0.4401
+Epoch 154/200
+6455/6455 - 14s - loss: 0.4124 - mean_absolute_error: 0.4395
+Epoch 155/200
+6455/6455 - 14s - loss: 0.4124 - mean_absolute_error: 0.4386
+Epoch 156/200
+6455/6455 - 14s - loss: 0.4084 - mean_absolute_error: 0.4381
+Epoch 157/200
+6455/6455 - 14s - loss: 0.4101 - mean_absolute_error: 0.4386
+Epoch 158/200
+6455/6455 - 14s - loss: 0.4109 - mean_absolute_error: 0.4384
+Epoch 159/200
+6455/6455 - 15s - loss: 0.4056 - mean_absolute_error: 0.4357
+Epoch 160/200
+6455/6455 - 15s - loss: 0.4119 - mean_absolute_error: 0.4381
+Epoch 161/200
+6455/6455 - 14s - loss: 0.4063 - mean_absolute_error: 0.4373
+Epoch 162/200
+6455/6455 - 15s - loss: 0.4042 - mean_absolute_error: 0.4354
+Epoch 163/200
+6455/6455 - 15s - loss: 0.4045 - mean_absolute_error: 0.4352
+Epoch 164/200
+6455/6455 - 15s - loss: 0.4036 - mean_absolute_error: 0.4363
+Epoch 165/200
+6455/6455 - 15s - loss: 0.4019 - mean_absolute_error: 0.4343
+Epoch 166/200
+6455/6455 - 15s - loss: 0.4021 - mean_absolute_error: 0.4344
+Epoch 167/200
+6455/6455 - 15s - loss: 0.4003 - mean_absolute_error: 0.4344
+Epoch 168/200
+6455/6455 - 14s - loss: 0.4030 - mean_absolute_error: 0.4352
+Epoch 169/200
+6455/6455 - 14s - loss: 0.4021 - mean_absolute_error: 0.4349
+Epoch 170/200
+6455/6455 - 14s - loss: 0.3986 - mean_absolute_error: 0.4326
+Epoch 171/200
+6455/6455 - 15s - loss: 0.3988 - mean_absolute_error: 0.4333
+Epoch 172/200
+6455/6455 - 14s - loss: 0.3987 - mean_absolute_error: 0.4347
+Epoch 173/200
+6455/6455 - 14s - loss: 0.4016 - mean_absolute_error: 0.4345
+Epoch 174/200
+6455/6455 - 15s - loss: 0.3980 - mean_absolute_error: 0.4327
+Epoch 175/200
+6455/6455 - 15s - loss: 0.3972 - mean_absolute_error: 0.4314
+Epoch 176/200
+6455/6455 - 15s - loss: 0.3986 - mean_absolute_error: 0.4339
+Epoch 177/200
+6455/6455 - 14s - loss: 0.3960 - mean_absolute_error: 0.4318
+Epoch 178/200
+6455/6455 - 14s - loss: 0.3985 - mean_absolute_error: 0.4333
+Epoch 179/200
+6455/6455 - 15s - loss: 0.3961 - mean_absolute_error: 0.4325
+Epoch 180/200
+6455/6455 - 15s - loss: 0.3958 - mean_absolute_error: 0.4321
+Epoch 181/200
+6455/6455 - 15s - loss: 0.3931 - mean_absolute_error: 0.4309
+Epoch 182/200
+6455/6455 - 14s - loss: 0.3930 - mean_absolute_error: 0.4300
+Epoch 183/200
+6455/6455 - 14s - loss: 0.3948 - mean_absolute_error: 0.4319
+Epoch 184/200
+6455/6455 - 15s - loss: 0.3939 - mean_absolute_error: 0.4311
+Epoch 185/200
+6455/6455 - 14s - loss: 0.3913 - mean_absolute_error: 0.4308
+Epoch 186/200
+6455/6455 - 15s - loss: 0.3956 - mean_absolute_error: 0.4320
+Epoch 187/200
+6455/6455 - 14s - loss: 0.3941 - mean_absolute_error: 0.4308
+Epoch 188/200
+6455/6455 - 15s - loss: 0.3918 - mean_absolute_error: 0.4305
+Epoch 189/200
+6455/6455 - 14s - loss: 0.3951 - mean_absolute_error: 0.4312
+Epoch 190/200
+6455/6455 - 14s - loss: 0.3924 - mean_absolute_error: 0.4304
+Epoch 191/200
+6455/6455 - 15s - loss: 0.3930 - mean_absolute_error: 0.4304
+Epoch 192/200
+6455/6455 - 14s - loss: 0.3908 - mean_absolute_error: 0.4297
+Epoch 193/200
+6455/6455 - 14s - loss: 0.3926 - mean_absolute_error: 0.4302
+Epoch 194/200
+6455/6455 - 14s - loss: 0.3900 - mean_absolute_error: 0.4289
+Epoch 195/200
+6455/6455 - 15s - loss: 0.3936 - mean_absolute_error: 0.4312
+Epoch 196/200
+6455/6455 - 15s - loss: 0.3924 - mean_absolute_error: 0.4308
+Epoch 197/200
+6455/6455 - 14s - loss: 0.3894 - mean_absolute_error: 0.4293
+Epoch 198/200
+6455/6455 - 15s - loss: 0.3914 - mean_absolute_error: 0.4303
+Epoch 199/200
+6455/6455 - 15s - loss: 0.3912 - mean_absolute_error: 0.4298
+Epoch 200/200
+6455/6455 - 15s - loss: 0.3894 - mean_absolute_error: 0.4284
+Training predicted steps: 26162.0
+Training actual steps: 25267.0
+Training difference in steps: 895.0
+Training RCA: 1.0354
+training {SemiRegular, Sensor01}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (202831, 181)
+Seperating labels and features...
+features_normalized has shape (202831, 180)
+Reshaping normalized features for training...
+features_input has shape (202831, 60, 3)
+Splitting training data from rows 0 to 202831
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+6339/6339 - 15s - loss: 3.8354 - mean_absolute_error: 1.5579
+Epoch 2/200
+6339/6339 - 15s - loss: 3.5322 - mean_absolute_error: 1.4878
+Epoch 3/200
+6339/6339 - 15s - loss: 3.2190 - mean_absolute_error: 1.4022
+Epoch 4/200
+6339/6339 - 15s - loss: 3.1427 - mean_absolute_error: 1.3802
+Epoch 5/200
+6339/6339 - 15s - loss: 3.0941 - mean_absolute_error: 1.3686
+Epoch 6/200
+6339/6339 - 15s - loss: 3.0884 - mean_absolute_error: 1.3678
+Epoch 7/200
+6339/6339 - 15s - loss: 3.0722 - mean_absolute_error: 1.3645
+Epoch 8/200
+6339/6339 - 15s - loss: 2.9721 - mean_absolute_error: 1.3284
+Epoch 9/200
+6339/6339 - 14s - loss: 2.8398 - mean_absolute_error: 1.2860
+Epoch 10/200
+6339/6339 - 15s - loss: 2.8067 - mean_absolute_error: 1.2762
+Epoch 11/200
+6339/6339 - 15s - loss: 2.7888 - mean_absolute_error: 1.2718
+Epoch 12/200
+6339/6339 - 15s - loss: 2.7775 - mean_absolute_error: 1.2691
+Epoch 13/200
+6339/6339 - 14s - loss: 2.7681 - mean_absolute_error: 1.2661
+Epoch 14/200
+6339/6339 - 15s - loss: 2.7558 - mean_absolute_error: 1.2627
+Epoch 15/200
+6339/6339 - 15s - loss: 2.7421 - mean_absolute_error: 1.2605
+Epoch 16/200
+6339/6339 - 15s - loss: 2.7216 - mean_absolute_error: 1.2545
+Epoch 17/200
+6339/6339 - 14s - loss: 2.7201 - mean_absolute_error: 1.2534
+Epoch 18/200
+6339/6339 - 15s - loss: 2.7157 - mean_absolute_error: 1.2533
+Epoch 19/200
+6339/6339 - 14s - loss: 2.7145 - mean_absolute_error: 1.2523
+Epoch 20/200
+6339/6339 - 15s - loss: 2.6954 - mean_absolute_error: 1.2478
+Epoch 21/200
+6339/6339 - 14s - loss: 2.6879 - mean_absolute_error: 1.2457
+Epoch 22/200
+6339/6339 - 14s - loss: 2.6706 - mean_absolute_error: 1.2422
+Epoch 23/200
+6339/6339 - 15s - loss: 2.6529 - mean_absolute_error: 1.2381
+Epoch 24/200
+6339/6339 - 14s - loss: 2.6282 - mean_absolute_error: 1.2323
+Epoch 25/200
+6339/6339 - 14s - loss: 2.5915 - mean_absolute_error: 1.2238
+Epoch 26/200
+6339/6339 - 15s - loss: 2.5395 - mean_absolute_error: 1.2113
+Epoch 27/200
+6339/6339 - 14s - loss: 2.5208 - mean_absolute_error: 1.2066
+Epoch 28/200
+6339/6339 - 14s - loss: 2.4731 - mean_absolute_error: 1.1945
+Epoch 29/200
+6339/6339 - 15s - loss: 2.4416 - mean_absolute_error: 1.1864
+Epoch 30/200
+6339/6339 - 15s - loss: 2.4014 - mean_absolute_error: 1.1766
+Epoch 31/200
+6339/6339 - 15s - loss: 2.3554 - mean_absolute_error: 1.1642
+Epoch 32/200
+6339/6339 - 15s - loss: 2.3034 - mean_absolute_error: 1.1525
+Epoch 33/200
+6339/6339 - 14s - loss: 2.2348 - mean_absolute_error: 1.1351
+Epoch 34/200
+6339/6339 - 14s - loss: 2.1551 - mean_absolute_error: 1.1137
+Epoch 35/200
+6339/6339 - 14s - loss: 2.0872 - mean_absolute_error: 1.0963
+Epoch 36/200
+6339/6339 - 15s - loss: 1.9640 - mean_absolute_error: 1.0620
+Epoch 37/200
+6339/6339 - 15s - loss: 1.9305 - mean_absolute_error: 1.0536
+Epoch 38/200
+6339/6339 - 14s - loss: 1.8173 - mean_absolute_error: 1.0184
+Epoch 39/200
+6339/6339 - 14s - loss: 1.7617 - mean_absolute_error: 1.0001
+Epoch 40/200
+6339/6339 - 14s - loss: 1.7367 - mean_absolute_error: 0.9920
+Epoch 41/200
+6339/6339 - 14s - loss: 1.7081 - mean_absolute_error: 0.9830
+Epoch 42/200
+6339/6339 - 14s - loss: 1.6901 - mean_absolute_error: 0.9784
+Epoch 43/200
+6339/6339 - 14s - loss: 1.6739 - mean_absolute_error: 0.9737
+Epoch 44/200
+6339/6339 - 15s - loss: 1.6684 - mean_absolute_error: 0.9721
+Epoch 45/200
+6339/6339 - 14s - loss: 1.6633 - mean_absolute_error: 0.9716
+Epoch 46/200
+6339/6339 - 15s - loss: 1.6481 - mean_absolute_error: 0.9668
+Epoch 47/200
+6339/6339 - 14s - loss: 1.6440 - mean_absolute_error: 0.9657
+Epoch 48/200
+6339/6339 - 15s - loss: 1.6291 - mean_absolute_error: 0.9610
+Epoch 49/200
+6339/6339 - 14s - loss: 1.6164 - mean_absolute_error: 0.9570
+Epoch 50/200
+6339/6339 - 14s - loss: 1.6066 - mean_absolute_error: 0.9542
+Epoch 51/200
+6339/6339 - 15s - loss: 1.5961 - mean_absolute_error: 0.9511
+Epoch 52/200
+6339/6339 - 14s - loss: 1.5923 - mean_absolute_error: 0.9487
+Epoch 53/200
+6339/6339 - 14s - loss: 1.5858 - mean_absolute_error: 0.9473
+Epoch 54/200
+6339/6339 - 14s - loss: 1.5799 - mean_absolute_error: 0.9454
+Epoch 55/200
+6339/6339 - 14s - loss: 1.5774 - mean_absolute_error: 0.9455
+Epoch 56/200
+6339/6339 - 15s - loss: 1.5692 - mean_absolute_error: 0.9423
+Epoch 57/200
+6339/6339 - 14s - loss: 1.5637 - mean_absolute_error: 0.9400
+Epoch 58/200
+6339/6339 - 14s - loss: 1.5592 - mean_absolute_error: 0.9394
+Epoch 59/200
+6339/6339 - 14s - loss: 1.5518 - mean_absolute_error: 0.9367
+Epoch 60/200
+6339/6339 - 15s - loss: 1.5461 - mean_absolute_error: 0.9341
+Epoch 61/200
+6339/6339 - 14s - loss: 1.5374 - mean_absolute_error: 0.9312
+Epoch 62/200
+6339/6339 - 15s - loss: 1.5315 - mean_absolute_error: 0.9285
+Epoch 63/200
+6339/6339 - 15s - loss: 1.5254 - mean_absolute_error: 0.9264
+Epoch 64/200
+6339/6339 - 14s - loss: 1.5187 - mean_absolute_error: 0.9242
+Epoch 65/200
+6339/6339 - 14s - loss: 1.5123 - mean_absolute_error: 0.9217
+Epoch 66/200
+6339/6339 - 15s - loss: 1.5100 - mean_absolute_error: 0.9207
+Epoch 67/200
+6339/6339 - 14s - loss: 1.5045 - mean_absolute_error: 0.9185
+Epoch 68/200
+6339/6339 - 15s - loss: 1.5016 - mean_absolute_error: 0.9172
+Epoch 69/200
+6339/6339 - 14s - loss: 1.4986 - mean_absolute_error: 0.9164
+Epoch 70/200
+6339/6339 - 14s - loss: 1.4922 - mean_absolute_error: 0.9143
+Epoch 71/200
+6339/6339 - 15s - loss: 1.4945 - mean_absolute_error: 0.9155
+Epoch 72/200
+6339/6339 - 14s - loss: 1.4907 - mean_absolute_error: 0.9137
+Epoch 73/200
+6339/6339 - 15s - loss: 1.4850 - mean_absolute_error: 0.9115
+Epoch 74/200
+6339/6339 - 14s - loss: 1.4862 - mean_absolute_error: 0.9118
+Epoch 75/200
+6339/6339 - 14s - loss: 1.4884 - mean_absolute_error: 0.9126
+Epoch 76/200
+6339/6339 - 14s - loss: 1.4856 - mean_absolute_error: 0.9123
+Epoch 77/200
+6339/6339 - 15s - loss: 1.4783 - mean_absolute_error: 0.9099
+Epoch 78/200
+6339/6339 - 14s - loss: 1.4804 - mean_absolute_error: 0.9099
+Epoch 79/200
+6339/6339 - 14s - loss: 1.4736 - mean_absolute_error: 0.9073
+Epoch 80/200
+6339/6339 - 14s - loss: 1.4795 - mean_absolute_error: 0.9103
+Epoch 81/200
+6339/6339 - 14s - loss: 1.4750 - mean_absolute_error: 0.9086
+Epoch 82/200
+6339/6339 - 14s - loss: 1.4724 - mean_absolute_error: 0.9073
+Epoch 83/200
+6339/6339 - 14s - loss: 1.4743 - mean_absolute_error: 0.9082
+Epoch 84/200
+6339/6339 - 15s - loss: 1.4695 - mean_absolute_error: 0.9066
+Epoch 85/200
+6339/6339 - 14s - loss: 1.4704 - mean_absolute_error: 0.9064
+Epoch 86/200
+6339/6339 - 14s - loss: 1.4694 - mean_absolute_error: 0.9070
+Epoch 87/200
+6339/6339 - 14s - loss: 1.4647 - mean_absolute_error: 0.9052
+Epoch 88/200
+6339/6339 - 15s - loss: 1.4645 - mean_absolute_error: 0.9058
+Epoch 89/200
+6339/6339 - 14s - loss: 1.4654 - mean_absolute_error: 0.9062
+Epoch 90/200
+6339/6339 - 14s - loss: 1.4644 - mean_absolute_error: 0.9058
+Epoch 91/200
+6339/6339 - 15s - loss: 1.4623 - mean_absolute_error: 0.9049
+Epoch 92/200
+6339/6339 - 14s - loss: 1.4573 - mean_absolute_error: 0.9029
+Epoch 93/200
+6339/6339 - 14s - loss: 1.4581 - mean_absolute_error: 0.9036
+Epoch 94/200
+6339/6339 - 14s - loss: 1.4574 - mean_absolute_error: 0.9030
+Epoch 95/200
+6339/6339 - 15s - loss: 1.4573 - mean_absolute_error: 0.9038
+Epoch 96/200
+6339/6339 - 15s - loss: 1.4574 - mean_absolute_error: 0.9035
+Epoch 97/200
+6339/6339 - 15s - loss: 1.4540 - mean_absolute_error: 0.9023
+Epoch 98/200
+6339/6339 - 14s - loss: 1.4558 - mean_absolute_error: 0.9036
+Epoch 99/200
+6339/6339 - 14s - loss: 1.4526 - mean_absolute_error: 0.9018
+Epoch 100/200
+6339/6339 - 14s - loss: 1.4517 - mean_absolute_error: 0.9020
+Epoch 101/200
+6339/6339 - 15s - loss: 1.4497 - mean_absolute_error: 0.9016
+Epoch 102/200
+6339/6339 - 15s - loss: 1.4520 - mean_absolute_error: 0.9020
+Epoch 103/200
+6339/6339 - 14s - loss: 1.4491 - mean_absolute_error: 0.9011
+Epoch 104/200
+6339/6339 - 14s - loss: 1.4475 - mean_absolute_error: 0.9008
+Epoch 105/200
+6339/6339 - 15s - loss: 1.4469 - mean_absolute_error: 0.9006
+Epoch 106/200
+6339/6339 - 15s - loss: 1.4462 - mean_absolute_error: 0.9000
+Epoch 107/200
+6339/6339 - 14s - loss: 1.4447 - mean_absolute_error: 0.9000
+Epoch 108/200
+6339/6339 - 14s - loss: 1.4454 - mean_absolute_error: 0.9007
+Epoch 109/200
+6339/6339 - 14s - loss: 1.4434 - mean_absolute_error: 0.8997
+Epoch 110/200
+6339/6339 - 14s - loss: 1.4445 - mean_absolute_error: 0.9005
+Epoch 111/200
+6339/6339 - 14s - loss: 1.4426 - mean_absolute_error: 0.8992
+Epoch 112/200
+6339/6339 - 14s - loss: 1.4399 - mean_absolute_error: 0.8988
+Epoch 113/200
+6339/6339 - 14s - loss: 1.4414 - mean_absolute_error: 0.8989
+Epoch 114/200
+6339/6339 - 14s - loss: 1.4379 - mean_absolute_error: 0.8983
+Epoch 115/200
+6339/6339 - 14s - loss: 1.4409 - mean_absolute_error: 0.8990
+Epoch 116/200
+6339/6339 - 14s - loss: 1.4384 - mean_absolute_error: 0.8982
+Epoch 117/200
+6339/6339 - 14s - loss: 1.4350 - mean_absolute_error: 0.8976
+Epoch 118/200
+6339/6339 - 15s - loss: 1.4352 - mean_absolute_error: 0.8973
+Epoch 119/200
+6339/6339 - 14s - loss: 1.4358 - mean_absolute_error: 0.8974
+Epoch 120/200
+6339/6339 - 14s - loss: 1.4297 - mean_absolute_error: 0.8957
+Epoch 121/200
+6339/6339 - 15s - loss: 1.4326 - mean_absolute_error: 0.8971
+Epoch 122/200
+6339/6339 - 14s - loss: 1.4309 - mean_absolute_error: 0.8963
+Epoch 123/200
+6339/6339 - 14s - loss: 1.4356 - mean_absolute_error: 0.8977
+Epoch 124/200
+6339/6339 - 14s - loss: 1.4371 - mean_absolute_error: 0.8982
+Epoch 125/200
+6339/6339 - 15s - loss: 1.4329 - mean_absolute_error: 0.8970
+Epoch 126/200
+6339/6339 - 14s - loss: 1.4276 - mean_absolute_error: 0.8948
+Epoch 127/200
+6339/6339 - 14s - loss: 1.4299 - mean_absolute_error: 0.8960
+Epoch 128/200
+6339/6339 - 14s - loss: 1.4316 - mean_absolute_error: 0.8971
+Epoch 129/200
+6339/6339 - 15s - loss: 1.4288 - mean_absolute_error: 0.8960
+Epoch 130/200
+6339/6339 - 15s - loss: 1.4300 - mean_absolute_error: 0.8959
+Epoch 131/200
+6339/6339 - 14s - loss: 1.4299 - mean_absolute_error: 0.8956
+Epoch 132/200
+6339/6339 - 14s - loss: 1.4283 - mean_absolute_error: 0.8959
+Epoch 133/200
+6339/6339 - 14s - loss: 1.4293 - mean_absolute_error: 0.8966
+Epoch 134/200
+6339/6339 - 14s - loss: 1.4271 - mean_absolute_error: 0.8956
+Epoch 135/200
+6339/6339 - 14s - loss: 1.4246 - mean_absolute_error: 0.8940
+Epoch 136/200
+6339/6339 - 14s - loss: 1.4299 - mean_absolute_error: 0.8963
+Epoch 137/200
+6339/6339 - 15s - loss: 1.4265 - mean_absolute_error: 0.8953
+Epoch 138/200
+6339/6339 - 15s - loss: 1.4293 - mean_absolute_error: 0.8962
+Epoch 139/200
+6339/6339 - 14s - loss: 1.4250 - mean_absolute_error: 0.8943
+Epoch 140/200
+6339/6339 - 15s - loss: 1.4277 - mean_absolute_error: 0.8958
+Epoch 141/200
+6339/6339 - 14s - loss: 1.4216 - mean_absolute_error: 0.8934
+Epoch 142/200
+6339/6339 - 15s - loss: 1.4263 - mean_absolute_error: 0.8954
+Epoch 143/200
+6339/6339 - 14s - loss: 1.4279 - mean_absolute_error: 0.8956
+Epoch 144/200
+6339/6339 - 15s - loss: 1.4236 - mean_absolute_error: 0.8939
+Epoch 145/200
+6339/6339 - 14s - loss: 1.4293 - mean_absolute_error: 0.8961
+Epoch 146/200
+6339/6339 - 14s - loss: 1.4231 - mean_absolute_error: 0.8938
+Epoch 147/200
+6339/6339 - 14s - loss: 1.4203 - mean_absolute_error: 0.8925
+Epoch 148/200
+6339/6339 - 14s - loss: 1.4236 - mean_absolute_error: 0.8937
+Epoch 149/200
+6339/6339 - 15s - loss: 1.4192 - mean_absolute_error: 0.8927
+Epoch 150/200
+6339/6339 - 14s - loss: 1.4209 - mean_absolute_error: 0.8934
+Epoch 151/200
+6339/6339 - 14s - loss: 1.4257 - mean_absolute_error: 0.8951
+Epoch 152/200
+6339/6339 - 14s - loss: 1.4202 - mean_absolute_error: 0.8927
+Epoch 153/200
+6339/6339 - 15s - loss: 1.4212 - mean_absolute_error: 0.8936
+Epoch 154/200
+6339/6339 - 14s - loss: 1.4177 - mean_absolute_error: 0.8919
+Epoch 155/200
+6339/6339 - 14s - loss: 1.4196 - mean_absolute_error: 0.8925
+Epoch 156/200
+6339/6339 - 15s - loss: 1.4191 - mean_absolute_error: 0.8928
+Epoch 157/200
+6339/6339 - 15s - loss: 1.4176 - mean_absolute_error: 0.8923
+Epoch 158/200
+6339/6339 - 15s - loss: 1.4178 - mean_absolute_error: 0.8917
+Epoch 159/200
+6339/6339 - 14s - loss: 1.4179 - mean_absolute_error: 0.8925
+Epoch 160/200
+6339/6339 - 14s - loss: 1.4183 - mean_absolute_error: 0.8926
+Epoch 161/200
+6339/6339 - 14s - loss: 1.4175 - mean_absolute_error: 0.8926
+Epoch 162/200
+6339/6339 - 14s - loss: 1.4175 - mean_absolute_error: 0.8922
+Epoch 163/200
+6339/6339 - 14s - loss: 1.4171 - mean_absolute_error: 0.8919
+Epoch 164/200
+6339/6339 - 14s - loss: 1.4158 - mean_absolute_error: 0.8921
+Epoch 165/200
+6339/6339 - 14s - loss: 1.4152 - mean_absolute_error: 0.8916
+Epoch 166/200
+6339/6339 - 14s - loss: 1.4155 - mean_absolute_error: 0.8917
+Epoch 167/200
+6339/6339 - 15s - loss: 1.4133 - mean_absolute_error: 0.8909
+Epoch 168/200
+6339/6339 - 14s - loss: 1.4147 - mean_absolute_error: 0.8910
+Epoch 169/200
+6339/6339 - 14s - loss: 1.4111 - mean_absolute_error: 0.8900
+Epoch 170/200
+6339/6339 - 14s - loss: 1.4115 - mean_absolute_error: 0.8903
+Epoch 171/200
+6339/6339 - 14s - loss: 1.4125 - mean_absolute_error: 0.8911
+Epoch 172/200
+6339/6339 - 14s - loss: 1.4127 - mean_absolute_error: 0.8910
+Epoch 173/200
+6339/6339 - 15s - loss: 1.4144 - mean_absolute_error: 0.8907
+Epoch 174/200
+6339/6339 - 15s - loss: 1.4134 - mean_absolute_error: 0.8901
+Epoch 175/200
+6339/6339 - 14s - loss: 1.4096 - mean_absolute_error: 0.8893
+Epoch 176/200
+6339/6339 - 14s - loss: 1.4085 - mean_absolute_error: 0.8890
+Epoch 177/200
+6339/6339 - 14s - loss: 1.4119 - mean_absolute_error: 0.8906
+Epoch 178/200
+6339/6339 - 15s - loss: 1.4096 - mean_absolute_error: 0.8892
+Epoch 179/200
+6339/6339 - 14s - loss: 1.4122 - mean_absolute_error: 0.8905
+Epoch 180/200
+6339/6339 - 14s - loss: 1.4120 - mean_absolute_error: 0.8904
+Epoch 181/200
+6339/6339 - 14s - loss: 1.4105 - mean_absolute_error: 0.8904
+Epoch 182/200
+6339/6339 - 15s - loss: 1.4095 - mean_absolute_error: 0.8893
+Epoch 183/200
+6339/6339 - 14s - loss: 1.4082 - mean_absolute_error: 0.8891
+Epoch 184/200
+6339/6339 - 14s - loss: 1.4079 - mean_absolute_error: 0.8891
+Epoch 185/200
+6339/6339 - 14s - loss: 1.4063 - mean_absolute_error: 0.8880
+Epoch 186/200
+6339/6339 - 14s - loss: 1.4073 - mean_absolute_error: 0.8888
+Epoch 187/200
+6339/6339 - 14s - loss: 1.4053 - mean_absolute_error: 0.8878
+Epoch 188/200
+6339/6339 - 14s - loss: 1.4063 - mean_absolute_error: 0.8884
+Epoch 189/200
+6339/6339 - 15s - loss: 1.4074 - mean_absolute_error: 0.8882
+Epoch 190/200
+6339/6339 - 14s - loss: 1.4067 - mean_absolute_error: 0.8880
+Epoch 191/200
+6339/6339 - 14s - loss: 1.4043 - mean_absolute_error: 0.8870
+Epoch 192/200
+6339/6339 - 14s - loss: 1.4029 - mean_absolute_error: 0.8869
+Epoch 193/200
+6339/6339 - 15s - loss: 1.4033 - mean_absolute_error: 0.8876
+Epoch 194/200
+6339/6339 - 15s - loss: 1.4033 - mean_absolute_error: 0.8873
+Epoch 195/200
+6339/6339 - 14s - loss: 1.4049 - mean_absolute_error: 0.8875
+Epoch 196/200
+6339/6339 - 14s - loss: 1.4035 - mean_absolute_error: 0.8871
+Epoch 197/200
+6339/6339 - 14s - loss: 1.4012 - mean_absolute_error: 0.8868
+Epoch 198/200
+6339/6339 - 14s - loss: 1.4035 - mean_absolute_error: 0.8871
+Epoch 199/200
+6339/6339 - 14s - loss: 1.4018 - mean_absolute_error: 0.8867
+Epoch 200/200
+6339/6339 - 14s - loss: 1.3989 - mean_absolute_error: 0.8856
+Training predicted steps: 17582.0
+Training actual steps: 17844.0
+Training difference in steps: 262.0
+Training RCA: 0.9853
+training {Irregular, Sensor01}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (333243, 181)
+Seperating labels and features...
+features_normalized has shape (333243, 180)
+Reshaping normalized features for training...
+features_input has shape (333243, 60, 3)
+Splitting training data from rows 0 to 333243
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+10414/10414 - 24s - loss: 3.2299 - mean_absolute_error: 1.1914
+Epoch 2/200
+10414/10414 - 24s - loss: 2.5586 - mean_absolute_error: 1.0037
+Epoch 3/200
+10414/10414 - 24s - loss: 2.3400 - mean_absolute_error: 0.9428
+Epoch 4/200
+10414/10414 - 24s - loss: 1.9389 - mean_absolute_error: 0.8655
+Epoch 5/200
+10414/10414 - 24s - loss: 1.6785 - mean_absolute_error: 0.7979
+Epoch 6/200
+10414/10414 - 24s - loss: 1.5620 - mean_absolute_error: 0.7592
+Epoch 7/200
+10414/10414 - 24s - loss: 1.4980 - mean_absolute_error: 0.7434
+Epoch 8/200
+10414/10414 - 24s - loss: 1.4569 - mean_absolute_error: 0.7324
+Epoch 9/200
+10414/10414 - 24s - loss: 1.4318 - mean_absolute_error: 0.7270
+Epoch 10/200
+10414/10414 - 24s - loss: 1.4077 - mean_absolute_error: 0.7213
+Epoch 11/200
+10414/10414 - 24s - loss: 1.3710 - mean_absolute_error: 0.7124
+Epoch 12/200
+10414/10414 - 24s - loss: 1.3421 - mean_absolute_error: 0.7042
+Epoch 13/200
+10414/10414 - 24s - loss: 1.3210 - mean_absolute_error: 0.6973
+Epoch 14/200
+10414/10414 - 24s - loss: 1.3061 - mean_absolute_error: 0.6915
+Epoch 15/200
+10414/10414 - 24s - loss: 1.2931 - mean_absolute_error: 0.6854
+Epoch 16/200
+10414/10414 - 24s - loss: 1.2775 - mean_absolute_error: 0.6794
+Epoch 17/200
+10414/10414 - 23s - loss: 1.2669 - mean_absolute_error: 0.6755
+Epoch 18/200
+10414/10414 - 24s - loss: 1.2617 - mean_absolute_error: 0.6728
+Epoch 19/200
+10414/10414 - 23s - loss: 1.2535 - mean_absolute_error: 0.6687
+Epoch 20/200
+10414/10414 - 23s - loss: 1.2452 - mean_absolute_error: 0.6656
+Epoch 21/200
+10414/10414 - 24s - loss: 1.2326 - mean_absolute_error: 0.6621
+Epoch 22/200
+10414/10414 - 24s - loss: 1.2261 - mean_absolute_error: 0.6602
+Epoch 23/200
+10414/10414 - 23s - loss: 1.2212 - mean_absolute_error: 0.6572
+Epoch 24/200
+10414/10414 - 24s - loss: 1.2170 - mean_absolute_error: 0.6557
+Epoch 25/200
+10414/10414 - 23s - loss: 1.2138 - mean_absolute_error: 0.6541
+Epoch 26/200
+10414/10414 - 24s - loss: 1.2110 - mean_absolute_error: 0.6534
+Epoch 27/200
+10414/10414 - 23s - loss: 1.2073 - mean_absolute_error: 0.6517
+Epoch 28/200
+10414/10414 - 24s - loss: 1.2018 - mean_absolute_error: 0.6495
+Epoch 29/200
+10414/10414 - 24s - loss: 1.2003 - mean_absolute_error: 0.6489
+Epoch 30/200
+10414/10414 - 23s - loss: 1.1963 - mean_absolute_error: 0.6475
+Epoch 31/200
+10414/10414 - 24s - loss: 1.1955 - mean_absolute_error: 0.6472
+Epoch 32/200
+10414/10414 - 23s - loss: 1.1924 - mean_absolute_error: 0.6466
+Epoch 33/200
+10414/10414 - 24s - loss: 1.1893 - mean_absolute_error: 0.6460
+Epoch 34/200
+10414/10414 - 23s - loss: 1.1854 - mean_absolute_error: 0.6448
+Epoch 35/200
+10414/10414 - 24s - loss: 1.1855 - mean_absolute_error: 0.6440
+Epoch 36/200
+10414/10414 - 23s - loss: 1.1797 - mean_absolute_error: 0.6417
+Epoch 37/200
+10414/10414 - 23s - loss: 1.1800 - mean_absolute_error: 0.6417
+Epoch 38/200
+10414/10414 - 24s - loss: 1.1784 - mean_absolute_error: 0.6412
+Epoch 39/200
+10414/10414 - 24s - loss: 1.1769 - mean_absolute_error: 0.6408
+Epoch 40/200
+10414/10414 - 24s - loss: 1.1721 - mean_absolute_error: 0.6386
+Epoch 41/200
+10414/10414 - 23s - loss: 1.1718 - mean_absolute_error: 0.6387
+Epoch 42/200
+10414/10414 - 24s - loss: 1.1705 - mean_absolute_error: 0.6385
+Epoch 43/200
+10414/10414 - 24s - loss: 1.1688 - mean_absolute_error: 0.6371
+Epoch 44/200
+10414/10414 - 24s - loss: 1.1667 - mean_absolute_error: 0.6367
+Epoch 45/200
+10414/10414 - 23s - loss: 1.1645 - mean_absolute_error: 0.6361
+Epoch 46/200
+10414/10414 - 24s - loss: 1.1630 - mean_absolute_error: 0.6354
+Epoch 47/200
+10414/10414 - 24s - loss: 1.1622 - mean_absolute_error: 0.6347
+Epoch 48/200
+10414/10414 - 24s - loss: 1.1602 - mean_absolute_error: 0.6343
+Epoch 49/200
+10414/10414 - 24s - loss: 1.1612 - mean_absolute_error: 0.6346
+Epoch 50/200
+10414/10414 - 23s - loss: 1.1574 - mean_absolute_error: 0.6336
+Epoch 51/200
+10414/10414 - 23s - loss: 1.1542 - mean_absolute_error: 0.6327
+Epoch 52/200
+10414/10414 - 23s - loss: 1.1541 - mean_absolute_error: 0.6312
+Epoch 53/200
+10414/10414 - 23s - loss: 1.1517 - mean_absolute_error: 0.6311
+Epoch 54/200
+10414/10414 - 24s - loss: 1.1519 - mean_absolute_error: 0.6310
+Epoch 55/200
+10414/10414 - 24s - loss: 1.1479 - mean_absolute_error: 0.6291
+Epoch 56/200
+10414/10414 - 24s - loss: 1.1470 - mean_absolute_error: 0.6289
+Epoch 57/200
+10414/10414 - 23s - loss: 1.1441 - mean_absolute_error: 0.6274
+Epoch 58/200
+10414/10414 - 24s - loss: 1.1446 - mean_absolute_error: 0.6273
+Epoch 59/200
+10414/10414 - 24s - loss: 1.1432 - mean_absolute_error: 0.6274
+Epoch 60/200
+10414/10414 - 24s - loss: 1.1405 - mean_absolute_error: 0.6263
+Epoch 61/200
+10414/10414 - 24s - loss: 1.1399 - mean_absolute_error: 0.6260
+Epoch 62/200
+10414/10414 - 24s - loss: 1.1379 - mean_absolute_error: 0.6256
+Epoch 63/200
+10414/10414 - 23s - loss: 1.1345 - mean_absolute_error: 0.6248
+Epoch 64/200
+10414/10414 - 23s - loss: 1.1335 - mean_absolute_error: 0.6231
+Epoch 65/200
+10414/10414 - 24s - loss: 1.1347 - mean_absolute_error: 0.6242
+Epoch 66/200
+10414/10414 - 24s - loss: 1.1327 - mean_absolute_error: 0.6234
+Epoch 67/200
+10414/10414 - 23s - loss: 1.1310 - mean_absolute_error: 0.6223
+Epoch 68/200
+10414/10414 - 23s - loss: 1.1298 - mean_absolute_error: 0.6215
+Epoch 69/200
+10414/10414 - 23s - loss: 1.1272 - mean_absolute_error: 0.6215
+Epoch 70/200
+10414/10414 - 24s - loss: 1.1280 - mean_absolute_error: 0.6212
+Epoch 71/200
+10414/10414 - 23s - loss: 1.1261 - mean_absolute_error: 0.6210
+Epoch 72/200
+10414/10414 - 24s - loss: 1.1272 - mean_absolute_error: 0.6215
+Epoch 73/200
+10414/10414 - 24s - loss: 1.1242 - mean_absolute_error: 0.6209
+Epoch 74/200
+10414/10414 - 23s - loss: 1.1215 - mean_absolute_error: 0.6203
+Epoch 75/200
+10414/10414 - 24s - loss: 1.1223 - mean_absolute_error: 0.6203
+Epoch 76/200
+10414/10414 - 23s - loss: 1.1212 - mean_absolute_error: 0.6191
+Epoch 77/200
+10414/10414 - 23s - loss: 1.1205 - mean_absolute_error: 0.6191
+Epoch 78/200
+10414/10414 - 23s - loss: 1.1175 - mean_absolute_error: 0.6202
+Epoch 79/200
+10414/10414 - 23s - loss: 1.1197 - mean_absolute_error: 0.6189
+Epoch 80/200
+10414/10414 - 24s - loss: 1.1176 - mean_absolute_error: 0.6188
+Epoch 81/200
+10414/10414 - 24s - loss: 1.1192 - mean_absolute_error: 0.6193
+Epoch 82/200
+10414/10414 - 24s - loss: 1.1186 - mean_absolute_error: 0.6185
+Epoch 83/200
+10414/10414 - 24s - loss: 1.1155 - mean_absolute_error: 0.6182
+Epoch 84/200
+10414/10414 - 23s - loss: 1.1159 - mean_absolute_error: 0.6179
+Epoch 85/200
+10414/10414 - 23s - loss: 1.1158 - mean_absolute_error: 0.6176
+Epoch 86/200
+10414/10414 - 24s - loss: 1.1138 - mean_absolute_error: 0.6180
+Epoch 87/200
+10414/10414 - 23s - loss: 1.1155 - mean_absolute_error: 0.6177
+Epoch 88/200
+10414/10414 - 24s - loss: 1.1120 - mean_absolute_error: 0.6175
+Epoch 89/200
+10414/10414 - 23s - loss: 1.1132 - mean_absolute_error: 0.6175
+Epoch 90/200
+10414/10414 - 23s - loss: 1.1099 - mean_absolute_error: 0.6161
+Epoch 91/200
+10414/10414 - 24s - loss: 1.1102 - mean_absolute_error: 0.6163
+Epoch 92/200
+10414/10414 - 24s - loss: 1.1107 - mean_absolute_error: 0.6164
+Epoch 93/200
+10414/10414 - 24s - loss: 1.1097 - mean_absolute_error: 0.6158
+Epoch 94/200
+10414/10414 - 23s - loss: 1.1108 - mean_absolute_error: 0.6163
+Epoch 95/200
+10414/10414 - 24s - loss: 1.1063 - mean_absolute_error: 0.6153
+Epoch 96/200
+10414/10414 - 23s - loss: 1.1084 - mean_absolute_error: 0.6165
+Epoch 97/200
+10414/10414 - 24s - loss: 1.1078 - mean_absolute_error: 0.6151
+Epoch 98/200
+10414/10414 - 24s - loss: 1.1055 - mean_absolute_error: 0.6153
+Epoch 99/200
+10414/10414 - 24s - loss: 1.1028 - mean_absolute_error: 0.6129
+Epoch 100/200
+10414/10414 - 23s - loss: 1.0988 - mean_absolute_error: 0.6114
+Epoch 101/200
+10414/10414 - 24s - loss: 1.0950 - mean_absolute_error: 0.6098
+Epoch 102/200
+10414/10414 - 24s - loss: 1.0948 - mean_absolute_error: 0.6100
+Epoch 103/200
+10414/10414 - 23s - loss: 1.0928 - mean_absolute_error: 0.6097
+Epoch 104/200
+10414/10414 - 24s - loss: 1.0934 - mean_absolute_error: 0.6099
+Epoch 105/200
+10414/10414 - 23s - loss: 1.0934 - mean_absolute_error: 0.6095
+Epoch 106/200
+10414/10414 - 23s - loss: 1.0898 - mean_absolute_error: 0.6092
+Epoch 107/200
+10414/10414 - 23s - loss: 1.0918 - mean_absolute_error: 0.6081
+Epoch 108/200
+10414/10414 - 24s - loss: 1.0895 - mean_absolute_error: 0.6088
+Epoch 109/200
+10414/10414 - 24s - loss: 1.0885 - mean_absolute_error: 0.6078
+Epoch 110/200
+10414/10414 - 24s - loss: 1.0882 - mean_absolute_error: 0.6075
+Epoch 111/200
+10414/10414 - 24s - loss: 1.0876 - mean_absolute_error: 0.6080
+Epoch 112/200
+10414/10414 - 24s - loss: 1.0849 - mean_absolute_error: 0.6074
+Epoch 113/200
+10414/10414 - 24s - loss: 1.0873 - mean_absolute_error: 0.6076
+Epoch 114/200
+10414/10414 - 23s - loss: 1.0843 - mean_absolute_error: 0.6065
+Epoch 115/200
+10414/10414 - 24s - loss: 1.0852 - mean_absolute_error: 0.6076
+Epoch 116/200
+10414/10414 - 24s - loss: 1.0833 - mean_absolute_error: 0.6068
+Epoch 117/200
+10414/10414 - 23s - loss: 1.0828 - mean_absolute_error: 0.6068
+Epoch 118/200
+10414/10414 - 24s - loss: 1.0818 - mean_absolute_error: 0.6072
+Epoch 119/200
+10414/10414 - 23s - loss: 1.0814 - mean_absolute_error: 0.6065
+Epoch 120/200
+10414/10414 - 24s - loss: 1.0796 - mean_absolute_error: 0.6063
+Epoch 121/200
+10414/10414 - 24s - loss: 1.0812 - mean_absolute_error: 0.6070
+Epoch 122/200
+10414/10414 - 23s - loss: 1.0777 - mean_absolute_error: 0.6049
+Epoch 123/200
+10414/10414 - 24s - loss: 1.0762 - mean_absolute_error: 0.6049
+Epoch 124/200
+10414/10414 - 24s - loss: 1.0785 - mean_absolute_error: 0.6057
+Epoch 125/200
+10414/10414 - 23s - loss: 1.0769 - mean_absolute_error: 0.6064
+Epoch 126/200
+10414/10414 - 23s - loss: 1.0756 - mean_absolute_error: 0.6047
+Epoch 127/200
+10414/10414 - 24s - loss: 1.0764 - mean_absolute_error: 0.6052
+Epoch 128/200
+10414/10414 - 24s - loss: 1.0759 - mean_absolute_error: 0.6046
+Epoch 129/200
+10414/10414 - 24s - loss: 1.0748 - mean_absolute_error: 0.6044
+Epoch 130/200
+10414/10414 - 24s - loss: 1.0749 - mean_absolute_error: 0.6045
+Epoch 131/200
+10414/10414 - 24s - loss: 1.0742 - mean_absolute_error: 0.6044
+Epoch 132/200
+10414/10414 - 23s - loss: 1.0711 - mean_absolute_error: 0.6041
+Epoch 133/200
+10414/10414 - 24s - loss: 1.0717 - mean_absolute_error: 0.6040
+Epoch 134/200
+10414/10414 - 23s - loss: 1.0707 - mean_absolute_error: 0.6030
+Epoch 135/200
+10414/10414 - 24s - loss: 1.0706 - mean_absolute_error: 0.6036
+Epoch 136/200
+10414/10414 - 24s - loss: 1.0682 - mean_absolute_error: 0.6027
+Epoch 137/200
+10414/10414 - 24s - loss: 1.0694 - mean_absolute_error: 0.6021
+Epoch 138/200
+10414/10414 - 24s - loss: 1.0685 - mean_absolute_error: 0.6026
+Epoch 139/200
+10414/10414 - 24s - loss: 1.0686 - mean_absolute_error: 0.6020
+Epoch 140/200
+10414/10414 - 24s - loss: 1.0672 - mean_absolute_error: 0.6016
+Epoch 141/200
+10414/10414 - 24s - loss: 1.0677 - mean_absolute_error: 0.6021
+Epoch 142/200
+10414/10414 - 24s - loss: 1.0667 - mean_absolute_error: 0.6018
+Epoch 143/200
+10414/10414 - 23s - loss: 1.0659 - mean_absolute_error: 0.6010
+Epoch 144/200
+10414/10414 - 23s - loss: 1.0654 - mean_absolute_error: 0.6012
+Epoch 145/200
+10414/10414 - 23s - loss: 1.0648 - mean_absolute_error: 0.6011
+Epoch 146/200
+10414/10414 - 24s - loss: 1.0655 - mean_absolute_error: 0.6007
+Epoch 147/200
+10414/10414 - 24s - loss: 1.0628 - mean_absolute_error: 0.6010
+Epoch 148/200
+10414/10414 - 24s - loss: 1.0614 - mean_absolute_error: 0.5995
+Epoch 149/200
+10414/10414 - 23s - loss: 1.0647 - mean_absolute_error: 0.6002
+Epoch 150/200
+10414/10414 - 23s - loss: 1.0629 - mean_absolute_error: 0.5991
+Epoch 151/200
+10414/10414 - 23s - loss: 1.0612 - mean_absolute_error: 0.5995
+Epoch 152/200
+10414/10414 - 23s - loss: 1.0615 - mean_absolute_error: 0.5984
+Epoch 153/200
+10414/10414 - 23s - loss: 1.0616 - mean_absolute_error: 0.5982
+Epoch 154/200
+10414/10414 - 24s - loss: 1.0606 - mean_absolute_error: 0.5976
+Epoch 155/200
+10414/10414 - 24s - loss: 1.0614 - mean_absolute_error: 0.5976
+Epoch 156/200
+10414/10414 - 23s - loss: 1.0611 - mean_absolute_error: 0.5977
+Epoch 157/200
+10414/10414 - 23s - loss: 1.0600 - mean_absolute_error: 0.5976
+Epoch 158/200
+10414/10414 - 24s - loss: 1.0586 - mean_absolute_error: 0.5969
+Epoch 159/200
+10414/10414 - 24s - loss: 1.0594 - mean_absolute_error: 0.5967
+Epoch 160/200
+10414/10414 - 24s - loss: 1.0588 - mean_absolute_error: 0.5974
+Epoch 161/200
+10414/10414 - 23s - loss: 1.0583 - mean_absolute_error: 0.5971
+Epoch 162/200
+10414/10414 - 23s - loss: 1.0574 - mean_absolute_error: 0.5958
+Epoch 163/200
+10414/10414 - 24s - loss: 1.0580 - mean_absolute_error: 0.5961
+Epoch 164/200
+10414/10414 - 24s - loss: 1.0570 - mean_absolute_error: 0.5959
+Epoch 165/200
+10414/10414 - 23s - loss: 1.0583 - mean_absolute_error: 0.5961
+Epoch 166/200
+10414/10414 - 23s - loss: 1.0565 - mean_absolute_error: 0.5958
+Epoch 167/200
+10414/10414 - 24s - loss: 1.0570 - mean_absolute_error: 0.5952
+Epoch 168/200
+10414/10414 - 24s - loss: 1.0578 - mean_absolute_error: 0.5958
+Epoch 169/200
+10414/10414 - 24s - loss: 1.0540 - mean_absolute_error: 0.5941
+Epoch 170/200
+10414/10414 - 23s - loss: 1.0569 - mean_absolute_error: 0.5944
+Epoch 171/200
+10414/10414 - 23s - loss: 1.0521 - mean_absolute_error: 0.5933
+Epoch 172/200
+10414/10414 - 23s - loss: 1.0567 - mean_absolute_error: 0.5943
+Epoch 173/200
+10414/10414 - 23s - loss: 1.0541 - mean_absolute_error: 0.5945
+Epoch 174/200
+10414/10414 - 23s - loss: 1.0523 - mean_absolute_error: 0.5916
+Epoch 175/200
+10414/10414 - 24s - loss: 1.0532 - mean_absolute_error: 0.5932
+Epoch 176/200
+10414/10414 - 23s - loss: 1.0550 - mean_absolute_error: 0.5932
+Epoch 177/200
+10414/10414 - 23s - loss: 1.0527 - mean_absolute_error: 0.5931
+Epoch 178/200
+10414/10414 - 24s - loss: 1.0533 - mean_absolute_error: 0.5933
+Epoch 179/200
+10414/10414 - 23s - loss: 1.0500 - mean_absolute_error: 0.5938
+Epoch 180/200
+10414/10414 - 23s - loss: 1.0500 - mean_absolute_error: 0.5938
+Epoch 181/200
+10414/10414 - 23s - loss: 1.0505 - mean_absolute_error: 0.5919
+Epoch 182/200
+10414/10414 - 24s - loss: 1.0505 - mean_absolute_error: 0.5929
+Epoch 183/200
+10414/10414 - 23s - loss: 1.0512 - mean_absolute_error: 0.5921
+Epoch 184/200
+10414/10414 - 23s - loss: 1.0513 - mean_absolute_error: 0.5914
+Epoch 185/200
+10414/10414 - 23s - loss: 1.0492 - mean_absolute_error: 0.5901
+Epoch 186/200
+10414/10414 - 24s - loss: 1.0513 - mean_absolute_error: 0.5908
+Epoch 187/200
+10414/10414 - 23s - loss: 1.0498 - mean_absolute_error: 0.5907
+Epoch 188/200
+10414/10414 - 24s - loss: 1.0507 - mean_absolute_error: 0.5921
+Epoch 189/200
+10414/10414 - 24s - loss: 1.0501 - mean_absolute_error: 0.5918
+Epoch 190/200
+10414/10414 - 24s - loss: 1.0480 - mean_absolute_error: 0.5909
+Epoch 191/200
+10414/10414 - 24s - loss: 1.0471 - mean_absolute_error: 0.5908
+Epoch 192/200
+10414/10414 - 24s - loss: 1.0464 - mean_absolute_error: 0.5905
+Epoch 193/200
+10414/10414 - 24s - loss: 1.0466 - mean_absolute_error: 0.5902
+Epoch 194/200
+10414/10414 - 23s - loss: 1.0466 - mean_absolute_error: 0.5891
+Epoch 195/200
+10414/10414 - 24s - loss: 1.0450 - mean_absolute_error: 0.5857
+Epoch 196/200
+10414/10414 - 24s - loss: 1.0458 - mean_absolute_error: 0.5858
+Epoch 197/200
+10414/10414 - 23s - loss: 1.0435 - mean_absolute_error: 0.5845
+Epoch 198/200
+10414/10414 - 24s - loss: 1.0429 - mean_absolute_error: 0.5835
+Epoch 199/200
+10414/10414 - 24s - loss: 1.0449 - mean_absolute_error: 0.5849
+Epoch 200/200
+10414/10414 - 23s - loss: 1.0415 - mean_absolute_error: 0.5833
+Training predicted steps: 5367.0
+Training actual steps: 5600.0
+Training difference in steps: 233.0
+Training RCA: 0.9584
+training {Regular, Sensor02}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (206540, 181)
+Seperating labels and features...
+features_normalized has shape (206540, 180)
+Reshaping normalized features for training...
+features_input has shape (206540, 60, 3)
+Splitting training data from rows 0 to 206540
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+6455/6455 - 15s - loss: 1.0411 - mean_absolute_error: 0.6367
+Epoch 2/200
+6455/6455 - 15s - loss: 0.8374 - mean_absolute_error: 0.5985
+Epoch 3/200
+6455/6455 - 15s - loss: 0.8209 - mean_absolute_error: 0.5959
+Epoch 4/200
+6455/6455 - 15s - loss: 0.8199 - mean_absolute_error: 0.5957
+Epoch 5/200
+6455/6455 - 15s - loss: 0.8154 - mean_absolute_error: 0.5947
+Epoch 6/200
+6455/6455 - 15s - loss: 0.8112 - mean_absolute_error: 0.5936
+Epoch 7/200
+6455/6455 - 15s - loss: 0.8080 - mean_absolute_error: 0.5936
+Epoch 8/200
+6455/6455 - 15s - loss: 0.8062 - mean_absolute_error: 0.5931
+Epoch 9/200
+6455/6455 - 15s - loss: 0.8063 - mean_absolute_error: 0.5933
+Epoch 10/200
+6455/6455 - 15s - loss: 0.8049 - mean_absolute_error: 0.5936
+Epoch 11/200
+6455/6455 - 15s - loss: 0.8044 - mean_absolute_error: 0.5933
+Epoch 12/200
+6455/6455 - 15s - loss: 0.8021 - mean_absolute_error: 0.5931
+Epoch 13/200
+6455/6455 - 15s - loss: 0.8025 - mean_absolute_error: 0.5932
+Epoch 14/200
+6455/6455 - 15s - loss: 0.8020 - mean_absolute_error: 0.5935
+Epoch 15/200
+6455/6455 - 15s - loss: 0.8014 - mean_absolute_error: 0.5928
+Epoch 16/200
+6455/6455 - 15s - loss: 0.8008 - mean_absolute_error: 0.5930
+Epoch 17/200
+6455/6455 - 15s - loss: 0.8019 - mean_absolute_error: 0.5934
+Epoch 18/200
+6455/6455 - 15s - loss: 0.7996 - mean_absolute_error: 0.5925
+Epoch 19/200
+6455/6455 - 15s - loss: 0.7989 - mean_absolute_error: 0.5930
+Epoch 20/200
+6455/6455 - 15s - loss: 0.8000 - mean_absolute_error: 0.5928
+Epoch 21/200
+6455/6455 - 15s - loss: 0.7987 - mean_absolute_error: 0.5926
+Epoch 22/200
+6455/6455 - 15s - loss: 0.8003 - mean_absolute_error: 0.5927
+Epoch 23/200
+6455/6455 - 15s - loss: 0.7972 - mean_absolute_error: 0.5918
+Epoch 24/200
+6455/6455 - 15s - loss: 0.7988 - mean_absolute_error: 0.5923
+Epoch 25/200
+6455/6455 - 15s - loss: 0.7964 - mean_absolute_error: 0.5916
+Epoch 26/200
+6455/6455 - 15s - loss: 0.7972 - mean_absolute_error: 0.5914
+Epoch 27/200
+6455/6455 - 15s - loss: 0.7961 - mean_absolute_error: 0.5916
+Epoch 28/200
+6455/6455 - 15s - loss: 0.7965 - mean_absolute_error: 0.5909
+Epoch 29/200
+6455/6455 - 15s - loss: 0.7959 - mean_absolute_error: 0.5914
+Epoch 30/200
+6455/6455 - 15s - loss: 0.7916 - mean_absolute_error: 0.5905
+Epoch 31/200
+6455/6455 - 15s - loss: 0.7884 - mean_absolute_error: 0.5895
+Epoch 32/200
+6455/6455 - 15s - loss: 0.7877 - mean_absolute_error: 0.5895
+Epoch 33/200
+6455/6455 - 15s - loss: 0.7867 - mean_absolute_error: 0.5892
+Epoch 34/200
+6455/6455 - 15s - loss: 0.7856 - mean_absolute_error: 0.5881
+Epoch 35/200
+6455/6455 - 15s - loss: 0.7855 - mean_absolute_error: 0.5881
+Epoch 36/200
+6455/6455 - 15s - loss: 0.7857 - mean_absolute_error: 0.5879
+Epoch 37/200
+6455/6455 - 15s - loss: 0.7850 - mean_absolute_error: 0.5877
+Epoch 38/200
+6455/6455 - 15s - loss: 0.7847 - mean_absolute_error: 0.5874
+Epoch 39/200
+6455/6455 - 15s - loss: 0.7832 - mean_absolute_error: 0.5866
+Epoch 40/200
+6455/6455 - 15s - loss: 0.7821 - mean_absolute_error: 0.5869
+Epoch 41/200
+6455/6455 - 15s - loss: 0.7806 - mean_absolute_error: 0.5857
+Epoch 42/200
+6455/6455 - 15s - loss: 0.7790 - mean_absolute_error: 0.5854
+Epoch 43/200
+6455/6455 - 15s - loss: 0.7789 - mean_absolute_error: 0.5849
+Epoch 44/200
+6455/6455 - 15s - loss: 0.7786 - mean_absolute_error: 0.5847
+Epoch 45/200
+6455/6455 - 15s - loss: 0.7775 - mean_absolute_error: 0.5843
+Epoch 46/200
+6455/6455 - 15s - loss: 0.7771 - mean_absolute_error: 0.5836
+Epoch 47/200
+6455/6455 - 15s - loss: 0.7747 - mean_absolute_error: 0.5827
+Epoch 48/200
+6455/6455 - 15s - loss: 0.7734 - mean_absolute_error: 0.5822
+Epoch 49/200
+6455/6455 - 15s - loss: 0.7735 - mean_absolute_error: 0.5823
+Epoch 50/200
+6455/6455 - 15s - loss: 0.7732 - mean_absolute_error: 0.5816
+Epoch 51/200
+6455/6455 - 15s - loss: 0.7724 - mean_absolute_error: 0.5815
+Epoch 52/200
+6455/6455 - 15s - loss: 0.7701 - mean_absolute_error: 0.5803
+Epoch 53/200
+6455/6455 - 15s - loss: 0.7712 - mean_absolute_error: 0.5804
+Epoch 54/200
+6455/6455 - 15s - loss: 0.7701 - mean_absolute_error: 0.5797
+Epoch 55/200
+6455/6455 - 15s - loss: 0.7708 - mean_absolute_error: 0.5799
+Epoch 56/200
+6455/6455 - 15s - loss: 0.7676 - mean_absolute_error: 0.5790
+Epoch 57/200
+6455/6455 - 15s - loss: 0.7696 - mean_absolute_error: 0.5792
+Epoch 58/200
+6455/6455 - 15s - loss: 0.7686 - mean_absolute_error: 0.5790
+Epoch 59/200
+6455/6455 - 14s - loss: 0.7689 - mean_absolute_error: 0.5784
+Epoch 60/200
+6455/6455 - 15s - loss: 0.7676 - mean_absolute_error: 0.5781
+Epoch 61/200
+6455/6455 - 15s - loss: 0.7670 - mean_absolute_error: 0.5775
+Epoch 62/200
+6455/6455 - 15s - loss: 0.7673 - mean_absolute_error: 0.5773
+Epoch 63/200
+6455/6455 - 15s - loss: 0.7654 - mean_absolute_error: 0.5768
+Epoch 64/200
+6455/6455 - 15s - loss: 0.7668 - mean_absolute_error: 0.5770
+Epoch 65/200
+6455/6455 - 15s - loss: 0.7666 - mean_absolute_error: 0.5771
+Epoch 66/200
+6455/6455 - 15s - loss: 0.7655 - mean_absolute_error: 0.5766
+Epoch 67/200
+6455/6455 - 15s - loss: 0.7678 - mean_absolute_error: 0.5771
+Epoch 68/200
+6455/6455 - 15s - loss: 0.7648 - mean_absolute_error: 0.5765
+Epoch 69/200
+6455/6455 - 15s - loss: 0.7641 - mean_absolute_error: 0.5760
+Epoch 70/200
+6455/6455 - 15s - loss: 0.7643 - mean_absolute_error: 0.5759
+Epoch 71/200
+6455/6455 - 15s - loss: 0.7645 - mean_absolute_error: 0.5759
+Epoch 72/200
+6455/6455 - 15s - loss: 0.7648 - mean_absolute_error: 0.5757
+Epoch 73/200
+6455/6455 - 15s - loss: 0.7650 - mean_absolute_error: 0.5758
+Epoch 74/200
+6455/6455 - 15s - loss: 0.7657 - mean_absolute_error: 0.5760
+Epoch 75/200
+6455/6455 - 15s - loss: 0.7621 - mean_absolute_error: 0.5748
+Epoch 76/200
+6455/6455 - 15s - loss: 0.7623 - mean_absolute_error: 0.5744
+Epoch 77/200
+6455/6455 - 15s - loss: 0.7645 - mean_absolute_error: 0.5753
+Epoch 78/200
+6455/6455 - 14s - loss: 0.7631 - mean_absolute_error: 0.5752
+Epoch 79/200
+6455/6455 - 15s - loss: 0.7636 - mean_absolute_error: 0.5749
+Epoch 80/200
+6455/6455 - 15s - loss: 0.7641 - mean_absolute_error: 0.5752
+Epoch 81/200
+6455/6455 - 15s - loss: 0.7634 - mean_absolute_error: 0.5748
+Epoch 82/200
+6455/6455 - 15s - loss: 0.7633 - mean_absolute_error: 0.5751
+Epoch 83/200
+6455/6455 - 15s - loss: 0.7624 - mean_absolute_error: 0.5744
+Epoch 84/200
+6455/6455 - 15s - loss: 0.7634 - mean_absolute_error: 0.5746
+Epoch 85/200
+6455/6455 - 15s - loss: 0.7613 - mean_absolute_error: 0.5744
+Epoch 86/200
+6455/6455 - 15s - loss: 0.7626 - mean_absolute_error: 0.5747
+Epoch 87/200
+6455/6455 - 15s - loss: 0.7617 - mean_absolute_error: 0.5746
+Epoch 88/200
+6455/6455 - 15s - loss: 0.7606 - mean_absolute_error: 0.5742
+Epoch 89/200
+6455/6455 - 15s - loss: 0.7605 - mean_absolute_error: 0.5739
+Epoch 90/200
+6455/6455 - 15s - loss: 0.7620 - mean_absolute_error: 0.5742
+Epoch 91/200
+6455/6455 - 15s - loss: 0.7608 - mean_absolute_error: 0.5739
+Epoch 92/200
+6455/6455 - 15s - loss: 0.7600 - mean_absolute_error: 0.5738
+Epoch 93/200
+6455/6455 - 15s - loss: 0.7610 - mean_absolute_error: 0.5737
+Epoch 94/200
+6455/6455 - 15s - loss: 0.7610 - mean_absolute_error: 0.5734
+Epoch 95/200
+6455/6455 - 15s - loss: 0.7615 - mean_absolute_error: 0.5738
+Epoch 96/200
+6455/6455 - 15s - loss: 0.7602 - mean_absolute_error: 0.5741
+Epoch 97/200
+6455/6455 - 15s - loss: 0.7608 - mean_absolute_error: 0.5738
+Epoch 98/200
+6455/6455 - 15s - loss: 0.7596 - mean_absolute_error: 0.5734
+Epoch 99/200
+6455/6455 - 15s - loss: 0.7608 - mean_absolute_error: 0.5732
+Epoch 100/200
+6455/6455 - 15s - loss: 0.7607 - mean_absolute_error: 0.5734
+Epoch 101/200
+6455/6455 - 15s - loss: 0.7587 - mean_absolute_error: 0.5730
+Epoch 102/200
+6455/6455 - 15s - loss: 0.7595 - mean_absolute_error: 0.5731
+Epoch 103/200
+6455/6455 - 15s - loss: 0.7604 - mean_absolute_error: 0.5729
+Epoch 104/200
+6455/6455 - 14s - loss: 0.7607 - mean_absolute_error: 0.5731
+Epoch 105/200
+6455/6455 - 15s - loss: 0.7602 - mean_absolute_error: 0.5725
+Epoch 106/200
+6455/6455 - 15s - loss: 0.7615 - mean_absolute_error: 0.5734
+Epoch 107/200
+6455/6455 - 14s - loss: 0.7607 - mean_absolute_error: 0.5729
+Epoch 108/200
+6455/6455 - 15s - loss: 0.7596 - mean_absolute_error: 0.5725
+Epoch 109/200
+6455/6455 - 15s - loss: 0.7588 - mean_absolute_error: 0.5725
+Epoch 110/200
+6455/6455 - 15s - loss: 0.7597 - mean_absolute_error: 0.5723
+Epoch 111/200
+6455/6455 - 14s - loss: 0.7603 - mean_absolute_error: 0.5727
+Epoch 112/200
+6455/6455 - 15s - loss: 0.7591 - mean_absolute_error: 0.5729
+Epoch 113/200
+6455/6455 - 15s - loss: 0.7601 - mean_absolute_error: 0.5723
+Epoch 114/200
+6455/6455 - 15s - loss: 0.7593 - mean_absolute_error: 0.5725
+Epoch 115/200
+6455/6455 - 15s - loss: 0.7597 - mean_absolute_error: 0.5723
+Epoch 116/200
+6455/6455 - 15s - loss: 0.7583 - mean_absolute_error: 0.5719
+Epoch 117/200
+6455/6455 - 14s - loss: 0.7588 - mean_absolute_error: 0.5720
+Epoch 118/200
+6455/6455 - 14s - loss: 0.7585 - mean_absolute_error: 0.5720
+Epoch 119/200
+6455/6455 - 14s - loss: 0.7582 - mean_absolute_error: 0.5722
+Epoch 120/200
+6455/6455 - 14s - loss: 0.7587 - mean_absolute_error: 0.5719
+Epoch 121/200
+6455/6455 - 14s - loss: 0.7581 - mean_absolute_error: 0.5718
+Epoch 122/200
+6455/6455 - 15s - loss: 0.7578 - mean_absolute_error: 0.5721
+Epoch 123/200
+6455/6455 - 14s - loss: 0.7593 - mean_absolute_error: 0.5720
+Epoch 124/200
+6455/6455 - 15s - loss: 0.7594 - mean_absolute_error: 0.5721
+Epoch 125/200
+6455/6455 - 14s - loss: 0.7590 - mean_absolute_error: 0.5714
+Epoch 126/200
+6455/6455 - 14s - loss: 0.7587 - mean_absolute_error: 0.5716
+Epoch 127/200
+6455/6455 - 15s - loss: 0.7582 - mean_absolute_error: 0.5717
+Epoch 128/200
+6455/6455 - 15s - loss: 0.7573 - mean_absolute_error: 0.5712
+Epoch 129/200
+6455/6455 - 15s - loss: 0.7570 - mean_absolute_error: 0.5713
+Epoch 130/200
+6455/6455 - 15s - loss: 0.7580 - mean_absolute_error: 0.5709
+Epoch 131/200
+6455/6455 - 15s - loss: 0.7586 - mean_absolute_error: 0.5716
+Epoch 132/200
+6455/6455 - 15s - loss: 0.7579 - mean_absolute_error: 0.5710
+Epoch 133/200
+6455/6455 - 14s - loss: 0.7586 - mean_absolute_error: 0.5714
+Epoch 134/200
+6455/6455 - 14s - loss: 0.7578 - mean_absolute_error: 0.5711
+Epoch 135/200
+6455/6455 - 15s - loss: 0.7577 - mean_absolute_error: 0.5711
+Epoch 136/200
+6455/6455 - 15s - loss: 0.7572 - mean_absolute_error: 0.5707
+Epoch 137/200
+6455/6455 - 14s - loss: 0.7577 - mean_absolute_error: 0.5715
+Epoch 138/200
+6455/6455 - 14s - loss: 0.7561 - mean_absolute_error: 0.5710
+Epoch 139/200
+6455/6455 - 15s - loss: 0.7573 - mean_absolute_error: 0.5707
+Epoch 140/200
+6455/6455 - 15s - loss: 0.7570 - mean_absolute_error: 0.5711
+Epoch 141/200
+6455/6455 - 14s - loss: 0.7568 - mean_absolute_error: 0.5711
+Epoch 142/200
+6455/6455 - 14s - loss: 0.7565 - mean_absolute_error: 0.5704
+Epoch 143/200
+6455/6455 - 15s - loss: 0.7566 - mean_absolute_error: 0.5707
+Epoch 144/200
+6455/6455 - 14s - loss: 0.7561 - mean_absolute_error: 0.5709
+Epoch 145/200
+6455/6455 - 14s - loss: 0.7562 - mean_absolute_error: 0.5706
+Epoch 146/200
+6455/6455 - 15s - loss: 0.7572 - mean_absolute_error: 0.5708
+Epoch 147/200
+6455/6455 - 15s - loss: 0.7572 - mean_absolute_error: 0.5706
+Epoch 148/200
+6455/6455 - 15s - loss: 0.7551 - mean_absolute_error: 0.5702
+Epoch 149/200
+6455/6455 - 15s - loss: 0.7578 - mean_absolute_error: 0.5706
+Epoch 150/200
+6455/6455 - 14s - loss: 0.7561 - mean_absolute_error: 0.5698
+Epoch 151/200
+6455/6455 - 14s - loss: 0.7564 - mean_absolute_error: 0.5700
+Epoch 152/200
+6455/6455 - 14s - loss: 0.7553 - mean_absolute_error: 0.5701
+Epoch 153/200
+6455/6455 - 15s - loss: 0.7558 - mean_absolute_error: 0.5699
+Epoch 154/200
+6455/6455 - 15s - loss: 0.7575 - mean_absolute_error: 0.5702
+Epoch 155/200
+6455/6455 - 15s - loss: 0.7553 - mean_absolute_error: 0.5698
+Epoch 156/200
+6455/6455 - 14s - loss: 0.7564 - mean_absolute_error: 0.5698
+Epoch 157/200
+6455/6455 - 15s - loss: 0.7570 - mean_absolute_error: 0.5708
+Epoch 158/200
+6455/6455 - 15s - loss: 0.7559 - mean_absolute_error: 0.5705
+Epoch 159/200
+6455/6455 - 14s - loss: 0.7561 - mean_absolute_error: 0.5699
+Epoch 160/200
+6455/6455 - 15s - loss: 0.7566 - mean_absolute_error: 0.5700
+Epoch 161/200
+6455/6455 - 14s - loss: 0.7560 - mean_absolute_error: 0.5703
+Epoch 162/200
+6455/6455 - 14s - loss: 0.7565 - mean_absolute_error: 0.5703
+Epoch 163/200
+6455/6455 - 15s - loss: 0.7553 - mean_absolute_error: 0.5699
+Epoch 164/200
+6455/6455 - 14s - loss: 0.7556 - mean_absolute_error: 0.5703
+Epoch 165/200
+6455/6455 - 14s - loss: 0.7563 - mean_absolute_error: 0.5699
+Epoch 166/200
+6455/6455 - 14s - loss: 0.7563 - mean_absolute_error: 0.5699
+Epoch 167/200
+6455/6455 - 15s - loss: 0.7555 - mean_absolute_error: 0.5694
+Epoch 168/200
+6455/6455 - 15s - loss: 0.7552 - mean_absolute_error: 0.5695
+Epoch 169/200
+6455/6455 - 15s - loss: 0.7552 - mean_absolute_error: 0.5695
+Epoch 170/200
+6455/6455 - 14s - loss: 0.7548 - mean_absolute_error: 0.5697
+Epoch 171/200
+6455/6455 - 14s - loss: 0.7541 - mean_absolute_error: 0.5696
+Epoch 172/200
+6455/6455 - 14s - loss: 0.7556 - mean_absolute_error: 0.5694
+Epoch 173/200
+6455/6455 - 14s - loss: 0.7537 - mean_absolute_error: 0.5689
+Epoch 174/200
+6455/6455 - 14s - loss: 0.7554 - mean_absolute_error: 0.5696
+Epoch 175/200
+6455/6455 - 15s - loss: 0.7571 - mean_absolute_error: 0.5697
+Epoch 176/200
+6455/6455 - 15s - loss: 0.7545 - mean_absolute_error: 0.5692
+Epoch 177/200
+6455/6455 - 15s - loss: 0.7545 - mean_absolute_error: 0.5693
+Epoch 178/200
+6455/6455 - 15s - loss: 0.7568 - mean_absolute_error: 0.5697
+Epoch 179/200
+6455/6455 - 14s - loss: 0.7543 - mean_absolute_error: 0.5691
+Epoch 180/200
+6455/6455 - 14s - loss: 0.7557 - mean_absolute_error: 0.5691
+Epoch 181/200
+6455/6455 - 15s - loss: 0.7538 - mean_absolute_error: 0.5690
+Epoch 182/200
+6455/6455 - 15s - loss: 0.7551 - mean_absolute_error: 0.5692
+Epoch 183/200
+6455/6455 - 14s - loss: 0.7543 - mean_absolute_error: 0.5685
+Epoch 184/200
+6455/6455 - 15s - loss: 0.7550 - mean_absolute_error: 0.5693
+Epoch 185/200
+6455/6455 - 15s - loss: 0.7540 - mean_absolute_error: 0.5687
+Epoch 186/200
+6455/6455 - 15s - loss: 0.7556 - mean_absolute_error: 0.5693
+Epoch 187/200
+6455/6455 - 14s - loss: 0.7547 - mean_absolute_error: 0.5690
+Epoch 188/200
+6455/6455 - 14s - loss: 0.7548 - mean_absolute_error: 0.5685
+Epoch 189/200
+6455/6455 - 14s - loss: 0.7554 - mean_absolute_error: 0.5689
+Epoch 190/200
+6455/6455 - 15s - loss: 0.7546 - mean_absolute_error: 0.5687
+Epoch 191/200
+6455/6455 - 15s - loss: 0.7544 - mean_absolute_error: 0.5685
+Epoch 192/200
+6455/6455 - 15s - loss: 0.7535 - mean_absolute_error: 0.5683
+Epoch 193/200
+6455/6455 - 14s - loss: 0.7540 - mean_absolute_error: 0.5682
+Epoch 194/200
+6455/6455 - 15s - loss: 0.7533 - mean_absolute_error: 0.5682
+Epoch 195/200
+6455/6455 - 14s - loss: 0.7544 - mean_absolute_error: 0.5678
+Epoch 196/200
+6455/6455 - 14s - loss: 0.7526 - mean_absolute_error: 0.5678
+Epoch 197/200
+6455/6455 - 15s - loss: 0.7527 - mean_absolute_error: 0.5682
+Epoch 198/200
+6455/6455 - 15s - loss: 0.7520 - mean_absolute_error: 0.5681
+Epoch 199/200
+6455/6455 - 15s - loss: 0.7520 - mean_absolute_error: 0.5676
+Epoch 200/200
+6455/6455 - 15s - loss: 0.7510 - mean_absolute_error: 0.5681
+Training predicted steps: 25151.0
+Training actual steps: 25267.0
+Training difference in steps: 116.0
+Training RCA: 0.9954
+training {SemiRegular, Sensor02}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (202831, 181)
+Seperating labels and features...
+features_normalized has shape (202831, 180)
+Reshaping normalized features for training...
+features_input has shape (202831, 60, 3)
+Splitting training data from rows 0 to 202831
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+6339/6339 - 15s - loss: 3.7699 - mean_absolute_error: 1.5490
+Epoch 2/200
+6339/6339 - 15s - loss: 3.6280 - mean_absolute_error: 1.5130
+Epoch 3/200
+6339/6339 - 15s - loss: 3.5916 - mean_absolute_error: 1.5032
+Epoch 4/200
+6339/6339 - 14s - loss: 3.5758 - mean_absolute_error: 1.4991
+Epoch 5/200
+6339/6339 - 15s - loss: 3.5648 - mean_absolute_error: 1.4971
+Epoch 6/200
+6339/6339 - 15s - loss: 3.5488 - mean_absolute_error: 1.4944
+Epoch 7/200
+6339/6339 - 14s - loss: 3.5478 - mean_absolute_error: 1.4938
+Epoch 8/200
+6339/6339 - 15s - loss: 3.5337 - mean_absolute_error: 1.4907
+Epoch 9/200
+6339/6339 - 15s - loss: 3.5297 - mean_absolute_error: 1.4897
+Epoch 10/200
+6339/6339 - 15s - loss: 3.5233 - mean_absolute_error: 1.4875
+Epoch 11/200
+6339/6339 - 15s - loss: 3.5136 - mean_absolute_error: 1.4841
+Epoch 12/200
+6339/6339 - 15s - loss: 3.4928 - mean_absolute_error: 1.4753
+Epoch 13/200
+6339/6339 - 15s - loss: 3.4448 - mean_absolute_error: 1.4523
+Epoch 14/200
+6339/6339 - 14s - loss: 3.4252 - mean_absolute_error: 1.4426
+Epoch 15/200
+6339/6339 - 14s - loss: 3.4143 - mean_absolute_error: 1.4378
+Epoch 16/200
+6339/6339 - 14s - loss: 3.4088 - mean_absolute_error: 1.4354
+Epoch 17/200
+6339/6339 - 14s - loss: 3.3986 - mean_absolute_error: 1.4294
+Epoch 18/200
+6339/6339 - 15s - loss: 3.3916 - mean_absolute_error: 1.4265
+Epoch 19/200
+6339/6339 - 15s - loss: 3.3802 - mean_absolute_error: 1.4218
+Epoch 20/200
+6339/6339 - 14s - loss: 3.3643 - mean_absolute_error: 1.4171
+Epoch 21/200
+6339/6339 - 15s - loss: 3.3638 - mean_absolute_error: 1.4166
+Epoch 22/200
+6339/6339 - 14s - loss: 3.3615 - mean_absolute_error: 1.4157
+Epoch 23/200
+6339/6339 - 15s - loss: 3.3532 - mean_absolute_error: 1.4133
+Epoch 24/200
+6339/6339 - 15s - loss: 3.3499 - mean_absolute_error: 1.4125
+Epoch 25/200
+6339/6339 - 14s - loss: 3.3476 - mean_absolute_error: 1.4107
+Epoch 26/200
+6339/6339 - 15s - loss: 3.3440 - mean_absolute_error: 1.4093
+Epoch 27/200
+6339/6339 - 15s - loss: 3.3404 - mean_absolute_error: 1.4081
+Epoch 28/200
+6339/6339 - 15s - loss: 3.3373 - mean_absolute_error: 1.4072
+Epoch 29/200
+6339/6339 - 14s - loss: 3.3393 - mean_absolute_error: 1.4074
+Epoch 30/200
+6339/6339 - 15s - loss: 3.3348 - mean_absolute_error: 1.4062
+Epoch 31/200
+6339/6339 - 15s - loss: 3.3334 - mean_absolute_error: 1.4053
+Epoch 32/200
+6339/6339 - 14s - loss: 3.3311 - mean_absolute_error: 1.4040
+Epoch 33/200
+6339/6339 - 15s - loss: 3.3320 - mean_absolute_error: 1.4046
+Epoch 34/200
+6339/6339 - 14s - loss: 3.3284 - mean_absolute_error: 1.4037
+Epoch 35/200
+6339/6339 - 15s - loss: 3.3276 - mean_absolute_error: 1.4033
+Epoch 36/200
+6339/6339 - 15s - loss: 3.3244 - mean_absolute_error: 1.4027
+Epoch 37/200
+6339/6339 - 14s - loss: 3.3238 - mean_absolute_error: 1.4022
+Epoch 38/200
+6339/6339 - 14s - loss: 3.3230 - mean_absolute_error: 1.4015
+Epoch 39/200
+6339/6339 - 15s - loss: 3.3223 - mean_absolute_error: 1.4014
+Epoch 40/200
+6339/6339 - 15s - loss: 3.3169 - mean_absolute_error: 1.3991
+Epoch 41/200
+6339/6339 - 14s - loss: 3.3201 - mean_absolute_error: 1.4007
+Epoch 42/200
+6339/6339 - 15s - loss: 3.3142 - mean_absolute_error: 1.3988
+Epoch 43/200
+6339/6339 - 14s - loss: 3.3157 - mean_absolute_error: 1.3991
+Epoch 44/200
+6339/6339 - 15s - loss: 3.3165 - mean_absolute_error: 1.3990
+Epoch 45/200
+6339/6339 - 15s - loss: 3.3134 - mean_absolute_error: 1.3986
+Epoch 46/200
+6339/6339 - 14s - loss: 3.3123 - mean_absolute_error: 1.3981
+Epoch 47/200
+6339/6339 - 15s - loss: 3.3141 - mean_absolute_error: 1.3984
+Epoch 48/200
+6339/6339 - 14s - loss: 3.3111 - mean_absolute_error: 1.3984
+Epoch 49/200
+6339/6339 - 14s - loss: 3.3067 - mean_absolute_error: 1.3963
+Epoch 50/200
+6339/6339 - 15s - loss: 3.3042 - mean_absolute_error: 1.3960
+Epoch 51/200
+6339/6339 - 14s - loss: 3.3020 - mean_absolute_error: 1.3953
+Epoch 52/200
+6339/6339 - 15s - loss: 3.2984 - mean_absolute_error: 1.3938
+Epoch 53/200
+6339/6339 - 15s - loss: 3.2922 - mean_absolute_error: 1.3924
+Epoch 54/200
+6339/6339 - 15s - loss: 3.1242 - mean_absolute_error: 1.3554
+Epoch 55/200
+6339/6339 - 14s - loss: 2.0131 - mean_absolute_error: 1.0838
+Epoch 56/200
+6339/6339 - 15s - loss: 1.7231 - mean_absolute_error: 0.9963
+Epoch 57/200
+6339/6339 - 15s - loss: 1.4590 - mean_absolute_error: 0.9138
+Epoch 58/200
+6339/6339 - 14s - loss: 1.2308 - mean_absolute_error: 0.8393
+Epoch 59/200
+6339/6339 - 15s - loss: 1.1412 - mean_absolute_error: 0.8087
+Epoch 60/200
+6339/6339 - 15s - loss: 1.0886 - mean_absolute_error: 0.7896
+Epoch 61/200
+6339/6339 - 14s - loss: 1.0489 - mean_absolute_error: 0.7744
+Epoch 62/200
+6339/6339 - 15s - loss: 1.0278 - mean_absolute_error: 0.7661
+Epoch 63/200
+6339/6339 - 15s - loss: 1.0162 - mean_absolute_error: 0.7613
+Epoch 64/200
+6339/6339 - 14s - loss: 1.0032 - mean_absolute_error: 0.7563
+Epoch 65/200
+6339/6339 - 14s - loss: 0.9897 - mean_absolute_error: 0.7511
+Epoch 66/200
+6339/6339 - 14s - loss: 0.9718 - mean_absolute_error: 0.7432
+Epoch 67/200
+6339/6339 - 14s - loss: 0.9468 - mean_absolute_error: 0.7329
+Epoch 68/200
+6339/6339 - 15s - loss: 0.9287 - mean_absolute_error: 0.7251
+Epoch 69/200
+6339/6339 - 15s - loss: 0.9171 - mean_absolute_error: 0.7211
+Epoch 70/200
+6339/6339 - 15s - loss: 0.9078 - mean_absolute_error: 0.7172
+Epoch 71/200
+6339/6339 - 14s - loss: 0.9026 - mean_absolute_error: 0.7149
+Epoch 72/200
+6339/6339 - 14s - loss: 0.8977 - mean_absolute_error: 0.7132
+Epoch 73/200
+6339/6339 - 14s - loss: 0.8940 - mean_absolute_error: 0.7120
+Epoch 74/200
+6339/6339 - 14s - loss: 0.8892 - mean_absolute_error: 0.7098
+Epoch 75/200
+6339/6339 - 14s - loss: 0.8874 - mean_absolute_error: 0.7088
+Epoch 76/200
+6339/6339 - 14s - loss: 0.8842 - mean_absolute_error: 0.7078
+Epoch 77/200
+6339/6339 - 15s - loss: 0.8825 - mean_absolute_error: 0.7068
+Epoch 78/200
+6339/6339 - 14s - loss: 0.8790 - mean_absolute_error: 0.7057
+Epoch 79/200
+6339/6339 - 14s - loss: 0.8788 - mean_absolute_error: 0.7057
+Epoch 80/200
+6339/6339 - 15s - loss: 0.8759 - mean_absolute_error: 0.7044
+Epoch 81/200
+6339/6339 - 15s - loss: 0.8743 - mean_absolute_error: 0.7040
+Epoch 82/200
+6339/6339 - 14s - loss: 0.8733 - mean_absolute_error: 0.7038
+Epoch 83/200
+6339/6339 - 14s - loss: 0.8711 - mean_absolute_error: 0.7033
+Epoch 84/200
+6339/6339 - 15s - loss: 0.8699 - mean_absolute_error: 0.7023
+Epoch 85/200
+6339/6339 - 14s - loss: 0.8701 - mean_absolute_error: 0.7023
+Epoch 86/200
+6339/6339 - 14s - loss: 0.8679 - mean_absolute_error: 0.7012
+Epoch 87/200
+6339/6339 - 15s - loss: 0.8662 - mean_absolute_error: 0.7011
+Epoch 88/200
+6339/6339 - 15s - loss: 0.8638 - mean_absolute_error: 0.6998
+Epoch 89/200
+6339/6339 - 15s - loss: 0.8637 - mean_absolute_error: 0.6993
+Epoch 90/200
+6339/6339 - 15s - loss: 0.8639 - mean_absolute_error: 0.7004
+Epoch 91/200
+6339/6339 - 14s - loss: 0.8624 - mean_absolute_error: 0.6992
+Epoch 92/200
+6339/6339 - 15s - loss: 0.8615 - mean_absolute_error: 0.6991
+Epoch 93/200
+6339/6339 - 15s - loss: 0.8611 - mean_absolute_error: 0.6994
+Epoch 94/200
+6339/6339 - 15s - loss: 0.8589 - mean_absolute_error: 0.6984
+Epoch 95/200
+6339/6339 - 14s - loss: 0.8588 - mean_absolute_error: 0.6980
+Epoch 96/200
+6339/6339 - 14s - loss: 0.8555 - mean_absolute_error: 0.6965
+Epoch 97/200
+6339/6339 - 14s - loss: 0.8555 - mean_absolute_error: 0.6967
+Epoch 98/200
+6339/6339 - 14s - loss: 0.8545 - mean_absolute_error: 0.6966
+Epoch 99/200
+6339/6339 - 15s - loss: 0.8540 - mean_absolute_error: 0.6962
+Epoch 100/200
+6339/6339 - 14s - loss: 0.8520 - mean_absolute_error: 0.6956
+Epoch 101/200
+6339/6339 - 15s - loss: 0.8546 - mean_absolute_error: 0.6971
+Epoch 102/200
+6339/6339 - 14s - loss: 0.8511 - mean_absolute_error: 0.6957
+Epoch 103/200
+6339/6339 - 14s - loss: 0.8516 - mean_absolute_error: 0.6956
+Epoch 104/200
+6339/6339 - 14s - loss: 0.8486 - mean_absolute_error: 0.6940
+Epoch 105/200
+6339/6339 - 14s - loss: 0.8493 - mean_absolute_error: 0.6950
+Epoch 106/200
+6339/6339 - 14s - loss: 0.8469 - mean_absolute_error: 0.6940
+Epoch 107/200
+6339/6339 - 15s - loss: 0.8475 - mean_absolute_error: 0.6939
+Epoch 108/200
+6339/6339 - 15s - loss: 0.8460 - mean_absolute_error: 0.6936
+Epoch 109/200
+6339/6339 - 14s - loss: 0.8459 - mean_absolute_error: 0.6935
+Epoch 110/200
+6339/6339 - 15s - loss: 0.8445 - mean_absolute_error: 0.6930
+Epoch 111/200
+6339/6339 - 14s - loss: 0.8433 - mean_absolute_error: 0.6924
+Epoch 112/200
+6339/6339 - 15s - loss: 0.8423 - mean_absolute_error: 0.6916
+Epoch 113/200
+6339/6339 - 14s - loss: 0.8427 - mean_absolute_error: 0.6922
+Epoch 114/200
+6339/6339 - 15s - loss: 0.8432 - mean_absolute_error: 0.6929
+Epoch 115/200
+6339/6339 - 15s - loss: 0.8407 - mean_absolute_error: 0.6917
+Epoch 116/200
+6339/6339 - 14s - loss: 0.8408 - mean_absolute_error: 0.6915
+Epoch 117/200
+6339/6339 - 15s - loss: 0.8399 - mean_absolute_error: 0.6915
+Epoch 118/200
+6339/6339 - 14s - loss: 0.8371 - mean_absolute_error: 0.6907
+Epoch 119/200
+6339/6339 - 14s - loss: 0.8375 - mean_absolute_error: 0.6908
+Epoch 120/200
+6339/6339 - 14s - loss: 0.8399 - mean_absolute_error: 0.6923
+Epoch 121/200
+6339/6339 - 14s - loss: 0.8344 - mean_absolute_error: 0.6897
+Epoch 122/200
+6339/6339 - 15s - loss: 0.8356 - mean_absolute_error: 0.6899
+Epoch 123/200
+6339/6339 - 14s - loss: 0.8371 - mean_absolute_error: 0.6909
+Epoch 124/200
+6339/6339 - 14s - loss: 0.8363 - mean_absolute_error: 0.6903
+Epoch 125/200
+6339/6339 - 14s - loss: 0.8339 - mean_absolute_error: 0.6892
+Epoch 126/200
+6339/6339 - 14s - loss: 0.8325 - mean_absolute_error: 0.6883
+Epoch 127/200
+6339/6339 - 15s - loss: 0.8249 - mean_absolute_error: 0.6832
+Epoch 128/200
+6339/6339 - 14s - loss: 0.8196 - mean_absolute_error: 0.6804
+Epoch 129/200
+6339/6339 - 14s - loss: 0.8190 - mean_absolute_error: 0.6806
+Epoch 130/200
+6339/6339 - 15s - loss: 0.8133 - mean_absolute_error: 0.6775
+Epoch 131/200
+6339/6339 - 15s - loss: 0.8117 - mean_absolute_error: 0.6771
+Epoch 132/200
+6339/6339 - 14s - loss: 0.8103 - mean_absolute_error: 0.6766
+Epoch 133/200
+6339/6339 - 14s - loss: 0.8089 - mean_absolute_error: 0.6763
+Epoch 134/200
+6339/6339 - 15s - loss: 0.8060 - mean_absolute_error: 0.6749
+Epoch 135/200
+6339/6339 - 15s - loss: 0.8042 - mean_absolute_error: 0.6739
+Epoch 136/200
+6339/6339 - 14s - loss: 0.8032 - mean_absolute_error: 0.6735
+Epoch 137/200
+6339/6339 - 15s - loss: 0.7985 - mean_absolute_error: 0.6716
+Epoch 138/200
+6339/6339 - 14s - loss: 0.7989 - mean_absolute_error: 0.6715
+Epoch 139/200
+6339/6339 - 14s - loss: 0.8068 - mean_absolute_error: 0.6739
+Epoch 140/200
+6339/6339 - 14s - loss: 0.8034 - mean_absolute_error: 0.6724
+Epoch 141/200
+6339/6339 - 14s - loss: 0.8017 - mean_absolute_error: 0.6715
+Epoch 142/200
+6339/6339 - 14s - loss: 0.7962 - mean_absolute_error: 0.6692
+Epoch 143/200
+6339/6339 - 14s - loss: 0.7950 - mean_absolute_error: 0.6686
+Epoch 144/200
+6339/6339 - 15s - loss: 0.7934 - mean_absolute_error: 0.6683
+Epoch 145/200
+6339/6339 - 14s - loss: 0.7925 - mean_absolute_error: 0.6677
+Epoch 146/200
+6339/6339 - 14s - loss: 0.7872 - mean_absolute_error: 0.6651
+Epoch 147/200
+6339/6339 - 14s - loss: 0.7859 - mean_absolute_error: 0.6650
+Epoch 148/200
+6339/6339 - 15s - loss: 0.7856 - mean_absolute_error: 0.6648
+Epoch 149/200
+6339/6339 - 15s - loss: 0.7835 - mean_absolute_error: 0.6632
+Epoch 150/200
+6339/6339 - 14s - loss: 0.7810 - mean_absolute_error: 0.6627
+Epoch 151/200
+6339/6339 - 14s - loss: 0.7805 - mean_absolute_error: 0.6624
+Epoch 152/200
+6339/6339 - 14s - loss: 0.7778 - mean_absolute_error: 0.6612
+Epoch 153/200
+6339/6339 - 14s - loss: 0.7775 - mean_absolute_error: 0.6611
+Epoch 154/200
+6339/6339 - 15s - loss: 0.7765 - mean_absolute_error: 0.6605
+Epoch 155/200
+6339/6339 - 15s - loss: 0.7766 - mean_absolute_error: 0.6610
+Epoch 156/200
+6339/6339 - 14s - loss: 0.7756 - mean_absolute_error: 0.6604
+Epoch 157/200
+6339/6339 - 14s - loss: 0.7739 - mean_absolute_error: 0.6598
+Epoch 158/200
+6339/6339 - 14s - loss: 0.7730 - mean_absolute_error: 0.6597
+Epoch 159/200
+6339/6339 - 14s - loss: 0.7722 - mean_absolute_error: 0.6592
+Epoch 160/200
+6339/6339 - 15s - loss: 0.7732 - mean_absolute_error: 0.6594
+Epoch 161/200
+6339/6339 - 14s - loss: 0.7707 - mean_absolute_error: 0.6587
+Epoch 162/200
+6339/6339 - 15s - loss: 0.7696 - mean_absolute_error: 0.6585
+Epoch 163/200
+6339/6339 - 14s - loss: 0.7682 - mean_absolute_error: 0.6575
+Epoch 164/200
+6339/6339 - 15s - loss: 0.7676 - mean_absolute_error: 0.6576
+Epoch 165/200
+6339/6339 - 14s - loss: 0.7678 - mean_absolute_error: 0.6572
+Epoch 166/200
+6339/6339 - 14s - loss: 0.7659 - mean_absolute_error: 0.6568
+Epoch 167/200
+6339/6339 - 14s - loss: 0.7647 - mean_absolute_error: 0.6562
+Epoch 168/200
+6339/6339 - 14s - loss: 0.7653 - mean_absolute_error: 0.6569
+Epoch 169/200
+6339/6339 - 15s - loss: 0.7639 - mean_absolute_error: 0.6561
+Epoch 170/200
+6339/6339 - 14s - loss: 0.7624 - mean_absolute_error: 0.6553
+Epoch 171/200
+6339/6339 - 15s - loss: 0.7623 - mean_absolute_error: 0.6555
+Epoch 172/200
+6339/6339 - 14s - loss: 0.7637 - mean_absolute_error: 0.6557
+Epoch 173/200
+6339/6339 - 14s - loss: 0.7618 - mean_absolute_error: 0.6554
+Epoch 174/200
+6339/6339 - 14s - loss: 0.7599 - mean_absolute_error: 0.6543
+Epoch 175/200
+6339/6339 - 14s - loss: 0.7597 - mean_absolute_error: 0.6545
+Epoch 176/200
+6339/6339 - 14s - loss: 0.7592 - mean_absolute_error: 0.6541
+Epoch 177/200
+6339/6339 - 15s - loss: 0.7590 - mean_absolute_error: 0.6540
+Epoch 178/200
+6339/6339 - 14s - loss: 0.7573 - mean_absolute_error: 0.6530
+Epoch 179/200
+6339/6339 - 14s - loss: 0.7581 - mean_absolute_error: 0.6535
+Epoch 180/200
+6339/6339 - 14s - loss: 0.7578 - mean_absolute_error: 0.6539
+Epoch 181/200
+6339/6339 - 15s - loss: 0.7564 - mean_absolute_error: 0.6533
+Epoch 182/200
+6339/6339 - 14s - loss: 0.7548 - mean_absolute_error: 0.6526
+Epoch 183/200
+6339/6339 - 15s - loss: 0.7558 - mean_absolute_error: 0.6529
+Epoch 184/200
+6339/6339 - 14s - loss: 0.7600 - mean_absolute_error: 0.6541
+Epoch 185/200
+6339/6339 - 14s - loss: 0.7552 - mean_absolute_error: 0.6533
+Epoch 186/200
+6339/6339 - 14s - loss: 0.7547 - mean_absolute_error: 0.6526
+Epoch 187/200
+6339/6339 - 15s - loss: 0.7531 - mean_absolute_error: 0.6518
+Epoch 188/200
+6339/6339 - 15s - loss: 0.7539 - mean_absolute_error: 0.6525
+Epoch 189/200
+6339/6339 - 14s - loss: 0.7540 - mean_absolute_error: 0.6526
+Epoch 190/200
+6339/6339 - 14s - loss: 0.7510 - mean_absolute_error: 0.6512
+Epoch 191/200
+6339/6339 - 14s - loss: 0.7501 - mean_absolute_error: 0.6507
+Epoch 192/200
+6339/6339 - 14s - loss: 0.7495 - mean_absolute_error: 0.6506
+Epoch 193/200
+6339/6339 - 14s - loss: 0.7507 - mean_absolute_error: 0.6511
+Epoch 194/200
+6339/6339 - 14s - loss: 0.7489 - mean_absolute_error: 0.6503
+Epoch 195/200
+6339/6339 - 14s - loss: 0.7497 - mean_absolute_error: 0.6510
+Epoch 196/200
+6339/6339 - 14s - loss: 0.7490 - mean_absolute_error: 0.6509
+Epoch 197/200
+6339/6339 - 15s - loss: 0.7484 - mean_absolute_error: 0.6506
+Epoch 198/200
+6339/6339 - 15s - loss: 0.7463 - mean_absolute_error: 0.6495
+Epoch 199/200
+6339/6339 - 14s - loss: 0.7483 - mean_absolute_error: 0.6501
+Epoch 200/200
+6339/6339 - 15s - loss: 0.7465 - mean_absolute_error: 0.6498
+Training predicted steps: 17004.0
+Training actual steps: 17844.0
+Training difference in steps: 840.0
+Training RCA: 0.9529
+training {Irregular, Sensor02}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (333243, 181)
+Seperating labels and features...
+features_normalized has shape (333243, 180)
+Reshaping normalized features for training...
+features_input has shape (333243, 60, 3)
+Splitting training data from rows 0 to 333243
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+10414/10414 - 24s - loss: 4.1836 - mean_absolute_error: 1.4588
+Epoch 2/200
+10414/10414 - 24s - loss: 4.1050 - mean_absolute_error: 1.4417
+Epoch 3/200
+10414/10414 - 24s - loss: 4.0141 - mean_absolute_error: 1.4146
+Epoch 4/200
+10414/10414 - 24s - loss: 1.7898 - mean_absolute_error: 0.7955
+Epoch 5/200
+10414/10414 - 24s - loss: 0.7630 - mean_absolute_error: 0.4849
+Epoch 6/200
+10414/10414 - 24s - loss: 0.6584 - mean_absolute_error: 0.4550
+Epoch 7/200
+10414/10414 - 24s - loss: 0.5500 - mean_absolute_error: 0.4185
+Epoch 8/200
+10414/10414 - 24s - loss: 0.4856 - mean_absolute_error: 0.3877
+Epoch 9/200
+10414/10414 - 24s - loss: 0.4629 - mean_absolute_error: 0.3710
+Epoch 10/200
+10414/10414 - 24s - loss: 0.4529 - mean_absolute_error: 0.3648
+Epoch 11/200
+10414/10414 - 24s - loss: 0.4453 - mean_absolute_error: 0.3607
+Epoch 12/200
+10414/10414 - 24s - loss: 0.4408 - mean_absolute_error: 0.3592
+Epoch 13/200
+10414/10414 - 24s - loss: 0.4353 - mean_absolute_error: 0.3581
+Epoch 14/200
+10414/10414 - 24s - loss: 0.4275 - mean_absolute_error: 0.3544
+Epoch 15/200
+10414/10414 - 24s - loss: 0.4228 - mean_absolute_error: 0.3527
+Epoch 16/200
+10414/10414 - 24s - loss: 0.4175 - mean_absolute_error: 0.3498
+Epoch 17/200
+10414/10414 - 24s - loss: 0.4134 - mean_absolute_error: 0.3482
+Epoch 18/200
+10414/10414 - 24s - loss: 0.4109 - mean_absolute_error: 0.3471
+Epoch 19/200
+10414/10414 - 24s - loss: 0.4071 - mean_absolute_error: 0.3440
+Epoch 20/200
+10414/10414 - 24s - loss: 0.4056 - mean_absolute_error: 0.3419
+Epoch 21/200
+10414/10414 - 24s - loss: 0.4043 - mean_absolute_error: 0.3406
+Epoch 22/200
+10414/10414 - 24s - loss: 0.4003 - mean_absolute_error: 0.3379
+Epoch 23/200
+10414/10414 - 24s - loss: 0.3988 - mean_absolute_error: 0.3364
+Epoch 24/200
+10414/10414 - 24s - loss: 0.3971 - mean_absolute_error: 0.3344
+Epoch 25/200
+10414/10414 - 24s - loss: 0.3967 - mean_absolute_error: 0.3335
+Epoch 26/200
+10414/10414 - 24s - loss: 0.3945 - mean_absolute_error: 0.3317
+Epoch 27/200
+10414/10414 - 24s - loss: 0.3943 - mean_absolute_error: 0.3301
+Epoch 28/200
+10414/10414 - 24s - loss: 0.3920 - mean_absolute_error: 0.3293
+Epoch 29/200
+10414/10414 - 24s - loss: 0.3919 - mean_absolute_error: 0.3278
+Epoch 30/200
+10414/10414 - 24s - loss: 0.3898 - mean_absolute_error: 0.3268
+Epoch 31/200
+10414/10414 - 24s - loss: 0.3904 - mean_absolute_error: 0.3277
+Epoch 32/200
+10414/10414 - 24s - loss: 0.3901 - mean_absolute_error: 0.3261
+Epoch 33/200
+10414/10414 - 24s - loss: 0.3886 - mean_absolute_error: 0.3254
+Epoch 34/200
+10414/10414 - 24s - loss: 0.3887 - mean_absolute_error: 0.3255
+Epoch 35/200
+10414/10414 - 24s - loss: 0.3873 - mean_absolute_error: 0.3247
+Epoch 36/200
+10414/10414 - 24s - loss: 0.3867 - mean_absolute_error: 0.3223
+Epoch 37/200
+10414/10414 - 24s - loss: 0.3846 - mean_absolute_error: 0.3196
+Epoch 38/200
+10414/10414 - 24s - loss: 0.3846 - mean_absolute_error: 0.3177
+Epoch 39/200
+10414/10414 - 24s - loss: 0.3827 - mean_absolute_error: 0.3161
+Epoch 40/200
+10414/10414 - 24s - loss: 0.3817 - mean_absolute_error: 0.3153
+Epoch 41/200
+10414/10414 - 24s - loss: 0.3816 - mean_absolute_error: 0.3142
+Epoch 42/200
+10414/10414 - 24s - loss: 0.3790 - mean_absolute_error: 0.3129
+Epoch 43/200
+10414/10414 - 24s - loss: 0.3801 - mean_absolute_error: 0.3131
+Epoch 44/200
+10414/10414 - 24s - loss: 0.3783 - mean_absolute_error: 0.3120
+Epoch 45/200
+10414/10414 - 24s - loss: 0.3781 - mean_absolute_error: 0.3117
+Epoch 46/200
+10414/10414 - 24s - loss: 0.3774 - mean_absolute_error: 0.3112
+Epoch 47/200
+10414/10414 - 23s - loss: 0.3773 - mean_absolute_error: 0.3105
+Epoch 48/200
+10414/10414 - 24s - loss: 0.3757 - mean_absolute_error: 0.3097
+Epoch 49/200
+10414/10414 - 24s - loss: 0.3746 - mean_absolute_error: 0.3096
+Epoch 50/200
+10414/10414 - 24s - loss: 0.3747 - mean_absolute_error: 0.3096
+Epoch 51/200
+10414/10414 - 24s - loss: 0.3735 - mean_absolute_error: 0.3090
+Epoch 52/200
+10414/10414 - 24s - loss: 0.3737 - mean_absolute_error: 0.3091
+Epoch 53/200
+10414/10414 - 24s - loss: 0.3719 - mean_absolute_error: 0.3086
+Epoch 54/200
+10414/10414 - 24s - loss: 0.3723 - mean_absolute_error: 0.3083
+Epoch 55/200
+10414/10414 - 24s - loss: 0.3722 - mean_absolute_error: 0.3080
+Epoch 56/200
+10414/10414 - 24s - loss: 0.3715 - mean_absolute_error: 0.3078
+Epoch 57/200
+10414/10414 - 24s - loss: 0.3717 - mean_absolute_error: 0.3082
+Epoch 58/200
+10414/10414 - 24s - loss: 0.3710 - mean_absolute_error: 0.3079
+Epoch 59/200
+10414/10414 - 24s - loss: 0.3718 - mean_absolute_error: 0.3084
+Epoch 60/200
+10414/10414 - 24s - loss: 0.3703 - mean_absolute_error: 0.3076
+Epoch 61/200
+10414/10414 - 24s - loss: 0.3700 - mean_absolute_error: 0.3069
+Epoch 62/200
+10414/10414 - 24s - loss: 0.3697 - mean_absolute_error: 0.3071
+Epoch 63/200
+10414/10414 - 24s - loss: 0.3691 - mean_absolute_error: 0.3066
+Epoch 64/200
+10414/10414 - 24s - loss: 0.3696 - mean_absolute_error: 0.3059
+Epoch 65/200
+10414/10414 - 24s - loss: 0.3694 - mean_absolute_error: 0.3051
+Epoch 66/200
+10414/10414 - 24s - loss: 0.3679 - mean_absolute_error: 0.3046
+Epoch 67/200
+10414/10414 - 23s - loss: 0.3674 - mean_absolute_error: 0.3047
+Epoch 68/200
+10414/10414 - 23s - loss: 0.3672 - mean_absolute_error: 0.3042
+Epoch 69/200
+10414/10414 - 24s - loss: 0.3667 - mean_absolute_error: 0.3038
+Epoch 70/200
+10414/10414 - 24s - loss: 0.3660 - mean_absolute_error: 0.3034
+Epoch 71/200
+10414/10414 - 24s - loss: 0.3660 - mean_absolute_error: 0.3040
+Epoch 72/200
+10414/10414 - 23s - loss: 0.3651 - mean_absolute_error: 0.3034
+Epoch 73/200
+10414/10414 - 24s - loss: 0.3654 - mean_absolute_error: 0.3033
+Epoch 74/200
+10414/10414 - 24s - loss: 0.3645 - mean_absolute_error: 0.3025
+Epoch 75/200
+10414/10414 - 24s - loss: 0.3651 - mean_absolute_error: 0.3027
+Epoch 76/200
+10414/10414 - 24s - loss: 0.3645 - mean_absolute_error: 0.3029
+Epoch 77/200
+10414/10414 - 24s - loss: 0.3639 - mean_absolute_error: 0.3026
+Epoch 78/200
+10414/10414 - 24s - loss: 0.3637 - mean_absolute_error: 0.3020
+Epoch 79/200
+10414/10414 - 24s - loss: 0.3642 - mean_absolute_error: 0.3023
+Epoch 80/200
+10414/10414 - 24s - loss: 0.3639 - mean_absolute_error: 0.3023
+Epoch 81/200
+10414/10414 - 24s - loss: 0.3631 - mean_absolute_error: 0.3021
+Epoch 82/200
+10414/10414 - 24s - loss: 0.3631 - mean_absolute_error: 0.3016
+Epoch 83/200
+10414/10414 - 24s - loss: 0.3627 - mean_absolute_error: 0.3015
+Epoch 84/200
+10414/10414 - 24s - loss: 0.3623 - mean_absolute_error: 0.3011
+Epoch 85/200
+10414/10414 - 24s - loss: 0.3622 - mean_absolute_error: 0.3008
+Epoch 86/200
+10414/10414 - 24s - loss: 0.3628 - mean_absolute_error: 0.3009
+Epoch 87/200
+10414/10414 - 24s - loss: 0.3627 - mean_absolute_error: 0.3015
+Epoch 88/200
+10414/10414 - 24s - loss: 0.3617 - mean_absolute_error: 0.3004
+Epoch 89/200
+10414/10414 - 24s - loss: 0.3621 - mean_absolute_error: 0.3008
+Epoch 90/200
+10414/10414 - 24s - loss: 0.3618 - mean_absolute_error: 0.3009
+Epoch 91/200
+10414/10414 - 23s - loss: 0.3609 - mean_absolute_error: 0.3002
+Epoch 92/200
+10414/10414 - 24s - loss: 0.3608 - mean_absolute_error: 0.3003
+Epoch 93/200
+10414/10414 - 24s - loss: 0.3612 - mean_absolute_error: 0.3004
+Epoch 94/200
+10414/10414 - 24s - loss: 0.3603 - mean_absolute_error: 0.3002
+Epoch 95/200
+10414/10414 - 23s - loss: 0.3600 - mean_absolute_error: 0.3000
+Epoch 96/200
+10414/10414 - 24s - loss: 0.3596 - mean_absolute_error: 0.2999
+Epoch 97/200
+10414/10414 - 24s - loss: 0.3585 - mean_absolute_error: 0.2996
+Epoch 98/200
+10414/10414 - 24s - loss: 0.3588 - mean_absolute_error: 0.2993
+Epoch 99/200
+10414/10414 - 24s - loss: 0.3581 - mean_absolute_error: 0.2992
+Epoch 100/200
+10414/10414 - 24s - loss: 0.3582 - mean_absolute_error: 0.2997
+Epoch 101/200
+10414/10414 - 24s - loss: 0.3575 - mean_absolute_error: 0.2993
+Epoch 102/200
+10414/10414 - 24s - loss: 0.3572 - mean_absolute_error: 0.2992
+Epoch 103/200
+10414/10414 - 24s - loss: 0.3564 - mean_absolute_error: 0.2991
+Epoch 104/200
+10414/10414 - 24s - loss: 0.3566 - mean_absolute_error: 0.2989
+Epoch 105/200
+10414/10414 - 23s - loss: 0.3562 - mean_absolute_error: 0.2992
+Epoch 106/200
+10414/10414 - 23s - loss: 0.3560 - mean_absolute_error: 0.2985
+Epoch 107/200
+10414/10414 - 24s - loss: 0.3549 - mean_absolute_error: 0.2984
+Epoch 108/200
+10414/10414 - 24s - loss: 0.3543 - mean_absolute_error: 0.2990
+Epoch 109/200
+10414/10414 - 23s - loss: 0.3540 - mean_absolute_error: 0.2982
+Epoch 110/200
+10414/10414 - 24s - loss: 0.3538 - mean_absolute_error: 0.2985
+Epoch 111/200
+10414/10414 - 24s - loss: 0.3538 - mean_absolute_error: 0.2987
+Epoch 112/200
+10414/10414 - 24s - loss: 0.3540 - mean_absolute_error: 0.2989
+Epoch 113/200
+10414/10414 - 23s - loss: 0.3535 - mean_absolute_error: 0.2984
+Epoch 114/200
+10414/10414 - 24s - loss: 0.3531 - mean_absolute_error: 0.2991
+Epoch 115/200
+10414/10414 - 24s - loss: 0.3527 - mean_absolute_error: 0.2985
+Epoch 116/200
+10414/10414 - 24s - loss: 0.3520 - mean_absolute_error: 0.2983
+Epoch 117/200
+10414/10414 - 24s - loss: 0.3518 - mean_absolute_error: 0.2986
+Epoch 118/200
+10414/10414 - 24s - loss: 0.3516 - mean_absolute_error: 0.2984
+Epoch 119/200
+10414/10414 - 24s - loss: 0.3519 - mean_absolute_error: 0.2989
+Epoch 120/200
+10414/10414 - 23s - loss: 0.3509 - mean_absolute_error: 0.2986
+Epoch 121/200
+10414/10414 - 23s - loss: 0.3508 - mean_absolute_error: 0.2988
+Epoch 122/200
+10414/10414 - 23s - loss: 0.3499 - mean_absolute_error: 0.2977
+Epoch 123/200
+10414/10414 - 24s - loss: 0.3501 - mean_absolute_error: 0.2980
+Epoch 124/200
+10414/10414 - 24s - loss: 0.3500 - mean_absolute_error: 0.2978
+Epoch 125/200
+10414/10414 - 24s - loss: 0.3497 - mean_absolute_error: 0.2975
+Epoch 126/200
+10414/10414 - 23s - loss: 0.3494 - mean_absolute_error: 0.2979
+Epoch 127/200
+10414/10414 - 23s - loss: 0.3497 - mean_absolute_error: 0.2980
+Epoch 128/200
+10414/10414 - 24s - loss: 0.3491 - mean_absolute_error: 0.2977
+Epoch 129/200
+10414/10414 - 23s - loss: 0.3497 - mean_absolute_error: 0.2976
+Epoch 130/200
+10414/10414 - 24s - loss: 0.3488 - mean_absolute_error: 0.2973
+Epoch 131/200
+10414/10414 - 24s - loss: 0.3486 - mean_absolute_error: 0.2975
+Epoch 132/200
+10414/10414 - 24s - loss: 0.3488 - mean_absolute_error: 0.2971
+Epoch 133/200
+10414/10414 - 24s - loss: 0.3480 - mean_absolute_error: 0.2970
+Epoch 134/200
+10414/10414 - 24s - loss: 0.3482 - mean_absolute_error: 0.2969
+Epoch 135/200
+10414/10414 - 23s - loss: 0.3480 - mean_absolute_error: 0.2969
+Epoch 136/200
+10414/10414 - 23s - loss: 0.3471 - mean_absolute_error: 0.2970
+Epoch 137/200
+10414/10414 - 24s - loss: 0.3480 - mean_absolute_error: 0.2975
+Epoch 138/200
+10414/10414 - 24s - loss: 0.3472 - mean_absolute_error: 0.2969
+Epoch 139/200
+10414/10414 - 24s - loss: 0.3472 - mean_absolute_error: 0.2973
+Epoch 140/200
+10414/10414 - 23s - loss: 0.3472 - mean_absolute_error: 0.2973
+Epoch 141/200
+10414/10414 - 24s - loss: 0.3473 - mean_absolute_error: 0.2974
+Epoch 142/200
+10414/10414 - 24s - loss: 0.3464 - mean_absolute_error: 0.2971
+Epoch 143/200
+10414/10414 - 24s - loss: 0.3471 - mean_absolute_error: 0.2973
+Epoch 144/200
+10414/10414 - 24s - loss: 0.3470 - mean_absolute_error: 0.2976
+Epoch 145/200
+10414/10414 - 24s - loss: 0.3464 - mean_absolute_error: 0.2971
+Epoch 146/200
+10414/10414 - 24s - loss: 0.3467 - mean_absolute_error: 0.2975
+Epoch 147/200
+10414/10414 - 24s - loss: 0.3461 - mean_absolute_error: 0.2971
+Epoch 148/200
+10414/10414 - 23s - loss: 0.3466 - mean_absolute_error: 0.2971
+Epoch 149/200
+10414/10414 - 23s - loss: 0.3463 - mean_absolute_error: 0.2972
+Epoch 150/200
+10414/10414 - 24s - loss: 0.3454 - mean_absolute_error: 0.2968
+Epoch 151/200
+10414/10414 - 24s - loss: 0.3455 - mean_absolute_error: 0.2972
+Epoch 152/200
+10414/10414 - 24s - loss: 0.3452 - mean_absolute_error: 0.2967
+Epoch 153/200
+10414/10414 - 23s - loss: 0.3454 - mean_absolute_error: 0.2969
+Epoch 154/200
+10414/10414 - 24s - loss: 0.3449 - mean_absolute_error: 0.2969
+Epoch 155/200
+10414/10414 - 23s - loss: 0.3451 - mean_absolute_error: 0.2970
+Epoch 156/200
+10414/10414 - 24s - loss: 0.3452 - mean_absolute_error: 0.2967
+Epoch 157/200
+10414/10414 - 24s - loss: 0.3438 - mean_absolute_error: 0.2964
+Epoch 158/200
+10414/10414 - 24s - loss: 0.3442 - mean_absolute_error: 0.2967
+Epoch 159/200
+10414/10414 - 24s - loss: 0.3433 - mean_absolute_error: 0.2961
+Epoch 160/200
+10414/10414 - 24s - loss: 0.3430 - mean_absolute_error: 0.2963
+Epoch 161/200
+10414/10414 - 24s - loss: 0.3430 - mean_absolute_error: 0.2967
+Epoch 162/200
+10414/10414 - 23s - loss: 0.3425 - mean_absolute_error: 0.2959
+Epoch 163/200
+10414/10414 - 24s - loss: 0.3424 - mean_absolute_error: 0.2963
+Epoch 164/200
+10414/10414 - 24s - loss: 0.3419 - mean_absolute_error: 0.2962
+Epoch 165/200
+10414/10414 - 24s - loss: 0.3417 - mean_absolute_error: 0.2967
+Epoch 166/200
+10414/10414 - 24s - loss: 0.3417 - mean_absolute_error: 0.2963
+Epoch 167/200
+10414/10414 - 24s - loss: 0.3418 - mean_absolute_error: 0.2965
+Epoch 168/200
+10414/10414 - 24s - loss: 0.3416 - mean_absolute_error: 0.2962
+Epoch 169/200
+10414/10414 - 24s - loss: 0.3406 - mean_absolute_error: 0.2959
+Epoch 170/200
+10414/10414 - 24s - loss: 0.3410 - mean_absolute_error: 0.2960
+Epoch 171/200
+10414/10414 - 24s - loss: 0.3403 - mean_absolute_error: 0.2956
+Epoch 172/200
+10414/10414 - 23s - loss: 0.3413 - mean_absolute_error: 0.2962
+Epoch 173/200
+10414/10414 - 24s - loss: 0.3407 - mean_absolute_error: 0.2962
+Epoch 174/200
+10414/10414 - 24s - loss: 0.3403 - mean_absolute_error: 0.2961
+Epoch 175/200
+10414/10414 - 24s - loss: 0.3393 - mean_absolute_error: 0.2957
+Epoch 176/200
+10414/10414 - 23s - loss: 0.3391 - mean_absolute_error: 0.2955
+Epoch 177/200
+10414/10414 - 24s - loss: 0.3387 - mean_absolute_error: 0.2952
+Epoch 178/200
+10414/10414 - 24s - loss: 0.3387 - mean_absolute_error: 0.2951
+Epoch 179/200
+10414/10414 - 23s - loss: 0.3390 - mean_absolute_error: 0.2952
+Epoch 180/200
+10414/10414 - 23s - loss: 0.3383 - mean_absolute_error: 0.2948
+Epoch 181/200
+10414/10414 - 24s - loss: 0.3390 - mean_absolute_error: 0.2952
+Epoch 182/200
+10414/10414 - 24s - loss: 0.3390 - mean_absolute_error: 0.2948
+Epoch 183/200
+10414/10414 - 24s - loss: 0.3372 - mean_absolute_error: 0.2942
+Epoch 184/200
+10414/10414 - 24s - loss: 0.3384 - mean_absolute_error: 0.2945
+Epoch 185/200
+10414/10414 - 23s - loss: 0.3383 - mean_absolute_error: 0.2947
+Epoch 186/200
+10414/10414 - 24s - loss: 0.3376 - mean_absolute_error: 0.2943
+Epoch 187/200
+10414/10414 - 24s - loss: 0.3376 - mean_absolute_error: 0.2938
+Epoch 188/200
+10414/10414 - 24s - loss: 0.3373 - mean_absolute_error: 0.2942
+Epoch 189/200
+10414/10414 - 24s - loss: 0.3372 - mean_absolute_error: 0.2940
+Epoch 190/200
+10414/10414 - 23s - loss: 0.3374 - mean_absolute_error: 0.2936
+Epoch 191/200
+10414/10414 - 24s - loss: 0.3375 - mean_absolute_error: 0.2942
+Epoch 192/200
+10414/10414 - 24s - loss: 0.3362 - mean_absolute_error: 0.2939
+Epoch 193/200
+10414/10414 - 24s - loss: 0.3369 - mean_absolute_error: 0.2938
+Epoch 194/200
+10414/10414 - 24s - loss: 0.3364 - mean_absolute_error: 0.2939
+Epoch 195/200
+10414/10414 - 24s - loss: 0.3362 - mean_absolute_error: 0.2935
+Epoch 196/200
+10414/10414 - 24s - loss: 0.3359 - mean_absolute_error: 0.2934
+Epoch 197/200
+10414/10414 - 24s - loss: 0.3359 - mean_absolute_error: 0.2938
+Epoch 198/200
+10414/10414 - 24s - loss: 0.3347 - mean_absolute_error: 0.2930
+Epoch 199/200
+10414/10414 - 24s - loss: 0.3348 - mean_absolute_error: 0.2933
+Epoch 200/200
+10414/10414 - 24s - loss: 0.3347 - mean_absolute_error: 0.2930
+Training predicted steps: 5402.0
+Training actual steps: 5600.0
+Training difference in steps: 198.0
+Training RCA: 0.9646
+training {Regular, Sensor03}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (206540, 181)
+Seperating labels and features...
+features_normalized has shape (206540, 180)
+Reshaping normalized features for training...
+features_input has shape (206540, 60, 3)
+Splitting training data from rows 0 to 206540
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+6455/6455 - 14s - loss: 0.8766 - mean_absolute_error: 0.6193
+Epoch 2/200
+6455/6455 - 15s - loss: 0.5478 - mean_absolute_error: 0.5590
+Epoch 3/200
+6455/6455 - 15s - loss: 0.4448 - mean_absolute_error: 0.5320
+Epoch 4/200
+6455/6455 - 15s - loss: 0.4198 - mean_absolute_error: 0.5229
+Epoch 5/200
+6455/6455 - 15s - loss: 0.4004 - mean_absolute_error: 0.5137
+Epoch 6/200
+6455/6455 - 15s - loss: 0.3924 - mean_absolute_error: 0.5056
+Epoch 7/200
+6455/6455 - 15s - loss: 0.3681 - mean_absolute_error: 0.4808
+Epoch 8/200
+6455/6455 - 15s - loss: 0.3350 - mean_absolute_error: 0.4469
+Epoch 9/200
+6455/6455 - 15s - loss: 0.3195 - mean_absolute_error: 0.4298
+Epoch 10/200
+6455/6455 - 15s - loss: 0.3050 - mean_absolute_error: 0.4184
+Epoch 11/200
+6455/6455 - 15s - loss: 0.3032 - mean_absolute_error: 0.4173
+Epoch 12/200
+6455/6455 - 15s - loss: 0.2948 - mean_absolute_error: 0.4133
+Epoch 13/200
+6455/6455 - 15s - loss: 0.2947 - mean_absolute_error: 0.4125
+Epoch 14/200
+6455/6455 - 15s - loss: 0.2939 - mean_absolute_error: 0.4121
+Epoch 15/200
+6455/6455 - 15s - loss: 0.2873 - mean_absolute_error: 0.4080
+Epoch 16/200
+6455/6455 - 15s - loss: 0.2849 - mean_absolute_error: 0.4048
+Epoch 17/200
+6455/6455 - 15s - loss: 0.2820 - mean_absolute_error: 0.4036
+Epoch 18/200
+6455/6455 - 15s - loss: 0.2775 - mean_absolute_error: 0.4003
+Epoch 19/200
+6455/6455 - 15s - loss: 0.2675 - mean_absolute_error: 0.3947
+Epoch 20/200
+6455/6455 - 15s - loss: 0.2647 - mean_absolute_error: 0.3922
+Epoch 21/200
+6455/6455 - 15s - loss: 0.2590 - mean_absolute_error: 0.3883
+Epoch 22/200
+6455/6455 - 15s - loss: 0.2543 - mean_absolute_error: 0.3852
+Epoch 23/200
+6455/6455 - 15s - loss: 0.2499 - mean_absolute_error: 0.3825
+Epoch 24/200
+6455/6455 - 15s - loss: 0.2522 - mean_absolute_error: 0.3834
+Epoch 25/200
+6455/6455 - 15s - loss: 0.2462 - mean_absolute_error: 0.3801
+Epoch 26/200
+6455/6455 - 15s - loss: 0.2446 - mean_absolute_error: 0.3787
+Epoch 27/200
+6455/6455 - 15s - loss: 0.2439 - mean_absolute_error: 0.3782
+Epoch 28/200
+6455/6455 - 15s - loss: 0.2416 - mean_absolute_error: 0.3768
+Epoch 29/200
+6455/6455 - 15s - loss: 0.2397 - mean_absolute_error: 0.3751
+Epoch 30/200
+6455/6455 - 15s - loss: 0.2353 - mean_absolute_error: 0.3727
+Epoch 31/200
+6455/6455 - 15s - loss: 0.2352 - mean_absolute_error: 0.3723
+Epoch 32/200
+6455/6455 - 15s - loss: 0.2333 - mean_absolute_error: 0.3708
+Epoch 33/200
+6455/6455 - 15s - loss: 0.2355 - mean_absolute_error: 0.3718
+Epoch 34/200
+6455/6455 - 15s - loss: 0.2307 - mean_absolute_error: 0.3687
+Epoch 35/200
+6455/6455 - 15s - loss: 0.2296 - mean_absolute_error: 0.3675
+Epoch 36/200
+6455/6455 - 15s - loss: 0.2294 - mean_absolute_error: 0.3672
+Epoch 37/200
+6455/6455 - 15s - loss: 0.2291 - mean_absolute_error: 0.3668
+Epoch 38/200
+6455/6455 - 15s - loss: 0.2285 - mean_absolute_error: 0.3660
+Epoch 39/200
+6455/6455 - 15s - loss: 0.2288 - mean_absolute_error: 0.3662
+Epoch 40/200
+6455/6455 - 15s - loss: 0.2271 - mean_absolute_error: 0.3649
+Epoch 41/200
+6455/6455 - 15s - loss: 0.2257 - mean_absolute_error: 0.3643
+Epoch 42/200
+6455/6455 - 15s - loss: 0.2259 - mean_absolute_error: 0.3637
+Epoch 43/200
+6455/6455 - 15s - loss: 0.2265 - mean_absolute_error: 0.3634
+Epoch 44/200
+6455/6455 - 15s - loss: 0.2251 - mean_absolute_error: 0.3633
+Epoch 45/200
+6455/6455 - 15s - loss: 0.2247 - mean_absolute_error: 0.3626
+Epoch 46/200
+6455/6455 - 15s - loss: 0.2227 - mean_absolute_error: 0.3611
+Epoch 47/200
+6455/6455 - 15s - loss: 0.2240 - mean_absolute_error: 0.3623
+Epoch 48/200
+6455/6455 - 15s - loss: 0.2240 - mean_absolute_error: 0.3617
+Epoch 49/200
+6455/6455 - 15s - loss: 0.2221 - mean_absolute_error: 0.3604
+Epoch 50/200
+6455/6455 - 15s - loss: 0.2230 - mean_absolute_error: 0.3613
+Epoch 51/200
+6455/6455 - 15s - loss: 0.2218 - mean_absolute_error: 0.3603
+Epoch 52/200
+6455/6455 - 15s - loss: 0.2215 - mean_absolute_error: 0.3601
+Epoch 53/200
+6455/6455 - 15s - loss: 0.2214 - mean_absolute_error: 0.3596
+Epoch 54/200
+6455/6455 - 15s - loss: 0.2211 - mean_absolute_error: 0.3596
+Epoch 55/200
+6455/6455 - 15s - loss: 0.2209 - mean_absolute_error: 0.3593
+Epoch 56/200
+6455/6455 - 15s - loss: 0.2198 - mean_absolute_error: 0.3584
+Epoch 57/200
+6455/6455 - 15s - loss: 0.2193 - mean_absolute_error: 0.3588
+Epoch 58/200
+6455/6455 - 15s - loss: 0.2189 - mean_absolute_error: 0.3581
+Epoch 59/200
+6455/6455 - 15s - loss: 0.2190 - mean_absolute_error: 0.3578
+Epoch 60/200
+6455/6455 - 15s - loss: 0.2191 - mean_absolute_error: 0.3583
+Epoch 61/200
+6455/6455 - 15s - loss: 0.2193 - mean_absolute_error: 0.3584
+Epoch 62/200
+6455/6455 - 15s - loss: 0.2170 - mean_absolute_error: 0.3568
+Epoch 63/200
+6455/6455 - 15s - loss: 0.2173 - mean_absolute_error: 0.3568
+Epoch 64/200
+6455/6455 - 15s - loss: 0.2174 - mean_absolute_error: 0.3570
+Epoch 65/200
+6455/6455 - 15s - loss: 0.2172 - mean_absolute_error: 0.3571
+Epoch 66/200
+6455/6455 - 15s - loss: 0.2172 - mean_absolute_error: 0.3566
+Epoch 67/200
+6455/6455 - 15s - loss: 0.2164 - mean_absolute_error: 0.3560
+Epoch 68/200
+6455/6455 - 15s - loss: 0.2167 - mean_absolute_error: 0.3557
+Epoch 69/200
+6455/6455 - 15s - loss: 0.2174 - mean_absolute_error: 0.3567
+Epoch 70/200
+6455/6455 - 15s - loss: 0.2155 - mean_absolute_error: 0.3556
+Epoch 71/200
+6455/6455 - 15s - loss: 0.2169 - mean_absolute_error: 0.3559
+Epoch 72/200
+6455/6455 - 15s - loss: 0.2165 - mean_absolute_error: 0.3562
+Epoch 73/200
+6455/6455 - 15s - loss: 0.2152 - mean_absolute_error: 0.3553
+Epoch 74/200
+6455/6455 - 15s - loss: 0.2146 - mean_absolute_error: 0.3552
+Epoch 75/200
+6455/6455 - 15s - loss: 0.2146 - mean_absolute_error: 0.3552
+Epoch 76/200
+6455/6455 - 15s - loss: 0.2144 - mean_absolute_error: 0.3549
+Epoch 77/200
+6455/6455 - 15s - loss: 0.2145 - mean_absolute_error: 0.3549
+Epoch 78/200
+6455/6455 - 15s - loss: 0.2155 - mean_absolute_error: 0.3557
+Epoch 79/200
+6455/6455 - 15s - loss: 0.2146 - mean_absolute_error: 0.3547
+Epoch 80/200
+6455/6455 - 15s - loss: 0.2145 - mean_absolute_error: 0.3547
+Epoch 81/200
+6455/6455 - 15s - loss: 0.2138 - mean_absolute_error: 0.3545
+Epoch 82/200
+6455/6455 - 15s - loss: 0.2131 - mean_absolute_error: 0.3537
+Epoch 83/200
+6455/6455 - 15s - loss: 0.2123 - mean_absolute_error: 0.3538
+Epoch 84/200
+6455/6455 - 15s - loss: 0.2129 - mean_absolute_error: 0.3538
+Epoch 85/200
+6455/6455 - 15s - loss: 0.2113 - mean_absolute_error: 0.3529
+Epoch 86/200
+6455/6455 - 15s - loss: 0.2119 - mean_absolute_error: 0.3531
+Epoch 87/200
+6455/6455 - 15s - loss: 0.2127 - mean_absolute_error: 0.3540
+Epoch 88/200
+6455/6455 - 15s - loss: 0.2102 - mean_absolute_error: 0.3524
+Epoch 89/200
+6455/6455 - 15s - loss: 0.2113 - mean_absolute_error: 0.3529
+Epoch 90/200
+6455/6455 - 15s - loss: 0.2114 - mean_absolute_error: 0.3534
+Epoch 91/200
+6455/6455 - 15s - loss: 0.2113 - mean_absolute_error: 0.3530
+Epoch 92/200
+6455/6455 - 15s - loss: 0.2113 - mean_absolute_error: 0.3532
+Epoch 93/200
+6455/6455 - 15s - loss: 0.2103 - mean_absolute_error: 0.3526
+Epoch 94/200
+6455/6455 - 15s - loss: 0.2111 - mean_absolute_error: 0.3532
+Epoch 95/200
+6455/6455 - 15s - loss: 0.2108 - mean_absolute_error: 0.3531
+Epoch 96/200
+6455/6455 - 15s - loss: 0.2100 - mean_absolute_error: 0.3523
+Epoch 97/200
+6455/6455 - 15s - loss: 0.2086 - mean_absolute_error: 0.3522
+Epoch 98/200
+6455/6455 - 15s - loss: 0.2090 - mean_absolute_error: 0.3525
+Epoch 99/200
+6455/6455 - 15s - loss: 0.2080 - mean_absolute_error: 0.3521
+Epoch 100/200
+6455/6455 - 15s - loss: 0.2079 - mean_absolute_error: 0.3520
+Epoch 101/200
+6455/6455 - 15s - loss: 0.2077 - mean_absolute_error: 0.3516
+Epoch 102/200
+6455/6455 - 15s - loss: 0.2076 - mean_absolute_error: 0.3517
+Epoch 103/200
+6455/6455 - 15s - loss: 0.2073 - mean_absolute_error: 0.3514
+Epoch 104/200
+6455/6455 - 15s - loss: 0.2063 - mean_absolute_error: 0.3511
+Epoch 105/200
+6455/6455 - 15s - loss: 0.2074 - mean_absolute_error: 0.3513
+Epoch 106/200
+6455/6455 - 15s - loss: 0.2060 - mean_absolute_error: 0.3506
+Epoch 107/200
+6455/6455 - 15s - loss: 0.2061 - mean_absolute_error: 0.3508
+Epoch 108/200
+6455/6455 - 15s - loss: 0.2056 - mean_absolute_error: 0.3506
+Epoch 109/200
+6455/6455 - 15s - loss: 0.2061 - mean_absolute_error: 0.3501
+Epoch 110/200
+6455/6455 - 15s - loss: 0.2044 - mean_absolute_error: 0.3491
+Epoch 111/200
+6455/6455 - 15s - loss: 0.2058 - mean_absolute_error: 0.3500
+Epoch 112/200
+6455/6455 - 15s - loss: 0.2039 - mean_absolute_error: 0.3490
+Epoch 113/200
+6455/6455 - 15s - loss: 0.2033 - mean_absolute_error: 0.3484
+Epoch 114/200
+6455/6455 - 15s - loss: 0.2036 - mean_absolute_error: 0.3483
+Epoch 115/200
+6455/6455 - 15s - loss: 0.2040 - mean_absolute_error: 0.3492
+Epoch 116/200
+6455/6455 - 15s - loss: 0.2028 - mean_absolute_error: 0.3479
+Epoch 117/200
+6455/6455 - 15s - loss: 0.2022 - mean_absolute_error: 0.3475
+Epoch 118/200
+6455/6455 - 15s - loss: 0.2032 - mean_absolute_error: 0.3480
+Epoch 119/200
+6455/6455 - 15s - loss: 0.2022 - mean_absolute_error: 0.3475
+Epoch 120/200
+6455/6455 - 15s - loss: 0.2023 - mean_absolute_error: 0.3475
+Epoch 121/200
+6455/6455 - 15s - loss: 0.2023 - mean_absolute_error: 0.3474
+Epoch 122/200
+6455/6455 - 15s - loss: 0.2007 - mean_absolute_error: 0.3465
+Epoch 123/200
+6455/6455 - 15s - loss: 0.2041 - mean_absolute_error: 0.3479
+Epoch 124/200
+6455/6455 - 15s - loss: 0.2022 - mean_absolute_error: 0.3470
+Epoch 125/200
+6455/6455 - 15s - loss: 0.2010 - mean_absolute_error: 0.3465
+Epoch 126/200
+6455/6455 - 15s - loss: 0.2013 - mean_absolute_error: 0.3469
+Epoch 127/200
+6455/6455 - 15s - loss: 0.2004 - mean_absolute_error: 0.3459
+Epoch 128/200
+6455/6455 - 15s - loss: 0.1999 - mean_absolute_error: 0.3455
+Epoch 129/200
+6455/6455 - 15s - loss: 0.2003 - mean_absolute_error: 0.3457
+Epoch 130/200
+6455/6455 - 15s - loss: 0.1991 - mean_absolute_error: 0.3451
+Epoch 131/200
+6455/6455 - 15s - loss: 0.1980 - mean_absolute_error: 0.3445
+Epoch 132/200
+6455/6455 - 15s - loss: 0.1994 - mean_absolute_error: 0.3452
+Epoch 133/200
+6455/6455 - 15s - loss: 0.1990 - mean_absolute_error: 0.3448
+Epoch 134/200
+6455/6455 - 15s - loss: 0.1983 - mean_absolute_error: 0.3448
+Epoch 135/200
+6455/6455 - 15s - loss: 0.1976 - mean_absolute_error: 0.3437
+Epoch 136/200
+6455/6455 - 15s - loss: 0.1990 - mean_absolute_error: 0.3449
+Epoch 137/200
+6455/6455 - 15s - loss: 0.1975 - mean_absolute_error: 0.3439
+Epoch 138/200
+6455/6455 - 15s - loss: 0.1987 - mean_absolute_error: 0.3446
+Epoch 139/200
+6455/6455 - 15s - loss: 0.1981 - mean_absolute_error: 0.3445
+Epoch 140/200
+6455/6455 - 15s - loss: 0.1976 - mean_absolute_error: 0.3441
+Epoch 141/200
+6455/6455 - 15s - loss: 0.1966 - mean_absolute_error: 0.3431
+Epoch 142/200
+6455/6455 - 15s - loss: 0.1967 - mean_absolute_error: 0.3438
+Epoch 143/200
+6455/6455 - 15s - loss: 0.1977 - mean_absolute_error: 0.3442
+Epoch 144/200
+6455/6455 - 15s - loss: 0.1979 - mean_absolute_error: 0.3439
+Epoch 145/200
+6455/6455 - 15s - loss: 0.1969 - mean_absolute_error: 0.3435
+Epoch 146/200
+6455/6455 - 15s - loss: 0.1972 - mean_absolute_error: 0.3434
+Epoch 147/200
+6455/6455 - 15s - loss: 0.1988 - mean_absolute_error: 0.3436
+Epoch 148/200
+6455/6455 - 15s - loss: 0.1967 - mean_absolute_error: 0.3434
+Epoch 149/200
+6455/6455 - 15s - loss: 0.1968 - mean_absolute_error: 0.3428
+Epoch 150/200
+6455/6455 - 15s - loss: 0.1959 - mean_absolute_error: 0.3424
+Epoch 151/200
+6455/6455 - 15s - loss: 0.1963 - mean_absolute_error: 0.3433
+Epoch 152/200
+6455/6455 - 15s - loss: 0.1969 - mean_absolute_error: 0.3433
+Epoch 153/200
+6455/6455 - 15s - loss: 0.1958 - mean_absolute_error: 0.3431
+Epoch 154/200
+6455/6455 - 15s - loss: 0.1950 - mean_absolute_error: 0.3423
+Epoch 155/200
+6455/6455 - 15s - loss: 0.1961 - mean_absolute_error: 0.3426
+Epoch 156/200
+6455/6455 - 15s - loss: 0.1956 - mean_absolute_error: 0.3420
+Epoch 157/200
+6455/6455 - 15s - loss: 0.1960 - mean_absolute_error: 0.3425
+Epoch 158/200
+6455/6455 - 15s - loss: 0.1951 - mean_absolute_error: 0.3417
+Epoch 159/200
+6455/6455 - 15s - loss: 0.1946 - mean_absolute_error: 0.3419
+Epoch 160/200
+6455/6455 - 15s - loss: 0.1959 - mean_absolute_error: 0.3425
+Epoch 161/200
+6455/6455 - 15s - loss: 0.1956 - mean_absolute_error: 0.3423
+Epoch 162/200
+6455/6455 - 15s - loss: 0.1954 - mean_absolute_error: 0.3420
+Epoch 163/200
+6455/6455 - 15s - loss: 0.1953 - mean_absolute_error: 0.3422
+Epoch 164/200
+6455/6455 - 15s - loss: 0.1948 - mean_absolute_error: 0.3415
+Epoch 165/200
+6455/6455 - 15s - loss: 0.1948 - mean_absolute_error: 0.3417
+Epoch 166/200
+6455/6455 - 15s - loss: 0.1950 - mean_absolute_error: 0.3415
+Epoch 167/200
+6455/6455 - 15s - loss: 0.1955 - mean_absolute_error: 0.3425
+Epoch 168/200
+6455/6455 - 15s - loss: 0.1959 - mean_absolute_error: 0.3422
+Epoch 169/200
+6455/6455 - 15s - loss: 0.1946 - mean_absolute_error: 0.3415
+Epoch 170/200
+6455/6455 - 15s - loss: 0.1949 - mean_absolute_error: 0.3418
+Epoch 171/200
+6455/6455 - 15s - loss: 0.1948 - mean_absolute_error: 0.3415
+Epoch 172/200
+6455/6455 - 15s - loss: 0.1949 - mean_absolute_error: 0.3417
+Epoch 173/200
+6455/6455 - 15s - loss: 0.1931 - mean_absolute_error: 0.3407
+Epoch 174/200
+6455/6455 - 15s - loss: 0.1942 - mean_absolute_error: 0.3412
+Epoch 175/200
+6455/6455 - 15s - loss: 0.1948 - mean_absolute_error: 0.3416
+Epoch 176/200
+6455/6455 - 15s - loss: 0.1955 - mean_absolute_error: 0.3419
+Epoch 177/200
+6455/6455 - 15s - loss: 0.1934 - mean_absolute_error: 0.3409
+Epoch 178/200
+6455/6455 - 15s - loss: 0.1958 - mean_absolute_error: 0.3418
+Epoch 179/200
+6455/6455 - 15s - loss: 0.1940 - mean_absolute_error: 0.3410
+Epoch 180/200
+6455/6455 - 15s - loss: 0.1961 - mean_absolute_error: 0.3421
+Epoch 181/200
+6455/6455 - 15s - loss: 0.1935 - mean_absolute_error: 0.3407
+Epoch 182/200
+6455/6455 - 15s - loss: 0.1937 - mean_absolute_error: 0.3406
+Epoch 183/200
+6455/6455 - 15s - loss: 0.1936 - mean_absolute_error: 0.3408
+Epoch 184/200
+6455/6455 - 15s - loss: 0.1945 - mean_absolute_error: 0.3408
+Epoch 185/200
+6455/6455 - 15s - loss: 0.1933 - mean_absolute_error: 0.3409
+Epoch 186/200
+6455/6455 - 15s - loss: 0.1934 - mean_absolute_error: 0.3408
+Epoch 187/200
+6455/6455 - 15s - loss: 0.1934 - mean_absolute_error: 0.3402
+Epoch 188/200
+6455/6455 - 15s - loss: 0.1933 - mean_absolute_error: 0.3407
+Epoch 189/200
+6455/6455 - 15s - loss: 0.1941 - mean_absolute_error: 0.3408
+Epoch 190/200
+6455/6455 - 15s - loss: 0.1930 - mean_absolute_error: 0.3405
+Epoch 191/200
+6455/6455 - 15s - loss: 0.1924 - mean_absolute_error: 0.3398
+Epoch 192/200
+6455/6455 - 14s - loss: 0.1930 - mean_absolute_error: 0.3405
+Epoch 193/200
+6455/6455 - 15s - loss: 0.1943 - mean_absolute_error: 0.3409
+Epoch 194/200
+6455/6455 - 15s - loss: 0.1928 - mean_absolute_error: 0.3403
+Epoch 195/200
+6455/6455 - 15s - loss: 0.1935 - mean_absolute_error: 0.3400
+Epoch 196/200
+6455/6455 - 15s - loss: 0.1933 - mean_absolute_error: 0.3403
+Epoch 197/200
+6455/6455 - 15s - loss: 0.1927 - mean_absolute_error: 0.3400
+Epoch 198/200
+6455/6455 - 15s - loss: 0.1938 - mean_absolute_error: 0.3402
+Epoch 199/200
+6455/6455 - 15s - loss: 0.1915 - mean_absolute_error: 0.3393
+Epoch 200/200
+6455/6455 - 15s - loss: 0.1947 - mean_absolute_error: 0.3408
+Training predicted steps: 25225.0
+Training actual steps: 25267.0
+Training difference in steps: 42.0
+Training RCA: 0.9983
+training {SemiRegular, Sensor03}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (202831, 181)
+Seperating labels and features...
+features_normalized has shape (202831, 180)
+Reshaping normalized features for training...
+features_input has shape (202831, 60, 3)
+Splitting training data from rows 0 to 202831
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+6339/6339 - 15s - loss: 2.6567 - mean_absolute_error: 1.2251
+Epoch 2/200
+6339/6339 - 14s - loss: 2.3454 - mean_absolute_error: 1.1488
+Epoch 3/200
+6339/6339 - 14s - loss: 1.9444 - mean_absolute_error: 1.0432
+Epoch 4/200
+6339/6339 - 15s - loss: 1.2801 - mean_absolute_error: 0.8624
+Epoch 5/200
+6339/6339 - 14s - loss: 1.0604 - mean_absolute_error: 0.7884
+Epoch 6/200
+6339/6339 - 15s - loss: 0.9667 - mean_absolute_error: 0.7549
+Epoch 7/200
+6339/6339 - 14s - loss: 0.8927 - mean_absolute_error: 0.7255
+Epoch 8/200
+6339/6339 - 14s - loss: 0.8446 - mean_absolute_error: 0.7071
+Epoch 9/200
+6339/6339 - 15s - loss: 0.8160 - mean_absolute_error: 0.6956
+Epoch 10/200
+6339/6339 - 15s - loss: 0.7873 - mean_absolute_error: 0.6840
+Epoch 11/200
+6339/6339 - 15s - loss: 0.7699 - mean_absolute_error: 0.6766
+Epoch 12/200
+6339/6339 - 15s - loss: 0.7571 - mean_absolute_error: 0.6709
+Epoch 13/200
+6339/6339 - 14s - loss: 0.7440 - mean_absolute_error: 0.6654
+Epoch 14/200
+6339/6339 - 15s - loss: 0.7249 - mean_absolute_error: 0.6570
+Epoch 15/200
+6339/6339 - 15s - loss: 0.7070 - mean_absolute_error: 0.6488
+Epoch 16/200
+6339/6339 - 15s - loss: 0.6977 - mean_absolute_error: 0.6441
+Epoch 17/200
+6339/6339 - 15s - loss: 0.6902 - mean_absolute_error: 0.6407
+Epoch 18/200
+6339/6339 - 14s - loss: 0.6825 - mean_absolute_error: 0.6369
+Epoch 19/200
+6339/6339 - 14s - loss: 0.6792 - mean_absolute_error: 0.6357
+Epoch 20/200
+6339/6339 - 15s - loss: 0.6714 - mean_absolute_error: 0.6315
+Epoch 21/200
+6339/6339 - 15s - loss: 0.6679 - mean_absolute_error: 0.6301
+Epoch 22/200
+6339/6339 - 15s - loss: 0.6630 - mean_absolute_error: 0.6279
+Epoch 23/200
+6339/6339 - 14s - loss: 0.6606 - mean_absolute_error: 0.6260
+Epoch 24/200
+6339/6339 - 15s - loss: 0.6528 - mean_absolute_error: 0.6221
+Epoch 25/200
+6339/6339 - 15s - loss: 0.6516 - mean_absolute_error: 0.6214
+Epoch 26/200
+6339/6339 - 15s - loss: 0.6414 - mean_absolute_error: 0.6157
+Epoch 27/200
+6339/6339 - 15s - loss: 0.6411 - mean_absolute_error: 0.6155
+Epoch 28/200
+6339/6339 - 14s - loss: 0.6395 - mean_absolute_error: 0.6145
+Epoch 29/200
+6339/6339 - 15s - loss: 0.6333 - mean_absolute_error: 0.6114
+Epoch 30/200
+6339/6339 - 15s - loss: 0.6312 - mean_absolute_error: 0.6103
+Epoch 31/200
+6339/6339 - 15s - loss: 0.6278 - mean_absolute_error: 0.6090
+Epoch 32/200
+6339/6339 - 14s - loss: 0.6251 - mean_absolute_error: 0.6076
+Epoch 33/200
+6339/6339 - 15s - loss: 0.6223 - mean_absolute_error: 0.6065
+Epoch 34/200
+6339/6339 - 15s - loss: 0.6200 - mean_absolute_error: 0.6057
+Epoch 35/200
+6339/6339 - 15s - loss: 0.6161 - mean_absolute_error: 0.6038
+Epoch 36/200
+6339/6339 - 15s - loss: 0.6142 - mean_absolute_error: 0.6026
+Epoch 37/200
+6339/6339 - 15s - loss: 0.6098 - mean_absolute_error: 0.6009
+Epoch 38/200
+6339/6339 - 15s - loss: 0.6080 - mean_absolute_error: 0.6000
+Epoch 39/200
+6339/6339 - 14s - loss: 0.6037 - mean_absolute_error: 0.5982
+Epoch 40/200
+6339/6339 - 15s - loss: 0.5998 - mean_absolute_error: 0.5957
+Epoch 41/200
+6339/6339 - 15s - loss: 0.5961 - mean_absolute_error: 0.5943
+Epoch 42/200
+6339/6339 - 14s - loss: 0.5943 - mean_absolute_error: 0.5936
+Epoch 43/200
+6339/6339 - 15s - loss: 0.5920 - mean_absolute_error: 0.5928
+Epoch 44/200
+6339/6339 - 15s - loss: 0.5896 - mean_absolute_error: 0.5916
+Epoch 45/200
+6339/6339 - 15s - loss: 0.5855 - mean_absolute_error: 0.5892
+Epoch 46/200
+6339/6339 - 14s - loss: 0.5852 - mean_absolute_error: 0.5896
+Epoch 47/200
+6339/6339 - 15s - loss: 0.5852 - mean_absolute_error: 0.5898
+Epoch 48/200
+6339/6339 - 15s - loss: 0.5803 - mean_absolute_error: 0.5868
+Epoch 49/200
+6339/6339 - 15s - loss: 0.5777 - mean_absolute_error: 0.5858
+Epoch 50/200
+6339/6339 - 15s - loss: 0.5771 - mean_absolute_error: 0.5860
+Epoch 51/200
+6339/6339 - 15s - loss: 0.5744 - mean_absolute_error: 0.5845
+Epoch 52/200
+6339/6339 - 15s - loss: 0.5728 - mean_absolute_error: 0.5837
+Epoch 53/200
+6339/6339 - 15s - loss: 0.5723 - mean_absolute_error: 0.5834
+Epoch 54/200
+6339/6339 - 15s - loss: 0.5698 - mean_absolute_error: 0.5825
+Epoch 55/200
+6339/6339 - 15s - loss: 0.5697 - mean_absolute_error: 0.5818
+Epoch 56/200
+6339/6339 - 15s - loss: 0.5670 - mean_absolute_error: 0.5813
+Epoch 57/200
+6339/6339 - 15s - loss: 0.5643 - mean_absolute_error: 0.5799
+Epoch 58/200
+6339/6339 - 14s - loss: 0.5623 - mean_absolute_error: 0.5789
+Epoch 59/200
+6339/6339 - 15s - loss: 0.5636 - mean_absolute_error: 0.5793
+Epoch 60/200
+6339/6339 - 15s - loss: 0.5620 - mean_absolute_error: 0.5788
+Epoch 61/200
+6339/6339 - 14s - loss: 0.5605 - mean_absolute_error: 0.5778
+Epoch 62/200
+6339/6339 - 14s - loss: 0.5599 - mean_absolute_error: 0.5781
+Epoch 63/200
+6339/6339 - 15s - loss: 0.5597 - mean_absolute_error: 0.5783
+Epoch 64/200
+6339/6339 - 15s - loss: 0.5579 - mean_absolute_error: 0.5770
+Epoch 65/200
+6339/6339 - 15s - loss: 0.5558 - mean_absolute_error: 0.5761
+Epoch 66/200
+6339/6339 - 14s - loss: 0.5533 - mean_absolute_error: 0.5745
+Epoch 67/200
+6339/6339 - 14s - loss: 0.5540 - mean_absolute_error: 0.5748
+Epoch 68/200
+6339/6339 - 14s - loss: 0.5534 - mean_absolute_error: 0.5745
+Epoch 69/200
+6339/6339 - 15s - loss: 0.5522 - mean_absolute_error: 0.5739
+Epoch 70/200
+6339/6339 - 14s - loss: 0.5518 - mean_absolute_error: 0.5737
+Epoch 71/200
+6339/6339 - 14s - loss: 0.5519 - mean_absolute_error: 0.5744
+Epoch 72/200
+6339/6339 - 14s - loss: 0.5515 - mean_absolute_error: 0.5738
+Epoch 73/200
+6339/6339 - 15s - loss: 0.5504 - mean_absolute_error: 0.5731
+Epoch 74/200
+6339/6339 - 15s - loss: 0.5514 - mean_absolute_error: 0.5738
+Epoch 75/200
+6339/6339 - 15s - loss: 0.5497 - mean_absolute_error: 0.5730
+Epoch 76/200
+6339/6339 - 15s - loss: 0.5494 - mean_absolute_error: 0.5730
+Epoch 77/200
+6339/6339 - 15s - loss: 0.5493 - mean_absolute_error: 0.5730
+Epoch 78/200
+6339/6339 - 14s - loss: 0.5477 - mean_absolute_error: 0.5722
+Epoch 79/200
+6339/6339 - 14s - loss: 0.5470 - mean_absolute_error: 0.5717
+Epoch 80/200
+6339/6339 - 14s - loss: 0.5460 - mean_absolute_error: 0.5716
+Epoch 81/200
+6339/6339 - 14s - loss: 0.5455 - mean_absolute_error: 0.5712
+Epoch 82/200
+6339/6339 - 14s - loss: 0.5446 - mean_absolute_error: 0.5711
+Epoch 83/200
+6339/6339 - 15s - loss: 0.5463 - mean_absolute_error: 0.5713
+Epoch 84/200
+6339/6339 - 14s - loss: 0.5442 - mean_absolute_error: 0.5710
+Epoch 85/200
+6339/6339 - 14s - loss: 0.5433 - mean_absolute_error: 0.5699
+Epoch 86/200
+6339/6339 - 15s - loss: 0.5457 - mean_absolute_error: 0.5713
+Epoch 87/200
+6339/6339 - 14s - loss: 0.5442 - mean_absolute_error: 0.5708
+Epoch 88/200
+6339/6339 - 14s - loss: 0.5420 - mean_absolute_error: 0.5697
+Epoch 89/200
+6339/6339 - 14s - loss: 0.5416 - mean_absolute_error: 0.5695
+Epoch 90/200
+6339/6339 - 14s - loss: 0.5407 - mean_absolute_error: 0.5686
+Epoch 91/200
+6339/6339 - 15s - loss: 0.5412 - mean_absolute_error: 0.5691
+Epoch 92/200
+6339/6339 - 15s - loss: 0.5402 - mean_absolute_error: 0.5686
+Epoch 93/200
+6339/6339 - 14s - loss: 0.5400 - mean_absolute_error: 0.5688
+Epoch 94/200
+6339/6339 - 14s - loss: 0.5390 - mean_absolute_error: 0.5683
+Epoch 95/200
+6339/6339 - 14s - loss: 0.5390 - mean_absolute_error: 0.5685
+Epoch 96/200
+6339/6339 - 14s - loss: 0.5390 - mean_absolute_error: 0.5682
+Epoch 97/200
+6339/6339 - 14s - loss: 0.5388 - mean_absolute_error: 0.5681
+Epoch 98/200
+6339/6339 - 14s - loss: 0.5382 - mean_absolute_error: 0.5681
+Epoch 99/200
+6339/6339 - 14s - loss: 0.5365 - mean_absolute_error: 0.5671
+Epoch 100/200
+6339/6339 - 14s - loss: 0.5380 - mean_absolute_error: 0.5679
+Epoch 101/200
+6339/6339 - 14s - loss: 0.5386 - mean_absolute_error: 0.5680
+Epoch 102/200
+6339/6339 - 14s - loss: 0.5364 - mean_absolute_error: 0.5670
+Epoch 103/200
+6339/6339 - 14s - loss: 0.5369 - mean_absolute_error: 0.5671
+Epoch 104/200
+6339/6339 - 15s - loss: 0.5367 - mean_absolute_error: 0.5675
+Epoch 105/200
+6339/6339 - 14s - loss: 0.5350 - mean_absolute_error: 0.5665
+Epoch 106/200
+6339/6339 - 14s - loss: 0.5342 - mean_absolute_error: 0.5660
+Epoch 107/200
+6339/6339 - 15s - loss: 0.5345 - mean_absolute_error: 0.5656
+Epoch 108/200
+6339/6339 - 14s - loss: 0.5354 - mean_absolute_error: 0.5665
+Epoch 109/200
+6339/6339 - 14s - loss: 0.5335 - mean_absolute_error: 0.5654
+Epoch 110/200
+6339/6339 - 14s - loss: 0.5329 - mean_absolute_error: 0.5648
+Epoch 111/200
+6339/6339 - 14s - loss: 0.5347 - mean_absolute_error: 0.5659
+Epoch 112/200
+6339/6339 - 14s - loss: 0.5335 - mean_absolute_error: 0.5656
+Epoch 113/200
+6339/6339 - 14s - loss: 0.5324 - mean_absolute_error: 0.5652
+Epoch 114/200
+6339/6339 - 15s - loss: 0.5321 - mean_absolute_error: 0.5649
+Epoch 115/200
+6339/6339 - 14s - loss: 0.5334 - mean_absolute_error: 0.5657
+Epoch 116/200
+6339/6339 - 14s - loss: 0.5315 - mean_absolute_error: 0.5648
+Epoch 117/200
+6339/6339 - 14s - loss: 0.5318 - mean_absolute_error: 0.5645
+Epoch 118/200
+6339/6339 - 14s - loss: 0.5324 - mean_absolute_error: 0.5653
+Epoch 119/200
+6339/6339 - 15s - loss: 0.5314 - mean_absolute_error: 0.5646
+Epoch 120/200
+6339/6339 - 14s - loss: 0.5301 - mean_absolute_error: 0.5640
+Epoch 121/200
+6339/6339 - 14s - loss: 0.5307 - mean_absolute_error: 0.5644
+Epoch 122/200
+6339/6339 - 14s - loss: 0.5295 - mean_absolute_error: 0.5641
+Epoch 123/200
+6339/6339 - 14s - loss: 0.5290 - mean_absolute_error: 0.5635
+Epoch 124/200
+6339/6339 - 14s - loss: 0.5291 - mean_absolute_error: 0.5630
+Epoch 125/200
+6339/6339 - 15s - loss: 0.5283 - mean_absolute_error: 0.5632
+Epoch 126/200
+6339/6339 - 14s - loss: 0.5277 - mean_absolute_error: 0.5624
+Epoch 127/200
+6339/6339 - 15s - loss: 0.5277 - mean_absolute_error: 0.5627
+Epoch 128/200
+6339/6339 - 14s - loss: 0.5289 - mean_absolute_error: 0.5633
+Epoch 129/200
+6339/6339 - 14s - loss: 0.5283 - mean_absolute_error: 0.5633
+Epoch 130/200
+6339/6339 - 14s - loss: 0.5269 - mean_absolute_error: 0.5627
+Epoch 131/200
+6339/6339 - 14s - loss: 0.5262 - mean_absolute_error: 0.5620
+Epoch 132/200
+6339/6339 - 15s - loss: 0.5268 - mean_absolute_error: 0.5626
+Epoch 133/200
+6339/6339 - 14s - loss: 0.5270 - mean_absolute_error: 0.5623
+Epoch 134/200
+6339/6339 - 14s - loss: 0.5255 - mean_absolute_error: 0.5616
+Epoch 135/200
+6339/6339 - 14s - loss: 0.5251 - mean_absolute_error: 0.5614
+Epoch 136/200
+6339/6339 - 14s - loss: 0.5255 - mean_absolute_error: 0.5617
+Epoch 137/200
+6339/6339 - 14s - loss: 0.5253 - mean_absolute_error: 0.5615
+Epoch 138/200
+6339/6339 - 14s - loss: 0.5251 - mean_absolute_error: 0.5615
+Epoch 139/200
+6339/6339 - 15s - loss: 0.5252 - mean_absolute_error: 0.5616
+Epoch 140/200
+6339/6339 - 14s - loss: 0.5254 - mean_absolute_error: 0.5619
+Epoch 141/200
+6339/6339 - 15s - loss: 0.5243 - mean_absolute_error: 0.5613
+Epoch 142/200
+6339/6339 - 14s - loss: 0.5240 - mean_absolute_error: 0.5609
+Epoch 143/200
+6339/6339 - 14s - loss: 0.5239 - mean_absolute_error: 0.5611
+Epoch 144/200
+6339/6339 - 15s - loss: 0.5231 - mean_absolute_error: 0.5608
+Epoch 145/200
+6339/6339 - 14s - loss: 0.5232 - mean_absolute_error: 0.5607
+Epoch 146/200
+6339/6339 - 15s - loss: 0.5224 - mean_absolute_error: 0.5596
+Epoch 147/200
+6339/6339 - 14s - loss: 0.5228 - mean_absolute_error: 0.5603
+Epoch 148/200
+6339/6339 - 14s - loss: 0.5229 - mean_absolute_error: 0.5604
+Epoch 149/200
+6339/6339 - 14s - loss: 0.5217 - mean_absolute_error: 0.5600
+Epoch 150/200
+6339/6339 - 15s - loss: 0.5220 - mean_absolute_error: 0.5598
+Epoch 151/200
+6339/6339 - 15s - loss: 0.5207 - mean_absolute_error: 0.5591
+Epoch 152/200
+6339/6339 - 14s - loss: 0.5210 - mean_absolute_error: 0.5597
+Epoch 153/200
+6339/6339 - 14s - loss: 0.5196 - mean_absolute_error: 0.5587
+Epoch 154/200
+6339/6339 - 14s - loss: 0.5202 - mean_absolute_error: 0.5593
+Epoch 155/200
+6339/6339 - 14s - loss: 0.5205 - mean_absolute_error: 0.5594
+Epoch 156/200
+6339/6339 - 14s - loss: 0.5186 - mean_absolute_error: 0.5580
+Epoch 157/200
+6339/6339 - 14s - loss: 0.5195 - mean_absolute_error: 0.5588
+Epoch 158/200
+6339/6339 - 15s - loss: 0.5194 - mean_absolute_error: 0.5586
+Epoch 159/200
+6339/6339 - 14s - loss: 0.5182 - mean_absolute_error: 0.5584
+Epoch 160/200
+6339/6339 - 14s - loss: 0.5192 - mean_absolute_error: 0.5583
+Epoch 161/200
+6339/6339 - 14s - loss: 0.5180 - mean_absolute_error: 0.5579
+Epoch 162/200
+6339/6339 - 14s - loss: 0.5182 - mean_absolute_error: 0.5584
+Epoch 163/200
+6339/6339 - 14s - loss: 0.5197 - mean_absolute_error: 0.5586
+Epoch 164/200
+6339/6339 - 14s - loss: 0.5185 - mean_absolute_error: 0.5581
+Epoch 165/200
+6339/6339 - 14s - loss: 0.5178 - mean_absolute_error: 0.5574
+Epoch 166/200
+6339/6339 - 15s - loss: 0.5176 - mean_absolute_error: 0.5574
+Epoch 167/200
+6339/6339 - 14s - loss: 0.5170 - mean_absolute_error: 0.5571
+Epoch 168/200
+6339/6339 - 14s - loss: 0.5163 - mean_absolute_error: 0.5573
+Epoch 169/200
+6339/6339 - 14s - loss: 0.5168 - mean_absolute_error: 0.5572
+Epoch 170/200
+6339/6339 - 15s - loss: 0.5164 - mean_absolute_error: 0.5571
+Epoch 171/200
+6339/6339 - 15s - loss: 0.5166 - mean_absolute_error: 0.5571
+Epoch 172/200
+6339/6339 - 14s - loss: 0.5161 - mean_absolute_error: 0.5571
+Epoch 173/200
+6339/6339 - 14s - loss: 0.5153 - mean_absolute_error: 0.5562
+Epoch 174/200
+6339/6339 - 15s - loss: 0.5155 - mean_absolute_error: 0.5564
+Epoch 175/200
+6339/6339 - 14s - loss: 0.5141 - mean_absolute_error: 0.5555
+Epoch 176/200
+6339/6339 - 14s - loss: 0.5147 - mean_absolute_error: 0.5559
+Epoch 177/200
+6339/6339 - 14s - loss: 0.5149 - mean_absolute_error: 0.5566
+Epoch 178/200
+6339/6339 - 14s - loss: 0.5143 - mean_absolute_error: 0.5562
+Epoch 179/200
+6339/6339 - 15s - loss: 0.5145 - mean_absolute_error: 0.5561
+Epoch 180/200
+6339/6339 - 15s - loss: 0.5137 - mean_absolute_error: 0.5555
+Epoch 181/200
+6339/6339 - 15s - loss: 0.5141 - mean_absolute_error: 0.5557
+Epoch 182/200
+6339/6339 - 14s - loss: 0.5146 - mean_absolute_error: 0.5563
+Epoch 183/200
+6339/6339 - 14s - loss: 0.5123 - mean_absolute_error: 0.5550
+Epoch 184/200
+6339/6339 - 14s - loss: 0.5136 - mean_absolute_error: 0.5560
+Epoch 185/200
+6339/6339 - 14s - loss: 0.5136 - mean_absolute_error: 0.5556
+Epoch 186/200
+6339/6339 - 14s - loss: 0.5129 - mean_absolute_error: 0.5551
+Epoch 187/200
+6339/6339 - 14s - loss: 0.5120 - mean_absolute_error: 0.5547
+Epoch 188/200
+6339/6339 - 14s - loss: 0.5123 - mean_absolute_error: 0.5548
+Epoch 189/200
+6339/6339 - 15s - loss: 0.5129 - mean_absolute_error: 0.5552
+Epoch 190/200
+6339/6339 - 14s - loss: 0.5109 - mean_absolute_error: 0.5541
+Epoch 191/200
+6339/6339 - 15s - loss: 0.5117 - mean_absolute_error: 0.5547
+Epoch 192/200
+6339/6339 - 14s - loss: 0.5113 - mean_absolute_error: 0.5541
+Epoch 193/200
+6339/6339 - 14s - loss: 0.5110 - mean_absolute_error: 0.5543
+Epoch 194/200
+6339/6339 - 14s - loss: 0.5116 - mean_absolute_error: 0.5546
+Epoch 195/200
+6339/6339 - 14s - loss: 0.5111 - mean_absolute_error: 0.5542
+Epoch 196/200
+6339/6339 - 14s - loss: 0.5115 - mean_absolute_error: 0.5542
+Epoch 197/200
+6339/6339 - 14s - loss: 0.5098 - mean_absolute_error: 0.5539
+Epoch 198/200
+6339/6339 - 15s - loss: 0.5110 - mean_absolute_error: 0.5543
+Epoch 199/200
+6339/6339 - 14s - loss: 0.5105 - mean_absolute_error: 0.5540
+Epoch 200/200
+6339/6339 - 15s - loss: 0.5103 - mean_absolute_error: 0.5539
+Training predicted steps: 18145.0
+Training actual steps: 17844.0
+Training difference in steps: 301.0
+Training RCA: 1.0169
+training {Irregular, Sensor03}...
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Opening training file...
+rawdata has shape (333243, 181)
+Seperating labels and features...
+features_normalized has shape (333243, 180)
+Reshaping normalized features for training...
+features_input has shape (333243, 60, 3)
+Splitting training data from rows 0 to 333243
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              (None, 51, 10)            310       
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 47, 10)            510       
+_________________________________________________________________
+flatten (Flatten)            (None, 470)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 471       
+=================================================================
+Total params: 1,291
+Trainable params: 1,291
+Non-trainable params: 0
+_________________________________________________________________
+Training...
+Epoch 1/200
+10414/10414 - 24s - loss: 1.0230 - mean_absolute_error: 0.5997
+Epoch 2/200
+10414/10414 - 24s - loss: 0.5065 - mean_absolute_error: 0.3945
+Epoch 3/200
+10414/10414 - 24s - loss: 0.4022 - mean_absolute_error: 0.3521
+Epoch 4/200
+10414/10414 - 24s - loss: 0.4515 - mean_absolute_error: 0.3775
+Epoch 5/200
+10414/10414 - 24s - loss: 0.3057 - mean_absolute_error: 0.2976
+Epoch 6/200
+10414/10414 - 24s - loss: 0.2733 - mean_absolute_error: 0.2755
+Epoch 7/200
+10414/10414 - 24s - loss: 0.2584 - mean_absolute_error: 0.2672
+Epoch 8/200
+10414/10414 - 24s - loss: 0.2516 - mean_absolute_error: 0.2635
+Epoch 9/200
+10414/10414 - 25s - loss: 0.2423 - mean_absolute_error: 0.2589
+Epoch 10/200
+10414/10414 - 24s - loss: 0.2370 - mean_absolute_error: 0.2562
+Epoch 11/200
+10414/10414 - 24s - loss: 0.2322 - mean_absolute_error: 0.2545
+Epoch 12/200
+10414/10414 - 24s - loss: 0.2297 - mean_absolute_error: 0.2528
+Epoch 13/200
+10414/10414 - 24s - loss: 0.2231 - mean_absolute_error: 0.2491
+Epoch 14/200
+10414/10414 - 24s - loss: 0.2213 - mean_absolute_error: 0.2473
+Epoch 15/200
+10414/10414 - 24s - loss: 0.2153 - mean_absolute_error: 0.2433
+Epoch 16/200
+10414/10414 - 24s - loss: 0.2192 - mean_absolute_error: 0.2449
+Epoch 17/200
+10414/10414 - 24s - loss: 0.2222 - mean_absolute_error: 0.2449
+Epoch 18/200
+10414/10414 - 24s - loss: 0.2037 - mean_absolute_error: 0.2349
+Epoch 19/200
+10414/10414 - 24s - loss: 0.2023 - mean_absolute_error: 0.2325
+Epoch 20/200
+10414/10414 - 24s - loss: 0.1997 - mean_absolute_error: 0.2305
+Epoch 21/200
+10414/10414 - 24s - loss: 0.1983 - mean_absolute_error: 0.2290
+Epoch 22/200
+10414/10414 - 24s - loss: 0.1968 - mean_absolute_error: 0.2281
+Epoch 23/200
+10414/10414 - 24s - loss: 0.1973 - mean_absolute_error: 0.2283
+Epoch 24/200
+10414/10414 - 24s - loss: 0.1992 - mean_absolute_error: 0.2301
+Epoch 25/200
+10414/10414 - 24s - loss: 0.2023 - mean_absolute_error: 0.2302
+Epoch 26/200
+10414/10414 - 24s - loss: 0.1965 - mean_absolute_error: 0.2271
+Epoch 27/200
+10414/10414 - 24s - loss: 0.1941 - mean_absolute_error: 0.2256
+Epoch 28/200
+10414/10414 - 24s - loss: 0.1939 - mean_absolute_error: 0.2247
+Epoch 29/200
+10414/10414 - 24s - loss: 0.1925 - mean_absolute_error: 0.2230
+Epoch 30/200
+10414/10414 - 24s - loss: 0.1920 - mean_absolute_error: 0.2226
+Epoch 31/200
+10414/10414 - 24s - loss: 0.1921 - mean_absolute_error: 0.2230
+Epoch 32/200
+10414/10414 - 24s - loss: 0.1923 - mean_absolute_error: 0.2224
+Epoch 33/200
+10414/10414 - 24s - loss: 0.1901 - mean_absolute_error: 0.2207
+Epoch 34/200
+10414/10414 - 24s - loss: 0.1905 - mean_absolute_error: 0.2208
+Epoch 35/200
+10414/10414 - 24s - loss: 0.1911 - mean_absolute_error: 0.2219
+Epoch 36/200
+10414/10414 - 24s - loss: 0.1940 - mean_absolute_error: 0.2234
+Epoch 37/200
+10414/10414 - 24s - loss: 0.1906 - mean_absolute_error: 0.2203
+Epoch 38/200
+10414/10414 - 24s - loss: 0.1889 - mean_absolute_error: 0.2185
+Epoch 39/200
+10414/10414 - 24s - loss: 0.1898 - mean_absolute_error: 0.2194
+Epoch 40/200
+10414/10414 - 24s - loss: 0.1882 - mean_absolute_error: 0.2185
+Epoch 41/200
+10414/10414 - 24s - loss: 0.1887 - mean_absolute_error: 0.2189
+Epoch 42/200
+10414/10414 - 23s - loss: 0.1914 - mean_absolute_error: 0.2214
+Epoch 43/200
+10414/10414 - 24s - loss: 0.1882 - mean_absolute_error: 0.2177
+Epoch 44/200
+10414/10414 - 24s - loss: 0.1874 - mean_absolute_error: 0.2173
+Epoch 45/200
+10414/10414 - 24s - loss: 0.1892 - mean_absolute_error: 0.2182
+Epoch 46/200
+10414/10414 - 24s - loss: 0.1891 - mean_absolute_error: 0.2185
+Epoch 47/200
+10414/10414 - 24s - loss: 0.1863 - mean_absolute_error: 0.2158
+Epoch 48/200
+10414/10414 - 24s - loss: 0.1863 - mean_absolute_error: 0.2168
+Epoch 49/200
+10414/10414 - 24s - loss: 0.1868 - mean_absolute_error: 0.2166
+Epoch 50/200
+10414/10414 - 24s - loss: 0.1874 - mean_absolute_error: 0.2170
+Epoch 51/200
+10414/10414 - 24s - loss: 0.1888 - mean_absolute_error: 0.2175
+Epoch 52/200
+10414/10414 - 24s - loss: 0.1890 - mean_absolute_error: 0.2189
+Epoch 53/200
+10414/10414 - 24s - loss: 0.1941 - mean_absolute_error: 0.2243
+Epoch 54/200
+10414/10414 - 24s - loss: 0.1952 - mean_absolute_error: 0.2257
+Epoch 55/200
+10414/10414 - 24s - loss: 0.2052 - mean_absolute_error: 0.2298
+Epoch 56/200
+10414/10414 - 24s - loss: 0.1936 - mean_absolute_error: 0.2230
+Epoch 57/200
+10414/10414 - 24s - loss: 0.1911 - mean_absolute_error: 0.2216
+Epoch 58/200
+10414/10414 - 24s - loss: 0.1919 - mean_absolute_error: 0.2214
+Epoch 59/200
+10414/10414 - 24s - loss: 0.1926 - mean_absolute_error: 0.2214
+Epoch 60/200
+10414/10414 - 24s - loss: 0.1905 - mean_absolute_error: 0.2203
+Epoch 61/200
+10414/10414 - 23s - loss: 0.1956 - mean_absolute_error: 0.2218
+Epoch 62/200
+10414/10414 - 24s - loss: 0.1936 - mean_absolute_error: 0.2210
+Epoch 63/200
+10414/10414 - 23s - loss: 0.1890 - mean_absolute_error: 0.2178
+Epoch 64/200
+10414/10414 - 24s - loss: 0.1878 - mean_absolute_error: 0.2171
+Epoch 65/200
+10414/10414 - 24s - loss: 0.1876 - mean_absolute_error: 0.2173
+Epoch 66/200
+10414/10414 - 24s - loss: 0.1879 - mean_absolute_error: 0.2170
+Epoch 67/200
+10414/10414 - 24s - loss: 0.1866 - mean_absolute_error: 0.2162
+Epoch 68/200
+10414/10414 - 24s - loss: 0.1871 - mean_absolute_error: 0.2163
+Epoch 69/200
+10414/10414 - 24s - loss: 0.1906 - mean_absolute_error: 0.2171
+Epoch 70/200
+10414/10414 - 24s - loss: 0.1873 - mean_absolute_error: 0.2164
+Epoch 71/200
+10414/10414 - 24s - loss: 0.1979 - mean_absolute_error: 0.2208
+Epoch 72/200
+10414/10414 - 24s - loss: 0.1904 - mean_absolute_error: 0.2168
+Epoch 73/200
+10414/10414 - 24s - loss: 0.1877 - mean_absolute_error: 0.2161
+Epoch 74/200
+10414/10414 - 24s - loss: 0.1916 - mean_absolute_error: 0.2175
+Epoch 75/200
+10414/10414 - 24s - loss: 0.1876 - mean_absolute_error: 0.2154
+Epoch 76/200
+10414/10414 - 24s - loss: 0.1915 - mean_absolute_error: 0.2172
+Epoch 77/200
+10414/10414 - 24s - loss: 0.1884 - mean_absolute_error: 0.2160
+Epoch 78/200
+10414/10414 - 24s - loss: 0.1860 - mean_absolute_error: 0.2150
+Epoch 79/200
+10414/10414 - 24s - loss: 0.1867 - mean_absolute_error: 0.2155
+Epoch 80/200
+10414/10414 - 24s - loss: 0.1870 - mean_absolute_error: 0.2151
+Epoch 81/200
+10414/10414 - 24s - loss: 0.1853 - mean_absolute_error: 0.2143
+Epoch 82/200
+10414/10414 - 24s - loss: 0.1875 - mean_absolute_error: 0.2154
+Epoch 83/200
+10414/10414 - 24s - loss: 0.1928 - mean_absolute_error: 0.2184
+Epoch 84/200
+10414/10414 - 24s - loss: 0.1922 - mean_absolute_error: 0.2174
+Epoch 85/200
+10414/10414 - 23s - loss: 0.1859 - mean_absolute_error: 0.2142
+Epoch 86/200
+10414/10414 - 24s - loss: 0.1948 - mean_absolute_error: 0.2191
+Epoch 87/200
+10414/10414 - 24s - loss: 0.1864 - mean_absolute_error: 0.2140
+Epoch 88/200
+10414/10414 - 24s - loss: 0.1902 - mean_absolute_error: 0.2168
+Epoch 89/200
+10414/10414 - 24s - loss: 0.1877 - mean_absolute_error: 0.2154
+Epoch 90/200
+10414/10414 - 23s - loss: 0.1852 - mean_absolute_error: 0.2140
+Epoch 91/200
+10414/10414 - 24s - loss: 0.1871 - mean_absolute_error: 0.2147
+Epoch 92/200
+10414/10414 - 24s - loss: 0.1854 - mean_absolute_error: 0.2141
+Epoch 93/200
+10414/10414 - 24s - loss: 0.1855 - mean_absolute_error: 0.2144
+Epoch 94/200
+10414/10414 - 24s - loss: 0.1941 - mean_absolute_error: 0.2188
+Epoch 95/200
+10414/10414 - 24s - loss: 0.1964 - mean_absolute_error: 0.2199
+Epoch 96/200
+10414/10414 - 24s - loss: 0.1900 - mean_absolute_error: 0.2160
+Epoch 97/200
+10414/10414 - 24s - loss: 0.1895 - mean_absolute_error: 0.2164
+Epoch 98/200
+10414/10414 - 24s - loss: 0.1839 - mean_absolute_error: 0.2133
+Epoch 99/200
+10414/10414 - 24s - loss: 0.1868 - mean_absolute_error: 0.2146
+Epoch 100/200
+10414/10414 - 24s - loss: 0.1858 - mean_absolute_error: 0.2143
+Epoch 101/200
+10414/10414 - 24s - loss: 0.1883 - mean_absolute_error: 0.2151
+Epoch 102/200
+10414/10414 - 24s - loss: 0.1858 - mean_absolute_error: 0.2140
+Epoch 103/200
+10414/10414 - 24s - loss: 0.1845 - mean_absolute_error: 0.2132
+Epoch 104/200
+10414/10414 - 24s - loss: 0.1838 - mean_absolute_error: 0.2131
+Epoch 105/200
+10414/10414 - 23s - loss: 0.2020 - mean_absolute_error: 0.2217
+Epoch 106/200
+10414/10414 - 24s - loss: 0.1866 - mean_absolute_error: 0.2143
+Epoch 107/200
+10414/10414 - 24s - loss: 0.1860 - mean_absolute_error: 0.2142
+Epoch 108/200
+10414/10414 - 24s - loss: 0.1977 - mean_absolute_error: 0.2201
+Epoch 109/200
+10414/10414 - 24s - loss: 0.1890 - mean_absolute_error: 0.2156
+Epoch 110/200
+10414/10414 - 24s - loss: 0.1923 - mean_absolute_error: 0.2173
+Epoch 111/200
+10414/10414 - 24s - loss: 0.1902 - mean_absolute_error: 0.2162
+Epoch 112/200
+10414/10414 - 24s - loss: 0.1836 - mean_absolute_error: 0.2132
+Epoch 113/200
+10414/10414 - 24s - loss: 0.1876 - mean_absolute_error: 0.2154
+Epoch 114/200
+10414/10414 - 24s - loss: 0.1859 - mean_absolute_error: 0.2142
+Epoch 115/200
+10414/10414 - 24s - loss: 0.1828 - mean_absolute_error: 0.2127
+Epoch 116/200
+10414/10414 - 23s - loss: 0.1886 - mean_absolute_error: 0.2155
+Epoch 117/200
+10414/10414 - 24s - loss: 0.1845 - mean_absolute_error: 0.2133
+Epoch 118/200
+10414/10414 - 23s - loss: 0.1834 - mean_absolute_error: 0.2134
+Epoch 119/200
+10414/10414 - 24s - loss: 0.1942 - mean_absolute_error: 0.2182
+Epoch 120/200
+10414/10414 - 24s - loss: 0.1852 - mean_absolute_error: 0.2137
+Epoch 121/200
+10414/10414 - 24s - loss: 0.1837 - mean_absolute_error: 0.2135
+Epoch 122/200
+10414/10414 - 24s - loss: 0.1907 - mean_absolute_error: 0.2164
+Epoch 123/200
+10414/10414 - 23s - loss: 0.1828 - mean_absolute_error: 0.2125
+Epoch 124/200
+10414/10414 - 24s - loss: 0.1831 - mean_absolute_error: 0.2127
+Epoch 125/200
+10414/10414 - 24s - loss: 0.1913 - mean_absolute_error: 0.2172
+Epoch 126/200
+10414/10414 - 24s - loss: 0.1906 - mean_absolute_error: 0.2164
+Epoch 127/200
+10414/10414 - 23s - loss: 0.1845 - mean_absolute_error: 0.2136
+Epoch 128/200
+10414/10414 - 24s - loss: 0.1824 - mean_absolute_error: 0.2122
+Epoch 129/200
+10414/10414 - 24s - loss: 0.1825 - mean_absolute_error: 0.2123
+Epoch 130/200
+10414/10414 - 24s - loss: 0.1833 - mean_absolute_error: 0.2128
+Epoch 131/200
+10414/10414 - 24s - loss: 0.1832 - mean_absolute_error: 0.2125
+Epoch 132/200
+10414/10414 - 24s - loss: 0.1873 - mean_absolute_error: 0.2145
+Epoch 133/200
+10414/10414 - 24s - loss: 0.1816 - mean_absolute_error: 0.2115
+Epoch 134/200
+10414/10414 - 24s - loss: 0.1904 - mean_absolute_error: 0.2162
+Epoch 135/200
+10414/10414 - 24s - loss: 0.1823 - mean_absolute_error: 0.2117
+Epoch 136/200
+10414/10414 - 24s - loss: 0.1827 - mean_absolute_error: 0.2120
+Epoch 137/200
+10414/10414 - 24s - loss: 0.1865 - mean_absolute_error: 0.2141
+Epoch 138/200
+10414/10414 - 24s - loss: 0.1818 - mean_absolute_error: 0.2116
+Epoch 139/200
+10414/10414 - 24s - loss: 0.1863 - mean_absolute_error: 0.2141
+Epoch 140/200
+10414/10414 - 23s - loss: 0.1827 - mean_absolute_error: 0.2121
+Epoch 141/200
+10414/10414 - 24s - loss: 0.1857 - mean_absolute_error: 0.2137
+Epoch 142/200
+10414/10414 - 24s - loss: 0.1823 - mean_absolute_error: 0.2120
+Epoch 143/200
+10414/10414 - 24s - loss: 0.1851 - mean_absolute_error: 0.2131
+Epoch 144/200
+10414/10414 - 24s - loss: 0.1823 - mean_absolute_error: 0.2117
+Epoch 145/200
+10414/10414 - 24s - loss: 0.1844 - mean_absolute_error: 0.2131
+Epoch 146/200
+10414/10414 - 24s - loss: 0.1823 - mean_absolute_error: 0.2121
+Epoch 147/200
+10414/10414 - 24s - loss: 0.1865 - mean_absolute_error: 0.2139
+Epoch 148/200
+10414/10414 - 24s - loss: 0.1806 - mean_absolute_error: 0.2109
+Epoch 149/200
+10414/10414 - 24s - loss: 0.1823 - mean_absolute_error: 0.2116
+Epoch 150/200
+10414/10414 - 24s - loss: 0.1842 - mean_absolute_error: 0.2131
+Epoch 151/200
+10414/10414 - 24s - loss: 0.1818 - mean_absolute_error: 0.2119
+Epoch 152/200
+10414/10414 - 24s - loss: 0.1830 - mean_absolute_error: 0.2124
+Epoch 153/200
+10414/10414 - 24s - loss: 0.1819 - mean_absolute_error: 0.2116
+Epoch 154/200
+10414/10414 - 24s - loss: 0.1818 - mean_absolute_error: 0.2118
+Epoch 155/200
+10414/10414 - 24s - loss: 0.1831 - mean_absolute_error: 0.2125
+Epoch 156/200
+10414/10414 - 24s - loss: 0.1815 - mean_absolute_error: 0.2114
+Epoch 157/200
+10414/10414 - 24s - loss: 0.1851 - mean_absolute_error: 0.2136
+Epoch 158/200
+10414/10414 - 24s - loss: 0.1829 - mean_absolute_error: 0.2125
+Epoch 159/200
+10414/10414 - 24s - loss: 0.1834 - mean_absolute_error: 0.2126
+Epoch 160/200
+10414/10414 - 24s - loss: 0.1833 - mean_absolute_error: 0.2124
+Epoch 161/200
+10414/10414 - 23s - loss: 0.1826 - mean_absolute_error: 0.2121
+Epoch 162/200
+10414/10414 - 24s - loss: 0.1808 - mean_absolute_error: 0.2112
+Epoch 163/200
+10414/10414 - 24s - loss: 0.1834 - mean_absolute_error: 0.2126
+Epoch 164/200
+10414/10414 - 23s - loss: 0.1857 - mean_absolute_error: 0.2139
+Epoch 165/200
+10414/10414 - 24s - loss: 0.1802 - mean_absolute_error: 0.2110
+Epoch 166/200
+10414/10414 - 24s - loss: 0.1814 - mean_absolute_error: 0.2116
+Epoch 167/200
+10414/10414 - 24s - loss: 0.1821 - mean_absolute_error: 0.2119
+Epoch 168/200
+10414/10414 - 23s - loss: 0.1807 - mean_absolute_error: 0.2115
+Epoch 169/200
+10414/10414 - 24s - loss: 0.1818 - mean_absolute_error: 0.2119
+Epoch 170/200
+10414/10414 - 24s - loss: 0.1821 - mean_absolute_error: 0.2122
+Epoch 171/200
+10414/10414 - 24s - loss: 0.1824 - mean_absolute_error: 0.2123
+Epoch 172/200
+10414/10414 - 24s - loss: 0.1826 - mean_absolute_error: 0.2125
+Epoch 173/200
+10414/10414 - 24s - loss: 0.1801 - mean_absolute_error: 0.2112
+Epoch 174/200
+10414/10414 - 24s - loss: 0.1810 - mean_absolute_error: 0.2117
+Epoch 175/200
+10414/10414 - 24s - loss: 0.1814 - mean_absolute_error: 0.2119
+Epoch 176/200
+10414/10414 - 24s - loss: 0.1809 - mean_absolute_error: 0.2115
+Epoch 177/200
+10414/10414 - 24s - loss: 0.1814 - mean_absolute_error: 0.2118
+Epoch 178/200
+10414/10414 - 24s - loss: 0.1860 - mean_absolute_error: 0.2141
+Epoch 179/200
+10414/10414 - 24s - loss: 0.1807 - mean_absolute_error: 0.2116
+Epoch 180/200
+10414/10414 - 24s - loss: 0.1802 - mean_absolute_error: 0.2111
+Epoch 181/200
+10414/10414 - 24s - loss: 0.1816 - mean_absolute_error: 0.2119
+Epoch 182/200
+10414/10414 - 24s - loss: 0.1802 - mean_absolute_error: 0.2112
+Epoch 183/200
+10414/10414 - 24s - loss: 0.1806 - mean_absolute_error: 0.2113
+Epoch 184/200
+10414/10414 - 24s - loss: 0.1816 - mean_absolute_error: 0.2122
+Epoch 185/200
+10414/10414 - 24s - loss: 0.1802 - mean_absolute_error: 0.2113
+Epoch 186/200
+10414/10414 - 24s - loss: 0.1830 - mean_absolute_error: 0.2122
+Epoch 187/200
+10414/10414 - 23s - loss: 0.1801 - mean_absolute_error: 0.2110
+Epoch 188/200
+10414/10414 - 24s - loss: 0.1835 - mean_absolute_error: 0.2129
+Epoch 189/200
+10414/10414 - 24s - loss: 0.1798 - mean_absolute_error: 0.2108
+Epoch 190/200
+10414/10414 - 24s - loss: 0.1812 - mean_absolute_error: 0.2118
+Epoch 191/200
+10414/10414 - 24s - loss: 0.1804 - mean_absolute_error: 0.2111
+Epoch 192/200
+10414/10414 - 23s - loss: 0.1816 - mean_absolute_error: 0.2121
+Epoch 193/200
+10414/10414 - 23s - loss: 0.1794 - mean_absolute_error: 0.2110
+Epoch 194/200
+10414/10414 - 24s - loss: 0.1811 - mean_absolute_error: 0.2116
+Epoch 195/200
+10414/10414 - 23s - loss: 0.1802 - mean_absolute_error: 0.2114
+Epoch 196/200
+10414/10414 - 24s - loss: 0.1797 - mean_absolute_error: 0.2110
+Epoch 197/200
+10414/10414 - 23s - loss: 0.1801 - mean_absolute_error: 0.2113
+Epoch 198/200
+10414/10414 - 24s - loss: 0.1802 - mean_absolute_error: 0.2113
+Epoch 199/200
+10414/10414 - 23s - loss: 0.1806 - mean_absolute_error: 0.2116
+Epoch 200/200
+10414/10414 - 24s - loss: 0.1805 - mean_absolute_error: 0.2115
+Training predicted steps: 5216.0
+Training actual steps: 5600.0
+Training difference in steps: 384.0
+Training RCA: 0.9314
