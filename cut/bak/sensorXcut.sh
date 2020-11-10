@@ -2,8 +2,8 @@
 # Basil Lin
 # Step counter project
 # Cuts and combines all csv files of a single sensor type
-# Usage: ./sensorXcut.sh [directory] [window_size] [window_stride] [gait] [sensor #]
-# [directory] is top level dir containing all subject files
+# Usage: ./sensorXcut.sh [PedometerData] [window_size] [window_stride] [gait] [sensor #]
+# [PedometerData] is top level dir containing all subject files
 # if [gait] is not Regular, Irregular, or SemiRegular, it will combine all gaits
 # requires cutsteps.c to be compiled as executable cutsteps
 # creates ALL_{Gait}_{sensor #}_cut.txt or ALL_ALL_{sensor #}_cut.txt
@@ -11,7 +11,7 @@
 echo "Bash version ${BASH_VERSION}"
 
 if [ "$#" -ne 5 ]; then
-    echo "Usage: ./sensorXcut.sh [directory] [window_size] [window_stride] [gait] [sensor #]"
+    echo "Usage: ./sensorXcut.sh [PedometerData] [window_size] [window_stride] [gait] [sensor #]"
     exit 1
 fi
 
