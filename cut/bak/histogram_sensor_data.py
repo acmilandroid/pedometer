@@ -2,7 +2,7 @@
 # step counter project
 # program to parse sensor cut file to find min and max
 # generates histogram of accelerometer distribution
-# requires sensor01.txt sensor02.txt sensor03.txt
+# requires ALL_ALL_1_cut.txt ALL_ALL_2_cut.txt ALL_ALL_3_cut.txt
 # Usage: python3 histogram_sensor_data.py
 
 # import sys
@@ -25,7 +25,7 @@ for i in range(1, 4):
     
     # open and load file
     data = []
-    filename = "sensor0" + str(i) + ".txt"
+    filename = "ALL_ALL_" + str(i) + "_cut.txt"
     print("Loading", filename, "...")
     fpt = open(filename, 'r')
     data = [[float(x) for x in line.split()] for line in fpt]
@@ -61,13 +61,12 @@ for i in range(1, 4):
     left_of_first_bin = minvalx - float(d)/2
     right_of_last_bin = maxvalx + float(d)/2
     plt.figure(1)
-    figure = plt.hist(datax, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
+    figure = plt.hist(datax, edgecolor='black', linewidth=1.2)
     plt.xticks(np.arange(-1.5, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_x"
-    plt.title(filename)
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
-    plt.savefig(filename + ".png")
+    plt.savefig(filename+'.eps', format='eps')
 
     # plot histogram of y
     print("Plotting histogram y...")
@@ -75,13 +74,12 @@ for i in range(1, 4):
     left_of_first_bin = minvaly - float(d)/2
     right_of_last_bin = maxvaly + float(d)/2
     plt.figure(2)
-    figure = plt.hist(datay, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
+    figure = plt.hist(datay, edgecolor='black', linewidth=1.2)
     plt.xticks(np.arange(-1.5, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_y"
-    plt.title(filename)
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
-    plt.savefig(filename + ".png")
+    plt.savefig(filename+'.eps', format='eps')
 
     # plot histogram of z
     print("Plotting histogram z...")
@@ -89,13 +87,12 @@ for i in range(1, 4):
     left_of_first_bin = minvalz - float(d)/2
     right_of_last_bin = maxvalz + float(d)/2
     plt.figure(3)
-    figure = plt.hist(dataz, np.arange(left_of_first_bin, right_of_last_bin + d, d), edgecolor='black', linewidth=1.2)
+    figure = plt.hist(dataz, edgecolor='black', linewidth=1.2)
     plt.xticks(np.arange(-1.5, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_z"
-    plt.title(filename)
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
-    plt.savefig(filename + ".png")
+    plt.savefig(filename+'.eps', format='eps')
 
     print("------------------------------------")
 
