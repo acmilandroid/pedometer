@@ -155,11 +155,13 @@ fn = actual_steps - tp
 fp = predicted_steps - tp
 
 # calculate SDA metrics
-ppv = tp / (tp + fp)
-sensitivity = tp / (tp + fn)
-if (ppv + sensitivity == 0):
-	f1 = 0
+if (tp + fp == 0) or (tp + fn == 0) or (ppv + sensitivity == 0):
+	ppv = -1
+	sensitivity = -1
+	f1 = -1
 else:
+	ppv = tp / (tp + fp)
+	sensitivity = tp / (tp + fn)
 	f1 = 2*ppv*sensitivity / (ppv + sensitivity)
 
 # print testing results
