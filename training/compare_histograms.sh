@@ -45,9 +45,9 @@ done
 echo "Generating histograms..."
 mkdir histograms_"$5"
 for ((sensor=1; sensor<=3; sensor++)) do
-	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Regular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Regular_"$sensor"_"$5"_comparison.png
-	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_SemiRegular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_SemiRegular_"$sensor"_"$5"_comparison.png
-	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Irregular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Irregular_"$sensor"_"$5"_comparison.png
+	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Regular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Regular_"$sensor"_"$5"_comparison.eps
+	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_SemiRegular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_SemiRegular_"$sensor"_"$5"_comparison.eps
+	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Irregular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Irregular_"$sensor"_"$5"_comparison.eps
 done
 
 # remove old stuff
