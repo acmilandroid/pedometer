@@ -3,12 +3,12 @@
 # Step counter project
 # Tests all 9 {sensor, gait} pairs and creates original and predicted histogram distribution for each pair
 # Usage: ./compare_histograms.sh [data/cutnorm_windowsize] [models/models_windowsize] [PedometerData] [fold_num] [window_size]
+# [data/cutnorm_windowsize] contains cut and normalized data files of a specific window size
 # [PedometerData] is top level dir containing all subject files
 # [models/models_windowsize] is top level dir containing trained models
-# [normalization_type 0|1] 0 for per sensor per axis, 1 for -1.5 to 1.5 gravities
+# [fold_num] is the fold number to use (selects which model to test)
 # cutsteps executable must be compiled in ../cut/cutsteps
-# models in directory must be named ALL_{Gait}_{sensor #}_model.h5
-# creates histogram/ dir containing histograms of each pair
+# creates histogram_windowsize/ dir containing histograms of each pair
 
 echo "Bash version ${BASH_VERSION}"
 
@@ -32,11 +32,11 @@ for d in $3*; do
 		((num++))
 		for (( sensor=1; sensor<=3; sensor++ )); do
 			echo "Testing $2/trainingfold"$4"_Regular_"$sensor"_"$5"_model.h5"
-			python3 ../training/test_model.py $2/trainingfold"$4"_Regular_"$sensor"_"$5"_model.h5 $5 $1/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 temp_histogram_testing_data_"$5"/ALL_Regular_"$sensor"_"$5"_debug.csv &> /dev/null
+			python3 ../training/test_model.py $2/trainingfold"$4"_Regular_"$sensor"_"$5"_model.h5 $5 $1/"$num"_Regular_"$sensor"_norm.txt $d/Regular/steps.txt 0 temp_histogram_testing_data_"$5"/ALL_Regular_"$sensor"_"$5"_debug.csv
 			echo "Testing $2/trainingfold"$4"_SemiRegular_"$sensor"_"$5"_model.h5"
-			python3 ../training/test_model.py $2/trainingfold"$4"_SemiRegular_"$sensor"_"$5"_model.h5 $5 $1/"$num"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 temp_histogram_testing_data_"$5"/ALL_SemiRegular_"$sensor"_"$5"_debug.csv &> /dev/null
+			python3 ../training/test_model.py $2/trainingfold"$4"_SemiRegular_"$sensor"_"$5"_model.h5 $5 $1/"$num"_SemiRegular_"$sensor"_norm.txt $d/SemiRegular/steps.txt 0 temp_histogram_testing_data_"$5"/ALL_SemiRegular_"$sensor"_"$5"_debug.csv
 			echo "Testing $2/trainingfold"$4"_Irregular_"$sensor"_"$5"_model.h5"
-			python3 ../training/test_model.py $2/trainingfold"$4"_Irregular_"$sensor"_"$5"_model.h5 $5 $1/"$num"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 temp_histogram_testing_data_"$5"/ALL_Irregular_"$sensor"_"$5"_debug.csv &> /dev/null
+			python3 ../training/test_model.py $2/trainingfold"$4"_Irregular_"$sensor"_"$5"_model.h5 $5 $1/"$num"_Irregular_"$sensor"_norm.txt $d/Irregular/steps.txt 0 temp_histogram_testing_data_"$5"/ALL_Irregular_"$sensor"_"$5"_debug.csv
 		done
 	fi
 done
@@ -45,9 +45,9 @@ done
 echo "Generating histograms..."
 mkdir histograms_"$5"
 for ((sensor=1; sensor<=3; sensor++)) do
-	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Regular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Regular_"$sensor"_"$5"_comparison.png &> /dev/null
-	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_SemiRegular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_SemiRegular_"$sensor"_"$5"_comparison.png &> /dev/null
-	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Irregular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Irregular_"$sensor"_"$5"_comparison.png &> /dev/null
+	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Regular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Regular_"$sensor"_"$5"_comparison.png
+	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_SemiRegular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_SemiRegular_"$sensor"_"$5"_comparison.png
+	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Irregular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Irregular_"$sensor"_"$5"_comparison.png
 done
 
 # remove old stuff
