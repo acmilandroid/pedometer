@@ -19,6 +19,7 @@ import random
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+plt.rcParams.update({'font.size': 32})
 
 # do for each sensor
 for i in range(1, 4):
@@ -63,8 +64,8 @@ for i in range(1, 4):
     print("Plotting histogram x...")
     d = np.diff(np.unique(datax)).min()
     plt.figure(1)
-    figure = plt.hist(datax, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
-    plt.xticks(np.arange(-1.25, 1.75, 0.25))
+    figure = plt.hist(datax, bins=np.arange(-1.5, 1.75, .5), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
+    plt.xticks(np.arange(-1.5, 1.75, .25))
     filename = "histogram_sensor0" + str(i) + "_x"
     title += "X axis"
     plt.title(title)
@@ -76,8 +77,8 @@ for i in range(1, 4):
     print("Plotting histogram y...")
     d = np.diff(np.unique(datay)).min()
     plt.figure(2)
-    figure = plt.hist(datay, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
-    plt.xticks(np.arange(-1.25, 1.75, 0.25))
+    figure = plt.hist(datay, bins=np.arange(-1.5, 1.75, .5), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
+    plt.xticks(np.arange(-1.5, 1.75, .25))
     filename = "histogram_sensor0" + str(i) + "_y"
     title += "Y axis"
     plt.title(title)
@@ -89,8 +90,8 @@ for i in range(1, 4):
     print("Plotting histogram z...")
     d = np.diff(np.unique(dataz)).min()
     plt.figure(3)
-    figure = plt.hist(dataz, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
-    plt.xticks(np.arange(-1.25, 1.75, 0.25))
+    figure = plt.hist(dataz, bins=np.arange(-1.5, 1.75, .5), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
+    plt.xticks(np.arange(-1.5, 1.75, .25))
     filename = "histogram_sensor0" + str(i) + "_z"
     title += "Z axis"
     plt.title(title)
