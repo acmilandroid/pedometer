@@ -51,6 +51,14 @@ for i in range(1, 4):
     print("Min z:", dataz.min())
     print("Max z:", dataz.max())
 
+    # make title string
+    if i == 1:
+        title = "Wrist Sensor, "
+    elif i == 2:
+        title = "Hip Sensor, "
+    elif i == 3:
+        title = "Ankle Sensor, "
+
     # plot histogram of x
     print("Plotting histogram x...")
     d = np.diff(np.unique(datax)).min()
@@ -58,9 +66,11 @@ for i in range(1, 4):
     figure = plt.hist(datax, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
     plt.xticks(np.arange(-1.25, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_x"
+    title += "X axis"
+    plt.title(title)
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
-    plt.savefig(filename+'.eps', format='eps')
+    plt.savefig(filename+'.eps', format='eps', bbox_inches="tight")
 
     # plot histogram of y
     print("Plotting histogram y...")
@@ -69,9 +79,11 @@ for i in range(1, 4):
     figure = plt.hist(datay, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
     plt.xticks(np.arange(-1.25, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_y"
+    title += "Y axis"
+    plt.title(title)
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
-    plt.savefig(filename+'.eps', format='eps')
+    plt.savefig(filename+'.eps', format='eps', bbox_inches="tight")
 
     # plot histogram of z
     print("Plotting histogram z...")
@@ -80,9 +92,11 @@ for i in range(1, 4):
     figure = plt.hist(dataz, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
     plt.xticks(np.arange(-1.25, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_z"
+    title += "Z axis"
+    plt.title(title)
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
-    plt.savefig(filename+'.eps', format='eps')
+    plt.savefig(filename+'.eps', format='eps', bbox_inches="tight")
 
     print("------------------------------------")
 
