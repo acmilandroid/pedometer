@@ -11,4 +11,4 @@ source activate tf_env
 cd
 cd pedometer/training/
 
-./compare_histograms.sh /scratch1/basill/data/cutnorm_75 /scratch1/basill/models/models_75 /scratch1/basill/PedometerData 5 75
+./compare_histograms.sh /scratch1/basill/data/cutnorm_75 /scratch1/basill/models/models_75 /scratch1/basill/PedometerData/ 5 75
