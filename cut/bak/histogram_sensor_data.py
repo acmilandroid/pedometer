@@ -31,19 +31,15 @@ for i in range(1, 4):
     data = [[float(x) for x in line.split()] for line in fpt]
     fpt.close()
 
-    # remove steps in window column
-    for row in data:
-        del row[0]
-
     # split into x y and z
     data = np.array(data)
-    datax = np.copy(data[:, ::3]).flatten()
+    datax = np.copy(data[:, 1])
     minvalx = datax.min()
     maxvalx = datax.max()
-    datay = np.copy(data[:, 1::3]).flatten()
+    datay = np.copy(data[:, 2])
     minvaly = datay.min()
     maxvaly = datay.max()
-    dataz = np.copy(data[:, 2::3]).flatten()
+    dataz = np.copy(data[:, 3])
     minvalz = dataz.min()
     maxvalz = dataz.max()
 
@@ -58,11 +54,9 @@ for i in range(1, 4):
     # plot histogram of x
     print("Plotting histogram x...")
     d = np.diff(np.unique(datax)).min()
-    left_of_first_bin = minvalx - float(d)/2
-    right_of_last_bin = maxvalx + float(d)/2
     plt.figure(1)
-    figure = plt.hist(datax, edgecolor='black', linewidth=1.2)
-    plt.xticks(np.arange(-1.5, 1.75, 0.25))
+    figure = plt.hist(datax, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
+    plt.xticks(np.arange(-1.25, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_x"
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
@@ -71,11 +65,9 @@ for i in range(1, 4):
     # plot histogram of y
     print("Plotting histogram y...")
     d = np.diff(np.unique(datay)).min()
-    left_of_first_bin = minvaly - float(d)/2
-    right_of_last_bin = maxvaly + float(d)/2
     plt.figure(2)
-    figure = plt.hist(datay, edgecolor='black', linewidth=1.2)
-    plt.xticks(np.arange(-1.5, 1.75, 0.25))
+    figure = plt.hist(datay, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
+    plt.xticks(np.arange(-1.25, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_y"
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
@@ -84,11 +76,9 @@ for i in range(1, 4):
     # plot histogram of z
     print("Plotting histogram z...")
     d = np.diff(np.unique(dataz)).min()
-    left_of_first_bin = minvalz - float(d)/2
-    right_of_last_bin = maxvalz + float(d)/2
     plt.figure(3)
-    figure = plt.hist(dataz, edgecolor='black', linewidth=1.2)
-    plt.xticks(np.arange(-1.5, 1.75, 0.25))
+    figure = plt.hist(dataz, bins=np.arange(-1.25, 1.75, 0.25), edgecolor='black', linewidth=1.2, color='white', histtype='bar')
+    plt.xticks(np.arange(-1.25, 1.75, 0.25))
     filename = "histogram_sensor0" + str(i) + "_z"
     plt.xlabel("Gravities")
     plt.ylabel("Frequency")
