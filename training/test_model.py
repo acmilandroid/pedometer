@@ -92,11 +92,11 @@ gt_steps_sum = 0
 if debug == 1:
 	filename = sys.argv[6]
 	if os.path.isfile(filename): 
+		debug_file = open(filename, "a+")
+	else:
 		debug_file = open(filename, "w")
 		debug_file.write("Window #,Window start index,Window stop index,GT steps in window,Predicted steps in window,")
 		debug_file.write("GT running step sum,Predicted running step sum,Difference,Index output\n")
-	else: 
-		debug_file = open(filename, "a+")
 
 # loop through all windows
 for i in range(0, num_samples):

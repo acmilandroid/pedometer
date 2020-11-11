@@ -1,14 +1,14 @@
 # Basil Lin
 # step counter project
 # generates histogram based on given cut sensor data (can be normalized and balanced)
-# Usage: python3 generate_histogram_cut.py [input_cut.txt] [histogram_output.png]
+# Usage: python3 generate_histogram_cut.py [input_cut.txt] [histogram_output.eps]
 
 # import sys
 import sys
 
 # checks if input args are correct
 if len(sys.argv) != 3:
-	sys.exit("Usage: python3 generate_histogram_cut.py [input_cut.txt] [histogram_output.png]")
+	sys.exit("Usage: python3 generate_histogram_cut.py [input_cut.txt] [histogram_output.eps]")
 
 # import stuff
 import warnings
@@ -35,5 +35,5 @@ figure = plt.hist(histdata, bins=range(0, 14, 1), color='white', edgecolor='blac
 plt.xticks(np.arange(0, 14, step=1))
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
-plt.savefig(sys.argv[2])
-# plt.savefig('vector.eps', format='eps')
+# plt.savefig(sys.argv[2])
+plt.savefig(sys.argv[2], format='eps')
