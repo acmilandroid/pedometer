@@ -1,0 +1,73 @@
+rm: cannot remove 'temp_histogram_testing_data_75': No such file or directory
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/Regular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/SemiRegular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/Irregular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/Regular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/SemiRegular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/Irregular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/Regular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/SemiRegular/steps.txt'
+Traceback (most recent call last):
+  File "../training/test_model.py", line 49, in <module>
+    fpt = open(sys.argv[4], 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch1/basill/PedometerData/Irregular/steps.txt'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_Regular_1_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_SemiRegular_1_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_Irregular_1_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_Regular_2_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_SemiRegular_2_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_Irregular_2_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_Regular_3_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_SemiRegular_3_75_debug.csv'
+Traceback (most recent call last):
+  File "generate_histogram_debug.py", line 24, in <module>
+    with open(sys.argv[1], newline='\n') as fpt:
+FileNotFoundError: [Errno 2] No such file or directory: 'temp_histogram_testing_data_75/ALL_Irregular_3_75_debug.csv'

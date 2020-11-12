@@ -1,0 +1,50 @@
+Bash version 4.4.19(1)-release
+/scratch1/basill/PedometerData
+Testing /scratch1/basill/models/models_75/trainingfold5_Regular_1_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_SemiRegular_1_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_Irregular_1_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_Regular_2_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_SemiRegular_2_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_Irregular_2_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_Regular_3_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_SemiRegular_3_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Testing /scratch1/basill/models/models_75/trainingfold5_Irregular_3_75_model.h5
+Tensorflow version: 2.3.1
+Python version: 3.8.3 (default, Jul  2 2020, 16:21:59) 
+[GCC 7.3.0]
+Generating histograms...
+Loading file...
+Loading file...
+Loading file...
+Loading file...
+Loading file...
+Loading file...
+Loading file...
+Loading file...
+Loading file...
+Removing temp data...
+1 subjects tested.
