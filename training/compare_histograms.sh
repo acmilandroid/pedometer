@@ -50,8 +50,4 @@ for ((sensor=1; sensor<=3; sensor++)) do
 	python3 generate_histogram_debug.py temp_histogram_testing_data_"$5"/ALL_Irregular_"$sensor"_"$5"_debug.csv histograms_"$5"/ALL_Irregular_"$sensor"_"$5"_comparison.eps
 done
 
-# remove old stuff
-echo "Removing temp data..."
-rm -r temp_histogram_testing_data_"$5" &> /dev/null
-
 echo "$((num)) subjects tested."
