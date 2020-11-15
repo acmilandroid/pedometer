@@ -8,7 +8,6 @@
 # if [debug.csv] exists, it will be appended. If not, it will be created
 
 # globals for switching program functionality
-NORMALIZE = 0       # switches type of normalization (0 for per sensor per position, 1 for -1.5 to 1.5 gravities)
 TOTAL_FEATURES = 3  # total number of features (3 for X,Y,Z acceleration)
 RANGE = 7           # Range in datum for acceptable pairing with GT (half a second, or 7 sensor readings)
 TESTING_STRIDE = 1  # don't change, always test with a stride of 1 datum
