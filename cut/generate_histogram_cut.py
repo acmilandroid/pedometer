@@ -35,5 +35,6 @@ figure = plt.hist(histdata, bins=range(0, 14, 1), color='white', edgecolor='blac
 plt.xticks(np.arange(0, 14, step=1))
 plt.xlabel("Steps in a Window")
 plt.ylabel("Frequency")
+plt.legend(loc='upper center')
 # plt.savefig(sys.argv[2])
 plt.savefig(sys.argv[2], format='eps')

@@ -3,9 +3,10 @@
 # Step counter project
 # Tests all 9 {sensor, gait} pairs and creates original and predicted histogram distribution for each pair
 # Usage: ./compare_histograms.sh [data/cutnorm_windowsize] [models/models_windowsize] [PedometerData] [fold_num] [window_size]
-# [data/cutnorm_windowsize] contains cut and normalized data files of a specific window size
-# [PedometerData] is top level dir containing all subject files
-# [models/models_windowsize] is top level dir containing trained models
+# [data/cutnorm_windowsize] is top level dir containing cut and normalized data files for a specific window size
+# [data/cutnorm_windowsize] CANNOT CONTAIN TRAILING / ON DIR!!!
+# [models/models_windowsize] is top level dir containing trained models for a specific window size
+# [PedometerData] is top level dir containing all subject files (raw data)
 # [fold_num] is the fold number to use (selects which model to test)
 # cutsteps executable must be compiled in ../cut/cutsteps
 # creates histogram_windowsize/ dir containing histograms of each pair
