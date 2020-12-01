@@ -1,0 +1,6 @@
+mkdir: cannot create directory ‘models_75’: File exists
+mkdir: cannot create directory ‘$’: File exists
+
+real	623m14.995s
+user	951m37.150s
+sys	110m59.755s
